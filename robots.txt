@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Sitemap: https://unblockedgames-usa.github.io/sitemap.xml
+
+# Disallow unnecessary paths
+Disallow: /assets/
+Disallow: /private/
+Disallow: /admin/
+Disallow: /test/
+
+# Allow Google to crawl everything else
