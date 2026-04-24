@@ -28,7 +28,7 @@
         gtag('config', 'G-L6FNHSMWF4');
     </script>
 
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","url":"https://unblockedgames-usa.github.io/","name":"Unblocked Games USA","potentialAction":{"@type":"SearchAction","target":"https://unblockedgames-usa.github.io/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","url":"https://unblockedgames-usa.github.io/","name":"Unblocked Games USA","potentialAction":{"@type":"SearchAction","target":"https://unblockedgames-usa.github.io/?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
 
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -107,10 +107,10 @@
             text-shadow: 0 0 20px rgba(232,25,44,0.6);
             transition: text-shadow 0.3s;
         }
-        .logo .flag { font-size: 1.4rem; }
         .logo:hover { text-shadow: 0 0 30px rgba(232,25,44,1), 0 0 60px rgba(0,40,104,0.8); }
 
-        .search-bar { display: flex; }
+        /* ── SEARCH BAR ── */
+        .search-bar { display: flex; position: relative; }
         .search-bar input {
             padding: 0.45rem 1rem;
             border: 1px solid var(--border);
@@ -120,7 +120,12 @@
             color: white;
             font-family: 'Barlow', sans-serif;
             font-size: 0.9rem;
-            width: 180px;
+            width: 200px;
+            transition: background 0.2s, width 0.3s;
+        }
+        .search-bar input:focus {
+            background: rgba(255,255,255,0.18);
+            width: 240px;
         }
         .search-bar input::placeholder { color: rgba(255,255,255,0.5); }
         .search-bar button {
@@ -133,6 +138,44 @@
             transition: background 0.2s;
         }
         .search-bar button:hover { background: #c0101f; }
+
+        /* Search dropdown */
+        .search-dropdown {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            right: 0;
+            background: #0a1535;
+            border: 1px solid rgba(232,25,44,0.3);
+            border-radius: 12px;
+            overflow: hidden;
+            z-index: 200;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+            display: none;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+        .search-dropdown.active { display: block; }
+        .search-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 14px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.15s;
+        }
+        .search-dropdown a:last-child { border-bottom: none; }
+        .search-dropdown a:hover { background: rgba(232,25,44,0.2); color: white; }
+        .search-dropdown .no-results {
+            padding: 12px 14px;
+            color: rgba(255,255,255,0.45);
+            font-size: 0.85rem;
+            text-align: center;
+        }
 
         /* ── NAV ── */
         .main-nav { order: 1; width: 100%; }
@@ -174,17 +217,10 @@
         }
 
         @media (max-width: 992px) {
-            .main-nav ul {
-                border-radius: 20px;
-                padding: 10px 16px;
-            }
+            .main-nav ul { border-radius: 20px; padding: 10px 16px; }
         }
         @media (max-width: 600px) {
-            .main-nav ul {
-                border-radius: 16px;
-                padding: 8px 12px;
-                gap: 3px;
-            }
+            .main-nav ul { border-radius: 16px; padding: 8px 12px; gap: 3px; }
             .main-nav a { font-size: 0.76rem; padding: 4px 9px; }
         }
 
@@ -240,6 +276,33 @@
             color: rgba(255,255,255,0.65);
         }
 
+        /* ── SEARCH RESULTS BANNER ── */
+        .search-results-banner {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(232,25,44,0.12);
+            border: 1px solid rgba(232,25,44,0.3);
+            border-radius: 10px;
+            padding: 10px 18px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        .search-results-banner.active { display: flex; }
+        .search-results-banner strong { color: white; }
+        .search-results-banner button {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.7);
+            border-radius: 50px;
+            padding: 3px 12px;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-results-banner button:hover { background: rgba(255,255,255,0.1); color: white; }
+
         /* ── SECTION TITLES ── */
         .section-title {
             font-family: 'Bebas Neue', sans-serif;
@@ -260,6 +323,17 @@
             gap: 1.2rem;
             margin-bottom: 3rem;
         }
+
+        /* No results message */
+        .no-games-msg {
+            display: none;
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem 1rem;
+            color: rgba(255,255,255,0.4);
+            font-size: 1rem;
+        }
+        .no-games-msg i { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
 
         .game-card {
             background: var(--card-bg);
@@ -345,22 +419,11 @@
         }
 
         @media (max-width: 768px) {
-            .category-grid {
-                border-radius: 24px;
-                padding: 16px 18px;
-                gap: 8px;
-            }
-            .category-item {
-                font-size: 0.8rem;
-                padding: 6px 13px;
-            }
+            .category-grid { border-radius: 24px; padding: 16px 18px; gap: 8px; }
+            .category-item { font-size: 0.8rem; padding: 6px 13px; }
         }
         @media (max-width: 480px) {
-            .category-grid {
-                border-radius: 18px;
-                padding: 14px 14px;
-                gap: 7px;
-            }
+            .category-grid { border-radius: 18px; padding: 14px 14px; gap: 7px; }
             .category-item { font-size: 0.78rem; padding: 6px 11px; }
         }
 
@@ -391,10 +454,6 @@
             text-align: center;
         }
 
-        /* ── AD CONTAINER ── */
-        .ad-container { text-align: center; margin: 1.5rem auto; }
-        .ad-container:empty { display: none; }
-
         /* ── SCROLL TO TOP ── */
         #scrollToTopBtn {
             position: fixed; bottom: 22px; right: 22px; z-index: 99;
@@ -418,11 +477,7 @@
             padding: 1.5rem 0;
             margin-top: 1rem;
         }
-        .footer-bottom {
-            text-align: center;
-            color: #ffffff;
-            font-size: 0.82rem;
-        }
+        .footer-bottom { text-align: center; color: #ffffff; font-size: 0.82rem; }
         .footer-bottom p { color: #ffffff; }
         .footer-links { display: flex; justify-content: center; gap: 1.2rem; margin-top: 0.5rem; flex-wrap: wrap; }
         .footer-links a { color: #ffffff; text-decoration: none; transition: color 0.2s; }
@@ -443,102 +498,8 @@
         @media (max-width: 480px) {
             .games-grid { grid-template-columns: repeat(2, 1fr); }
             .search-bar input { width: 130px; }
+            .search-bar input:focus { width: 150px; }
         }
-    </style>
-    <style id="usa-rebrand">
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&display=swap');
-        :root {
-            --primary:     #E8192C !important;
-            --secondary:   #2655cc !important;
-            --accent:      #E8192C !important;
-            --dark-bg:     #000510 !important;
-            --dark-card:   #07102b !important;
-            --dark-text:   #dce8ff !important;
-            --dark-border: rgba(255,255,255,0.08) !important;
-        }
-        body { background: #000510 !important; color: #dce8ff !important; }
-        header {
-            background: linear-gradient(90deg,#002868 0%,#0d1f5c 40%,#1a0a2e 60%,#E8192C 100%) !important;
-            border-bottom: 3px solid #E8192C !important;
-        }
-        .logo {
-            font-family: 'Bebas Neue', sans-serif !important;
-            letter-spacing: 2px !important;
-            text-shadow: 0 0 20px rgba(232,25,44,0.6) !important;
-        }
-        .game-card {
-            background: #07102b !important;
-            border: 1px solid rgba(255,255,255,0.08) !important;
-            animation: none !important;
-        }
-        .game-card:hover {
-            transform: translateY(-6px) !important;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.5), 0 0 0 1px rgba(232,25,44,0.35) !important;
-            border-color: rgba(232,25,44,0.4) !important;
-        }
-        .section-title, .categories-title {
-            font-family: 'Bebas Neue', sans-serif !important;
-            background: linear-gradient(135deg,#002868,#2655cc,#E8192C) !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            background-clip: text !important;
-        }
-        .hero-header, .game-header {
-            background: linear-gradient(135deg,rgba(0,20,80,0.95),rgba(10,5,30,0.9),rgba(100,10,20,0.95)) !important;
-            border: 1px solid rgba(255,255,255,0.07) !important;
-        }
-        .hero-header h1, .game-header h1 {
-            font-family: 'Bebas Neue', sans-serif !important;
-            letter-spacing: 3px !important;
-            background: linear-gradient(135deg,#002868,#2655cc,#E8192C) !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            background-clip: text !important;
-        }
-        .category-item, .category-tag-item {
-            background: linear-gradient(135deg, rgba(26,58,138,0.7), rgba(232,25,44,0.6)) !important;
-            color: white !important;
-            border-radius: 50px !important;
-            border: 1px solid rgba(255,255,255,0.12) !important;
-        }
-        .category-item:hover, .category-tag-item:hover {
-            background: linear-gradient(135deg,#1a3a8a,#E8192C) !important;
-            box-shadow: 0 4px 18px rgba(232,25,44,0.45) !important;
-        }
-        .category-grid {
-            display: flex !important;
-            flex-wrap: wrap !important;
-            gap: 10px !important;
-            justify-content: center !important;
-            background: linear-gradient(135deg, #0a1a4a 0%, #0d1f5c 40%, #1a0a2e 70%, #3a0a10 100%) !important;
-            border: 1px solid rgba(232,25,44,0.25) !important;
-            border-radius: 60px !important;
-            padding: 18px 28px !important;
-            box-shadow: 0 0 0 1px rgba(0,40,104,0.4), 0 8px 32px rgba(0,0,0,0.6), 0 0 40px rgba(232,25,44,0.15), 0 0 80px rgba(0,40,104,0.2), inset 0 1px 0 rgba(255,255,255,0.06) !important;
-        }
-        .game-description, .site-description, .game-container {
-            background: #07102b !important;
-            border: 1px solid rgba(255,255,255,0.08) !important;
-        }
-        .game-description h2, .game-description h3,
-        .site-description h2, .site-description h3 { color: #E8192C !important; }
-        .play-button {
-            background: linear-gradient(135deg,#002868,#E8192C) !important;
-        }
-        .fullscreen-btn:hover { background: #E8192C !important; }
-        #scrollToTopBtn {
-            background: linear-gradient(135deg,#002868,#E8192C) !important;
-        }
-        footer {
-            background: #010812 !important;
-            border-top: 2px solid #E8192C !important;
-        }
-        .footer-bottom       { color: #ffffff !important; }
-        .footer-bottom p     { color: #ffffff !important; }
-        .footer-links a      { color: #ffffff !important; }
-        .footer-links a:hover{ color: rgba(255,255,255,0.65) !important; }
-        .main-nav a:hover { background: rgba(232,25,44,0.35) !important; border-color: rgba(232,25,44,0.4) !important; }
-        .search-bar button { background: #E8192C !important; }
     </style>
 </head>
 <body>
@@ -548,8 +509,9 @@
         <a href="/" class="logo">Unblocked Games USA</a>
 
         <div class="search-bar">
-            <input type="text" placeholder="Search games...">
-            <button><i class="fas fa-search"></i></button>
+            <input type="text" id="searchInput" placeholder="Search games..." autocomplete="off">
+            <button id="searchBtn" aria-label="Search"><i class="fas fa-search"></i></button>
+            <div class="search-dropdown" id="searchDropdown"></div>
         </div>
 
         <nav class="main-nav">
@@ -593,10 +555,16 @@
         </div>
     </div>
 
-    <!-- POPULAR GAMES -->
-    <h2 class="section-title">🔥 Popular Games</h2>
+    <!-- SEARCH RESULTS BANNER -->
+    <div class="search-results-banner" id="searchBanner">
+        <span id="searchBannerText"></span>
+        <button id="clearSearchBtn">✕ Clear search</button>
+    </div>
 
-    <div class="games-grid">
+    <!-- POPULAR GAMES -->
+    <h2 class="section-title" id="gamesTitle">🔥 Popular Games</h2>
+
+    <div class="games-grid" id="gamesGrid">
         <div class="game-card"><a href="/among-us" class="game-link"><div class="game-image"><img src="https://unblockedgames-usa.github.io/images/among-us.png" alt="Among Us"></div><div class="game-info"><h3 class="game-title">Among Us</h3></div></a></div>
         <div class="game-card"><a href="/1v1-lol" class="game-link"><div class="game-image"><img src="https://unblockedgames-usa.github.io/images/1v1-lol.png" alt="1v1 Lol"></div><div class="game-info"><h3 class="game-title">1v1 Lol</h3></div></a></div>
         <div class="game-card"><a href="/subway-surfers" class="game-link"><div class="game-image"><img src="https://unblockedgames-usa.github.io/images/subway-surfers.png" alt="Subway Surfers"></div><div class="game-info"><h3 class="game-title">Subway Surfers</h3></div></a></div>
@@ -645,12 +613,16 @@
         <div class="game-card"><a href="/temple-of-boom" class="game-link"><div class="game-image"><img src="https://unblockedgames-usa.github.io/images/temple-of-boom.png" alt="Temple Of Boom"></div><div class="game-info"><h3 class="game-title">Temple Of Boom</h3></div></a></div>
         <div class="game-card"><a href="/drift-boss" class="game-link"><div class="game-image"><img src="https://unblockedgames-usa.github.io/images/drift-boss.png" alt="Drift Boss"></div><div class="game-info"><h3 class="game-title">Drift Boss</h3></div></a></div>
         <div class="game-card"><a href="/stick-merge" class="game-link"><div class="game-image"><img src="https://unblockedgames-usa.github.io/images/stick-merge.png" alt="Stick Merge"></div><div class="game-info"><h3 class="game-title">Stick Merge</h3></div></a></div>
+        <!-- No results placeholder -->
+        <div class="no-games-msg" id="noGamesMsg">
+            <i class="fas fa-search"></i>
+            No games found. Try a different search term.
+        </div>
     </div>
 
     <!-- CATEGORIES -->
     <div class="categories">
         <h2 class="categories-title">🎮 Browse by Category</h2>
-
         <div class="category-grid">
             <a href="/categ/racing" class="category-item">🏁 Racing</a>
             <a href="/categ/adventure" class="category-item">🗺️ Adventure</a>
@@ -700,22 +672,124 @@
 <script>
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 
+    /* ── NAV TOGGLE ── */
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
     navToggle?.addEventListener('click', () => navMenu.classList.toggle('active'));
 
+    /* ── HEADER HIDE ON SCROLL ── */
     const header = document.querySelector('header');
     const scrollBtn = document.getElementById('scrollToTopBtn');
     let lastScroll = 0;
-
     window.addEventListener('scroll', () => {
         const st = window.pageYOffset;
         header.classList.toggle('header-hidden', st > lastScroll && st > header.offsetHeight);
         lastScroll = st <= 0 ? 0 : st;
         scrollBtn.classList.toggle('show', st > 100);
     });
-
     scrollBtn?.addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+    /* ── SEARCH ── */
+    const searchInput  = document.getElementById('searchInput');
+    const searchBtn    = document.getElementById('searchBtn');
+    const gamesGrid    = document.getElementById('gamesGrid');
+    const noGamesMsg   = document.getElementById('noGamesMsg');
+    const searchBanner = document.getElementById('searchBanner');
+    const bannerText   = document.getElementById('searchBannerText');
+    const clearBtn     = document.getElementById('clearSearchBtn');
+    const gamesTitle   = document.getElementById('gamesTitle');
+    const dropdown     = document.getElementById('searchDropdown');
+
+    // Collect all game cards once
+    const allCards = Array.from(gamesGrid.querySelectorAll('.game-card'));
+
+    function filterGames(query) {
+        const q = query.trim().toLowerCase();
+        let visible = 0;
+
+        allCards.forEach(card => {
+            const title = card.querySelector('.game-title').textContent.toLowerCase();
+            const show = !q || title.includes(q);
+            card.style.display = show ? '' : 'none';
+            if (show) visible++;
+        });
+
+        if (q) {
+            noGamesMsg.style.display = visible === 0 ? 'block' : 'none';
+            bannerText.innerHTML = visible > 0
+                ? `Showing <strong>${visible}</strong> result${visible !== 1 ? 's' : ''} for "<strong>${query}</strong>"`
+                : `No results for "<strong>${query}</strong>"`;
+            searchBanner.classList.add('active');
+            gamesTitle.textContent = '🔍 Search Results';
+            // scroll to grid
+            gamesGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            clearSearch();
+        }
+        closeDropdown();
+    }
+
+    function clearSearch() {
+        allCards.forEach(c => c.style.display = '');
+        noGamesMsg.style.display = 'none';
+        searchBanner.classList.remove('active');
+        gamesTitle.textContent = '🔥 Popular Games';
+        searchInput.value = '';
+        closeDropdown();
+    }
+
+    function showDropdown(query) {
+        const q = query.trim().toLowerCase();
+        if (!q) { closeDropdown(); return; }
+
+        const matches = allCards
+            .filter(c => c.querySelector('.game-title').textContent.toLowerCase().includes(q))
+            .slice(0, 8);
+
+        if (matches.length === 0) {
+            dropdown.innerHTML = `<div class="no-results">No games found for "${query}"</div>`;
+        } else {
+            dropdown.innerHTML = matches.map(card => {
+                const title = card.querySelector('.game-title').textContent;
+                const href  = card.querySelector('.game-link').getAttribute('href');
+                const img   = card.querySelector('img')?.getAttribute('src') || '';
+                return `<a href="${href}">
+                    <img src="${img}" alt="${title}" style="width:32px;height:24px;object-fit:cover;border-radius:4px;flex-shrink:0;" onerror="this.style.display='none'">
+                    ${title}
+                </a>`;
+            }).join('');
+        }
+        dropdown.classList.add('active');
+    }
+
+    function closeDropdown() {
+        dropdown.classList.remove('active');
+        dropdown.innerHTML = '';
+    }
+
+    searchInput.addEventListener('input', e => showDropdown(e.target.value));
+    searchInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') filterGames(searchInput.value);
+        if (e.key === 'Escape') closeDropdown();
+    });
+    searchBtn.addEventListener('click', () => filterGames(searchInput.value));
+    clearBtn.addEventListener('click', clearSearch);
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', e => {
+        if (!e.target.closest('.search-bar')) closeDropdown();
+    });
+
+    /* ── URL PARAM ?q= support (for cross-page search from game pages) ── */
+    window.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const q = params.get('q');
+        if (q) {
+            searchInput.value = q;
+            // slight delay so grid is ready
+            setTimeout(() => filterGames(q), 50);
+        }
+    });
 </script>
 </body>
 </html>
