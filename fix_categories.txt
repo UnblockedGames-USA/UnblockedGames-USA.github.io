@@ -1,0 +1,87 @@
+from pathlib import Path
+import re
+import shutil
+
+def main():
+    root = Path(r"C:\Users\berra\Documents\GitHub\UnblockedGames-USA.github.io")
+    
+    # Use the good template you just sent me
+    template_path = root / "template_category.html"
+    if not template_path.exists():
+        print("❌ Put the file you just sent as template_category.html first!")
+        return
+    
+    template = template_path.read_text(encoding="utf-8")
+    
+    category_info = {
+        "shooter":      ("🎯", "#E8192C", "Shooter Games", "Fast-paced shooting action"),
+        "platformer":   ("🏃", "#FF9800", "Platformer Games", "Jump, run and master levels"),
+        "2-player":     ("👥", "#4CAF50", "2 Player Games", "Play together with friends"),
+        "fighting":     ("🥊", "#F44336", "Fighting Games", "Epic battles and combos"),
+        "driving":      ("🚗", "#2196F3", "Driving Games", "Race, drift and stunt"),
+        "puzzle":       ("🧠", "#9C27B0", "Puzzle Games", "Challenge your brain"),
+        "multiplayer":  ("🌐", "#2655cc", "Multiplayer Games", "Connect and Compete in Unblocked Multiplayer"),
+        "action":       ("💥", "#FF5722", "Action Games", "Non-stop adrenaline action"),
+        "skill":        ("🏆", "#FFC107", "Skill Games", "Test your reflexes and precision"),
+        "adventure":    ("🗺️", "#3F51B5", "Adventure Games", "Explore exciting worlds"),
+        "racing":       ("🏁", "#FF9800", "Racing Games", "Speed, stunts and competition"),
+        "strategy":     ("♟️", "#607D8B", "Strategy Games", "Think and conquer"),
+        "sports":       ("⚽", "#4CAF50", "Sports Games", "Play your favorite sports"),
+        "simulation":   ("🏙️", "#00BCD4", "Simulation Games", "Realistic life and management"),
+        "clicker":      ("🖱️", "#E91E63", "Clicker Games", "Idle and incremental fun"),
+        "horror":       ("👻", "#673AB7", "Horror Games", "Face your fears"),
+        "kids":         ("🧸", "#FFEB3B", "Kids Games", "Fun for all ages"),
+    }
+    
+    categ_folder = root / "categ"
+    fixed = 0
+    
+    for folder in categ_folder.iterdir():
+        if not folder.is_dir():
+            continue
+            
+        slug = folder.name
+        index_path = folder / "index.html"
+        if not index_path.exists():
+            continue
+        
+        # Read current page to keep real game cards + pagination
+        current = index_path.read_text(encoding="utf-8")
+        
+        # Extract games grid and pagination
+        grid_match = re.search(r'(<div class="games-grid"[^>]*>.*?</div>)', current, re.DOTALL)
+        pagi_match = re.search(r'(<div class="pagination"[^>]*>.*?</div>)', current, re.DOTALL)
+        
+        games_grid = grid_match.group(1) if grid_match else ""
+        pagination = pagi_match.group(1) if pagi_match else ""
+        
+        info = category_info.get(slug, ("🎮", "#2655cc", slug.replace('-', ' ').title(), "Play the best unblocked games"))
+        
+        # Start with clean template
+        new_page = template
+        
+        # Replace dynamic parts
+        new_page = new_page.replace("{TITLE}", f"{info[2]} Unblocked - Free Online Games")
+        new_page = new_page.replace("{DESCRIPTION}", f"Play the best {info[2].lower()} unblocked for free. No download needed.")
+        new_page = new_page.replace("{KEYWORDS}", f"{slug} games, unblocked {slug}, free {slug} games")
+        new_page = new_page.replace("{categ_url}", f"/categ/{slug}")
+        new_page = new_page.replace("{EMOJI}", info[0])
+        new_page = new_page.replace("{CATEGORY_NAME}", info[2])
+        new_page = new_page.replace("{SUBTITLE}", info[3])
+        new_page = new_page.replace("{ACCENT_COLOR}", info[1])
+        
+        # Put back real game cards and pagination
+        if games_grid:
+            new_page = re.sub(r'<div class="games-grid"[^>]*>.*?</div>', games_grid, new_page, flags=re.DOTALL)
+        if pagination:
+            new_page = re.sub(r'<div class="pagination"[^>]*>.*?</div>', pagination, new_page, flags=re.DOTALL)
+        
+        # Save
+        index_path.write_text(new_page, encoding="utf-8")
+        print(f"✅ Fixed → categ/{slug}/index.html")
+        fixed += 1
+    
+    print(f"\n🎉 DONE! Fixed {fixed} category pages.")
+
+if __name__ == "__main__":
+    main()
