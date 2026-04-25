@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
 """
 Fix script for UnblockedGames-USA.github.io
-Run from the repo root: python fix_site.py
+Run from repo root: python fix_site.py
+Fixes: game launch, duplicate similar games, "Free 2" spam, unified nav, SEO, mobile
 """
-import os, re, json, sys, shutil
+import os, re
 from pathlib import Path
 
-# ─── CONFIG ───────────────────────────────────────────────────────────────────
-REPO = Path(__file__).parent  # run from repo root
-BASE_URL = "https://unblockedgames-usa.github.io"
-IMAGES_BASE = f"{BASE_URL}/images"
-PER_PAGE = 50
+# ── CONFIG ────────────────────────────────────────────────────────────────────
+REPO      = Path(__file__).parent
+BASE_URL  = "https://unblockedgames-usa.github.io"
+IMG_BASE  = f"{BASE_URL}/images"
+PER_PAGE  = 50
+SKIP_DIRS = {"categ","assets",".git","images","privacy-policy","contact","faq","dmca","node_modules"}
 
-CATEGORIES = {
+CATS = {
     "shooter":    "🎯 Shooter",
     "platformer": "🏃 Platformer",
     "2-player":   "👥 2-Player",
@@ -32,655 +34,606 @@ CATEGORIES = {
     "kids":       "🧸 Kids",
 }
 
-NAV_LINKS = "\n".join(
-    f'        <li><a href="/categ/{k}">{v}</a></li>'
-    for k, v in CATEGORIES.items()
-)
-
-FOOTER_CATS = " ".join(
-    f'<a href="/categ/{k}" style="background:rgba(255,255,255,.08);padding:5px 11px;border-radius:16px;font-size:.8rem;color:#e6edf3;text-decoration:none">{v}</a>'
-    for k, v in CATEGORIES.items()
-)
-
-# ─── HELPERS ──────────────────────────────────────────────────────────────────
+# ── HELPERS ──────────────────────────────────────────────────────────────────
 
 def slug_to_title(slug):
-    return " ".join(w.capitalize() for w in slug.replace("-", " ").split())
+    """10-minutes-till-dawn → 10 Minutes Till Dawn"""
+    return " ".join(w.capitalize() for w in slug.replace("-"," ").split())
 
-def get_game_iframe_src(game_dir):
-    """Read existing index.html and extract the real iframe src."""
-    idx = game_dir / "index.html"
-    if not idx.exists():
-        return None
-    html = idx.read_text(encoding="utf-8", errors="ignore")
-    # Try data-src first (lazy load pattern)
-    m = re.search(r'data-src=["\']([^"\']+)["\']', html)
-    if m:
-        return m.group(1)
-    # Try direct src on iframe (not about:blank)
-    m = re.search(r'<iframe[^>]+src=["\'](?!about:blank)([^"\']+)["\']', html)
-    if m:
-        return m.group(1)
-    return None
+def clean_title(t):
+    """Remove 'Unblocked — Free 2', '— Free 2', etc."""
+    t = re.sub(r'\s*[—–-]+\s*Free\s*2\b.*', '', t, flags=re.I)
+    t = re.sub(r'\s*Unblocked\b.*', '', t, flags=re.I)
+    return t.strip()
 
-def get_game_categories(game_dir):
-    """Extract categories from existing index.html category tags."""
-    idx = game_dir / "index.html"
-    if not idx.exists():
-        return []
-    html = idx.read_text(encoding="utf-8", errors="ignore")
-    # Look for category-tag-item links
-    cats = re.findall(r'href=["\'](?:/categ/|../../categ/)([^/"\']+)["\']', html)
-    # Deduplicate and filter to known categories
-    seen = set()
-    result = []
-    for c in cats:
-        c = c.strip("/")
-        if c in CATEGORIES and c not in seen:
-            seen.add(c)
-            result.append(c)
-    return result
-
-def get_game_description(game_dir):
-    """Extract about/description text from existing index.html."""
-    idx = game_dir / "index.html"
-    if not idx.exists():
+def read_html(path):
+    try:
+        return path.read_text(encoding="utf-8", errors="ignore")
+    except:
         return ""
-    html = idx.read_text(encoding="utf-8", errors="ignore")
-    # Try to get the description meta tag
-    m = re.search(r'<meta name="description" content="([^"]+)"', html)
-    if m:
-        return m.group(1)
+
+def get_iframe_src(html):
+    """Extract real iframe URL (data-src preferred, then src != about:blank)."""
+    m = re.search(r'data-src=["\']([^"\']+)["\']', html)
+    if m: return m.group(1)
+    m = re.search(r'<iframe[^>]+src=["\'](?!about:blank)([^"\']+)["\']', html, re.I)
+    if m: return m.group(1)
     return ""
 
-def get_all_games():
-    """Return list of game slugs (directories with index.html, not categ/assets etc)."""
-    skip = {"categ", "assets", ".git", "images", "privacy-policy", "contact", "faq", "dmca"}
+def get_game_cats(html):
+    """Extract category slugs from existing page."""
+    found = re.findall(
+        r'href=["\'](?:https?://[^"\']+)?(?:/categ/|../../categ/|categ/)([a-z0-9-]+)[/"\'?]',
+        html
+    )
+    seen, out = set(), []
+    for c in found:
+        c = c.rstrip("/")
+        if c in CATS and c not in seen:
+            seen.add(c); out.append(c)
+    return out
+
+def get_description(html):
+    m = re.search(r'<meta[^>]+name=["\']description["\'][^>]+content=["\']([^"\']+)', html, re.I)
+    if m: return m.group(1)
+    m = re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+name=["\']description["\']', html, re.I)
+    if m: return m.group(1)
+    return ""
+
+def all_games():
     games = []
     for d in sorted(REPO.iterdir()):
-        if d.is_dir() and d.name not in skip and not d.name.startswith("."):
+        if d.is_dir() and d.name not in SKIP_DIRS and not d.name.startswith("."):
             if (d / "index.html").exists():
                 games.append(d.name)
     return games
 
-def make_game_card_html(slug, href_prefix="../"):
-    title = slug_to_title(slug) + " Unblocked — Free 2"
-    return (
-        f'    <a class="game-card" href="{href_prefix}{slug}">\n'
-        f'      <img src="{IMAGES_BASE}/{slug}.png" alt="{title}" loading="lazy">\n'
-        f'      <span>{title}</span>\n'
-        f'    </a>'
+# ── SHARED COMPONENTS ─────────────────────────────────────────────────────────
+
+def nav_html(depth=0):
+    """Unified nav — depth=0 means root (/), depth=1 means one level deep (/game/)"""
+    prefix = "../" * depth if depth > 0 else "/"
+    links = "\n          ".join(
+        f'<li><a href="{prefix}categ/{k}">{v}</a></li>'
+        for k, v in CATS.items()
     )
-
-def make_similar_games_html(current_slug, all_games, count=12):
-    """Pick similar games excluding the current one."""
-    import random
-    others = [g for g in all_games if g != current_slug]
-    # Try to pick some near alphabetically for consistency, plus some random
-    idx = others.index(current_slug) if current_slug in others else 0
-    near = others[max(0, idx-3):idx+10]
-    picks = (near + others)[:count]
-    # Deduplicate
-    seen = set()
-    final = []
-    for g in picks:
-        if g not in seen:
-            seen.add(g)
-            final.append(g)
-    final = final[:count]
-    cards = "\n".join(make_game_card_html(g) for g in final)
-    return f'''<section class="similar-games">
-  <h2 class="section-title">🎮 Similar Games</h2>
-  <div class="games-grid">
-{cards}
-  </div>
-</section>'''
-
-def make_nav_html():
-    return f'''<header>
-  <div class="container header-content">
-    <a href="/" class="logo">🎮 Unblocked Games USA</a>
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search games..." autocomplete="off" aria-label="Search games">
-      <button id="searchBtn" aria-label="Search"><i class="fas fa-search"></i></button>
-      <div id="searchDropdown"></div>
+    logo_href = prefix if prefix.endswith("/") else prefix
+    return f'''<header class="site-header">
+  <div class="wrap hdr-inner">
+    <a href="{logo_href}" class="logo">🎮 Unblocked Games USA</a>
+    <div class="search-wrap">
+      <input type="text" id="searchInput" placeholder="Search games…" autocomplete="off">
+      <button id="searchBtn" aria-label="Search">🔍</button>
+      <div id="searchDrop"></div>
     </div>
-    <nav class="main-nav" aria-label="Game categories">
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
-      </button>
-      <ul id="navMenu">
-{NAV_LINKS}
-      </ul>
-    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
   </div>
+  <nav class="main-nav">
+    <ul id="navMenu">
+          {links}
+    </ul>
+  </nav>
 </header>'''
 
-def make_footer_html():
-    return f'''<footer>
-  <div class="container">
-    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:14px">
-      {FOOTER_CATS}
+def footer_html(depth=0):
+    prefix = "../" * depth if depth > 0 else "/"
+    cats = " ".join(
+        f'<a href="{prefix}categ/{k}">{v}</a>'
+        for k, v in CATS.items()
+    )
+    return f'''<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-cats">{cats}</div>
+    <div class="footer-links">
+      <a href="{prefix}privacy-policy">Privacy Policy</a>
+      <a href="{prefix}contact">Contact Us</a>
+      <a href="{prefix}faq">FAQ</a>
+      <a href="{prefix}dmca">DMCA</a>
     </div>
-    <div class="footer-bottom">
-      <p>&copy; <span id="currentYear"></span> Unblocked Games USA. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="/privacy-policy">Privacy Policy</a>
-        <a href="/contact">Contact Us</a>
-        <a href="/faq">FAQ</a>
-        <a href="/dmca">DMCA</a>
-      </div>
-    </div>
+    <p class="footer-copy">&copy; <span class="yr"></span> Unblocked Games USA. All rights reserved.</p>
   </div>
-</footer>'''
+</footer>
+<script>document.querySelectorAll('.yr').forEach(e=>e.textContent=new Date().getFullYear());</script>'''
 
-# ─── GAME PAGE TEMPLATE ────────────────────────────────────────────────────────
+# ── CSS ───────────────────────────────────────────────────────────────────────
 
-GAME_PAGE_CSS = '''<style>
-:root{--red:#E8192C;--blue:#002868;--blue-mid:#1a3a8a;--blue-light:#2655cc;
-  --white:#fff;--card-bg:#07102b;--border:rgba(255,255,255,.08);--text:#dce8ff;
-  --grad:linear-gradient(135deg,var(--blue) 0%,var(--blue-light) 50%,var(--red) 100%);}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Barlow',sans-serif;background:#000510;color:var(--text);min-height:100vh;line-height:1.6}
-.container{width:100%;max-width:1200px;margin:0 auto;padding:0 16px;position:relative}
-header{background:linear-gradient(90deg,var(--blue) 0%,#0d1f5c 40%,#1a0a2e 60%,var(--red) 100%);
-  border-bottom:3px solid var(--red);position:sticky;top:0;z-index:100;
-  box-shadow:0 4px 30px rgba(0,0,0,.6)}
-.header-content{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:10px 0}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:2px;color:var(--white);
-  text-decoration:none;text-shadow:0 0 20px rgba(232,25,44,.6)}
-.search-bar{display:flex;position:relative}
-.search-bar input{padding:.45rem 1rem;border:1px solid var(--border);border-radius:50px 0 0 50px;
-  outline:none;background:rgba(255,255,255,.12);color:white;font-size:.9rem;width:190px}
-.search-bar input::placeholder{color:rgba(255,255,255,.5)}
-.search-bar button{background:var(--red);color:white;border:none;padding:.45rem 1rem;
-  border-radius:0 50px 50px 0;cursor:pointer;font-size:.95rem}
-#searchDropdown{position:absolute;top:calc(100% + 6px);left:0;right:0;background:#0a1535;
-  border:1px solid rgba(232,25,44,.3);border-radius:12px;max-height:300px;overflow-y:auto;
-  z-index:200;display:none;box-shadow:0 8px 32px rgba(0,0,0,.7)}
-#searchDropdown.open{display:block}
-#searchDropdown a{display:flex;align-items:center;gap:10px;padding:8px 12px;text-decoration:none;
-  color:var(--text);border-bottom:1px solid var(--border);font-size:.88rem;font-weight:600}
-#searchDropdown a:hover{background:rgba(232,25,44,.18);color:white}
-#searchDropdown img{width:38px;height:28px;object-fit:cover;border-radius:5px;flex-shrink:0}
-#searchDropdown .no-results{padding:12px;color:rgba(255,255,255,.45);text-align:center}
-.main-nav{order:1;width:100%}
-.nav-toggle{display:none;background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;padding:.5rem}
-.main-nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:4px;
-  padding:10px 24px;margin:6px 0 8px;
-  background:linear-gradient(135deg,#001a5e 0%,#0d1f6e 40%,#1a0a2e 70%,#4a0a14 100%);
-  border-radius:50px;border:2px solid rgba(255,255,255,.75);
-  box-shadow:0 0 0 4px rgba(0,40,104,.5),0 6px 28px rgba(0,0,0,.8)}
-.main-nav a{color:rgba(255,255,255,.88);text-decoration:none;padding:4px 12px;border-radius:50px;
-  font-size:.82rem;font-weight:600;transition:background .2s,color .2s;border:1px solid transparent;white-space:nowrap}
-.main-nav a:hover{background:rgba(232,25,44,.35);color:white}
-.game-header{background:linear-gradient(135deg,rgba(0,20,80,.95),rgba(10,5,30,.9),rgba(100,10,20,.95));
-  border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:1.4rem 2rem;
-  margin:1.2rem 0;text-align:center}
-.game-header h1{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:3px;
-  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;margin-bottom:.3rem}
-.game-header p{color:rgba(255,255,255,.75);max-width:800px;margin:0 auto}
-/* GAME FRAME */
-.game-container{background:var(--card-bg);border-radius:10px;padding:1.5rem;
-  margin:1.5rem 0;border:1px solid var(--border)}
-.game-frame-wrapper{position:relative;width:100%;padding-bottom:56.25%;
-  overflow:hidden;border-radius:8px;background:#000}
-/* OVERLAY (click to play) */
-.game-overlay{position:absolute;inset:0;display:flex;flex-direction:column;
-  justify-content:center;align-items:center;z-index:5;border-radius:8px;cursor:pointer;
-  background:rgba(0,5,20,.5);backdrop-filter:blur(4px);transition:opacity .3s}
-.game-overlay.hidden{display:none}
-.game-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  border-radius:8px;z-index:3}
-.play-button{background:linear-gradient(135deg,var(--blue),var(--red));color:white;
-  border:none;width:80px;height:80px;border-radius:50%;font-size:2.5rem;cursor:pointer;
-  display:flex;justify-content:center;align-items:center;padding-left:5px;
-  box-shadow:0 0 0 0 rgba(232,25,44,.7);animation:pulse 2s infinite;z-index:6}
-.play-button:hover{transform:scale(1.1)}
-.play-text{margin-top:1.2rem;color:white;font-family:'Bebas Neue',sans-serif;
-  font-size:1.2rem;letter-spacing:2px;background:rgba(0,0,0,.5);
-  padding:.4rem 1.4rem;border-radius:50px;z-index:6}
-.game-frame{position:absolute;inset:0;width:100%;height:100%;border:none;display:none}
-.game-frame.active{display:block}
-.fullscreen-btn{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.7);
-  color:white;border:none;padding:.45rem .9rem;border-radius:4px;cursor:pointer;
-  z-index:10;display:flex;align-items:center;gap:.4rem;font-size:.85rem}
-.fullscreen-btn:hover{background:var(--red)}
-/* DESCRIPTION */
-.game-description{background:var(--card-bg);padding:2rem;border-radius:10px;
-  margin:1.5rem 0;border:1px solid var(--border)}
-.game-description h2{font-family:'Bebas Neue',sans-serif;color:var(--red);
-  margin-bottom:1rem;font-size:1.6rem;letter-spacing:1px}
-.game-description h3{font-family:'Bebas Neue',sans-serif;color:var(--red);
-  margin-top:1.2rem;margin-bottom:.6rem;letter-spacing:1px;font-size:1.2rem}
-.game-description p{margin-bottom:.9rem}
-.game-description ul{list-style:none;padding-left:1rem}
-.game-description li{margin-bottom:.5rem;padding-left:1.5rem;position:relative}
-.game-description li::before{content:"▶";color:var(--red);position:absolute;left:0}
-.game-description-image{width:100%;max-width:140px;float:left;margin:6px 18px 10px 0;
-  border-radius:8px;border:1px solid var(--border)}
-.game-category-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
-.category-tag-item{background:linear-gradient(135deg,rgba(26,58,138,.7),rgba(232,25,44,.6));
-  color:white;border-radius:50px;border:1px solid rgba(255,255,255,.12);
-  padding:.35rem .9rem;text-decoration:none;font-weight:600;font-size:.85rem}
-.category-tag-item:hover{background:linear-gradient(135deg,#1a3a8a,#E8192C)}
-/* SIMILAR GAMES */
-.similar-games{margin:2rem 0}
-.section-title,.categories-title{font-family:'Bebas Neue',sans-serif;letter-spacing:2px;
-  font-size:1.8rem;text-align:center;margin:1.5rem 0 1rem;
-  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.games-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-bottom:2rem}
-@media(max-width:1100px){.games-grid{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:860px){.games-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:600px){.games-grid{grid-template-columns:repeat(2,1fr)}}
-.game-card{background:var(--card-bg);border-radius:10px;overflow:hidden;
-  border:1px solid var(--border);transition:transform .25s,box-shadow .25s,border-color .25s;
-  text-decoration:none;color:inherit;display:block}
-.game-card:hover{transform:translateY(-6px);box-shadow:0 12px 35px rgba(0,0,0,.5);
-  border-color:rgba(232,25,44,.4)}
-.game-card img{width:100%;height:150px;object-fit:cover;display:block}
-.game-card span{display:block;padding:8px 10px;text-align:center;font-size:.88rem;font-weight:600}
-/* CATEGORIES BAR */
-.categories{margin:2rem 0}
-.category-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:18px 24px;
-  background:linear-gradient(135deg,#0a1a4a,#1a0a2e,#3a0a10);
-  border-radius:60px;border:1px solid rgba(232,25,44,.25)}
-.category-item{background:linear-gradient(135deg,rgba(26,58,138,.7),rgba(232,25,44,.6));
-  color:white;border-radius:50px;padding:.4rem 1rem;text-decoration:none;
-  font-weight:600;font-size:.88rem;white-space:nowrap}
-.category-item:hover{background:linear-gradient(135deg,#1a3a8a,#E8192C)}
-/* FOOTER */
-footer{background:#010812;color:white;padding:1.5rem 0;margin-top:2rem;border-top:2px solid var(--red)}
-.footer-bottom{text-align:center;font-size:.82rem}
-.footer-links{display:flex;justify-content:center;gap:1.2rem;margin-top:.5rem;flex-wrap:wrap}
-.footer-links a{color:white;text-decoration:none}
-/* SCROLL TOP */
-#scrollToTopBtn{position:fixed;bottom:20px;right:22px;z-index:99;border:none;
-  background:linear-gradient(135deg,var(--blue),var(--red));color:white;cursor:pointer;
-  border-radius:50%;width:46px;height:46px;opacity:0;visibility:hidden;
-  display:flex;align-items:center;justify-content:center;transition:opacity .3s,visibility .3s}
-#scrollToTopBtn.show{opacity:1;visibility:visible}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(232,25,44,.7)}70%{box-shadow:0 0 0 20px rgba(232,25,44,0)}100%{box-shadow:0 0 0 0 rgba(232,25,44,0)}}
-@media(max-width:992px){
+SHARED_CSS = '''<style>
+/* ── RESET & BASE ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a0e1a;color:#dce8ff;line-height:1.6;min-height:100vh}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px}
+
+/* ── HEADER ── */
+.site-header{background:linear-gradient(90deg,#001a6e,#0d1f6e 40%,#1a0a2e 65%,#8b0000);
+  border-bottom:3px solid #c0392b;position:sticky;top:0;z-index:100;
+  box-shadow:0 4px 20px rgba(0,0,0,.7)}
+.hdr-inner{display:flex;align-items:center;gap:12px;padding:10px 16px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:1.25rem;color:#fff;white-space:nowrap;
+  text-shadow:0 0 16px rgba(192,57,43,.7)}
+.logo:hover{text-shadow:0 0 24px rgba(192,57,43,1)}
+
+/* SEARCH */
+.search-wrap{display:flex;position:relative;margin-left:auto}
+.search-wrap input{padding:.4rem .9rem;border:1px solid rgba(255,255,255,.15);
+  border-radius:20px 0 0 20px;background:rgba(255,255,255,.12);color:#fff;
+  font-size:.88rem;width:200px;outline:none}
+.search-wrap input::placeholder{color:rgba(255,255,255,.45)}
+.search-wrap input:focus{background:rgba(255,255,255,.2);width:240px;transition:width .2s}
+.search-wrap button{background:#c0392b;color:#fff;border:none;
+  border-radius:0 20px 20px 0;padding:.4rem .9rem;cursor:pointer;font-size:.9rem}
+#searchDrop{position:absolute;top:calc(100% + 6px);left:0;right:0;
+  background:#0a1535;border:1px solid rgba(192,57,43,.3);border-radius:10px;
+  max-height:280px;overflow-y:auto;z-index:300;display:none;
+  box-shadow:0 8px 28px rgba(0,0,0,.8)}
+#searchDrop.open{display:block}
+#searchDrop a{display:flex;align-items:center;gap:10px;padding:8px 12px;
+  border-bottom:1px solid rgba(255,255,255,.06);font-size:.85rem;font-weight:600}
+#searchDrop a:hover{background:rgba(192,57,43,.2);color:#fff}
+#searchDrop img{width:36px;height:26px;object-fit:cover;border-radius:4px;flex-shrink:0}
+#searchDrop .no-res{padding:12px;color:rgba(255,255,255,.4);text-align:center;font-size:.83rem}
+
+/* NAV TOGGLE */
+.nav-toggle{display:none;background:none;border:none;color:#fff;
+  font-size:1.4rem;cursor:pointer;padding:.3rem .5rem}
+
+/* NAV BAR */
+.main-nav{background:linear-gradient(90deg,#001050,#0d1560 40%,#1a0825 70%,#500010);
+  border-top:1px solid rgba(255,255,255,.06)}
+.main-nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
+  gap:4px;padding:8px 16px;max-width:1280px;margin:0 auto}
+.main-nav a{color:rgba(255,255,255,.85);padding:4px 11px;border-radius:20px;
+  font-size:.8rem;font-weight:600;border:1px solid transparent;white-space:nowrap;
+  transition:background .15s,color .15s}
+.main-nav a:hover,.main-nav a.active{background:rgba(192,57,43,.35);color:#fff;
+  border-color:rgba(192,57,43,.4)}
+
+/* ── FOOTER ── */
+.site-footer{background:#060b18;border-top:2px solid #c0392b;
+  padding:28px 16px;margin-top:48px;text-align:center}
+.footer-cats{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:14px}
+.footer-cats a{background:rgba(255,255,255,.07);padding:4px 11px;border-radius:16px;font-size:.78rem}
+.footer-cats a:hover{background:rgba(192,57,43,.3)}
+.footer-links{display:flex;gap:16px;justify-content:center;margin-bottom:10px;
+  font-size:.82rem;opacity:.7;flex-wrap:wrap}
+.footer-links a:hover{opacity:1}
+.footer-copy{font-size:.75rem;opacity:.35}
+
+/* ── GAME GRID (shared) ── */
+.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:16px 0}
+.game-card{display:flex;flex-direction:column;background:#111827;border-radius:10px;
+  overflow:hidden;border:1px solid rgba(255,255,255,.07);
+  transition:transform .2s,box-shadow .2s,border-color .2s}
+.game-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.5);
+  border-color:rgba(192,57,43,.4)}
+.game-card img{width:100%;height:110px;object-fit:cover}
+.game-card span{padding:7px 8px;font-size:.78rem;text-align:center;font-weight:500;line-height:1.3}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
   .nav-toggle{display:block}
-  .main-nav ul{display:none;flex-direction:column;border-radius:20px;padding:10px 16px}
-  .main-nav ul.active{display:flex}
+  .main-nav ul{display:none;flex-direction:column;align-items:flex-start;padding:8px 16px}
+  .main-nav ul.open{display:flex}
+  .hdr-inner{flex-wrap:wrap}
+  .search-wrap{order:3;width:100%}
+  .search-wrap input{width:100%;border-radius:20px 0 0 20px}
 }
-@media(max-width:768px){
-  .header-content{flex-direction:column;align-items:stretch}
-  .category-grid{border-radius:24px;padding:14px 16px}
-  .game-frame-wrapper{padding-bottom:60%}
+@media(max-width:600px){
+  .games-grid{grid-template-columns:repeat(2,1fr)}
+  .logo{font-size:1.1rem}
 }
 </style>'''
 
-GAME_PAGE_JS = '''<script>
-/* SEARCH */
+SHARED_JS = '''<script>
+/* ── NAV TOGGLE ── */
+document.getElementById('navToggle')?.addEventListener('click',()=>
+  document.getElementById('navMenu')?.classList.toggle('open'));
+
+/* ── SEARCH ── */
 (function(){
   const inp=document.getElementById('searchInput');
-  const dd=document.getElementById('searchDropdown');
+  const drop=document.getElementById('searchDrop');
   const btn=document.getElementById('searchBtn');
-  function norm(s){return s.toLowerCase().replace(/[^a-z0-9]/g,'');}
-  function closeDD(){dd.classList.remove('open');dd.innerHTML='';}
-  function go(q){q=q.trim();if(!q)return;window.location.href='/?q='+encodeURIComponent(q);closeDD();}
-  inp?.addEventListener('input',function(){
+  if(!inp||!drop)return;
+  function close(){drop.classList.remove('open');drop.innerHTML='';}
+  function go(q){q=q.trim();if(!q)return;close();window.location='/?q='+encodeURIComponent(q);}
+  inp.addEventListener('input',function(){
     const q=this.value.trim();
-    if(!q){closeDD();return;}
-    dd.innerHTML=`<div class="no-results"><a href="/?q=${encodeURIComponent(q)}" style="color:var(--red)">Search all games for "${q}"</a></div>`;
-    dd.classList.add('open');
+    if(!q){close();return;}
+    drop.innerHTML=`<div class="no-res"><a href="/?q=${encodeURIComponent(q)}" style="color:#e74c3c">Search all games for "<b>${q}</b>"</a></div>`;
+    drop.classList.add('open');
   });
-  inp?.addEventListener('keydown',e=>{if(e.key==='Enter')go(inp.value);if(e.key==='Escape')closeDD();});
-  btn?.addEventListener('click',()=>go(inp.value));
-  document.addEventListener('click',e=>{if(!e.target.closest('.search-bar'))closeDD();});
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter')go(inp.value);if(e.key==='Escape')close();});
+  btn.addEventListener('click',()=>go(inp.value));
+  document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))close();});
+})();
+</script>'''
+
+# ── GAME PAGE ─────────────────────────────────────────────────────────────────
+
+GAME_CSS = SHARED_CSS + '''<style>
+/* ── GAME AREA ── */
+.game-section{padding:20px 0}
+.game-title-bar{text-align:center;margin-bottom:16px}
+.game-title-bar h1{font-size:clamp(1.4rem,4vw,2.2rem);font-weight:800;
+  background:linear-gradient(135deg,#4fa3ff,#ff4444);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.game-title-bar p{color:rgba(255,255,255,.6);font-size:.95rem;margin-top:6px}
+
+/* IFRAME WRAPPER */
+.game-frame-wrap{position:relative;width:100%;max-width:960px;margin:0 auto;
+  background:#000;border-radius:10px;overflow:hidden;border:2px solid rgba(255,255,255,.08);
+  aspect-ratio:16/9}
+.game-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.game-overlay{position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;z-index:3;
+  background:rgba(0,0,0,.45);cursor:pointer;transition:background .2s}
+.game-overlay:hover{background:rgba(0,0,0,.3)}
+.play-btn{width:76px;height:76px;border-radius:50%;border:none;cursor:pointer;
+  background:linear-gradient(135deg,#1a3a8a,#c0392b);color:#fff;
+  font-size:2.2rem;display:flex;align-items:center;justify-content:center;
+  padding-left:5px;box-shadow:0 0 0 4px rgba(192,57,43,.4),0 8px 30px rgba(0,0,0,.6);
+  animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(192,57,43,.4),0 8px 30px rgba(0,0,0,.6)}
+  50%{box-shadow:0 0 0 12px rgba(192,57,43,.1),0 8px 30px rgba(0,0,0,.6)}}
+.play-label{color:#fff;font-weight:700;font-size:1rem;letter-spacing:2px;
+  margin-top:12px;background:rgba(0,0,0,.5);padding:4px 16px;border-radius:20px}
+.game-frame{position:absolute;inset:0;width:100%;height:100%;border:none;
+  display:none;z-index:2}
+.game-frame.active{display:block}
+.fs-btn{position:absolute;bottom:10px;right:10px;z-index:4;
+  background:rgba(0,0,0,.65);color:#fff;border:none;border-radius:6px;
+  padding:5px 12px;cursor:pointer;font-size:.82rem;display:flex;align-items:center;gap:6px}
+.fs-btn:hover{background:#c0392b}
+
+/* DESCRIPTION */
+.game-desc{background:#111827;border-radius:10px;padding:24px;margin:20px 0;
+  border:1px solid rgba(255,255,255,.07)}
+.game-desc h2{font-size:1.3rem;font-weight:700;color:#e74c3c;margin-bottom:10px}
+.game-desc h3{font-size:1.05rem;font-weight:700;color:#e74c3c;margin:16px 0 8px}
+.game-desc p{margin-bottom:10px;color:rgba(255,255,255,.8);font-size:.95rem}
+.game-desc ul{padding-left:20px;margin-bottom:10px}
+.game-desc li{margin-bottom:5px;color:rgba(255,255,255,.75);font-size:.93rem}
+.game-thumb-sm{float:left;width:120px;border-radius:8px;margin:0 16px 12px 0;
+  border:1px solid rgba(255,255,255,.1)}
+.cat-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.cat-tag{background:linear-gradient(135deg,rgba(26,58,138,.7),rgba(192,57,43,.6));
+  color:#fff;border-radius:20px;padding:.3rem .9rem;font-size:.82rem;font-weight:600;
+  border:1px solid rgba(255,255,255,.1)}
+.cat-tag:hover{background:linear-gradient(135deg,#1a3a8a,#c0392b)}
+
+/* SIMILAR GAMES */
+.similar-section{margin:28px 0}
+.section-heading{font-size:1.25rem;font-weight:700;margin-bottom:14px;
+  background:linear-gradient(135deg,#4fa3ff,#ff4444);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+/* BROWSE CATEGORIES */
+.browse-section{margin:28px 0}
+.cat-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+  padding:16px 20px;background:linear-gradient(135deg,#0a1540,#1a0825);
+  border-radius:40px;border:1px solid rgba(192,57,43,.2)}
+.cat-item{background:linear-gradient(135deg,rgba(26,58,138,.7),rgba(192,57,43,.55));
+  color:#fff;border-radius:20px;padding:.35rem 1rem;font-size:.85rem;font-weight:600;
+  border:1px solid rgba(255,255,255,.1);white-space:nowrap}
+.cat-item:hover{background:linear-gradient(135deg,#1a3a8a,#c0392b)}
+@media(max-width:600px){
+  .game-desc h2{font-size:1.1rem}
+  .game-thumb-sm{display:none}
+  .cat-grid{border-radius:20px}
+}
+</style>'''
+
+GAME_JS = '''<script>
+/* ── PLAY BUTTON ── */
+(function(){
+  var overlay=document.getElementById('gameOverlay');
+  var frame=document.getElementById('gameFrame');
+  var thumb=document.getElementById('gameThumb');
+  if(!overlay||!frame)return;
+  function launch(){
+    var src=frame.getAttribute('data-src');
+    if(!src){console.warn('No data-src on iframe');return;}
+    frame.src=src;
+    frame.classList.add('active');
+    overlay.style.display='none';
+    if(thumb)thumb.style.display='none';
+  }
+  overlay.addEventListener('click',launch);
+  overlay.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')launch();});
 })();
 
-/* PLAY BUTTON - click overlay to load iframe */
-document.addEventListener('DOMContentLoaded',function(){
-  const overlay=document.getElementById('gameOverlay');
-  const frame=document.getElementById('gameFrame');
-  const wrapper=document.getElementById('gameFrameWrapper');
-  const fsBtn=document.getElementById('fullscreenBtn');
-
-  if(overlay && frame){
-    overlay.addEventListener('click',function(){
-      // Load the iframe
-      frame.src=frame.dataset.src;
-      frame.classList.add('active');
-      // Hide overlay
-      overlay.classList.add('hidden');
-    });
-  }
-
-  // Fullscreen
-  fsBtn?.addEventListener('click',function(){
-    const el=wrapper||frame;
-    (el.requestFullscreen||el.webkitRequestFullscreen||el.mozRequestFullScreen||function(){}).call(el);
-  });
-
-  // Nav toggle
-  document.getElementById('navToggle')?.addEventListener('click',()=>
-    document.getElementById('navMenu')?.classList.toggle('active'));
-
-  // Scroll to top
-  const stb=document.getElementById('scrollToTopBtn');
-  window.addEventListener('scroll',()=>{
-    if(stb)stb.classList.toggle('show',window.pageYOffset>100);
-  });
-  stb?.addEventListener('click',e=>{e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
-
-  // Year
-  const yr=document.getElementById('currentYear');
-  if(yr)yr.textContent=new Date().getFullYear();
+/* ── FULLSCREEN ── */
+document.getElementById('fsBtn')?.addEventListener('click',function(){
+  var el=document.getElementById('gameFrameWrap');
+  (el.requestFullscreen||el.webkitRequestFullscreen||el.mozRequestFullScreen||
+   function(){}).call(el);
 });
 </script>'''
 
-def make_game_page(slug, iframe_src, cats, all_games, description=""):
-    title = slug_to_title(slug)
-    cat_tags = "\n      ".join(
-        f'<a href="/categ/{c}" class="category-tag-item">{CATEGORIES[c]}</a>'
-        for c in cats if c in CATEGORIES
-    ) or f'<a href="/categ/action" class="category-tag-item">💥 Action</a>'
-
-    cat_items = "\n      ".join(
-        f'<a href="/categ/{k}" class="category-item">{v}</a>'
-        for k, v in CATEGORIES.items()
+def similar_section(current, all_g, count=12):
+    """Pick similar games, exclude current, nearby alphabetically."""
+    others = [g for g in all_g if g != current]
+    idx = next((i for i,g in enumerate(others) if g >= current), 0)
+    # take some before + after + wrap
+    picks = (others[max(0,idx-2):idx+count] + others[:3])
+    seen, final = set(), []
+    for g in picks:
+        if g not in seen:
+            seen.add(g); final.append(g)
+        if len(final) == count: break
+    cards = "\n    ".join(
+        f'<a class="game-card" href="/{g}">'
+        f'<img src="{IMG_BASE}/{g}.png" alt="{slug_to_title(g)} Unblocked" loading="lazy" width="150" height="110">'
+        f'<span>{slug_to_title(g)} Unblocked</span></a>'
+        for g in final
     )
+    return f'''<section class="similar-section">
+  <h2 class="section-heading">🎮 Similar Games</h2>
+  <div class="games-grid">
+    {cards}
+  </div>
+</section>'''
 
+def build_game_page(slug, iframe_src, cats, all_g, desc=""):
+    title    = slug_to_title(slug)
+    cat_tags = "\n    ".join(
+        f'<a href="/categ/{c}" class="cat-tag">{CATS[c]}</a>'
+        for c in cats if c in CATS
+    ) or '<a href="/categ/action" class="cat-tag">💥 Action</a>'
+    cat_items = "\n      ".join(
+        f'<a href="/categ/{k}" class="cat-item">{v}</a>'
+        for k,v in CATS.items()
+    )
     if not iframe_src:
         iframe_src = f"https://iframe.unblocked-76-games.org/{slug}"
-
-    similar_html = make_similar_games_html(slug, all_games)
-    desc_short = description or f"{title} is a fun unblocked game. Play it instantly at school!"
+    desc_clean = re.sub(r'Unblocked\s*—\s*Free\s*2[^.]*\.?','',desc).strip()
+    desc_short = desc_clean or f"Play {title} free in your browser — no download needed!"
+    sim = similar_section(slug, all_g)
 
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{title} Unblocked — Free Online | Unblocked Games USA</title>
-<meta name="description" content="Play {title} unblocked free! {desc_short} No download needed.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{title} Unblocked – Play Free Online | Unblocked Games USA</title>
+<meta name="description" content="Play {title} unblocked online for free. {desc_short} Works at school instantly.">
 <link rel="canonical" href="{BASE_URL}/{slug}">
-<meta property="og:title" content="{title} Unblocked — Free Online">
-<meta property="og:description" content="Play {title} free, no download, works at school!">
+<meta property="og:title" content="{title} Unblocked – Free Online">
+<meta property="og:description" content="Play {title} free, no download, works at school.">
 <meta property="og:url" content="{BASE_URL}/{slug}">
-<meta property="og:image" content="{IMAGES_BASE}/{slug}.png">
+<meta property="og:image" content="{IMG_BASE}/{slug}.png">
 <meta property="og:type" content="website">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-{GAME_PAGE_CSS}
+<meta name="robots" content="index,follow,max-image-preview:large">
+<script type="application/ld+json">{{"@context":"https://schema.org","@type":"VideoGame",
+"name":"{title}","url":"{BASE_URL}/{slug}",
+"description":"{desc_short}",
+"applicationCategory":"Game","operatingSystem":"Web Browser",
+"offers":{{"@type":"Offer","price":"0","priceCurrency":"USD"}},
+"image":"{IMG_BASE}/{slug}.png",
+"provider":{{"@type":"Organization","name":"Unblocked Games USA","url":"{BASE_URL}/"}}}}</script>
+<link rel="icon" href="/favicon.ico">
+{GAME_CSS}
 </head>
 <body>
 
-{make_nav_html()}
+{nav_html(depth=1)}
 
-<div class="container">
+<div class="wrap game-section">
 
-  <div class="game-header">
+  <div class="game-title-bar">
     <h1>{title} Unblocked</h1>
     <p>{desc_short}</p>
   </div>
 
-  <div class="game-container">
-    <div class="game-frame-wrapper" id="gameFrameWrapper">
-
-      <!-- Thumbnail shown until user clicks play -->
-      <img src="{IMAGES_BASE}/{slug}.png" alt="{title} preview" class="game-thumb" id="gameThumb">
-
-      <!-- Click overlay -->
-      <div class="game-overlay" id="gameOverlay" role="button" tabindex="0" aria-label="Play {title}">
-        <button class="play-button" aria-label="Play">&#9654;</button>
-        <div class="play-text">CLICK TO PLAY</div>
-      </div>
-
-      <!-- Iframe loads only after click -->
-      <iframe class="game-frame" id="gameFrame"
-              src="about:blank"
-              data-src="{iframe_src}"
-              title="{title} Unblocked Game"
-              allowfullscreen
-              allow="autoplay; fullscreen; pointer-lock"></iframe>
-
-      <button class="fullscreen-btn" id="fullscreenBtn">
-        <i class="fas fa-expand"></i> Fullscreen
-      </button>
+  <div class="game-frame-wrap" id="gameFrameWrap">
+    <img id="gameThumb" class="game-thumb"
+         src="{IMG_BASE}/{slug}.png"
+         alt="{title} preview">
+    <div id="gameOverlay" class="game-overlay" role="button" tabindex="0"
+         aria-label="Play {title}">
+      <button class="play-btn" tabindex="-1">&#9654;</button>
+      <span class="play-label">PLAY NOW</span>
     </div>
+    <iframe id="gameFrame" class="game-frame"
+            src="about:blank"
+            data-src="{iframe_src}"
+            title="{title} Unblocked Game"
+            allowfullscreen
+            allow="autoplay; fullscreen; pointer-lock; gamepad"></iframe>
+    <button id="fsBtn" class="fs-btn" aria-label="Fullscreen">⛶ Fullscreen</button>
   </div>
 
-  <div class="game-description">
-    <img src="{IMAGES_BASE}/{slug}.png" alt="{title} gameplay" class="game-description-image" loading="lazy">
+  <div class="game-desc">
+    <img src="{IMG_BASE}/{slug}.png" alt="{title}" class="game-thumb-sm" loading="lazy">
     <h2>About {title}</h2>
     <p>{desc_short}</p>
     <h3>How to Play</h3>
-    <p>Use your mouse or keyboard to play {title}. Have fun!</p>
-    <div class="game-category-tags">
+    <p>Use your mouse or keyboard to play. Click the Play button above to start instantly — no download needed!</p>
+    <div class="cat-tags" style="clear:both">
       {cat_tags}
     </div>
   </div>
 
-  {similar_html}
+  {sim}
 
-  <div class="categories">
-    <h2 class="categories-title">🎮 Browse by Category</h2>
-    <div class="category-grid">
+  <div class="browse-section">
+    <h2 class="section-heading">🗂️ Browse by Category</h2>
+    <div class="cat-grid">
       {cat_items}
     </div>
   </div>
 
 </div>
 
-{make_footer_html()}
+{footer_html(depth=1)}
 
-<button id="scrollToTopBtn" title="Go to top" aria-label="Scroll to top">
-  <i class="fas fa-arrow-up"></i>
-</button>
-
-{GAME_PAGE_JS}
+{SHARED_JS}
+{GAME_JS}
 
 </body>
 </html>'''
 
-# ─── CATEGORY PAGE TEMPLATE ────────────────────────────────────────────────────
+# ── CATEGORY PAGE ─────────────────────────────────────────────────────────────
 
-CATEG_CSS = '''<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#0d1117;color:#e6edf3;font-family:system-ui,sans-serif}
-a{color:inherit;text-decoration:none}
-nav{background:linear-gradient(90deg,#1a0533,#8b0000);padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.nav-logo{color:#fff;font-weight:700;font-size:1rem}
-.nav-links{display:flex;list-style:none;gap:6px;flex-wrap:wrap;flex:1;margin:0;padding:0}
-.nav-links a{background:rgba(255,255,255,.1);padding:4px 10px;border-radius:20px;font-size:.8rem;color:#fff;display:inline-block}
-.nav-links a:hover{background:rgba(255,255,255,.25)}
-.search-form{display:flex;gap:6px;margin-left:auto}
-.search-form input{padding:5px 12px;border-radius:20px 0 0 20px;border:none;background:rgba(255,255,255,.15);color:#fff;width:160px}
-.search-form button{background:#c0392b;color:#fff;border:none;border-radius:0 20px 20px 0;padding:5px 12px;cursor:pointer}
-main{max-width:1280px;margin:0 auto;padding:24px 16px}
-h1{font-size:1.7rem;margin-bottom:6px}
-.subtitle{color:#8b949e;margin-bottom:20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:20px 0}
-.gc{display:flex;flex-direction:column;align-items:center;background:#161b22;border-radius:9px;overflow:hidden;transition:transform .15s}
-.gc:hover{transform:translateY(-3px)}
-.gc img{width:100%;height:110px;object-fit:cover}
-.gc span{padding:7px 5px;font-size:.8rem;text-align:center}
-.pagination{display:flex;gap:8px;justify-content:center;margin:24px 0;flex-wrap:wrap}
-.pagination a{padding:7px 14px;background:#161b22;color:#e6edf3;border-radius:6px}
-.pagination a.active{background:#58a6ff;color:#000}
-.other-cats h2{font-size:1.1rem;color:#58a6ff;margin:28px 0 14px}
-.other-cats div{display:flex;flex-wrap:wrap;gap:8px}
-.other-cats a{background:#21262d;padding:6px 12px;border-radius:16px;font-size:.82rem}
-footer{background:#161b22;padding:28px 20px;margin-top:40px;text-align:center}
-.footer-cats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:14px}
-.footer-cats a{background:rgba(255,255,255,.08);padding:5px 11px;border-radius:16px;font-size:.8rem}
-.footer-meta{display:flex;gap:14px;justify-content:center;margin-bottom:10px;font-size:.83rem;opacity:.7}
-.footer-meta a{color:#e6edf3}
-.footer-copy{font-size:.78rem;opacity:.45}
+CATEG_CSS = SHARED_CSS + '''<style>
+.categ-hero{text-align:center;padding:32px 16px 16px}
+.categ-hero h1{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:800;
+  background:linear-gradient(135deg,#4fa3ff,#ff4444);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.categ-hero p{color:rgba(255,255,255,.55);margin-top:8px}
+.pagination{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:28px 0}
+.pagination a{padding:7px 15px;background:#111827;color:#dce8ff;border-radius:8px;
+  font-weight:600;font-size:.9rem;border:1px solid rgba(255,255,255,.08)}
+.pagination a:hover{background:#1a2a4a;border-color:rgba(192,57,43,.4)}
+.pagination a.cur{background:#c0392b;color:#fff;border-color:#c0392b}
+.other-cats-section{margin:36px 0 0}
+.other-cats-section h2{font-size:1.1rem;font-weight:700;color:#4fa3ff;margin-bottom:12px}
+.other-cats-section div{display:flex;flex-wrap:wrap;gap:8px}
+.other-cats-section a{background:#111827;padding:6px 13px;border-radius:16px;
+  font-size:.82rem;border:1px solid rgba(255,255,255,.07)}
+.other-cats-section a:hover{background:#1a2a4a}
 </style>'''
 
-def make_categ_nav():
-    links = "\n    ".join(
-        f'<li><a href="../../categ/{k}">{v}</a></li>'
-        for k, v in CATEGORIES.items()
-    )
-    return f'''<nav>
-  <a href="../../" class="nav-logo">🎮 Unblocked Games USA</a>
-  <ul class="nav-links">
-    {links}
-  </ul>
-  <form class="search-form" onsubmit="event.preventDefault();window.location='../../?q='+encodeURIComponent(this.q.value)">
-    <input name="q" type="search" placeholder="Search games…">
-    <button type="submit">🔍</button>
-  </form>
-</nav>'''
+def page_url(cat_slug, p):
+    if p == 1: return f"/categ/{cat_slug}/"
+    return f"/categ/{cat_slug}-page-{p}/"
 
-def make_categ_footer():
-    cats = " ".join(
-        f'<a href="../../categ/{k}">{v}</a>'
-        for k, v in CATEGORIES.items()
-    )
-    return f'''<footer>
-  <div class="footer-cats">{cats}</div>
-  <div class="footer-meta">
-    <a href="../../privacy-policy">Privacy Policy</a>
-    <a href="../../contact">Contact Us</a>
-    <a href="../../faq">FAQ</a>
-    <a href="../../dmca">DMCA</a>
-  </div>
-  <p class="footer-copy">&copy; Unblocked Games USA. All rights reserved.</p>
-</footer>'''
-
-def make_categ_page(cat_slug, cat_label, games_on_page, page_num, total_pages, total_count):
-    """Generate one category page."""
-    cards = "\n ".join(
-        f'<a class="gc" href="../../{g}"><img src="{IMAGES_BASE}/{g}.png" alt="{slug_to_title(g)} Unblocked" loading="lazy" width="150" height="110"><span>{slug_to_title(g)} Unblocked — Free 2</span></a>'
+def build_categ_page(cat_slug, cat_label, games_on_page, page_num, total_pages, total_count):
+    cards = "\n    ".join(
+        f'<a class="game-card" href="/{g}">'
+        f'<img src="{IMG_BASE}/{g}.png" alt="{slug_to_title(g)} Unblocked" loading="lazy" width="150" height="110">'
+        f'<span>{slug_to_title(g)} Unblocked</span></a>'
         for g in games_on_page
     )
 
-    # Pagination
-    def page_url(p):
-        if p == 1:
-            return f"../../categ/{cat_slug}/"
-        return f"../../categ/{cat_slug}-page-{p}/"
-
-    pag_items = ""
+    pag = ""
     if page_num > 1:
-        pag_items += f'<a href="{page_url(page_num-1)}">&laquo; Prev</a>'
-    for p in range(1, total_pages + 1):
-        cls = ' class="active"' if p == page_num else ''
-        pag_items += f'<a href="{page_url(p)}"{cls}>{p}</a>'
+        pag += f'<a href="{page_url(cat_slug, page_num-1)}">&laquo; Prev</a>'
+    for p in range(1, total_pages+1):
+        cls = ' class="cur"' if p == page_num else ''
+        pag += f'<a href="{page_url(cat_slug, p)}"{cls}>{p}</a>'
     if page_num < total_pages:
-        pag_items += f'<a href="{page_url(page_num+1)}">Next &raquo;</a>'
+        pag += f'<a href="{page_url(cat_slug, page_num+1)}">Next &raquo;</a>'
 
-    other_cats = " ".join(
-        f'<a href="../../categ/{k}">{v}</a>'
-        for k, v in CATEGORIES.items() if k != cat_slug
+    others = " ".join(
+        f'<a href="/categ/{k}">{v}</a>'
+        for k,v in CATS.items() if k != cat_slug
     )
-
-    page_title = f"Page {page_num} — " if page_num > 1 else ""
+    page_suffix = f" – Page {page_num}" if page_num > 1 else ""
 
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{page_title}{cat_label} Games Unblocked – Free Online</title>
-<meta name="description" content="Play {total_count} free unblocked {cat_label} games. No downloads needed.">
-<link rel="canonical" href="{BASE_URL}/categ/{cat_slug}{'-page-'+str(page_num) if page_num>1 else ''}/"> 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{cat_label} Games Unblocked{page_suffix} – Free Online | Unblocked Games USA</title>
+<meta name="description" content="Play {total_count} free unblocked {cat_label} games online. No downloads, works at school instantly.">
+<link rel="canonical" href="{BASE_URL}{page_url(cat_slug, page_num)}">
+<meta name="robots" content="index,follow">
 {CATEG_CSS}
 </head>
 <body>
-{make_categ_nav()}
-<main>
-  <h1>{cat_label} Games</h1>
-  <p class="subtitle">{total_count} free unblocked {cat_label} games — play instantly, no downloads!</p>
-  <div class="grid">
+
+{nav_html(depth=0)}
+
+<div class="wrap">
+  <div class="categ-hero">
+    <h1>{cat_label} Unblocked Games</h1>
+    <p>{total_count} free games — play instantly, no downloads needed</p>
+  </div>
+
+  <div class="games-grid">
     {cards}
   </div>
-  <div class="pagination">{pag_items}</div>
-  <div class="other-cats">
+
+  <div class="pagination">{pag}</div>
+
+  <div class="other-cats-section">
     <h2>🎮 Other Categories</h2>
-    <div>{other_cats}</div>
+    <div>{others}</div>
   </div>
-</main>
-{make_categ_footer()}
+</div>
+
+{footer_html(depth=0)}
+
+{SHARED_JS}
+
 </body>
 </html>'''
 
-# ─── MAIN ─────────────────────────────────────────────────────────────────────
+# ── MAIN ─────────────────────────────────────────────────────────────────────
 
 def main():
-    all_games = get_all_games()
-    print(f"Found {len(all_games)} game directories")
+    games = all_games()
+    print(f"Found {len(games)} game directories")
 
-    # Build category → game list mapping by reading existing pages
-    print("Building category map from existing game pages...")
-    cat_to_games = {k: [] for k in CATEGORIES}
+    # Build category → games map
+    print("Scanning category tags in existing pages…")
+    cat_map = {k: [] for k in CATS}
+    game_data = {}
 
-    for slug in all_games:
-        game_dir = REPO / slug
-        cats = get_game_categories(game_dir)
-        if not cats:
-            # Default fallback if we can't detect
-            cats = ["action"]
+    for slug in games:
+        html = read_html(REPO / slug / "index.html")
+        iframe = get_iframe_src(html)
+        cats   = get_game_cats(html)
+        desc   = get_description(html)
+        game_data[slug] = {"iframe": iframe, "cats": cats, "desc": desc}
         for c in cats:
-            if c in cat_to_games:
-                if slug not in cat_to_games[c]:
-                    cat_to_games[c].append(slug)
+            if c in cat_map and slug not in cat_map[c]:
+                cat_map[c].append(slug)
 
-    for cat, games in cat_to_games.items():
-        print(f"  {cat}: {len(games)} games")
+    # Games with no category detected → put in action as fallback
+    no_cat = [s for s in games if not game_data[s]["cats"]]
+    print(f"  {len(no_cat)} games have no detected category → assigned to 'action'")
+    for s in no_cat:
+        game_data[s]["cats"] = ["action"]
+        if s not in cat_map["action"]:
+            cat_map["action"].append(s)
 
-    # Fix game pages
-    print("\nFixing game pages...")
-    fixed = 0
-    for slug in all_games:
-        game_dir = REPO / slug
-        idx = game_dir / "index.html"
+    for k,v in cat_map.items():
+        print(f"  {CATS[k]}: {len(v)} games")
 
-        iframe_src = get_game_iframe_src(game_dir)
-        cats = get_game_categories(game_dir) or ["action"]
-        description = get_game_description(game_dir)
+    # ── Fix game pages ──
+    print(f"\nWriting {len(games)} game pages…")
+    for i, slug in enumerate(games):
+        d = game_data[slug]
+        html = build_game_page(slug, d["iframe"], d["cats"], games, d["desc"])
+        (REPO / slug / "index.html").write_text(html, encoding="utf-8")
+        if (i+1) % 100 == 0:
+            print(f"  {i+1}/{len(games)}")
+    print(f"  Done — {len(games)} game pages written")
 
-        new_html = make_game_page(slug, iframe_src, cats, all_games, description)
-        idx.write_text(new_html, encoding="utf-8")
-        fixed += 1
-        if fixed % 50 == 0:
-            print(f"  Fixed {fixed}/{len(all_games)}...")
-
-    print(f"  Fixed {fixed} game pages")
-
-    # Fix/rebuild category pages
-    print("\nRebuilding category pages...")
+    # ── Fix category pages ──
+    print("\nWriting category pages…")
     categ_root = REPO / "categ"
     categ_root.mkdir(exist_ok=True)
 
-    for cat_slug, cat_label in CATEGORIES.items():
-        games = cat_to_games[cat_slug]
-        if not games:
-            print(f"  WARNING: No games found for category '{cat_slug}', skipping")
+    for cat_slug, cat_label in CATS.items():
+        cat_games = cat_map[cat_slug]
+        if not cat_games:
+            print(f"  SKIP {cat_label} (0 games)")
             continue
+        total = len(cat_games)
+        n_pages = max(1, (total + PER_PAGE - 1) // PER_PAGE)
+        for p in range(1, n_pages+1):
+            chunk = cat_games[(p-1)*PER_PAGE : p*PER_PAGE]
+            folder = categ_root / (cat_slug if p==1 else f"{cat_slug}-page-{p}")
+            folder.mkdir(parents=True, exist_ok=True)
+            html = build_categ_page(cat_slug, cat_label, chunk, p, n_pages, total)
+            (folder / "index.html").write_text(html, encoding="utf-8")
+        print(f"  {cat_label}: {total} games, {n_pages} page(s)")
 
-        total = len(games)
-        total_pages = max(1, (total + PER_PAGE - 1) // PER_PAGE)
+    print("""
+✅ All done!
 
-        for page_num in range(1, total_pages + 1):
-            start = (page_num - 1) * PER_PAGE
-            end = start + PER_PAGE
-            games_on_page = games[start:end]
-
-            if page_num == 1:
-                out_dir = categ_root / cat_slug
-            else:
-                out_dir = categ_root / f"{cat_slug}-page-{page_num}"
-
-            out_dir.mkdir(parents=True, exist_ok=True)
-            out_file = out_dir / "index.html"
-            html = make_categ_page(cat_slug, cat_label, games_on_page, page_num, total_pages, total)
-            out_file.write_text(html, encoding="utf-8")
-
-        print(f"  {cat_label}: {total} games → {total_pages} page(s)")
-
-    print("\n✅ Done! All game pages and category pages have been fixed.")
-    print("Now commit and push:")
-    print("  git add -A && git commit -m 'Fix: clean game pages, deduplicated similar games, correct category pages' && git push")
+Next steps:
+  git add -A
+  git commit -m "Rebuild: unified nav/footer, game launch fixed, clean titles, correct category pages"
+  git push
+""")
 
 if __name__ == "__main__":
     main()
