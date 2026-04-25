@@ -509,6 +509,89 @@ function simpleHash(str) {
   return Math.abs(h);
 }
 
+// ─── REMOVE PLAY-BUTTON OVERLAY ─────────────────────────────────────────────
+// Stack-based removal of overlay divs that sit on top of the iframe.
+function removePlayOverlay(html) {
+  // Walk nested divs and remove any that match overlay id/class/onclick patterns
+  function removeMatchingDivs(h, pat) {
+    const re = new RegExp('<div[^>]*(?:' + pat + ')[^>]*>', 'gi');
+    let result = h, safety = 0, m;
+    re.lastIndex = 0;
+    while ((m = re.exec(result)) !== null && safety++ < 200) {
+      const start = m.index;
+      let depth = 1, i = start + m[0].length;
+      while (i < result.length && depth > 0) {
+        const s = result.slice(i);
+        if (/^<div[\s>]/i.test(s)) { depth++; i += 4; }
+        else if (/^<\/div/i.test(s)) { depth--; i += 5; }
+        else i++;
+      }
+      const closeEnd = result.indexOf('>', i - 1) + 1;
+      if (closeEnd <= start) break;
+      result = result.slice(0, start) + result.slice(closeEnd);
+      re.lastIndex = start;
+    }
+    return result;
+  }
+
+  // Match divs by id or class containing overlay keywords, or onclick=this.remove()
+  const IDS = 'game-cover|play-overlay|iframe-cover|game-overlay|cover-overlay|start-screen|play-btn-wrap';
+  html = removeMatchingDivs(html,
+    'id=["\'][^"\']*(?:' + IDS + ')[^"\']*["\']' +
+    '|class=["\'][^"\']*(?:' + IDS + ')[^"\']*["\']' +
+    '|onclick=["\'][^"\']*this\\.remove\\(\\)[^"\']*["\']'
+  );
+
+  // Fix pointer-events:none which silently blocks iframe interaction
+  html = html.replace(/pointer-events\s*:\s*none/gi, 'pointer-events:auto');
+  return html;
+}
+
+// ─── REMOVE OLD VERTICAL SIMILAR-GAMES SECTION ──────────────────────────────
+// The original pages had a "Doctor More / Bubble Trouble / Rabbit Samurai…"
+// vertical list (one game per row, each in its own <section> or <div>).
+// We detect it by the "Doctor More" / "Doctor Hero" heading or similar patterns
+// and strip everything from that heading down to </main> (we'll re-add </main>).
+function removeOldVerticalSimilar(html) {
+  // The old vertical section is identified by a heading like "Doctor Hero" or
+  // "Doctor More" followed by <a> tags with images in a vertical layout.
+  // It appears AFTER the new grid similar section.
+
+  // Strategy: find the second occurrence of a similar-games-style section
+  // (the old one has list-style anchors with h3 inside rather than our grid).
+
+  // Remove <h3> based link lists (old format): ### Title followed by [![img] links
+  // These appear as: <h3>Doctor Hero</h3> ... <a href...><img...> ... </a> ... repeated
+
+  // Pattern: a block that starts with a standalone <h3> (Doctor Hero) and
+  // then contains a series of <a href><img + h3 title></a> items not in a grid
+  html = html.replace(
+    /(<h3>[^<]*<\/h3>\s*){1,3}([\s\S]*?(?:<a[^>]*><img[^>]*>[\s\S]*?<\/a>\s*){3,})/g,
+    (match) => {
+      // Only remove if it looks like the old vertical list (no grid class around it)
+      if (!match.includes('class="game-card"') && !match.includes('class="games-grid"')) {
+        return '';
+      }
+      return match;
+    }
+  );
+
+  // Also remove orphaned <section> or <div> blocks that only contain bare <a><img><h3> items
+  // (old vertical format — no grid wrapper, no game-card class)
+  html = html.replace(
+    /<(?:section|div)[^>]*>\s*(?:<a[^>]*>\s*(?:<img[^>]*>\s*)?<h3>[^<]*<\/h3>\s*<\/a>\s*){2,}<\/(?:section|div)>/gi,
+    ''
+  );
+
+  // Remove the "Doctor More" heading label (sometimes rendered as plain text heading)
+  html = html.replace(/<h3>\s*Doctor (?:More|Hero)\s*<\/h3>/gi, '');
+
+  // Clean up any double blank lines left behind
+  html = html.replace(/\n{3,}/g, '\n\n');
+
+  return html;
+}
+
 function patchGamePages(games) {
   let patched = 0;
   for (const game of games) {
@@ -516,15 +599,26 @@ function patchGamePages(games) {
     let html = readFile(indexPath);
     if (!html) continue;
 
-    const similar = buildSimilarGames(game, games);
-    if (!similar.length) continue;
+    // ── Step 1: Remove play-button overlay so iframe is clickable ─────────────
+    html = removePlayOverlay(html);
 
-    const cards = similar.map(g => {
-      return `<a class="game-card" href="../${g.slug}">
+    // ── Step 2: Remove old vertical similar-games list ────────────────────────
+    html = removeOldVerticalSimilar(html);
+
+    // ── Step 3: Build new grid similar-games section ──────────────────────────
+    const similar = buildSimilarGames(game, games);
+    if (!similar.length) {
+      writeFile(indexPath, html);
+      patched++;
+      continue;
+    }
+
+    const cards = similar.map(g =>
+      `<a class="game-card" href="../${g.slug}">
         <img src="${g.image}" alt="${g.title}" loading="lazy" width="200" height="150">
         <span>${g.title}</span>
-      </a>`;
-    }).join('\n      ');
+      </a>`
+    ).join('\n      ');
 
     const similarSection = `
 <!-- SIMILAR_GAMES_START -->
@@ -536,37 +630,42 @@ function patchGamePages(games) {
 </section>
 <!-- SIMILAR_GAMES_END -->`;
 
-    // Replace existing similar games block or append before </main>
+    // ── Step 4: Insert / replace the similar games block ─────────────────────
     if (html.includes('<!-- SIMILAR_GAMES_START -->')) {
+      // Already patched before — just refresh the content
       html = html.replace(
         /<!-- SIMILAR_GAMES_START -->[\s\S]*?<!-- SIMILAR_GAMES_END -->/,
         similarSection
       );
-    } else if (html.includes('SIMILAR GAMES') || html.includes('similar-games') || html.includes('Similar Games')) {
-      // Try to replace existing section heading area
-      html = html.replace(
-        /<(?:section|div)[^>]*class="[^"]*similar[^"]*"[^>]*>[\s\S]*?<\/(?:section|div)>/i,
-        similarSection
-      );
-      // If still not replaced, append
-      if (!html.includes('SIMILAR_GAMES_START')) {
-        html = html.replace('</main>', similarSection + '\n</main>');
-      }
     } else {
-      // Just append before </main>
-      html = html.replace('</main>', similarSection + '\n</main>');
+      // Remove any existing similar section by heading text, then append fresh
+      html = html.replace(
+        /(<h2[^>]*>[^<]*[Ss]imilar[^<]*<\/h2>[\s\S]*?)(?=<h2|<footer|<\/main>)/,
+        ''
+      );
+      // Append before </main>
+      if (html.includes('</main>')) {
+        html = html.replace('</main>', similarSection + '\n</main>');
+      } else {
+        html = html.replace('</body>', similarSection + '\n</body>');
+      }
     }
 
-    // Also inject shared CSS if not present
+    // ── Step 5: Inject CSS for grid cards if not already present ──────────────
     if (!html.includes('SHARED_CSS_INJECTED')) {
       const styleTag = `<style>/* SHARED_CSS_INJECTED */
-.similar-games{margin-top:32px}
-.section-title{font-size:1.3rem;margin:32px 0 16px;color:#58a6ff}
-.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-bottom:32px}
-.game-card{display:flex;flex-direction:column;align-items:center;background:#161b22;border-radius:10px;overflow:hidden;transition:transform .2s,box-shadow .2s;color:#e6edf3;text-decoration:none}
+/* Make iframe always interactive — remove any overlay blocking */
+iframe{pointer-events:auto!important;position:relative;z-index:1}
+/* Hide any leftover play-button overlay elements */
+.play-overlay,.game-cover,.iframe-cover,.game-overlay,.cover-overlay,.play-btn-wrap,.start-screen{display:none!important}
+/* Similar games grid */
+.similar-games{margin-top:32px;padding:0 0 16px}
+.section-title{font-size:1.3rem;margin:32px 0 16px;color:#58a6ff;font-family:system-ui,sans-serif}
+.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:14px;margin-bottom:32px}
+.game-card{display:flex;flex-direction:column;align-items:center;background:#161b22;border-radius:10px;overflow:hidden;transition:transform .2s,box-shadow .2s;color:#e6edf3;text-decoration:none;font-family:system-ui,sans-serif}
 .game-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
-.game-card img{width:100%;height:120px;object-fit:cover}
-.game-card span{padding:8px;font-size:.82rem;text-align:center;font-weight:500}
+.game-card img{width:100%;height:115px;object-fit:cover}
+.game-card span{padding:7px 6px;font-size:.8rem;text-align:center;font-weight:500}
 </style>`;
       html = html.replace('</head>', styleTag + '\n</head>');
     }
@@ -574,7 +673,7 @@ function patchGamePages(games) {
     writeFile(indexPath, html);
     patched++;
   }
-  console.log(`🔗 Patched similar games in ${patched} game pages`);
+  console.log(`🔗 Patched ${patched} game pages (play overlay removed + clean similar grid)`);
 }
 
 // ─── MAIN ───────────────────────────────────────────────────────────────────

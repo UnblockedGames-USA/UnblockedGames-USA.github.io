@@ -58,7 +58,7 @@ body::before{content:'';position:fixed;inset:0;
     radial-gradient(1px 1px at 45% 70%,rgba(255,255,255,.25) 0%,transparent 100%),
     radial-gradient(1px 1px at 85% 55%,rgba(255,255,255,.35) 0%,transparent 100%),
     radial-gradient(1px 1px at 10% 80%,rgba(255,255,255,.2) 0%,transparent 100%);
-  pointer-events:none;z-index:0}
+  pointer-events:auto;z-index:0}
 .container{width:100%;max-width:1200px;margin:0 auto;padding:0 16px;position:relative}
 /* HEADER */
 header{background:linear-gradient(90deg,var(--blue) 0%,#0d1f5c 40%,#1a0a2e 60%,var(--red) 100%);
@@ -288,10 +288,7 @@ footer{background:#010812;color:white;padding:1.5rem 0;margin-top:2rem;border-to
       <div class="game-image-bg" id="gameImageBg"
            style="background-image:url('https://unblockedgames-usa.github.io/images/hills-of-steel.png')"
            role="img" aria-label="Hills Of Steel preview"></div>
-      <div class="game-overlay" id="gameOverlay" role="button" aria-label="Play Hills Of Steel" tabindex="0">
-        <button class="play-button" id="playButton" aria-label="Start game">&#9654;</button>
-        <div class="play-text">Play Hills Of Steel</div>
-      </div>
+      
       <iframe class="game-frame" id="gameFrame"
               src="about:blank"
               data-src="https://iframe.unblocked-76-games.org/hills-of-steel-main"
@@ -328,6 +325,7 @@ footer{background:#010812;color:white;padding:1.5rem 0;margin-top:2rem;border-to
   </div>
 
   
+
 <!-- SIMILAR_GAMES_START -->
 <section class="similar-games">
   <h2 class="section-title">🎮 Similar Games</h2>
