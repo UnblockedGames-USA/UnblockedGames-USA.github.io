@@ -1,466 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-L6FNHSMWF4');
-</script>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Driving Games Unblocked - Free Online Games</title>
-<meta name="description" content="Play the best driving games unblocked for free. No download needed.">
-<meta name="keywords" content="multiplayer games, unblocked multiplayer, free online multiplayer">
-<link rel="canonical" href="https://unblockedgames-usa.github.io/categ/multiplayer" />
-<meta name="robots" content="index, follow">
-<meta name="author" content="Unblocked Games USA">
-
-<meta property="og:title" content="Multiplayer Games Unblocked - Free Online Games" />
-<meta property="og:description" content="Play the best driving games unblocked for free. No download needed." />
-<meta property="og:url" content="https://unblockedgames-usa.github.io/categ/multiplayer" />
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Unblocked Games USA" />
-
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-:root {
-    --red:        #E8192C;
-    --blue:       #002868;
-    --blue-mid:   #1a3a8a;
-    --blue-light: #2655cc;
-    --white:      #FFFFFF;
-    --card-bg:    #07102b;
-    --border:     rgba(255,255,255,0.08);
-    --text:       #dce8ff;
-    --grad:       linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 50%, var(--red) 100%);
-    --cat-accent: #2655cc;
-}
-
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-    font-family: 'Barlow', sans-serif;
-    background: #000510;
-    color: var(--text);
-    min-height: 100vh;
-    line-height: 1.6;
-}
-
-body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image:
-        radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.3) 0%, transparent 100%),
-        radial-gradient(1px 1px at 45% 70%, rgba(255,255,255,0.25) 0%, transparent 100%),
-        radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,0.35) 0%, transparent 100%),
-        radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.2) 0%, transparent 100%);
-    pointer-events: none; z-index: 0;
-}
-
-.container { width:100%; max-width:1200px; margin:0 auto; padding:0 16px; position:relative; }
-
-header {
-    background: linear-gradient(90deg, var(--blue) 0%, #0d1f5c 40%, #1a0a2e 60%, var(--red) 100%);
-    border-bottom: 3px solid;
-    border-image: var(--grad) 1;
-    position: sticky; top: 0; z-index: 100;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.6);
-}
-.header-hidden { transform: translateY(-100%); }
-
-.header-content { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 10px 0; }
-
-.logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.9rem;
-    letter-spacing: 2px;
-    color: var(--white);
-    text-decoration: none;
-    display: flex; align-items: center; gap: 8px;
-    text-shadow: 0 0 20px rgba(232,25,44,0.6);
-}
-.logo:hover { text-shadow: 0 0 30px rgba(232,25,44,1), 0 0 60px rgba(0,40,104,0.8); }
-
-.search-bar { display:flex; position:relative; }
-.search-bar input {
-    padding: 0.45rem 1rem;
-    border: 1px solid var(--border);
-    border-radius: 50px 0 0 50px;
-    outline: none;
-    background: rgba(255,255,255,0.12);
-    color: white;
-    font-size: 0.9rem;
-    width: 200px;
-    transition: background 0.2s, width 0.3s;
-}
-.search-bar input:focus { background: rgba(255,255,255,0.18); width: 240px; }
-.search-bar input::placeholder { color: rgba(255,255,255,0.5); }
-.search-bar button {
-    background: var(--red);
-    color: white; border: none;
-    padding: 0.45rem 1rem;
-    border-radius: 0 50px 50px 0;
-    cursor: pointer;
-}
-.search-bar button:hover { background: #c0101f; }
-
-.main-nav { order: 1; width: 100%; }
-.nav-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; padding: 0.5rem; }
-
-.main-nav ul {
-    list-style: none;
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 4px;
-    padding: 10px 24px; margin: 6px 0 8px;
-    background: linear-gradient(135deg, #001a5e 0%, #0d1f6e 40%, #1a0a2e 70%, #4a0a14 100%);
-    border-radius: 50px;
-    border: 2px solid rgba(255,255,255,0.75);
-}
-
-.main-nav a {
-    color: rgba(255,255,255,0.88);
-    text-decoration: none;
-    padding: 4px 12px; border-radius: 50px;
-    font-size: 0.82rem; font-weight: 600;
-    transition: background 0.2s, color 0.2s;
-    border: 1px solid transparent;
-    white-space: nowrap;
-}
-.main-nav a:hover, .main-nav a.active {
-    background: rgba(232,25,44,0.35);
-    color: white;
-    border-color: rgba(232,25,44,0.4);
-}
-
-.category-header {
-    border-radius: 14px;
-    margin: 1.5rem 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    padding: 2.5rem 2rem 2.2rem;
-    background: linear-gradient(135deg, #000c2e 0%, #001a5e 25%, #0d1545 45%, #1a0a2e 65%, #3a0515 85%, #1a000a 100%);
-    border: 2px solid transparent;
-    background-clip: padding-box;
-}
-.category-header::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; bottom: 0;
-    width: 5px;
-    background: linear-gradient(180deg, var(--blue-light) 0%, var(--cat-accent) 50%, var(--red) 100%);
-    border-radius: 14px 0 0 14px;
-}
-.category-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--blue) 0%, var(--blue-light) 30%, var(--cat-accent) 60%, var(--red) 100%);
-}
-.category-header-glow {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px; height: 200px;
-    background: radial-gradient(ellipse, rgba(38, 85, 204, 0.18) 0%, transparent 70%);
-    pointer-events: none;
-}
-.category-header h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.6rem;
-    letter-spacing: 3px;
-    background: linear-gradient(135deg, #ffffff 0%, #c8d8ff 50%, var(--red) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 0.5rem;
-    position: relative; z-index: 1;
-}
-.category-header p {
-    color: rgba(255,255,255,0.6);
-    font-size: 1rem;
-    max-width: 600px;
-    margin: 0 auto;
-    position: relative; z-index: 1;
-    font-weight: 600;
-}
-
-.section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 2px;
-    font-size: 1.8rem;
-    text-align: center;
-    margin: 2rem 0 1.2rem;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.games-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.2rem;
-    margin-bottom: 2rem;
-}
-.game-card {
-    background: var(--card-bg);
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    transition: all 0.25s;
-}
-.game-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 35px rgba(0,0,0,0.5);
-    border-color: rgba(232,25,44,0.4);
-}
-.game-image { height: 160px; background: linear-gradient(135deg, var(--blue), var(--red)); overflow: hidden; }
-.game-image img { width: 100%; height: 100%; object-fit: cover; }
-.game-title { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--white); padding: 10px 12px; text-align: center; }
-
-.pagination {
-    display: flex; justify-content: center; align-items: center;
-    margin: 1rem 0 2rem; gap: 0.5rem; flex-wrap: wrap;
-}
-.pagination a, .pagination span {
-    color: var(--text); padding: 0.45rem 1rem;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 50px;
-    font-weight: 600; font-size: 0.85rem;
-}
-.pagination a:hover { background: rgba(232,25,44,0.3); color: white; }
-.pagination .current { background: linear-gradient(135deg, var(--blue-mid), var(--red)); color: white; }
-
-.category-description {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 2rem;
-    margin: 0 0 2rem;
-}
-.category-description h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 2px;
-    font-size: 1.5rem;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center;
-}
-
-.categories { margin: 1rem 0 2rem; }
-.categories-title {
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 2px;
-    font-size: 1.8rem;
-    text-align: center;
-    margin-bottom: 1.2rem;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.category-grid {
-    display: flex; flex-wrap: wrap; gap: 10px;
-    justify-content: center; align-items: center;
-    background: linear-gradient(135deg, #0a1a4a 0%, #0d1f5c 40%, #1a0a2e 70%, #3a0a10 100%);
-    border: 1px solid rgba(232,25,44,0.25);
-    border-radius: 60px;
-    padding: 18px 28px;
-}
-.category-item {
-    color: white;
-    padding: 7px 16px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.83rem;
-    background: linear-gradient(135deg, rgba(26,58,138,0.7), rgba(232,25,44,0.6));
-    border: 1px solid rgba(255,255,255,0.12);
-    transition: all 0.2s;
-    white-space: nowrap;
-}
-.category-item:hover, .category-item.active {
-    background: linear-gradient(135deg, var(--blue-mid), var(--red));
-    transform: translateY(-2px);
-}
-
-#scrollToTopBtn {
-    position: fixed; bottom: 22px; right: 22px; z-index: 99;
-    border: none; background: var(--grad); color: white;
-    cursor: pointer; border-radius: 50%; width: 46px; height: 46px;
-    opacity: 0; visibility: hidden;
-}
-#scrollToTopBtn.show { opacity: 1; visibility: visible; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>🚗 Driving Games – Page 4</title>
+  <meta name="description" content="Play free unblocked Driving games online. No downloads, no sign-ups. 585 games available.">
+  <link rel="canonical" href="https://unblockedgames-usa.github.io/categ/driving-page-4/">
+  <meta property="og:title" content="🚗 Driving Games – Page 4">
+  <meta property="og:type" content="website">
+  <style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,sans-serif;background:#0d1117;color:#e6edf3;min-height:100vh}
+  a{color:inherit;text-decoration:none}
+  nav{background:linear-gradient(90deg,#1a0533,#8b0000);padding:12px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .logo{font-weight:700;font-size:1.1rem;white-space:nowrap}
+  nav ul{display:flex;list-style:none;gap:8px;flex-wrap:wrap;flex:1}
+  nav ul li a{background:rgba(255,255,255,.1);padding:4px 10px;border-radius:20px;font-size:.82rem;white-space:nowrap;transition:background .2s}
+  nav ul li a:hover{background:rgba(255,255,255,.25)}
+  .search-form{display:flex;gap:6px;margin-left:auto}
+  .search-form input{padding:6px 12px;border-radius:20px;border:none;background:rgba(255,255,255,.15);color:#fff;width:180px}
+  .search-form input::placeholder{color:rgba(255,255,255,.5)}
+  .search-form button{background:#c0392b;color:#fff;border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1rem}
+  main{max-width:1280px;margin:0 auto;padding:24px 16px}
+  h1{font-size:1.8rem;margin-bottom:8px}
+  .subtitle{color:#8b949e;margin-bottom:24px}
+  .games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-bottom:32px}
+  .game-card{display:flex;flex-direction:column;align-items:center;background:#161b22;border-radius:10px;overflow:hidden;transition:transform .2s,box-shadow .2s}
+  .game-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+  .game-card img{width:100%;height:120px;object-fit:cover}
+  .game-card span{padding:8px;font-size:.82rem;text-align:center;font-weight:500}
+  .section-title{font-size:1.3rem;margin:32px 0 16px;color:#58a6ff}
+  .pagination{display:flex;gap:8px;justify-content:center;margin:24px 0;flex-wrap:wrap}
+  .pagination a{padding:8px 14px;background:#161b22;border-radius:6px;transition:background .2s}
+  .pagination a:hover,.pagination a.active{background:#58a6ff;color:#000}
+  .cat-grid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+  .cat-grid a{background:#161b22;padding:8px 14px;border-radius:20px;font-size:.85rem;transition:background .2s}
+  .cat-grid a:hover{background:#58a6ff;color:#000}
+  footer{background:#161b22;padding:32px 24px;margin-top:48px;text-align:center}
+  .footer-cats{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:16px}
+  .footer-cats a{background:rgba(255,255,255,.08);padding:6px 12px;border-radius:16px;font-size:.82rem}
+  .footer-links{display:flex;gap:16px;justify-content:center;margin-bottom:12px;font-size:.85rem;opacity:.7}
+  footer p{font-size:.8rem;opacity:.5}
+  /* Search results */
+  #search-results-section{margin-bottom:32px}
+  #no-results{color:#f85149;margin:16px 0;display:none}
+  /* Game page */
+  .game-frame-wrap{background:#000;border-radius:10px;overflow:hidden;margin-bottom:32px;position:relative;padding-top:56.25%}
+  .game-frame-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+  .game-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+  .game-meta .tag{background:#21262d;padding:4px 12px;border-radius:16px;font-size:.82rem}
+  /* Search overlay */
+  #search-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.85);z-index:1000;overflow-y:auto;padding:80px 24px 24px}
+  #search-overlay.active{display:block}
+  #search-close{position:fixed;top:16px;right:24px;background:#c0392b;color:#fff;border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:1.2rem;z-index:1001}
+  #search-box{max-width:800px;margin:0 auto}
+  #search-input-big{width:100%;padding:12px 20px;font-size:1.1rem;border-radius:10px;border:none;background:#161b22;color:#fff;margin-bottom:24px}
+  #search-results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
 </style>
 </head>
 <body>
+<nav>
+    <a class="logo" href="../../">Unblocked Games USA</a>
+    <ul>
+      <li><a href="../../categ/shooter">🎯 Shooter</a></li>
+      <li><a href="../../categ/platformer">🏃 Platformer</a></li>
+      <li><a href="../../categ/2-player">👥 2-Player</a></li>
+      <li><a href="../../categ/fighting">🥊 Fighting</a></li>
+      <li><a href="../../categ/driving">🚗 Driving</a></li>
+      <li><a href="../../categ/puzzle">🧠 Puzzle</a></li>
+      <li><a href="../../categ/multiplayer">🌐 Multiplayer</a></li>
+      <li><a href="../../categ/action">💥 Action</a></li>
+      <li><a href="../../categ/skill">🏆 Skill</a></li>
+      <li><a href="../../categ/adventure">🗺️ Adventure</a></li>
+      <li><a href="../../categ/racing">🏁 Racing</a></li>
+      <li><a href="../../categ/strategy">♟️ Strategy</a></li>
+      <li><a href="../../categ/sports">⚽ Sports</a></li>
+      <li><a href="../../categ/simulation">🏙️ Simulation</a></li>
+      <li><a href="../../categ/clicker">🖱️ Clicker</a></li>
+      <li><a href="../../categ/horror">👻 Horror</a></li>
+      <li><a href="../../categ/kids">🧸 Kids</a></li>
+    </ul>
+    <form class="search-form" action="../../index.html" method="get">
+      <input type="search" name="q" placeholder="Search games..." autocomplete="off">
+      <button type="submit">🔍</button>
+    </form>
+  </nav>
+<main>
+  <h1>🚗 Driving Games</h1>
+  <p class="subtitle">585 free unblocked Driving games — no downloads, play instantly!</p>
 
-<header>
-    <div class="container header-content">
-        <a href="/" class="logo">Unblocked Games USA</a>
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Search games..." autocomplete="off">
-            <button id="searchBtn"><i class="fas fa-search"></i></button>
-            <div class="search-dropdown" id="searchDropdown"></div>
-        </div>
-        <nav class="main-nav">
-            <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
-            <ul id="navMenu">
-                <li><a href="/categ/shooter">🎯 Shooter</a></li>
-                <li><a href="/categ/platformer">🏃 Platformer</a></li>
-                <li><a href="/categ/2-player">👥 2-Player</a></li>
-                <li><a href="/categ/fighting">🥊 Fighting</a></li>
-                <li><a href="/categ/driving">🚗 Driving</a></li>
-                <li><a href="/categ/puzzle">🧠 Puzzle</a></li>
-                <li><a href="/categ/multiplayer">🌐 Multiplayer</a></li>
-                <li><a href="/categ/action">💥 Action</a></li>
-                <li><a href="/categ/skill">🏆 Skill</a></li>
-                <li><a href="/categ/adventure">🗺️ Adventure</a></li>
-                <li><a href="/categ/racing">🏁 Racing</a></li>
-                <li><a href="/categ/strategy">♟️ Strategy</a></li>
-                <li><a href="/categ/sports">⚽ Sports</a></li>
-                <li><a href="/categ/simulation">🏙️ Simulation</a></li>
-                <li><a href="/categ/clicker">🖱️ Clicker</a></li>
-                <li><a href="/categ/horror">👻 Horror</a></li>
-                <li><a href="/categ/kids">🧸 Kids</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+  <div class="games-grid">
+    <a class="game-card" href="../../daddy-long-legs">
+      <img src="https://unblockedgames-usa.github.io/images/daddy-long-legs.png" alt="Daddy Long Legs Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Daddy Long Legs Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../dark-runner">
+      <img src="https://unblockedgames-usa.github.io/images/dark-runner.png" alt="Dark Runner Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Dark Runner Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../darts-pro">
+      <img src="https://unblockedgames-usa.github.io/images/darts-pro.png" alt="Darts Pro Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Darts Pro Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../death-chase">
+      <img src="https://unblockedgames-usa.github.io/images/death-chase.png" alt="Death Chase Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Death Chase Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../death-run-3d">
+      <img src="https://unblockedgames-usa.github.io/images/death-run-3d.png" alt="Death Run 3d Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Death Run 3d Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../deepest-sword">
+      <img src="https://unblockedgames-usa.github.io/images/deepest-sword.png" alt="Deepest Sword Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Deepest Sword Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../deer-simulator">
+      <img src="https://unblockedgames-usa.github.io/images/deer-simulator.png" alt="Deer Simulator Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Deer Simulator Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../demolition-derby-crash-racing">
+      <img src="https://unblockedgames-usa.github.io/images/demolition-derby-crash-racing.png" alt="Demolition Derby Crash Racing Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Demolition Derby Crash Racing Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../descent">
+      <img src="https://unblockedgames-usa.github.io/images/descent.png" alt="Descent Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Descent Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../detective-dan">
+      <img src="https://unblockedgames-usa.github.io/images/detective-dan.png" alt="Detective Dan Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Detective Dan Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../detective-loupe-puzzle">
+      <img src="https://unblockedgames-usa.github.io/images/detective-loupe-puzzle.png" alt="Detective Loupe Puzzle Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Detective Loupe Puzzle Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../digging-master">
+      <img src="https://unblockedgames-usa.github.io/images/digging-master.png" alt="Digging Master Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Digging Master Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../dino-bros">
+      <img src="https://unblockedgames-usa.github.io/images/dino-bros.png" alt="Dino Bros Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Dino Bros Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../dinosaur-game">
+      <img src="https://unblockedgames-usa.github.io/images/dinosaur-game.png" alt="Dinosaur Game Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Dinosaur Game Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../doctor-hero">
+      <img src="https://unblockedgames-usa.github.io/images/doctor-hero.png" alt="Doctor Hero Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Doctor Hero Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../dog-simulator-3d">
+      <img src="https://unblockedgames-usa.github.io/images/dog-simulator-3d.png" alt="Dog Simulator 3d Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Dog Simulator 3d Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../doge-miner">
+      <img src="https://unblockedgames-usa.github.io/images/doge-miner.png" alt="Doge Miner Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Doge Miner Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../doodle-champion-island">
+      <img src="https://unblockedgames-usa.github.io/images/doodle-champion-island.png" alt="Doodle Champion Island Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Doodle Champion Island Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../doodle-jump">
+      <img src="https://unblockedgames-usa.github.io/images/doodle-jump.png" alt="Doodle Jump Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Doodle Jump Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../double-panda">
+      <img src="https://unblockedgames-usa.github.io/images/double-panda.png" alt="Double Panda Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Double Panda Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../dragon-simulator-3d">
+      <img src="https://unblockedgames-usa.github.io/images/dragon-simulator-3d.png" alt="Dragon Simulator 3d Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Dragon Simulator 3d Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../draw-the-hill">
+      <img src="https://unblockedgames-usa.github.io/images/draw-the-hill.png" alt="Draw The Hill Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Draw The Hill Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../dreadhead-parkour">
+      <img src="https://unblockedgames-usa.github.io/images/dreadhead-parkour.png" alt="Dreadhead Parkour Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Dreadhead Parkour Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../drift-boss">
+      <img src="https://unblockedgames-usa.github.io/images/drift-boss.png" alt="Drift Boss Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Drift Boss Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../drift-hunters">
+      <img src="https://unblockedgames-usa.github.io/images/drift-hunters.png" alt="Drift Hunters Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Drift Hunters Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../drive-mad">
+      <img src="https://unblockedgames-usa.github.io/images/drive-mad.png" alt="Drive Mad Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Drive Mad Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../drunken-duel">
+      <img src="https://unblockedgames-usa.github.io/images/drunken-duel.png" alt="Drunken Duel Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Drunken Duel Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../duck-life-2">
+      <img src="https://unblockedgames-usa.github.io/images/duck-life-2.png" alt="Duck Life 2 Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Duck Life 2 Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../duck-life-2-world-champion">
+      <img src="https://unblockedgames-usa.github.io/images/duck-life-2-world-champion.png" alt="Duck Life 2 World Champion Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Duck Life 2 World Champion Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../duck-life-3-evolution">
+      <img src="https://unblockedgames-usa.github.io/images/duck-life-3-evolution.png" alt="Duck Life 3 Evolution Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Duck Life 3 Evolution Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../duck-life-4">
+      <img src="https://unblockedgames-usa.github.io/images/duck-life-4.png" alt="Duck Life 4 Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Duck Life 4 Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../duck-life-battle">
+      <img src="https://unblockedgames-usa.github.io/images/duck-life-battle.png" alt="Duck Life Battle Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Duck Life Battle Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../duck-life">
+      <img src="https://unblockedgames-usa.github.io/images/duck-life.png" alt="Duck Life Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Duck Life Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../dunk-perfect">
+      <img src="https://unblockedgames-usa.github.io/images/dunk-perfect.png" alt="Dunk Perfect Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Dunk Perfect Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../dunkbrush">
+      <img src="https://unblockedgames-usa.github.io/images/dunkbrush.png" alt="Dunkbrush Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Dunkbrush Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../dunkers">
+      <img src="https://unblockedgames-usa.github.io/images/dunkers.png" alt="Dunkers Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Dunkers Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../duo-survival-2">
+      <img src="https://unblockedgames-usa.github.io/images/duo-survival-2.png" alt="Duo Survival 2 Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Duo Survival 2 Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../duo-survival-3">
+      <img src="https://unblockedgames-usa.github.io/images/duo-survival-3.png" alt="Duo Survival 3 Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Duo Survival 3 Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../duo-survival">
+      <img src="https://unblockedgames-usa.github.io/images/duo-survival.png" alt="Duo Survival Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Duo Survival Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../duo-vikings-2">
+      <img src="https://unblockedgames-usa.github.io/images/duo-vikings-2.png" alt="Duo Vikings 2 Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Duo Vikings 2 Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../duo-vikings-3">
+      <img src="https://unblockedgames-usa.github.io/images/duo-vikings-3.png" alt="Duo Vikings 3 Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Duo Vikings 3 Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../duo-vikings">
+      <img src="https://unblockedgames-usa.github.io/images/duo-vikings.png" alt="Duo Vikings Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Duo Vikings Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../dyna-boy">
+      <img src="https://unblockedgames-usa.github.io/images/dyna-boy.png" alt="Dyna Boy Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Dyna Boy Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../earn-to-die">
+      <img src="https://unblockedgames-usa.github.io/images/earn-to-die.png" alt="Earn To Die Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Earn To Die Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../eggbot-vs-zombies">
+      <img src="https://unblockedgames-usa.github.io/images/eggbot-vs-zombies.png" alt="Eggbot Vs Zombies Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Eggbot Vs Zombies Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../eggy-car">
+      <img src="https://unblockedgames-usa.github.io/images/eggy-car.png" alt="Eggy Car Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Eggy Car Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../elastic-man">
+      <img src="https://unblockedgames-usa.github.io/images/elastic-man.png" alt="Elastic Man Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Elastic Man Unblocked — Free 2</span>
+    </a>
+    <a class="game-card" href="../../electron-dash">
+      <img src="https://unblockedgames-usa.github.io/images/electron-dash.png" alt="Electron Dash Unblocked — Free 2" loading="lazy" width="200" height="150">
+      <span>Electron Dash Unblocked — Free 2</span>
+    </a>
+  </div>
 
-<div class="container">
-    <div class="category-header" style="--cat-accent: #2655cc;">
-        <div class="category-header-glow"></div>
-        <h1>🚗 Driving Games</h1>
-        <p>Play awesome unblocked games</p>
-    </div>
+  <div class="pagination"><a href="../../categ/driving-page-3/">&laquo; Previous</a><a href="../../categ/driving/">1</a><a href="../../categ/driving-page-2/">2</a><a href="../../categ/driving-page-3/">3</a><a href="../../categ/driving-page-4/" class="active">4</a><a href="../../categ/driving-page-5/">5</a><a href="../../categ/driving-page-6/">6</a><a href="../../categ/driving-page-7/">7</a><a href="../../categ/driving-page-8/">8</a><a href="../../categ/driving-page-9/">9</a><a href="../../categ/driving-page-10/">10</a><a href="../../categ/driving-page-11/">11</a><a href="../../categ/driving-page-12/">12</a><a href="../../categ/driving-page-13/">13</a><a href="../../categ/driving-page-5/">Next &raquo;</a></div>
 
-    <h2 class="section-title">Popular Driving Games</h2>
-
-    <div class="games-grid" id="gamesGrid">
-        <div class="games-grid">
-<a href="https://unblockedgames-usa.github.io/truck-loader" class="game-card">
-  <img src="https://unblockedgames-usa.github.io/images/truck-loader.png" alt="Truck Loader Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy">
-  <h3>Truck Loader Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a href="https://unblockedgames-usa.github.io/truck-loader-2" class="game-card">
-  <img src="https://unblockedgames-usa.github.io/images/truck-loader-2.png" alt="Truck Loader 2 Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy">
-  <h3>Truck Loader 2 Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a href="https://unblockedgames-usa.github.io/truck-loader-3" class="game-card">
-  <img src="https://unblockedgames-usa.github.io/images/truck-loader-3.png" alt="Truck Loader 3 Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy">
-  <h3>Truck Loader 3 Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a href="https://unblockedgames-usa.github.io/truck-loader-4" class="game-card">
-  <img src="https://unblockedgames-usa.github.io/images/truck-loader-4.png" alt="Truck Loader 4 Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy">
-  <h3>Truck Loader 4 Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a href="https://unblockedgames-usa.github.io/truck-loader-5" class="game-card">
-  <img src="https://unblockedgames-usa.github.io/images/truck-loader-5.png" alt="Truck Loader 5 Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy">
-  <h3>Truck Loader 5 Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a href="https://unblockedgames-usa.github.io/turbo-moto-racer" class="game-card">
-  <img src="https://unblockedgames-usa.github.io/images/turbo-moto-racer.png" alt="Turbo Moto Racer Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy">
-  <h3>Turbo Moto Racer Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a href="https://unblockedgames-usa.github.io/ultimate-car-driving" class="game-card">
-  <img src="https://unblockedgames-usa.github.io/images/ultimate-car-driving.png" alt="Ultimate Car Driving Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy">
-  <h3>Ultimate Car Driving Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a href="https://unblockedgames-usa.github.io/war-of-caribbean-pirates" class="game-card">
-  <img src="https://unblockedgames-usa.github.io/images/war-of-caribbean-pirates.png" alt="War Of Caribbean Pirates Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy">
-  <h3>War Of Caribbean Pirates Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-</div>
-    </div>
-
-    <div class="pagination">
-<a href="https://unblockedgames-usa.github.io/categ/driving-page-3/" class="page-btn">« Previous</a>
-<a href="https://unblockedgames-usa.github.io/categ/driving/" class="page-btn">1</a>
-<a href="https://unblockedgames-usa.github.io/categ/driving-page-2/" class="page-btn">2</a>
-<a href="https://unblockedgames-usa.github.io/categ/driving-page-3/" class="page-btn">3</a>
-<a href="https://unblockedgames-usa.github.io/categ/driving-page-4/" class="page-btn active">4</a>
-</div>
-
-    <div class="category-description">
-        <h2>🌐 Join the World of Driving Games</h2>
-        <p>Play the best driving games unblocked for free. No download needed.</p>
-    </div>
-
-    <div class="categories">
-        <h2 class="categories-title">🎮 Browse by Category</h2>
-        <div class="category-grid">
-            <div class="category-links">
-<a href="https://unblockedgames-usa.github.io/categ/shooter">🎯 Shooter</a>
-<a href="https://unblockedgames-usa.github.io/categ/platformer">🏃 Platformer</a>
-<a href="https://unblockedgames-usa.github.io/categ/2-player">👥 2-Player</a>
-<a href="https://unblockedgames-usa.github.io/categ/fighting">🥊 Fighting</a>
-<a href="https://unblockedgames-usa.github.io/categ/driving">🚗 Driving</a>
-<a href="https://unblockedgames-usa.github.io/categ/puzzle">🧠 Puzzle</a>
-<a href="https://unblockedgames-usa.github.io/categ/multiplayer">🌐 Multiplayer</a>
-<a href="https://unblockedgames-usa.github.io/categ/action">💥 Action</a>
-<a href="https://unblockedgames-usa.github.io/categ/skill">🏆 Skill</a>
-<a href="https://unblockedgames-usa.github.io/categ/adventure">🗺️ Adventure</a>
-<a href="https://unblockedgames-usa.github.io/categ/racing">🏁 Racing</a>
-<a href="https://unblockedgames-usa.github.io/categ/strategy">♟️ Strategy</a>
-<a href="https://unblockedgames-usa.github.io/categ/sports">⚽ Sports</a>
-<a href="https://unblockedgames-usa.github.io/categ/simulation">🏙️ Simulation</a>
-<a href="https://unblockedgames-usa.github.io/categ/clicker">🖱️ Clicker</a>
-<a href="https://unblockedgames-usa.github.io/categ/horror">👻 Horror</a>
-<a href="https://unblockedgames-usa.github.io/categ/kids">🧸 Kids</a>
-</div>
-        </div>
-    </div>
-</div>
-
+  <h2 class="section-title">🎮 Browse Other Categories</h2>
+  <div class="cat-grid">
+    <a href="../../categ/shooter">🎯 Shooter</a>
+    <a href="../../categ/platformer">🏃 Platformer</a>
+    <a href="../../categ/2-player">👥 2-Player</a>
+    <a href="../../categ/fighting">🥊 Fighting</a>
+    <a href="../../categ/puzzle">🧠 Puzzle</a>
+    <a href="../../categ/multiplayer">🌐 Multiplayer</a>
+    <a href="../../categ/action">💥 Action</a>
+    <a href="../../categ/skill">🏆 Skill</a>
+    <a href="../../categ/adventure">🗺️ Adventure</a>
+    <a href="../../categ/racing">🏁 Racing</a>
+    <a href="../../categ/strategy">♟️ Strategy</a>
+    <a href="../../categ/sports">⚽ Sports</a>
+    <a href="../../categ/simulation">🏙️ Simulation</a>
+    <a href="../../categ/clicker">🖱️ Clicker</a>
+    <a href="../../categ/horror">👻 Horror</a>
+    <a href="../../categ/kids">🧸 Kids</a>
+  </div>
+</main>
 <footer>
-    <div class="container">
-        <div class="footer-bottom">
-            <p>&copy; <span id="currentYear"></span> Unblocked Games USA. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="/privacy-policy">Privacy Policy</a>
-                <a href="/contact">Contact Us</a>
-                <a href="/faq">FAQ</a>
-                <a href="/dmca">DMCA</a>
-            </div>
-        </div>
-    </div>
+  <div class="footer-cats">
+    <a href="../../categ/shooter">🎯 Shooter</a>
+    <a href="../../categ/platformer">🏃 Platformer</a>
+    <a href="../../categ/2-player">👥 2-Player</a>
+    <a href="../../categ/fighting">🥊 Fighting</a>
+    <a href="../../categ/driving">🚗 Driving</a>
+    <a href="../../categ/puzzle">🧠 Puzzle</a>
+    <a href="../../categ/multiplayer">🌐 Multiplayer</a>
+    <a href="../../categ/action">💥 Action</a>
+    <a href="../../categ/skill">🏆 Skill</a>
+    <a href="../../categ/adventure">🗺️ Adventure</a>
+    <a href="../../categ/racing">🏁 Racing</a>
+    <a href="../../categ/strategy">♟️ Strategy</a>
+    <a href="../../categ/sports">⚽ Sports</a>
+    <a href="../../categ/simulation">🏙️ Simulation</a>
+    <a href="../../categ/clicker">🖱️ Clicker</a>
+    <a href="../../categ/horror">👻 Horror</a>
+    <a href="../../categ/kids">🧸 Kids</a>
+  </div>
+  <div class="footer-links">
+    <a href="../../privacy-policy">Privacy Policy</a>
+    <a href="../../contact">Contact Us</a>
+    <a href="../../faq">FAQ</a>
+    <a href="../../dmca">DMCA</a>
+  </div>
+  <p>&copy; Unblocked Games USA. All rights reserved.</p>
 </footer>
-
-<a href="#" id="scrollToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></a>
-
-<script>
-document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-const navToggle = document.getElementById('navToggle');
-const navMenu = document.getElementById('navMenu');
-navToggle?.addEventListener('click', () => navMenu.classList.toggle('active'));
-
-const header = document.querySelector('header');
-const scrollBtn = document.getElementById('scrollToTopBtn');
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-    const st = window.pageYOffset;
-    header.classList.toggle('header-hidden', st > lastScroll && st > header.offsetHeight);
-    lastScroll = st <= 0 ? 0 : st;
-    scrollBtn.classList.toggle('show', st > 100);
-});
-scrollBtn?.addEventListener('click', e => { e.preventDefault(); window.scrollTo({top:0, behavior:'smooth'}); });
-</script>
-<script>
-async function loadGames(){try{const r=await fetch('https://unblockedgames-usa.github.io/games.json');window._allGames=await r.json();}catch(e){window._allGames=[];}}
-loadGames();
-document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.activeElement.tagName==='INPUT'){const q=document.activeElement.value.trim();if(q)window.location.href='https://unblockedgames-usa.github.io/search/?q='+encodeURIComponent(q);}});
-</script>
 </body>
 </html>
