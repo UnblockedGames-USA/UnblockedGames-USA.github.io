@@ -579,7 +579,7 @@ function patchGamePages(games) {
 
 // ─── MAIN ───────────────────────────────────────────────────────────────────
 
-async function main() {
+function main() {
   console.log('\n🚀 UnblockedGames-USA Build Script\n');
 
   const games = scanGames();
@@ -604,4 +604,9 @@ async function main() {
   console.log('  git push');
 }
 
-main().catch(err => { console.error(err); process.exit(1); });
+try {
+  main();
+} catch (err) {
+  console.error(err);
+  process.exit(1);
+}
