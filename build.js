@@ -1,706 +1,389 @@
 #!/usr/bin/env node
 /**
- * UnblockedGames-USA Build Script
- * ================================
+ * build.js — UnblockedGames-USA (SAFE VERSION)
+ * ============================================
+ * Never modifies game iframe or original content.
+ * Only appends "Similar Games" AFTER </main>.
+ *
  * Run: node build.js
- *
- * What it does:
- *  1. Scans every game folder (any dir with an index.html that has <iframe>)
- *  2. Extracts title, thumbnail, categories, tags from each game's index.html
- *  3. Writes games.json (full data) + search-index.json (lightweight for client)
- *  4. Regenerates all categ/<category>/index.html pages with FULL game lists + pagination
- *  5. Patches every game's index.html to replace the static "similar games" section
- *     with dynamically chosen games from the same categories
- *
- * Requirements: Node.js 16+  (no npm install needed – uses only built-ins)
  */
 
-const fs   = require('fs');
+'use strict';
+const fs = require('fs');
 const path = require('path');
 
-// ─── CONFIG ────────────────────────────────────────────────────────────────
-const ROOT        = process.cwd();          // run from repo root
-const IMAGES_BASE = 'https://unblockedgames-usa.github.io/images/';
-const SITE_BASE   = 'https://unblockedgames-usa.github.io/';
-const GAMES_PER_PAGE = 48;                  // games per category page
-const SIMILAR_COUNT  = 12;                  // similar games to show per game page
+const ROOT = process.cwd();
+const SITE_BASE = 'https://unblockedgames-usa.github.io';
+const GAMES_PER_PAGE = 48;
+const SIMILAR_COUNT = 12;
 
-const CATEGORIES = [
-  { slug: 'shooter',     emoji: '🎯', label: 'Shooter' },
-  { slug: 'platformer',  emoji: '🏃', label: 'Platformer' },
-  { slug: '2-player',    emoji: '👥', label: '2-Player' },
-  { slug: 'fighting',    emoji: '🥊', label: 'Fighting' },
-  { slug: 'driving',     emoji: '🚗', label: 'Driving' },
-  { slug: 'puzzle',      emoji: '🧠', label: 'Puzzle' },
-  { slug: 'multiplayer', emoji: '🌐', label: 'Multiplayer' },
-  { slug: 'action',      emoji: '💥', label: 'Action' },
-  { slug: 'skill',       emoji: '🏆', label: 'Skill' },
-  { slug: 'adventure',   emoji: '🗺️', label: 'Adventure' },
-  { slug: 'racing',      emoji: '🏁', label: 'Racing' },
-  { slug: 'strategy',    emoji: '♟️', label: 'Strategy' },
-  { slug: 'sports',      emoji: '⚽', label: 'Sports' },
-  { slug: 'simulation',  emoji: '🏙️', label: 'Simulation' },
-  { slug: 'clicker',     emoji: '🖱️', label: 'Clicker' },
-  { slug: 'horror',      emoji: '👻', label: 'Horror' },
-  { slug: 'kids',        emoji: '🧸', label: 'Kids' },
+const CATS = [
+  { slug:'shooter', emoji:'🎯', label:'Shooter' },
+  { slug:'platformer', emoji:'🏃', label:'Platformer' },
+  { slug:'2-player', emoji:'👥', label:'2-Player' },
+  { slug:'fighting', emoji:'🥊', label:'Fighting' },
+  { slug:'driving', emoji:'🚗', label:'Driving' },
+  { slug:'puzzle', emoji:'🧠', label:'Puzzle' },
+  { slug:'multiplayer',emoji:'🌐', label:'Multiplayer'},
+  { slug:'action', emoji:'💥', label:'Action' },
+  { slug:'skill', emoji:'🏆', label:'Skill' },
+  { slug:'adventure', emoji:'🗺️', label:'Adventure' },
+  { slug:'racing', emoji:'🏁', label:'Racing' },
+  { slug:'strategy', emoji:'♟️', label:'Strategy' },
+  { slug:'sports', emoji:'⚽', label:'Sports' },
+  { slug:'simulation', emoji:'🏙️', label:'Simulation' },
+  { slug:'clicker', emoji:'🖱️', label:'Clicker' },
+  { slug:'horror', emoji:'👻', label:'Horror' },
+  { slug:'kids', emoji:'🧸', label:'Kids' },
 ];
 
-// Folders to skip (non-game directories)
 const SKIP_DIRS = new Set([
-  'assets', 'images', 'categ', 'node_modules', '.git',
-  'privacy-policy', 'contact', 'faq', 'dmca',
+  'assets','images','categ','node_modules','.git',
+  'privacy-policy','contact','faq','dmca',
 ]);
 
-// ─── HELPERS ───────────────────────────────────────────────────────────────
-
-function readFile(filePath) {
-  try { return fs.readFileSync(filePath, 'utf8'); }
-  catch { return null; }
-}
-
-function writeFile(filePath, content) {
-  fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, content, 'utf8');
-}
+const read = f => { try { return fs.readFileSync(f,'utf8'); } catch { return null; } };
+const write = (f, c) => { fs.mkdirSync(path.dirname(f),{recursive:true}); fs.writeFileSync(f,c,'utf8'); };
 
 function slugToTitle(slug) {
-  return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-}
-
-function extractMeta(html, tag, attr) {
-  const re = new RegExp(`<meta[^>]+${attr}=["']${tag}["'][^>]*content=["']([^"']+)["']`, 'i');
-  const re2 = new RegExp(`<meta[^>]+content=["']([^"']+)["'][^>]*${attr}=["']${tag}["']`, 'i');
-  const m = html.match(re) || html.match(re2);
-  return m ? m[1].trim() : null;
+  return slug.split('-').map(w => w[0].toUpperCase()+w.slice(1)).join(' ');
 }
 
 function extractTitle(html) {
-  // Try og:title first, then <title> tag
-  const og = extractMeta(html, 'og:title', 'property') || extractMeta(html, 'og:title', 'name');
-  if (og) return og.replace(/\s*[-|].*$/, '').trim();
+  const og = html.match(/<meta[^>]+(?:property|name)=["']og:title["'][^>]+content=["']([^"']+)["']/i)
+           || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+(?:property|name)=["']og:title["']/i);
+  if (og) return og[1].replace(/\s*[-|].*$/,'').trim();
   const t = html.match(/<title[^>]*>([^<]+)<\/title>/i);
-  if (t) return t[1].replace(/\s*[-|].*$/, '').trim();
+  if (t) return t[1].replace(/\s*[-|].*$/,'').trim();
   return null;
 }
 
-function extractCategories(html) {
-  const cats = [];
-  // Look for category tags like: data-category="adventure" or class="tag adventure" or links to categ/
-  const tagLinks = html.matchAll(/href=["'][^"']*\/categ\/([a-z0-9-]+)[/"']/gi);
-  for (const m of tagLinks) cats.push(m[1].toLowerCase());
-
-  // Also look for explicit tag spans/buttons
-  const tagSpans = html.matchAll(/(?:category|tag)[^>]*>([A-Za-z0-9 -]+)</gi);
-  for (const m of tagSpans) {
-    const slug = m[1].trim().toLowerCase().replace(/\s+/g, '-');
-    if (CATEGORIES.find(c => c.slug === slug)) cats.push(slug);
+function extractCats(html) {
+  const found = new Set();
+  for (const m of html.matchAll(/\/categ\/([a-z0-9-]+)/gi)) {
+    const s = m[1].toLowerCase();
+    if (CATS.find(c=>c.slug===s)) found.add(s);
   }
-
-  // Also search for keywords in the page text
-  const lower = html.toLowerCase();
-  for (const cat of CATEGORIES) {
-    if (lower.includes(`"${cat.slug}"`) || lower.includes(`'${cat.slug}'`)) {
-      if (!cats.includes(cat.slug)) cats.push(cat.slug);
-    }
+  for (const cat of CATS) {
+    if (html.includes(`"${cat.slug}"`) || html.includes(`'${cat.slug}'`)) found.add(cat.slug);
   }
-
-  return [...new Set(cats)].filter(c => CATEGORIES.find(x => x.slug === c));
+  return [...found];
 }
 
 function extractImage(slug, html) {
-  // Prefer images/<slug>.png/jpg
-  const candidates = [
-    `images/${slug}.png`,
-    `images/${slug}.jpg`,
-    `images/${slug}.webp`,
-  ];
-  for (const c of candidates) {
-    if (fs.existsSync(path.join(ROOT, c))) return `${SITE_BASE}${c}`;
+  for (const ext of ['png','jpg','webp']) {
+    const p = path.join(ROOT,'images',`${slug}.${ext}`);
+    if (fs.existsSync(p)) return `${SITE_BASE}/images/${slug}.${ext}`;
   }
-  // Try og:image
-  const og = extractMeta(html, 'og:image', 'property') || extractMeta(html, 'og:image', 'name');
-  if (og) return og;
-  return `${SITE_BASE}images/${slug}.png`; // fallback (may 404 but still reference)
-}
-
-function hasIframe(html) {
-  return /<iframe/i.test(html);
-}
-
-// ─── NAV HTML ──────────────────────────────────────────────────────────────
-
-function navHtml(prefix = '') {
-  const links = CATEGORIES.map(c =>
-    `<li><a href="${prefix}categ/${c.slug}">${c.emoji} ${c.label}</a></li>`
-  ).join('\n      ');
-  return `<nav>
-    <a class="logo" href="${prefix || '/'}">Unblocked Games USA</a>
-    <ul>
-      ${links}
-    </ul>
-    <form class="search-form" action="${prefix || '/'}index.html" method="get">
-      <input type="search" name="q" placeholder="Search games..." autocomplete="off">
-      <button type="submit">🔍</button>
-    </form>
-  </nav>`;
-}
-
-function footerHtml(prefix = '') {
-  const cats = CATEGORIES.map(c =>
-    `<a href="${prefix}categ/${c.slug}">${c.emoji} ${c.label}</a>`
-  ).join('\n    ');
-  return `<footer>
-  <div class="footer-cats">
-    ${cats}
-  </div>
-  <div class="footer-links">
-    <a href="${prefix}privacy-policy">Privacy Policy</a>
-    <a href="${prefix}contact">Contact Us</a>
-    <a href="${prefix}faq">FAQ</a>
-    <a href="${prefix}dmca">DMCA</a>
-  </div>
-  <p>&copy; Unblocked Games USA. All rights reserved.</p>
-</footer>`;
-}
-
-// ─── GAME CARD ──────────────────────────────────────────────────────────────
-
-function gameCard(game, prefix = '') {
-  const url = `${prefix || '/'}${game.slug}`;
-  return `<a class="game-card" href="${url}">
-      <img src="${game.image}" alt="${game.title}" loading="lazy" width="200" height="150">
-      <span>${game.title}</span>
-    </a>`;
-}
-
-// ─── PAGINATION ─────────────────────────────────────────────────────────────
-
-function paginationHtml(catSlug, currentPage, totalPages) {
-  if (totalPages <= 1) return '';
-  let html = '<div class="pagination">';
-  if (currentPage > 1) {
-    const href = currentPage === 2
-      ? `../../categ/${catSlug}/`
-      : `../../categ/${catSlug}-page-${currentPage - 1}/`;
-    html += `<a href="${href}">&laquo; Previous</a>`;
-  }
-  for (let i = 1; i <= totalPages; i++) {
-    const href = i === 1
-      ? `../../categ/${catSlug}/`
-      : `../../categ/${catSlug}-page-${i}/`;
-    const active = i === currentPage ? ' class="active"' : '';
-    html += `<a href="${href}"${active}>${i}</a>`;
-  }
-  if (currentPage < totalPages) {
-    const href = `../../categ/${catSlug}-page-${currentPage + 1}/`;
-    html += `<a href="${href}">Next &raquo;</a>`;
-  }
-  html += '</div>';
-  return html;
-}
-
-// ─── CSS (shared, embedded in pages) ────────────────────────────────────────
-
-const SHARED_CSS = `
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:system-ui,sans-serif;background:#0d1117;color:#e6edf3;min-height:100vh}
-  a{color:inherit;text-decoration:none}
-  nav{background:linear-gradient(90deg,#1a0533,#8b0000);padding:12px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-  .logo{font-weight:700;font-size:1.1rem;white-space:nowrap}
-  nav ul{display:flex;list-style:none;gap:8px;flex-wrap:wrap;flex:1}
-  nav ul li a{background:rgba(255,255,255,.1);padding:4px 10px;border-radius:20px;font-size:.82rem;white-space:nowrap;transition:background .2s}
-  nav ul li a:hover{background:rgba(255,255,255,.25)}
-  .search-form{display:flex;gap:6px;margin-left:auto}
-  .search-form input{padding:6px 12px;border-radius:20px;border:none;background:rgba(255,255,255,.15);color:#fff;width:180px}
-  .search-form input::placeholder{color:rgba(255,255,255,.5)}
-  .search-form button{background:#c0392b;color:#fff;border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1rem}
-  main{max-width:1280px;margin:0 auto;padding:24px 16px}
-  h1{font-size:1.8rem;margin-bottom:8px}
-  .subtitle{color:#8b949e;margin-bottom:24px}
-  .games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-bottom:32px}
-  .game-card{display:flex;flex-direction:column;align-items:center;background:#161b22;border-radius:10px;overflow:hidden;transition:transform .2s,box-shadow .2s}
-  .game-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
-  .game-card img{width:100%;height:120px;object-fit:cover}
-  .game-card span{padding:8px;font-size:.82rem;text-align:center;font-weight:500}
-  .section-title{font-size:1.3rem;margin:32px 0 16px;color:#58a6ff}
-  .pagination{display:flex;gap:8px;justify-content:center;margin:24px 0;flex-wrap:wrap}
-  .pagination a{padding:8px 14px;background:#161b22;border-radius:6px;transition:background .2s}
-  .pagination a:hover,.pagination a.active{background:#58a6ff;color:#000}
-  .cat-grid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
-  .cat-grid a{background:#161b22;padding:8px 14px;border-radius:20px;font-size:.85rem;transition:background .2s}
-  .cat-grid a:hover{background:#58a6ff;color:#000}
-  footer{background:#161b22;padding:32px 24px;margin-top:48px;text-align:center}
-  .footer-cats{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:16px}
-  .footer-cats a{background:rgba(255,255,255,.08);padding:6px 12px;border-radius:16px;font-size:.82rem}
-  .footer-links{display:flex;gap:16px;justify-content:center;margin-bottom:12px;font-size:.85rem;opacity:.7}
-  footer p{font-size:.8rem;opacity:.5}
-  /* Search results */
-  #search-results-section{margin-bottom:32px}
-  #no-results{color:#f85149;margin:16px 0;display:none}
-  /* Game page */
-  .game-frame-wrap{background:#000;border-radius:10px;overflow:hidden;margin-bottom:32px;position:relative;padding-top:56.25%}
-  .game-frame-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
-  .game-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
-  .game-meta .tag{background:#21262d;padding:4px 12px;border-radius:16px;font-size:.82rem}
-  /* Search overlay */
-  #search-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.85);z-index:1000;overflow-y:auto;padding:80px 24px 24px}
-  #search-overlay.active{display:block}
-  #search-close{position:fixed;top:16px;right:24px;background:#c0392b;color:#fff;border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:1.2rem;z-index:1001}
-  #search-box{max-width:800px;margin:0 auto}
-  #search-input-big{width:100%;padding:12px 20px;font-size:1.1rem;border-radius:10px;border:none;background:#161b22;color:#fff;margin-bottom:24px}
-  #search-results-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px}
-`;
-
-// ─── SCAN GAMES ─────────────────────────────────────────────────────────────
-
-function scanGames() {
-  console.log('📂 Scanning game folders…');
-  const games = [];
-  const entries = fs.readdirSync(ROOT, { withFileTypes: true });
-
-  for (const entry of entries) {
-    if (!entry.isDirectory()) continue;
-    if (SKIP_DIRS.has(entry.name)) continue;
-    if (entry.name.startsWith('.')) continue;
-
-    const slug = entry.name;
-    const indexPath = path.join(ROOT, slug, 'index.html');
-    const html = readFile(indexPath);
-    if (!html) continue;
-    if (!hasIframe(html)) continue; // skip non-game pages
-
-    const title = extractTitle(html) || slugToTitle(slug);
-    const cats  = extractCategories(html);
-    const image = extractImage(slug, html);
-
-    games.push({ slug, title, image, categories: cats });
-  }
-
-  console.log(`✅ Found ${games.length} games`);
-  return games.sort((a, b) => a.title.localeCompare(b.title));
-}
-
-// ─── WRITE games.json + search-index.json ───────────────────────────────────
-
-function writeDataFiles(games) {
-  writeFile(path.join(ROOT, 'games.json'), JSON.stringify(games, null, 2));
-
-  const searchIndex = games.map(g => ({
-    slug: g.slug,
-    title: g.title,
-    image: g.image,
-    categories: g.categories,
-  }));
-  writeFile(path.join(ROOT, 'search-index.json'), JSON.stringify(searchIndex));
-  console.log('📄 Wrote games.json + search-index.json');
-}
-
-// ─── CATEGORY PAGES ─────────────────────────────────────────────────────────
-
-function buildCategoryPages(games) {
-  for (const cat of CATEGORIES) {
-    const catGames = games.filter(g => g.categories.includes(cat.slug));
-    const totalPages = Math.max(1, Math.ceil(catGames.length / GAMES_PER_PAGE));
-
-    for (let page = 1; page <= totalPages; page++) {
-      const slice = catGames.slice((page - 1) * GAMES_PER_PAGE, page * GAMES_PER_PAGE);
-      const isFirst = page === 1;
-      const dirName = isFirst ? `categ/${cat.slug}` : `categ/${cat.slug}-page-${page}`;
-      const prefix  = '../../';
-      const canonicalUrl = isFirst
-        ? `${SITE_BASE}categ/${cat.slug}/`
-        : `${SITE_BASE}categ/${cat.slug}-page-${page}/`;
-
-      const pageTitle = page === 1
-        ? `${cat.emoji} ${cat.label} Games Unblocked – Play Free Online`
-        : `${cat.emoji} ${cat.label} Games – Page ${page}`;
-
-      const cards = slice.map(g => gameCard(g, prefix)).join('\n    ');
-      const pagination = paginationHtml(cat.slug, page, totalPages);
-      const otherCats = CATEGORIES.filter(c => c.slug !== cat.slug)
-        .map(c => `<a href="${prefix}categ/${c.slug}">${c.emoji} ${c.label}</a>`).join('\n    ');
-
-      const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>${pageTitle}</title>
-  <meta name="description" content="Play free unblocked ${cat.label} games online. No downloads, no sign-ups. ${catGames.length} games available.">
-  <link rel="canonical" href="${canonicalUrl}">
-  <meta property="og:title" content="${pageTitle}">
-  <meta property="og:type" content="website">
-  <style>${SHARED_CSS}</style>
-</head>
-<body>
-${navHtml(prefix)}
-<main>
-  <h1>${cat.emoji} ${cat.label} Games</h1>
-  <p class="subtitle">${catGames.length} free unblocked ${cat.label} games — no downloads, play instantly!</p>
-
-  <div class="games-grid">
-    ${cards}
-  </div>
-
-  ${pagination}
-
-  <h2 class="section-title">🎮 Browse Other Categories</h2>
-  <div class="cat-grid">
-    ${otherCats}
-  </div>
-</main>
-${footerHtml(prefix)}
-</body>
-</html>`;
-
-      writeFile(path.join(ROOT, dirName, 'index.html'), html);
-    }
-
-    console.log(`  ✓ ${cat.slug}: ${catGames.length} games across ${totalPages} page(s)`);
-  }
-}
-
-// ─── HOMEPAGE (search-enabled) ───────────────────────────────────────────────
-
-function buildHomepage(games) {
-  // Pick ~45 popular/featured games for the visible grid
-  const featured = games.slice(0, 48);
-  const cards = featured.map(g => gameCard(g, '')).join('\n    ');
-  const catLinks = CATEGORIES.map(c =>
-    `<a href="categ/${c.slug}">${c.emoji} ${c.label}</a>`
-  ).join('\n    ');
-
-  const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Unblocked Games USA | Free Games To Play Online Instantly</title>
-  <meta name="description" content="Free unblocked games for school. No downloads, no sign-ups. Hundreds of games across every genre.">
-  <link rel="canonical" href="${SITE_BASE}">
-  <style>${SHARED_CSS}
-  .hero{text-align:center;padding:40px 0 24px}
-  .hero h1{font-size:2.2rem;margin-bottom:8px}
-  .hero p{color:#8b949e;max-width:600px;margin:0 auto 24px}
-  .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
-  .badges span{background:#21262d;padding:6px 14px;border-radius:20px;font-size:.85rem}
-  </style>
-</head>
-<body>
-${navHtml('')}
-
-<!-- Search overlay -->
-<div id="search-overlay">
-  <button id="search-close" onclick="closeSearch()">✕</button>
-  <div id="search-box">
-    <input id="search-input-big" type="search" placeholder="Search games…" oninput="doSearch(this.value)" autofocus>
-    <div id="search-results-grid"></div>
-  </div>
-</div>
-
-<main>
-  <div class="hero">
-    <h1>🎮 Unblocked Games USA</h1>
-    <p>Free online games for every break. No downloads, no sign-ups. Perfect for a quick break between classes.</p>
-    <div class="badges">
-      <span>✅ No Downloads</span>
-      <span>🎮 100% Free</span>
-      <span>⚡ Play Instantly</span>
-      <span>🏫 School Friendly</span>
-    </div>
-    <button onclick="openSearch()" style="background:#58a6ff;color:#000;border:none;padding:10px 28px;border-radius:24px;font-size:1rem;cursor:pointer;font-weight:600">🔍 Search All ${games.length} Games</button>
-  </div>
-
-  <h2 class="section-title">🔥 Popular Games</h2>
-  <div class="games-grid">
-    ${cards}
-  </div>
-
-  <h2 class="section-title">🎮 Browse by Category</h2>
-  <div class="cat-grid">
-    ${catLinks}
-  </div>
-</main>
-${footerHtml('')}
-
-<script>
-let allGames = null;
-
-async function loadGames() {
-  if (allGames) return allGames;
-  try {
-    const r = await fetch('/search-index.json');
-    allGames = await r.json();
-  } catch {
-    allGames = [];
-  }
-  return allGames;
-}
-
-function openSearch() {
-  document.getElementById('search-overlay').classList.add('active');
-  document.getElementById('search-input-big').focus();
-  loadGames();
-}
-
-function closeSearch() {
-  document.getElementById('search-overlay').classList.remove('active');
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSearch(); });
-
-// Also hook nav search form
-document.querySelector('.search-form').addEventListener('submit', e => {
-  e.preventDefault();
-  const q = document.querySelector('.search-form input').value.trim();
-  if (q) { openSearch(); setTimeout(() => { document.getElementById('search-input-big').value = q; doSearch(q); }, 50); }
-});
-
-async function doSearch(q) {
-  const games = await loadGames();
-  const term = q.toLowerCase().trim();
-  const grid = document.getElementById('search-results-grid');
-  if (!term) { grid.innerHTML = ''; return; }
-  const results = games.filter(g =>
-    g.title.toLowerCase().includes(term) ||
-    (g.categories || []).some(c => c.includes(term)) ||
-    g.slug.replace(/-/g,' ').includes(term)
-  ).slice(0, 60);
-  if (!results.length) {
-    grid.innerHTML = '<p style="color:#f85149;text-align:center">No games found. Try different keywords.</p>';
-    return;
-  }
-  grid.innerHTML = results.map(g =>
-    '<a class="game-card" href="/' + g.slug + '">' +
-    '<img src="' + g.image + '" alt="' + g.title + '" loading="lazy" width="200" height="150">' +
-    '<span>' + g.title + '</span></a>'
-  ).join('');
-}
-</script>
-</body>
-</html>`;
-
-  writeFile(path.join(ROOT, 'index.html'), html);
-  console.log('🏠 Homepage rebuilt with live search');
-}
-
-// ─── PATCH GAME PAGES (similar games) ───────────────────────────────────────
-
-function buildSimilarGames(game, allGames) {
-  // Find games in same categories, excluding itself
-  const sameCategory = allGames.filter(g =>
-    g.slug !== game.slug &&
-    g.categories.some(c => game.categories.includes(c))
-  );
-
-  // Shuffle deterministically based on slug hash so it's stable but varies per game
-  const shuffled = [...sameCategory].sort((a, b) => {
-    const ha = simpleHash(game.slug + a.slug);
-    const hb = simpleHash(game.slug + b.slug);
-    return ha - hb;
-  });
-
-  return shuffled.slice(0, SIMILAR_COUNT);
+  const og = html.match(/<meta[^>]+(?:property|name)=["']og:image["'][^>]+content=["']([^"']+)["']/i)
+           || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+(?:property|name)=["']og:image["']/i);
+  if (og) return og[1];
+  return `${SITE_BASE}/images/${slug}.png`;
 }
 
 function simpleHash(str) {
   let h = 0;
-  for (let i = 0; i < str.length; i++) h = (Math.imul(31, h) + str.charCodeAt(i)) | 0;
+  for (let i = 0; i < str.length; i++) h = (Math.imul(31,h)+str.charCodeAt(i))|0;
   return Math.abs(h);
 }
 
-// ─── REMOVE PLAY-BUTTON OVERLAY ─────────────────────────────────────────────
-// Stack-based removal of overlay divs that sit on top of the iframe.
-function removePlayOverlay(html) {
-  // Walk nested divs and remove any that match overlay id/class/onclick patterns
-  function removeMatchingDivs(h, pat) {
-    const re = new RegExp('<div[^>]*(?:' + pat + ')[^>]*>', 'gi');
-    let result = h, safety = 0, m;
-    re.lastIndex = 0;
-    while ((m = re.exec(result)) !== null && safety++ < 200) {
-      const start = m.index;
-      let depth = 1, i = start + m[0].length;
-      while (i < result.length && depth > 0) {
-        const s = result.slice(i);
-        if (/^<div[\s>]/i.test(s)) { depth++; i += 4; }
-        else if (/^<\/div/i.test(s)) { depth--; i += 5; }
-        else i++;
-      }
-      const closeEnd = result.indexOf('>', i - 1) + 1;
-      if (closeEnd <= start) break;
-      result = result.slice(0, start) + result.slice(closeEnd);
-      re.lastIndex = start;
-    }
-    return result;
-  }
+const SIMILAR_CSS = `<style id="ug-similar-css">
+.ug-similar{font-family:system-ui,sans-serif;padding:24px 16px;max-width:1280px;margin:0 auto}
+.ug-similar h2{font-size:1.2rem;color:#58a6ff;margin-bottom:16px}
+.ug-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.ug-card{display:flex;flex-direction:column;align-items:center;background:#161b22;border-radius:8px;overflow:hidden;color:#e6edf3;text-decoration:none;transition:transform .15s}
+.ug-card:hover{transform:translateY(-3px)}
+.ug-card img{width:100%;height:110px;object-fit:cover}
+.ug-card span{padding:6px;font-size:.78rem;text-align:center}
+</style>`;
 
-  // Match divs by id or class containing overlay keywords, or onclick=this.remove()
-  const IDS = 'game-cover|play-overlay|iframe-cover|game-overlay|cover-overlay|start-screen|play-btn-wrap';
-  html = removeMatchingDivs(html,
-    'id=["\'][^"\']*(?:' + IDS + ')[^"\']*["\']' +
-    '|class=["\'][^"\']*(?:' + IDS + ')[^"\']*["\']' +
-    '|onclick=["\'][^"\']*this\\.remove\\(\\)[^"\']*["\']'
-  );
-
-  // Fix pointer-events:none which silently blocks iframe interaction
-  html = html.replace(/pointer-events\s*:\s*none/gi, 'pointer-events:auto');
-  return html;
+function navHtml(prefix) {
+  const links = CATS.map(c=>`<li><a href="${prefix}categ/${c.slug}">${c.emoji} ${c.label}</a></li>`).join('');
+  return `<nav style="background:linear-gradient(90deg,#1a0533,#8b0000);padding:10px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-family:system-ui,sans-serif">
+  <a href="${prefix||'/'}" style="color:#fff;font-weight:700;text-decoration:none;font-size:1rem">Unblocked Games USA</a>
+  <ul style="display:flex;list-style:none;gap:6px;flex-wrap:wrap;flex:1;margin:0;padding:0">
+    ${links}
+  </ul>
+  <form action="${prefix||'/'}index.html" method="get" style="display:flex;gap:6px;margin-left:auto" onsubmit="event.preventDefault();window.location='${prefix||'/'}?q='+encodeURIComponent(this.q.value)">
+    <input name="q" type="search" placeholder="Search games…" style="padding:5px 12px;border-radius:20px;border:none;background:rgba(255,255,255,.15);color:#fff;width:160px">
+    <button type="submit" style="background:#c0392b;color:#fff;border:none;border-radius:50%;width:30px;height:30px;cursor:pointer">🔍</button>
+  </form>
+</nav>`;
 }
 
-// ─── REMOVE OLD VERTICAL SIMILAR-GAMES SECTION ──────────────────────────────
-// The original pages had a "Doctor More / Bubble Trouble / Rabbit Samurai…"
-// vertical list (one game per row, each in its own <section> or <div>).
-// We detect it by the "Doctor More" / "Doctor Hero" heading or similar patterns
-// and strip everything from that heading down to </main> (we'll re-add </main>).
-function removeOldVerticalSimilar(html) {
-  // The old vertical section is identified by a heading like "Doctor Hero" or
-  // "Doctor More" followed by <a> tags with images in a vertical layout.
-  // It appears AFTER the new grid similar section.
+function footerHtml(prefix) {
+  const cats = CATS.map(c=>`<a href="${prefix}categ/${c.slug}" style="background:rgba(255,255,255,.08);padding:5px 11px;border-radius:16px;font-size:.8rem;color:#e6edf3;text-decoration:none">${c.emoji} ${c.label}</a>`).join(' ');
+  return `<footer style="background:#161b22;padding:28px 20px;margin-top:40px;text-align:center;font-family:system-ui,sans-serif">
+  <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:14px">${cats}</div>
+  <div style="display:flex;gap:14px;justify-content:center;margin-bottom:10px;font-size:.83rem;opacity:.7">
+    <a href="${prefix}privacy-policy" style="color:#e6edf3">Privacy Policy</a>
+    <a href="${prefix}contact" style="color:#e6edf3">Contact Us</a>
+    <a href="${prefix}faq" style="color:#e6edf3">FAQ</a>
+    <a href="${prefix}dmca" style="color:#e6edf3">DMCA</a>
+  </div>
+  <p style="font-size:.78rem;opacity:.45">&copy; Unblocked Games USA. All rights reserved.</p>
+</footer>`;
+}
 
-  // Strategy: find the second occurrence of a similar-games-style section
-  // (the old one has list-style anchors with h3 inside rather than our grid).
+function card(g, prefix) {
+  return `<a class="ug-card" href="${prefix}${g.slug}"><img src="${g.image}" alt="${g.title}" loading="lazy" width="150" height="110"><span>${g.title}</span></a>`;
+}
 
-  // Remove <h3> based link lists (old format): ### Title followed by [![img] links
-  // These appear as: <h3>Doctor Hero</h3> ... <a href...><img...> ... </a> ... repeated
+function scanGames() {
+  console.log('📂 Scanning game folders…');
+  const games = [];
+  for (const e of fs.readdirSync(ROOT,{withFileTypes:true})) {
+    if (!e.isDirectory() || SKIP_DIRS.has(e.name) || e.name.startsWith('.')) continue;
+    const html = read(path.join(ROOT,e.name,'index.html'));
+    if (!html || !/<iframe/i.test(html)) continue;
+    games.push({
+      slug: e.name,
+      title: extractTitle(html) || slugToTitle(e.name),
+      image: extractImage(e.name, html),
+      categories: extractCats(html),
+    });
+  }
+  console.log(` ✓ ${games.length} games found`);
+  return games.sort((a,b)=>a.title.localeCompare(b.title));
+}
 
-  // Pattern: a block that starts with a standalone <h3> (Doctor Hero) and
-  // then contains a series of <a href><img + h3 title></a> items not in a grid
-  html = html.replace(
-    /(<h3>[^<]*<\/h3>\s*){1,3}([\s\S]*?(?:<a[^>]*><img[^>]*>[\s\S]*?<\/a>\s*){3,})/g,
-    (match) => {
-      // Only remove if it looks like the old vertical list (no grid class around it)
-      if (!match.includes('class="game-card"') && !match.includes('class="games-grid"')) {
-        return '';
+function writeData(games) {
+  write(path.join(ROOT,'games.json'), JSON.stringify(games,null,2));
+  write(path.join(ROOT,'search-index.json'), JSON.stringify(
+    games.map(g=>({slug:g.slug,title:g.title,image:g.image,categories:g.categories}))
+  ));
+  console.log('📄 games.json + search-index.json written');
+}
+
+function buildCategoryPages(games) {
+  console.log('📁 Building category pages…');
+  for (const cat of CATS) {
+    const list = games.filter(g=>g.categories.includes(cat.slug));
+    const total = Math.max(1, Math.ceil(list.length/GAMES_PER_PAGE));
+    for (let page = 1; page <= total; page++) {
+      const slice = list.slice((page-1)*GAMES_PER_PAGE, page*GAMES_PER_PAGE);
+      const dir = page===1 ? `categ/${cat.slug}` : `categ/${cat.slug}-page-${page}`;
+      const pfx = '../../';
+      const canonical = page===1 ? `${SITE_BASE}/categ/${cat.slug}/` : `${SITE_BASE}/categ/${cat.slug}-page-${page}/`;
+
+      let pag = '';
+      if (total > 1) {
+        pag = '<div style="display:flex;gap:8px;justify-content:center;margin:24px 0;flex-wrap:wrap">';
+        if (page>1) pag += `<a href="${pfx}categ/${page===2?cat.slug:`${cat.slug}-page-${page-1}`}/" style="padding:7px 14px;background:#161b22;border-radius:6px;color:#e6edf3;text-decoration:none">&laquo; Prev</a>`;
+        for (let i=1;i<=total;i++) {
+          const href = i===1?`${pfx}categ/${cat.slug}/`:`${pfx}categ/${cat.slug}-page-${i}/`;
+          const active = i===page?'background:#58a6ff;color:#000':'background:#161b22;color:#e6edf3';
+          pag += `<a href="${href}" style="padding:7px 14px;${active};border-radius:6px;text-decoration:none">${i}</a>`;
+        }
+        if (page<total) pag += `<a href="${pfx}categ/${cat.slug}-page-${page+1}/" style="padding:7px 14px;background:#161b22;border-radius:6px;color:#e6edf3;text-decoration:none">Next &raquo;</a>`;
+        pag += '</div>';
       }
-      return match;
+
+      const cards = slice.map(g=>card(g,pfx)).join('\n ');
+      const otherCats = CATS.filter(c=>c.slug!==cat.slug)
+        .map(c=>`<a href="${pfx}categ/${c.slug}" style="background:#21262d;padding:6px 12px;border-radius:16px;font-size:.82rem;color:#e6edf3;text-decoration:none">${c.emoji} ${c.label}</a>`).join(' ');
+
+      write(path.join(ROOT,dir,'index.html'), `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${cat.emoji} ${cat.label} Games Unblocked – Free Online${page>1?' – Page '+page:''}</title>
+<meta name="description" content="Play ${list.length} free unblocked ${cat.label} games. No downloads.">
+<link rel="canonical" href="${canonical}">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{background:#0d1117;color:#e6edf3;font-family:system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+nav ul li a{background:rgba(255,255,255,.1);padding:4px 10px;border-radius:20px;font-size:.8rem;color:#fff;text-decoration:none;display:inline-block}
+nav ul li a:hover{background:rgba(255,255,255,.25)}
+main{max-width:1280px;margin:0 auto;padding:24px 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:20px 0}
+.gc{display:flex;flex-direction:column;align-items:center;background:#161b22;border-radius:9px;overflow:hidden;transition:transform .15s}
+.gc:hover{transform:translateY(-3px)}
+.gc img{width:100%;height:110px;object-fit:cover}
+.gc span{padding:7px 5px;font-size:.8rem;text-align:center}
+</style>
+</head>
+<body>
+${navHtml(pfx)}
+<main>
+  <h1 style="font-size:1.7rem;margin-bottom:6px">${cat.emoji} ${cat.label} Games</h1>
+  <p style="color:#8b949e;margin-bottom:20px">${list.length} free unblocked ${cat.label} games — play instantly, no downloads!</p>
+  <div class="grid">
+    ${cards}
+  </div>
+  ${pag}
+  <h2 style="font-size:1.1rem;color:#58a6ff;margin:28px 0 14px">🎮 Other Categories</h2>
+  <div style="display:flex;flex-wrap:wrap;gap:8px">${otherCats}</div>
+</main>
+${footerHtml(pfx)}
+</body>
+</html>`);
     }
-  );
+    console.log(` ✓ ${cat.slug}: ${list.length} games, ${total} page(s)`);
+  }
+}
 
-  // Also remove orphaned <section> or <div> blocks that only contain bare <a><img><h3> items
-  // (old vertical format — no grid wrapper, no game-card class)
-  html = html.replace(
-    /<(?:section|div)[^>]*>\s*(?:<a[^>]*>\s*(?:<img[^>]*>\s*)?<h3>[^<]*<\/h3>\s*<\/a>\s*){2,}<\/(?:section|div)>/gi,
-    ''
-  );
+function buildHomepage(games) {
+  const featured = games.slice(0,48);
+  const featuredCards = featured.map(g=>card(g,'/')).join('\n ');
+  const catLinks = CATS.map(c=>`<a href="/categ/${c.slug}" style="background:#21262d;padding:7px 14px;border-radius:20px;font-size:.85rem;color:#e6edf3;text-decoration:none">${c.emoji} ${c.label}</a>`).join('\n ');
 
-  // Remove the "Doctor More" heading label (sometimes rendered as plain text heading)
-  html = html.replace(/<h3>\s*Doctor (?:More|Hero)\s*<\/h3>/gi, '');
-
-  // Clean up any double blank lines left behind
-  html = html.replace(/\n{3,}/g, '\n\n');
-
-  return html;
+  write(path.join(ROOT,'index.html'), `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unblocked Games USA | Free Games To Play Online Instantly</title>
+<meta name="description" content="Free unblocked games. No downloads, no sign-ups. Hundreds of games.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{background:#0d1117;color:#e6edf3;font-family:system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+nav ul li a{background:rgba(255,255,255,.1);padding:4px 10px;border-radius:20px;font-size:.8rem;color:#fff;text-decoration:none;display:inline-block}
+nav ul li a:hover{background:rgba(255,255,255,.25)}
+main{max-width:1280px;margin:0 auto;padding:24px 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:16px 0 32px}
+.gc{display:flex;flex-direction:column;align-items:center;background:#161b22;border-radius:9px;overflow:hidden;transition:transform .15s}
+.gc:hover{transform:translateY(-3px)}
+.gc img{width:100%;height:110px;object-fit:cover}
+.gc span{padding:7px 5px;font-size:.8rem;text-align:center}
+#so{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;overflow-y:auto;padding:70px 20px 20px}
+#so.on{display:block}
+#sc{position:fixed;top:14px;right:18px;background:#c0392b;color:#fff;border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:1.1rem;z-index:10000}
+#si{width:100%;max-width:860px;display:block;margin:0 auto 20px;padding:12px 18px;font-size:1.1rem;border-radius:10px;border:none;background:#161b22;color:#fff;outline:none}
+#sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;max-width:860px;margin:0 auto}
+</style>
+</head>
+<body>
+${navHtml('/')}
+<div id="so">
+  <button id="sc" onclick="closeSO()">✕</button>
+  <input id="si" type="search" placeholder="Search all ${games.length} games…" oninput="doSearch(this.value)" autofocus>
+  <div id="sg"></div>
+</div>
+<main>
+  <div style="text-align:center;padding:36px 0 24px">
+    <h1 style="font-size:2rem;margin-bottom:8px">🎮 Unblocked Games USA</h1>
+    <p style="color:#8b949e;max-width:560px;margin:0 auto 20px">Free games for every break. No downloads, no sign-ups.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:24px">
+      <span style="background:#21262d;padding:6px 14px;border-radius:20px;font-size:.85rem">✅ No Downloads</span>
+      <span style="background:#21262d;padding:6px 14px;border-radius:20px;font-size:.85rem">🎮 100% Free</span>
+      <span style="background:#21262d;padding:6px 14px;border-radius:20px;font-size:.85rem">⚡ Play Instantly</span>
+      <span style="background:#21262d;padding:6px 14px;border-radius:20px;font-size:.85rem">🏫 School Friendly</span>
+    </div>
+    <button onclick="openSO()" style="background:#58a6ff;color:#000;border:none;padding:10px 28px;border-radius:24px;font-size:1rem;cursor:pointer;font-weight:700">🔍 Search All ${games.length} Games</button>
+  </div>
+  <h2 style="font-size:1.2rem;color:#58a6ff;margin-bottom:12px">🔥 Popular Games</h2>
+  <div class="grid">
+    ${featuredCards}
+  </div>
+  <h2 style="font-size:1.2rem;color:#58a6ff;margin:28px 0 14px">🎮 Browse by Category</h2>
+  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px">
+    ${catLinks}
+  </div>
+</main>
+${footerHtml('/')}
+<script>
+var _games = null;
+function loadGames(cb) {
+  if (_games) return cb(_games);
+  fetch('/search-index.json').then(r=>r.json()).then(d=>{ _games=d; cb(d); }).catch(()=>cb([]));
+}
+function openSO() {
+  document.getElementById('so').classList.add('on');
+  document.body.style.overflow='hidden';
+  document.getElementById('si').focus();
+  loadGames(function(){});
+}
+function closeSO() {
+  document.getElementById('so').classList.remove('on');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeSO(); });
+document.querySelector('form').addEventListener('submit',function(e){
+  e.preventDefault();
+  var q=this.q.value.trim();
+  if(q){ openSO(); setTimeout(function(){ document.getElementById('si').value=q; doSearch(q); },50); }
+});
+function doSearch(q) {
+  loadGames(function(games) {
+    var t=q.toLowerCase().trim();
+    var el=document.getElementById('sg');
+    if(!t){ el.innerHTML='<p style="color:#8b949e;text-align:center;grid-column:1/-1">Start typing…</p>'; return; }
+    var res=games.filter(function(g){
+      return g.title.toLowerCase().includes(t)||
+        g.slug.replace(/-/g,' ').includes(t)||
+        (g.categories||[]).some(function(c){ return c.replace(/-/g,' ').includes(t); });
+    }).slice(0,72);
+    if(!res.length){ el.innerHTML='<p style="color:#f85149;text-align:center;grid-column:1/-1">No games found for &ldquo;'+q+'&rdquo;</p>'; return; }
+    el.innerHTML=res.map(function(g){
+      return '<a href="/'+g.slug+'" style="display:flex;flex-direction:column;align-items:center;background:#161b22;border-radius:8px;overflow:hidden;color:#e6edf3;text-decoration:none">'+
+        '<img src="'+g.image+'" alt="'+g.title+'" loading="lazy" style="width:100%;height:110px;object-fit:cover">'+
+        '<span style="padding:6px;font-size:.78rem;text-align:center">'+g.title+'</span></a>';
+    }).join('');
+  });
+}
+</script>
+</body>
+</html>`);
+  console.log('🏠 Homepage built');
 }
 
 function patchGamePages(games) {
-  let patched = 0;
+  console.log('🔗 Adding similar games sections (safe mode)…');
+  let done = 0;
   for (const game of games) {
-    const indexPath = path.join(ROOT, game.slug, 'index.html');
-    let html = readFile(indexPath);
+    const fp = path.join(ROOT, game.slug, 'index.html');
+    let html = read(fp);
     if (!html) continue;
 
-    // ── Step 1: Remove play-button overlay so iframe is clickable ─────────────
-    html = removePlayOverlay(html);
+    // Remove any old injected block
+    html = html.replace(/\n?<!-- UG_SIMILAR_START -->[\s\S]*?<!-- UG_SIMILAR_END -->\n?/g, '');
 
-    // ── Step 2: Remove old vertical similar-games list ────────────────────────
-    html = removeOldVerticalSimilar(html);
+    const similar = games
+      .filter(g => g.slug !== game.slug && g.categories.some(c => game.categories.includes(c)))
+      .sort((a,b) => simpleHash(game.slug+a.slug) - simpleHash(game.slug+b.slug))
+      .slice(0, SIMILAR_COUNT);
 
-    // ── Step 3: Build new grid similar-games section ──────────────────────────
-    const similar = buildSimilarGames(game, games);
-    if (!similar.length) {
-      writeFile(indexPath, html);
-      patched++;
-      continue;
-    }
+    if (!similar.length) { write(fp, html); done++; continue; }
 
     const cards = similar.map(g =>
-      `<a class="game-card" href="../${g.slug}">
-        <img src="${g.image}" alt="${g.title}" loading="lazy" width="200" height="150">
-        <span>${g.title}</span>
-      </a>`
-    ).join('\n      ');
+      `<a class="ug-card" href="../${g.slug}"><img src="${g.image}" alt="${g.title}" loading="lazy" width="150" height="110"><span>${g.title}</span></a>`
+    ).join('\n ');
 
-    const similarSection = `
-<!-- SIMILAR_GAMES_START -->
-<section class="similar-games">
-  <h2 class="section-title">🎮 Similar Games</h2>
-  <div class="games-grid">
+    const block = `
+<!-- UG_SIMILAR_START -->
+${SIMILAR_CSS}
+<div class="ug-similar">
+  <h2>🎮 Similar Games</h2>
+  <div class="ug-grid">
     ${cards}
   </div>
-</section>
-<!-- SIMILAR_GAMES_END -->`;
+</div>
+<!-- UG_SIMILAR_END -->`;
 
-    // ── Step 4: Insert / replace the similar games block ─────────────────────
-    if (html.includes('<!-- SIMILAR_GAMES_START -->')) {
-      // Already patched before — just refresh the content
-      html = html.replace(
-        /<!-- SIMILAR_GAMES_START -->[\s\S]*?<!-- SIMILAR_GAMES_END -->/,
-        similarSection
-      );
+    if (html.includes('</main>')) {
+      html = html.replace('</main>', '</main>' + block);
+    } else if (html.includes('</body>')) {
+      html = html.replace('</body>', block + '\n</body>');
     } else {
-      // Remove any existing similar section by heading text, then append fresh
-      html = html.replace(
-        /(<h2[^>]*>[^<]*[Ss]imilar[^<]*<\/h2>[\s\S]*?)(?=<h2|<footer|<\/main>)/,
-        ''
-      );
-      // Append before </main>
-      if (html.includes('</main>')) {
-        html = html.replace('</main>', similarSection + '\n</main>');
-      } else {
-        html = html.replace('</body>', similarSection + '\n</body>');
-      }
+      html += block;
     }
 
-    // ── Step 5: Inject CSS for grid cards if not already present ──────────────
-    if (!html.includes('SHARED_CSS_INJECTED')) {
-      const styleTag = `<style>/* SHARED_CSS_INJECTED */
-/* Make iframe always interactive — remove any overlay blocking */
-iframe{pointer-events:auto!important;position:relative;z-index:1}
-/* Hide any leftover play-button overlay elements */
-.play-overlay,.game-cover,.iframe-cover,.game-overlay,.cover-overlay,.play-btn-wrap,.start-screen{display:none!important}
-/* Similar games grid */
-.similar-games{margin-top:32px;padding:0 0 16px}
-.section-title{font-size:1.3rem;margin:32px 0 16px;color:#58a6ff;font-family:system-ui,sans-serif}
-.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:14px;margin-bottom:32px}
-.game-card{display:flex;flex-direction:column;align-items:center;background:#161b22;border-radius:10px;overflow:hidden;transition:transform .2s,box-shadow .2s;color:#e6edf3;text-decoration:none;font-family:system-ui,sans-serif}
-.game-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
-.game-card img{width:100%;height:115px;object-fit:cover}
-.game-card span{padding:7px 6px;font-size:.8rem;text-align:center;font-weight:500}
-</style>`;
-      html = html.replace('</head>', styleTag + '\n</head>');
-    }
-
-    writeFile(indexPath, html);
-    patched++;
+    write(fp, html);
+    done++;
   }
-  console.log(`🔗 Patched ${patched} game pages (play overlay removed + clean similar grid)`);
+  console.log(` ✓ Processed ${done} game pages`);
 }
 
-// ─── MAIN ───────────────────────────────────────────────────────────────────
-
-async function main() {
-  console.log('\n🚀 UnblockedGames-USA Build Script\n');
-
+(function main() {
+  console.log('\n🚀 UnblockedGames-USA Build — Safe Version\n');
   const games = scanGames();
-
-  if (!games.length) {
-    console.error('❌ No games found! Make sure you run this from the repo root.');
-    process.exit(1);
-  }
-
-  writeDataFiles(games);
-  console.log('\n📁 Building category pages…');
+  if (!games.length) { console.error('❌ No games found. Run from repo root.'); process.exit(1); }
+  writeData(games);
   buildCategoryPages(games);
-  console.log('\n🏠 Building homepage…');
   buildHomepage(games);
-  console.log('\n🔗 Patching game pages with smart similar games…');
   patchGamePages(games);
-
-  console.log('\n✅ Build complete!\n');
-  console.log('Next steps:');
-  console.log('  git add -A');
-  console.log('  git commit -m "fix: full rebuild — category pages, search, similar games"');
-  console.log('  git push');
-}
-
-main().catch(err => { console.error(err); process.exit(1); });
+  console.log('\n✅ Build complete! Now run:');
+  console.log(' git add -A');
+  console.log(' git commit -m "build: safe version - never touches game content"');
+  console.log(' git push\n');
+})();
