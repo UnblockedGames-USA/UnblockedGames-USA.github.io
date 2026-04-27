@@ -12,7 +12,7 @@ Run: python3 fix_all.py  (from repo root)
 import os, re, json
 from pathlib import Path
 
-REPO     = Path('/home/claude/repo')
+REPO     = Path('.')
 BASE_URL = 'https://unblockedgames-usa.github.io'
 IMG_BASE = f'{BASE_URL}/images'
 PER_PAGE = 50
