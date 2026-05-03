@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /seo_cache.json
-Disallow: /fix_all.py
-Disallow: /seo_fix.py
-
+Disallow: /assets/
 Sitemap: https://unblockedgames-usa.github.io/sitemap.xml

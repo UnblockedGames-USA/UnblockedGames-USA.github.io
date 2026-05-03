@@ -1,0 +1,19 @@
+# Unblocked Games USA
+> Free unblocked games for school, work, and home. No downloads. Instant play.
+
+Website: https://unblockedgames-usa.github.io
+Total Games: 500+
+Updated: 2026-05-03
+
+## Categories
+shooter, platformer, 2-player, fighting, driving, puzzle, multiplayer, action, skill, adventure, racing, strategy, sports, simulation, clicker, horror, kids
+
+## Popular Games
+- 1v1.LOL: https://unblockedgames-usa.github.io/1v1-lol/
+- Among Us: https://unblockedgames-usa.github.io/among-us/
+- Basketball Legends: https://unblockedgames-usa.github.io/basketball-legends/
+- Bloxorz: https://unblockedgames-usa.github.io/bloxorz/
+- BitLife: https://unblockedgames-usa.github.io/bitlife/
+- 2048: https://unblockedgames-usa.github.io/2048/
+
+Full list: https://unblockedgames-usa.github.io/sitemap.xml
