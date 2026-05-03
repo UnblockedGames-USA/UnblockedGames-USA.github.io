@@ -1,52 +1,47 @@
 # Unblocked Games USA
 
-> Free unblocked browser games — play at school, work, or home instantly.
-> No downloads. No sign-ups. 500+ games across 17 categories.
+> 500+ free unblocked browser games — play instantly at school, work, or home.
+> No downloads. No sign-ups. Works on all devices and school networks.
 
-## What is Unblocked Games USA?
+## About
 
-Unblocked Games USA (https://unblockedgames-usa.github.io) is a free online gaming portal hosting 500+
-browser games that work through school and office network restrictions. All
-games run directly in the browser using HTML5 — no Flash, no downloads.
+Unblocked Games USA (https://unblockedgames-usa.github.io) is a free online gaming portal with 500+
+HTML5 browser games across 17 categories. All games bypass school network
+restrictions and require no download, no Flash, and no account.
 
 ## Categories
 
-- **Shooter** — https://unblockedgames-usa.github.io/categ/shooter/
-- **Platformer** — https://unblockedgames-usa.github.io/categ/platformer/
-- **2-Player** — https://unblockedgames-usa.github.io/categ/2-player/
-- **Fighting** — https://unblockedgames-usa.github.io/categ/fighting/
-- **Driving** — https://unblockedgames-usa.github.io/categ/driving/
-- **Puzzle** — https://unblockedgames-usa.github.io/categ/puzzle/
-- **Multiplayer** — https://unblockedgames-usa.github.io/categ/multiplayer/
-- **Action** — https://unblockedgames-usa.github.io/categ/action/
-- **Skill** — https://unblockedgames-usa.github.io/categ/skill/
-- **Adventure** — https://unblockedgames-usa.github.io/categ/adventure/
-- **Racing** — https://unblockedgames-usa.github.io/categ/racing/
-- **Strategy** — https://unblockedgames-usa.github.io/categ/strategy/
-- **Sports** — https://unblockedgames-usa.github.io/categ/sports/
-- **Simulation** — https://unblockedgames-usa.github.io/categ/simulation/
-- **Clicker** — https://unblockedgames-usa.github.io/categ/clicker/
-- **Horror** — https://unblockedgames-usa.github.io/categ/horror/
-- **Kids** — https://unblockedgames-usa.github.io/categ/kids/
+- Shooter: https://unblockedgames-usa.github.io/categ/shooter/
+- Platformer: https://unblockedgames-usa.github.io/categ/platformer/
+- 2-Player: https://unblockedgames-usa.github.io/categ/2-player/
+- Fighting: https://unblockedgames-usa.github.io/categ/fighting/
+- Driving: https://unblockedgames-usa.github.io/categ/driving/
+- Puzzle: https://unblockedgames-usa.github.io/categ/puzzle/
+- Multiplayer: https://unblockedgames-usa.github.io/categ/multiplayer/
+- Action: https://unblockedgames-usa.github.io/categ/action/
+- Skill: https://unblockedgames-usa.github.io/categ/skill/
+- Adventure: https://unblockedgames-usa.github.io/categ/adventure/
+- Racing: https://unblockedgames-usa.github.io/categ/racing/
+- Strategy: https://unblockedgames-usa.github.io/categ/strategy/
+- Sports: https://unblockedgames-usa.github.io/categ/sports/
+- Simulation: https://unblockedgames-usa.github.io/categ/simulation/
+- Clicker: https://unblockedgames-usa.github.io/categ/clicker/
+- Horror: https://unblockedgames-usa.github.io/categ/horror/
+- Kids: https://unblockedgames-usa.github.io/categ/kids/
 
-## Top Games
+## Popular Games
 
-- 1v1.LOL Unblocked — https://unblockedgames-usa.github.io/1v1-lol/
-- Among Us Unblocked — https://unblockedgames-usa.github.io/among-us/
-- Basketball Legends — https://unblockedgames-usa.github.io/basketball-legends/
-- 2048 — https://unblockedgames-usa.github.io/2048/
-- Bloxorz — https://unblockedgames-usa.github.io/bloxorz/
-- Age of War — https://unblockedgames-usa.github.io/age-of-war/
-- Bad Ice Cream 2 — https://unblockedgames-usa.github.io/bad-ice-cream-2/
-- BitLife — https://unblockedgames-usa.github.io/bitlife/
-- Basket Bros — https://unblockedgames-usa.github.io/basket-bros/
-- Bob the Robber 4 — https://unblockedgames-usa.github.io/bob-the-robber-4/
+- 1v1.LOL Unblocked: https://unblockedgames-usa.github.io/1v1-lol/
+- Among Us Unblocked: https://unblockedgames-usa.github.io/among-us/
+- Basketball Legends: https://unblockedgames-usa.github.io/basketball-legends/
+- 2048: https://unblockedgames-usa.github.io/2048/
+- Bloxorz: https://unblockedgames-usa.github.io/bloxorz/
+- Age of War: https://unblockedgames-usa.github.io/age-of-war/
 
-## Site Info
+## Links
 
-- URL: https://unblockedgames-usa.github.io
 - Sitemap: https://unblockedgames-usa.github.io/sitemap.xml
-- Updated: 2026-05-03
 - Contact: https://unblockedgames-usa.github.io/contact
 - DMCA: https://unblockedgames-usa.github.io/dmca
 - Privacy: https://unblockedgames-usa.github.io/privacy-policy
+- Updated: 2026-05-03
