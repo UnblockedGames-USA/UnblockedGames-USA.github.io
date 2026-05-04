@@ -124,7 +124,50 @@
             text-align: center;
             margin-top: 3rem;
         }
-    </style>
+    </style><style>
+/* ── Mobile nav fix ── */
+.site-header{position:sticky;top:0;z-index:200}
+.hdr-inner{display:flex;align-items:center;gap:10px;padding:10px 16px}
+.logo{font-weight:800;font-size:1.2rem;color:#fff;white-space:nowrap;
+  text-shadow:0 0 16px rgba(192,57,43,.7);flex-shrink:0}
+.search-wrap{display:flex;position:relative;margin-left:auto;flex:1;max-width:320px}
+.search-wrap input{padding:.4rem .9rem;border:1px solid rgba(255,255,255,.15);
+  border-radius:20px 0 0 20px;background:rgba(255,255,255,.12);color:#fff;
+  font-size:.88rem;width:100%;outline:none}
+.search-wrap input::placeholder{color:rgba(255,255,255,.45)}
+.search-wrap input:focus{background:rgba(255,255,255,.2)}
+.search-wrap button{background:#c0392b;color:#fff;border:none;
+  border-radius:0 20px 20px 0;padding:.4rem .9rem;cursor:pointer;font-size:.9rem;flex-shrink:0}
+.nav-toggle{display:none;background:none;border:none;color:#fff;
+  font-size:1.5rem;cursor:pointer;padding:.2rem .4rem;flex-shrink:0;margin-left:6px}
+.main-nav{background:linear-gradient(90deg,#001050,#0d1560 40%,#1a0825 70%,#500010);
+  border-top:1px solid rgba(255,255,255,.06)}
+.main-nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
+  gap:4px;padding:8px 16px;max-width:1280px;margin:0 auto}
+.main-nav a{color:rgba(255,255,255,.85);padding:4px 11px;border-radius:20px;
+  font-size:.8rem;font-weight:600;border:1px solid transparent;white-space:nowrap;
+  transition:background .15s,color .15s}
+.main-nav a:hover,.main-nav a.active{background:rgba(192,57,43,.35);
+  color:#fff;border-color:rgba(192,57,43,.4)}
+@media(max-width:768px){
+  .nav-toggle{display:block}
+  .main-nav ul{display:none;flex-direction:column;align-items:stretch;padding:0}
+  .main-nav ul.open{display:flex}
+  .main-nav a{padding:11px 20px;border-radius:0;border-bottom:1px solid rgba(255,255,255,.06);
+    font-size:.95rem}
+  .main-nav a:hover,.main-nav a.active{border-radius:0}
+  .search-wrap{max-width:none}
+}
+@media(max-width:480px){
+  .logo{font-size:1rem}
+  .hdr-inner{padding:8px 12px}
+}
+
+/* ── Similar games tighter spacing ── */
+.similar-section{margin-bottom:16px}
+.similar-section .games-grid{gap:10px;margin:10px 0}
+.similar-section .game-card img{height:90px}
+</style>
 </head>
 <body>
 <header>
@@ -190,5 +233,5 @@
 <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
-</body>
+<script>document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('navMenu')?.classList.toggle('open'));</script></body>
 </html>
