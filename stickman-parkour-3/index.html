@@ -49,39 +49,26 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#0a0e1a;color:#dc
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 .wrap{max-width:1280px;margin:0 auto;padding:0 16px}
-.site-header{background:linear-gradient(90deg,#001a6e,#0d1f6e 40%,#1a0a2e 65%,#8b0000);
-  border-bottom:3px solid #c0392b;position:sticky;top:0;z-index:100;
-  box-shadow:0 4px 20px rgba(0,0,0,.7)}
-.hdr-inner{display:flex;align-items:center;gap:12px;padding:10px 16px;flex-wrap:wrap}
-.logo{font-weight:800;font-size:1.25rem;color:#fff;white-space:nowrap;text-shadow:0 0 16px rgba(192,57,43,.7)}
-.logo:hover{text-shadow:0 0 24px rgba(192,57,43,1)}
-.search-wrap{display:flex;position:relative;margin-left:auto}
-.search-wrap input{padding:.4rem .9rem;border:1px solid rgba(255,255,255,.15);
-  border-radius:20px 0 0 20px;background:rgba(255,255,255,.12);color:#fff;
-  font-size:.88rem;width:200px;outline:none}
-.search-wrap input::placeholder{color:rgba(255,255,255,.45)}
-.search-wrap input:focus{background:rgba(255,255,255,.2);width:240px;transition:width .2s}
-.search-wrap button{background:#c0392b;color:#fff;border:none;
-  border-radius:0 20px 20px 0;padding:.4rem .9rem;cursor:pointer;font-size:.9rem}
-#searchDrop{position:absolute;top:calc(100% + 6px);left:0;right:0;
-  background:#0a1535;border:1px solid rgba(192,57,43,.3);border-radius:10px;
-  max-height:280px;overflow-y:auto;z-index:300;display:none;
-  box-shadow:0 8px 28px rgba(0,0,0,.8)}
-#searchDrop.open{display:block}
-#searchDrop a{display:flex;align-items:center;gap:10px;padding:8px 12px;
-  border-bottom:1px solid rgba(255,255,255,.06);font-size:.85rem;font-weight:600}
-#searchDrop a:hover{background:rgba(192,57,43,.2);color:#fff}
-#searchDrop img{width:36px;height:26px;object-fit:cover;border-radius:4px;flex-shrink:0}
-#searchDrop .no-res,.no-res{padding:12px;color:rgba(255,255,255,.4);text-align:center;font-size:.83rem}
-.nav-toggle{display:none;background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;padding:.3rem .5rem}
-.main-nav{background:linear-gradient(90deg,#001050,#0d1560 40%,#1a0825 70%,#500010);
-  border-top:1px solid rgba(255,255,255,.06)}
-.main-nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
-  gap:4px;padding:8px 16px;max-width:1280px;margin:0 auto}
-.main-nav a{color:rgba(255,255,255,.85);padding:4px 11px;border-radius:20px;
-  font-size:.8rem;font-weight:600;border:1px solid transparent;white-space:nowrap;
-  transition:background .15s,color .15s}
-.main-nav a:hover,.main-nav a.active{background:rgba(192,57,43,.35);color:#fff;border-color:rgba(192,57,43,.4)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .site-footer{background:#060b18;border-top:2px solid #c0392b;padding:28px 16px;margin-top:48px;text-align:center}
 .footer-cats{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:14px}
 .footer-cats a{background:rgba(255,255,255,.07);padding:4px 11px;border-radius:16px;font-size:.78rem}
@@ -142,62 +129,110 @@ img{display:block;max-width:100%}
   font-size:.8rem;font-weight:600;border:1px solid rgba(255,255,255,.1);
   transition:background .15s}
 .cat-pill:hover{background:rgba(192,57,43,.3);border-color:rgba(192,57,43,.4)}
-@media(max-width:900px){
-  .nav-toggle{display:block}
-  .main-nav ul{display:none;flex-direction:column;align-items:flex-start;padding:8px 16px}
+
   .main-nav ul.open{display:flex}
-  .hdr-inner{flex-wrap:wrap}
-  .search-wrap{order:3;width:100%}
-  .search-wrap input{width:100%;border-radius:20px 0 0 20px}
+  
+  
+  
 }
 @media(max-width:600px){
   .games-grid{grid-template-columns:repeat(2,1fr)}
-  .logo{font-size:1.1rem}
+  
   .game-thumb-sm{float:none;width:100%;height:auto;margin:0 0 12px}
 }
-</style><style>
-/* ── Mobile nav fix ── */
-.site-header{position:sticky;top:0;z-index:200}
-.hdr-inner{display:flex;align-items:center;gap:10px;padding:10px 16px}
-.logo{font-weight:800;font-size:1.2rem;color:#fff;white-space:nowrap;
-  text-shadow:0 0 16px rgba(192,57,43,.7);flex-shrink:0}
-.search-wrap{display:flex;position:relative;margin-left:auto;flex:1;max-width:320px}
-.search-wrap input{padding:.4rem .9rem;border:1px solid rgba(255,255,255,.15);
-  border-radius:20px 0 0 20px;background:rgba(255,255,255,.12);color:#fff;
-  font-size:.88rem;width:100%;outline:none}
-.search-wrap input::placeholder{color:rgba(255,255,255,.45)}
-.search-wrap input:focus{background:rgba(255,255,255,.2)}
-.search-wrap button{background:#c0392b;color:#fff;border:none;
-  border-radius:0 20px 20px 0;padding:.4rem .9rem;cursor:pointer;font-size:.9rem;flex-shrink:0}
-.nav-toggle{display:none;background:none;border:none;color:#fff;
-  font-size:1.5rem;cursor:pointer;padding:.2rem .4rem;flex-shrink:0;margin-left:6px}
-.main-nav{background:linear-gradient(90deg,#001050,#0d1560 40%,#1a0825 70%,#500010);
-  border-top:1px solid rgba(255,255,255,.06)}
-.main-nav ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
-  gap:4px;padding:8px 16px;max-width:1280px;margin:0 auto}
-.main-nav a{color:rgba(255,255,255,.85);padding:4px 11px;border-radius:20px;
-  font-size:.8rem;font-weight:600;border:1px solid transparent;white-space:nowrap;
-  transition:background .15s,color .15s}
-.main-nav a:hover,.main-nav a.active{background:rgba(192,57,43,.35);
-  color:#fff;border-color:rgba(192,57,43,.4)}
-@media(max-width:768px){
-  .nav-toggle{display:block}
-  .main-nav ul{display:none;flex-direction:column;align-items:stretch;padding:0}
-  .main-nav ul.open{display:flex}
-  .main-nav a{padding:11px 20px;border-radius:0;border-bottom:1px solid rgba(255,255,255,.06);
-    font-size:.95rem}
-  .main-nav a:hover,.main-nav a.active{border-radius:0}
-  .search-wrap{max-width:none}
+
+/* ══ HEADER & NAV — canonical, mobile-first ══ */
+.site-header{
+  background:linear-gradient(90deg,#001a6e,#0d1f6e 40%,#1a0a2e 65%,#8b0000);
+  border-bottom:3px solid #c0392b;
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 4px 20px rgba(0,0,0,.7);
 }
-@media(max-width:480px){
-  .logo{font-size:1rem}
-  .hdr-inner{padding:8px 12px}
+.hdr-inner{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 16px;max-width:1280px;margin:0 auto;
+}
+.logo{
+  font-weight:800;font-size:1.25rem;color:#fff;
+  white-space:nowrap;text-shadow:0 0 16px rgba(192,57,43,.7);flex-shrink:0;
+}
+.logo:hover{text-shadow:0 0 24px rgba(192,57,43,1)}
+.search-wrap{
+  display:flex;position:relative;margin-left:auto;
+}
+.search-wrap input{
+  padding:.4rem .9rem;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:20px 0 0 20px;
+  background:rgba(255,255,255,.12);color:#fff;
+  font-size:.88rem;width:180px;outline:none;
+}
+.search-wrap input::placeholder{color:rgba(255,255,255,.45)}
+.search-wrap input:focus{background:rgba(255,255,255,.2);width:220px;transition:width .2s}
+.search-wrap button{
+  background:#c0392b;color:#fff;border:none;
+  border-radius:0 20px 20px 0;padding:.4rem .9rem;
+  cursor:pointer;font-size:.9rem;flex-shrink:0;
 }
 
-/* ── Similar games tighter spacing ── */
-.similar-section{margin-bottom:16px}
-.similar-section .games-grid{gap:10px;margin:10px 0}
-.similar-section .game-card img{height:90px}
+/* Nav — always visible, scrolls horizontally on small screens */
+.nav-toggle{display:none!important}
+.main-nav{
+  background:linear-gradient(90deg,#001050,#0d1560 40%,#1a0825 70%,#500010);
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.main-nav ul{
+  list-style:none;
+  display:flex!important;        /* always shown */
+  flex-wrap:nowrap;              /* single row */
+  overflow-x:auto;               /* scroll on mobile */
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;          /* hide scrollbar Firefox */
+  gap:4px;padding:7px 12px;
+  max-width:1280px;margin:0 auto;
+}
+.main-nav ul::-webkit-scrollbar{display:none}  /* hide scrollbar Chrome */
+.main-nav a{
+  color:rgba(255,255,255,.85);
+  padding:5px 12px;border-radius:20px;
+  font-size:.8rem;font-weight:600;
+  border:1px solid transparent;white-space:nowrap;
+  flex-shrink:0;
+  transition:background .15s,color .15s;
+}
+.main-nav a:hover,.main-nav a.active{
+  background:rgba(192,57,43,.35);color:#fff;
+  border-color:rgba(192,57,43,.4);
+}
+
+/* Search dropdown */
+#searchDrop{
+  position:absolute;top:calc(100% + 6px);left:0;right:0;
+  background:#0a1535;border:1px solid rgba(192,57,43,.3);
+  border-radius:10px;max-height:280px;overflow-y:auto;
+  z-index:300;display:none;box-shadow:0 8px 28px rgba(0,0,0,.8);
+}
+#searchDrop.open{display:block}
+#searchDrop a{
+  display:flex;align-items:center;gap:10px;padding:8px 12px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  font-size:.85rem;font-weight:600;
+}
+#searchDrop a:hover{background:rgba(192,57,43,.2);color:#fff}
+#searchDrop img{width:36px;height:26px;object-fit:cover;border-radius:4px;flex-shrink:0}
+#searchDrop .no-res{
+  padding:12px;color:rgba(255,255,255,.4);
+  text-align:center;font-size:.83rem;
+}
+
+/* Mobile tweaks */
+@media(max-width:600px){
+  .logo{font-size:1rem}
+  .hdr-inner{padding:8px 12px;gap:8px}
+  .search-wrap input{width:130px}
+  .search-wrap input:focus{width:160px}
+}
+/* ══ END HEADER & NAV ══ */
 </style>
 <!-- Google tag (gtag.js) -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
@@ -207,23 +242,7 @@ img{display:block;max-width:100%}
     gtag('js', new Date());
     gtag('config', 'G-L6FNHSMWF4');
   </script>
-<style>
-/* ── Compact iframe: max 520px, scrolls content below ── */
-.game-frame-wrap{
-  aspect-ratio:16/9;
-  max-height:520px;
-  width:100%;
-  border-radius:12px;
-  overflow:hidden;
-  border:2px solid rgba(192,57,43,.3);
-  margin-bottom:16px;
-  position:relative;
-  background:#000;
-}
-@media(max-width:768px){
-  .game-frame-wrap{ max-height:56vw; }
-}
-</style></head>
+</head>
 <body>
 <header class="site-header">
 <div class="wrap hdr-inner">
@@ -233,7 +252,7 @@ img{display:block;max-width:100%}
 <button aria-label="Search" id="searchBtn">🔍</button>
 <div id="searchDrop"></div>
 </div>
-<button aria-label="Menu" class="nav-toggle" id="navToggle">☰</button>
+
 </div>
 <nav class="main-nav">
 <ul id="navMenu">
@@ -298,7 +317,6 @@ img{display:block;max-width:100%}
 <a class="game-card" href="/stupid-zombies-2/"><img alt="Stupid Zombies 2" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/stupid-zombies-2.png" width="150"/><span>Stupid Zombies 2</span></a>
 </div>
 </section>
-
 </div>
 <footer class="site-footer">
 <div class="wrap">
