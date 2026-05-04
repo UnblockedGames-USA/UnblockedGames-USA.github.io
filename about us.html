@@ -1,283 +1,351 @@
-<!DOCTYPE html>
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us - Unblocked Games USA</title>
+<meta content="Learn about Unblocked Games USA" name="description"/>
+<link href="/favicon.ico" rel="icon"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        :root {
+            --red: #E8192C; --blue: #002868; --blue-light: #2655cc;
+            --grad: linear-gradient(90deg, var(--blue), #1a3a8a, var(--red));
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Barlow',sans-serif; background:#000510; color:#dce8ff; }
+
+        /* HEADER */
+        header {
+            background: var(--grad);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.9rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* SEARCH */
+        .search-bar {
+            display: flex;
+        }
+        .search-bar input {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            width: 220px;
+        }
+        .search-bar button {
+            background: var(--red);
+            color: white;
+            border: none;
+            padding: 0 18px;
+            border-radius: 0 50px 50px 0;
+            cursor: pointer;
+        }
+
+        /* BLACK MENU BAR */
+        .nav-container {
+            max-width: 1200px;
+            margin: 12px auto 0;
+            padding: 0 16px;
+        }
+        .main-nav {
+            background: #0a0f1f;           /* Deep Black */
+            border: 1px solid #1e2a5c;
+            border-radius: 50px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+        .main-nav a {
+            color: #dce8ff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 30px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        
+
+        /* Content */
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 16px; }
+        .hero-header {
+            background: linear-gradient(135deg, #002868, #E8192C);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .site-description {
+            background: #07102b;
+            border: 1px solid #1e2a5c;
+            border-radius: 12px;
+            padding: 2.5rem;
+        }
+        footer {
+            background: #010812;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+    
+/* ══ HEADER & NAV — canonical, mobile-first ══ */
+.site-header{
+  background:linear-gradient(90deg,#001a6e,#0d1f6e 40%,#1a0a2e 65%,#8b0000);
+  border-bottom:3px solid #c0392b;
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 4px 20px rgba(0,0,0,.7);
+}
+.hdr-inner{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 16px;max-width:1280px;margin:0 auto;
+}
+.logo{
+  font-weight:800;font-size:1.25rem;color:#fff;
+  white-space:nowrap;text-shadow:0 0 16px rgba(192,57,43,.7);flex-shrink:0;
+}
+.logo:hover{text-shadow:0 0 24px rgba(192,57,43,1)}
+.search-wrap{
+  display:flex;position:relative;margin-left:auto;
+}
+.search-wrap input{
+  padding:.4rem .9rem;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:20px 0 0 20px;
+  background:rgba(255,255,255,.12);color:#fff;
+  font-size:.88rem;width:180px;outline:none;
+}
+.search-wrap input::placeholder{color:rgba(255,255,255,.45)}
+.search-wrap input:focus{background:rgba(255,255,255,.2);width:220px;transition:width .2s}
+.search-wrap button{
+  background:#c0392b;color:#fff;border:none;
+  border-radius:0 20px 20px 0;padding:.4rem .9rem;
+  cursor:pointer;font-size:.9rem;flex-shrink:0;
+}
+
+/* Nav — always visible, scrolls horizontally on small screens */
+.nav-toggle{display:none!important}
+.main-nav{
+  background:linear-gradient(90deg,#001050,#0d1560 40%,#1a0825 70%,#500010);
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.main-nav ul{
+  list-style:none;
+  display:flex!important;        /* always shown */
+  flex-wrap:nowrap;              /* single row */
+  overflow-x:auto;               /* scroll on mobile */
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;          /* hide scrollbar Firefox */
+  gap:4px;padding:7px 12px;
+  max-width:1280px;margin:0 auto;
+}
+.main-nav ul::-webkit-scrollbar{display:none}  /* hide scrollbar Chrome */
+.main-nav a{
+  color:rgba(255,255,255,.85);
+  padding:5px 12px;border-radius:20px;
+  font-size:.8rem;font-weight:600;
+  border:1px solid transparent;white-space:nowrap;
+  flex-shrink:0;
+  transition:background .15s,color .15s;
+}
+.main-nav a:hover,.main-nav a.active{
+  background:rgba(192,57,43,.35);color:#fff;
+  border-color:rgba(192,57,43,.4);
+}
+
+/* Search dropdown */
+#searchDrop{
+  position:absolute;top:calc(100% + 6px);left:0;right:0;
+  background:#0a1535;border:1px solid rgba(192,57,43,.3);
+  border-radius:10px;max-height:280px;overflow-y:auto;
+  z-index:300;display:none;box-shadow:0 8px 28px rgba(0,0,0,.8);
+}
+#searchDrop.open{display:block}
+#searchDrop a{
+  display:flex;align-items:center;gap:10px;padding:8px 12px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  font-size:.85rem;font-weight:600;
+}
+#searchDrop a:hover{background:rgba(192,57,43,.2);color:#fff}
+#searchDrop img{width:36px;height:26px;object-fit:cover;border-radius:4px;flex-shrink:0}
+#searchDrop .no-res{
+  padding:12px;color:rgba(255,255,255,.4);
+  text-align:center;font-size:.83rem;
+}
+
+/* Mobile tweaks */
+@media(max-width:600px){
+  .logo{font-size:1rem}
+  .hdr-inner{padding:8px 12px;gap:8px}
+  .search-wrap input{width:130px}
+  .search-wrap input:focus{width:160px}
+}
+/* ══ END HEADER & NAV ══ */
+</style>
 
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>About Us - Unblocked Games USA</title>
-<meta content="Learn about Unblocked Games USA" name="description"/>
-<link href="/favicon.ico" rel="icon"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<style>
-        :root {
-            --red: #E8192C; --blue: #002868; --blue-light: #2655cc;
-            --grad: linear-gradient(90deg, var(--blue), #1a3a8a, var(--red));
-        }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Barlow',sans-serif; background:#000510; color:#dce8ff; }
-
-        /* HEADER */
-        header {
-            background: var(--grad);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.9rem;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* SEARCH */
-        .search-bar {
-            display: flex;
-        }
-        .search-bar input {
-            padding: 10px 16px;
-            border: none;
-            border-radius: 50px 0 0 50px;
-            background: rgba(255,255,255,0.15);
-            color: white;
-            width: 220px;
-        }
-        .search-bar button {
-            background: var(--red);
-            color: white;
-            border: none;
-            padding: 0 18px;
-            border-radius: 0 50px 50px 0;
-            cursor: pointer;
-        }
-
-        /* BLACK MENU BAR */
-        .nav-container {
-            max-width: 1200px;
-            margin: 12px auto 0;
-            padding: 0 16px;
-        }
-        .main-nav {
-            background: #0a0f1f;           /* Deep Black */
-            border: 1px solid #1e2a5c;
-            border-radius: 50px;
-            padding: 12px 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-        }
-        .main-nav ul {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-        }
-        .main-nav a {
-            color: #dce8ff;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 8px 14px;
-            border-radius: 30px;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-        
-
-        /* Content */
-        .container { max-width: 1200px; margin: 30px auto; padding: 0 16px; }
-        .hero-header {
-            background: linear-gradient(135deg, #002868, #E8192C);
-            color: white;
-            padding: 3rem 2rem;
-            border-radius: 16px;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .site-description {
-            background: #07102b;
-            border: 1px solid #1e2a5c;
-            border-radius: 12px;
-            padding: 2.5rem;
-        }
-        footer {
-            background: #010812;
-            padding: 2rem 0;
-            text-align: center;
-            margin-top: 3rem;
-        }
-    
-/* ══ HEADER & NAV — canonical, mobile-first ══ */
-.site-header{
-  background:linear-gradient(90deg,#001a6e,#0d1f6e 40%,#1a0a2e 65%,#8b0000);
-  border-bottom:3px solid #c0392b;
-  position:sticky;top:0;z-index:100;
-  box-shadow:0 4px 20px rgba(0,0,0,.7);
+<style id="a11y-contrast-fix">
+/* ── Accessibility: footer contrast fix (WCAG AA) ── */
+.site-footer,
+footer.site-footer {
+  background-color: #1a1a2e !important;
+  color: #e0e0e0 !important;          /* was near-black-on-dark → now light grey */
 }
-.hdr-inner{
-  display:flex;align-items:center;gap:12px;
-  padding:10px 16px;max-width:1280px;margin:0 auto;
+.footer-copy,
+p.footer-copy {
+  color: #c8c8d0 !important;          /* light grey, ratio > 7:1 on #1a1a2e */
 }
-.logo{
-  font-weight:800;font-size:1.25rem;color:#fff;
-  white-space:nowrap;text-shadow:0 0 16px rgba(192,57,43,.7);flex-shrink:0;
+.yr,
+span.yr {
+  color: #d0d0d8 !important;
 }
-.logo:hover{text-shadow:0 0 24px rgba(192,57,43,1)}
-.search-wrap{
-  display:flex;position:relative;margin-left:auto;
+.site-footer a,
+.footer-copy a {
+  color: #90caf9 !important;          /* accessible blue link on dark bg */
+  text-decoration: underline;
 }
-.search-wrap input{
-  padding:.4rem .9rem;
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:20px 0 0 20px;
-  background:rgba(255,255,255,.12);color:#fff;
-  font-size:.88rem;width:180px;outline:none;
+.site-footer a:hover,
+.footer-copy a:hover {
+  color: #ffffff !important;
 }
-.search-wrap input::placeholder{color:rgba(255,255,255,.45)}
-.search-wrap input:focus{background:rgba(255,255,255,.2);width:220px;transition:width .2s}
-.search-wrap button{
-  background:#c0392b;color:#fff;border:none;
-  border-radius:0 20px 20px 0;padding:.4rem .9rem;
-  cursor:pointer;font-size:.9rem;flex-shrink:0;
+/* Bottom-nav bar added by fix_website.py */
+.bottom-nav-bar {
+  background: #1a1a2e;
+  padding: 14px 12px 10px;
+  text-align: center;
+  border-top: 2px solid #e84545;     /* mirrors the existing red divider */
 }
-
-/* Nav — always visible, scrolls horizontally on small screens */
-.nav-toggle{display:none!important}
-.main-nav{
-  background:linear-gradient(90deg,#001050,#0d1560 40%,#1a0825 70%,#500010);
-  border-top:1px solid rgba(255,255,255,.06);
+.bottom-nav-bar a {
+  display: inline-block;
+  color: #e0e0e0 !important;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  margin: 4px 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
 }
-.main-nav ul{
-  list-style:none;
-  display:flex!important;        /* always shown */
-  flex-wrap:nowrap;              /* single row */
-  overflow-x:auto;               /* scroll on mobile */
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;          /* hide scrollbar Firefox */
-  gap:4px;padding:7px 12px;
-  max-width:1280px;margin:0 auto;
+.bottom-nav-bar a:hover {
+  background: #e84545;
+  color: #ffffff !important;
 }
-.main-nav ul::-webkit-scrollbar{display:none}  /* hide scrollbar Chrome */
-.main-nav a{
-  color:rgba(255,255,255,.85);
-  padding:5px 12px;border-radius:20px;
-  font-size:.8rem;font-weight:600;
-  border:1px solid transparent;white-space:nowrap;
-  flex-shrink:0;
-  transition:background .15s,color .15s;
-}
-.main-nav a:hover,.main-nav a.active{
-  background:rgba(192,57,43,.35);color:#fff;
-  border-color:rgba(192,57,43,.4);
-}
-
-/* Search dropdown */
-#searchDrop{
-  position:absolute;top:calc(100% + 6px);left:0;right:0;
-  background:#0a1535;border:1px solid rgba(192,57,43,.3);
-  border-radius:10px;max-height:280px;overflow-y:auto;
-  z-index:300;display:none;box-shadow:0 8px 28px rgba(0,0,0,.8);
-}
-#searchDrop.open{display:block}
-#searchDrop a{
-  display:flex;align-items:center;gap:10px;padding:8px 12px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  font-size:.85rem;font-weight:600;
-}
-#searchDrop a:hover{background:rgba(192,57,43,.2);color:#fff}
-#searchDrop img{width:36px;height:26px;object-fit:cover;border-radius:4px;flex-shrink:0}
-#searchDrop .no-res{
-  padding:12px;color:rgba(255,255,255,.4);
-  text-align:center;font-size:.83rem;
-}
-
-/* Mobile tweaks */
-@media(max-width:600px){
-  .logo{font-size:1rem}
-  .hdr-inner{padding:8px 12px;gap:8px}
-  .search-wrap input{width:130px}
-  .search-wrap input:focus{width:160px}
-}
-/* ══ END HEADER & NAV ══ */
 </style>
-</head>
-<body>
-<header>
-<div class="header-content">
-<a class="logo" href="/"><span>🇺🇸</span> Unblocked Games USA</a>
-<div class="search-bar">
-<input placeholder="Search games..." type="text"/>
-<button><i class="fas fa-search"></i></button>
-</div>
-</div>
-<!-- Black Rounded Menu -->
-<div class="nav-container">
-<nav class="main-nav">
-<ul>
-<li><a href="/categ/shooter">🎯 Shooter</a></li>
-<li><a href="/categ/platformer">🏃 Platformer</a></li>
-<li><a href="/categ/2-player">👥 2-Player</a></li>
-<li><a href="/categ/fighting">🥊 Fighting</a></li>
-<li><a href="/categ/driving">🚗 Driving</a></li>
-<li><a href="/categ/puzzle">🧠 Puzzle</a></li>
-<li><a href="/categ/multiplayer">🌐 Multiplayer</a></li>
-<li><a href="/categ/action">💥 Action</a></li>
-<li><a href="/categ/skill">🏆 Skill</a></li>
-<li><a href="/categ/adventure">🗺️ Adventure</a></li>
-<li><a href="/categ/racing">🏁 Racing</a></li>
-<li><a href="/categ/strategy">♟️ Strategy</a></li>
-<li><a href="/categ/sports">⚽ Sports</a></li>
-<li><a href="/categ/simulation">🏙️ Simulation</a></li>
-<li><a href="/categ/clicker">🖱️ Clicker</a></li>
-<li><a href="/categ/horror">👻 Horror</a></li>
-<li><a href="/categ/kids">🧸 Kids</a></li>
-</ul>
+</head>
+<body>
+<header>
+<div class="header-content">
+<a class="logo" href="/"><span>🇺🇸</span> Unblocked Games USA</a>
+<div class="search-bar">
+<input placeholder="Search games..." type="text"/>
+<button><i class="fas fa-search"></i></button>
+</div>
+</div>
+<!-- Black Rounded Menu -->
+<div class="nav-container">
+<nav class="main-nav">
+<ul>
+<li><a href="/categ/shooter">🎯 Shooter</a></li>
+<li><a href="/categ/platformer">🏃 Platformer</a></li>
+<li><a href="/categ/2-player">👥 2-Player</a></li>
+<li><a href="/categ/fighting">🥊 Fighting</a></li>
+<li><a href="/categ/driving">🚗 Driving</a></li>
+<li><a href="/categ/puzzle">🧠 Puzzle</a></li>
+<li><a href="/categ/multiplayer">🌐 Multiplayer</a></li>
+<li><a href="/categ/action">💥 Action</a></li>
+<li><a href="/categ/skill">🏆 Skill</a></li>
+<li><a href="/categ/adventure">🗺️ Adventure</a></li>
+<li><a href="/categ/racing">🏁 Racing</a></li>
+<li><a href="/categ/strategy">♟️ Strategy</a></li>
+<li><a href="/categ/sports">⚽ Sports</a></li>
+<li><a href="/categ/simulation">🏙️ Simulation</a></li>
+<li><a href="/categ/clicker">🖱️ Clicker</a></li>
+<li><a href="/categ/horror">👻 Horror</a></li>
+<li><a href="/categ/kids">🧸 Kids</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="container">
+<div class="hero-header">
+<h1>About Unblocked Games USA</h1>
+<p>Your favorite place to play free unblocked games instantly — no downloads, no sign-ups.</p>
+</div>
+<div class="site-description">
+<h2>🎮 Our Story</h2>
+<p>We created Unblocked Games USA to give students, workers, and gamers a reliable place to play the best browser games even on restricted networks.</p>
+<h2>Why Choose Us?</h2>
+<ul style="line-height:1.8; padding-left:1.5rem;">
+<li>✅ Hundreds of high-quality games</li>
+<li>✅ Works perfectly on school Chromebooks</li>
+<li>✅ No downloads or registration needed</li>
+<li>✅ Regularly updated</li>
+<li>✅ Fully mobile friendly</li>
+</ul>
+</div>
+</div>
+
+<nav class="bottom-nav-bar" aria-label="Bottom category navigation">
+  <a href="https://unblockedgames-usa.github.io/categ/shooter/">🎯 Shooter</a>
+  <a href="https://unblockedgames-usa.github.io/categ/platformer/">🏃 Platformer</a>
+  <a href="https://unblockedgames-usa.github.io/categ/2-player/">👥 2-Player</a>
+  <a href="https://unblockedgames-usa.github.io/categ/fighting/">🥊 Fighting</a>
+  <a href="https://unblockedgames-usa.github.io/categ/driving/">🚗 Driving</a>
+  <a href="https://unblockedgames-usa.github.io/categ/puzzle/">🧠 Puzzle</a>
+  <a href="https://unblockedgames-usa.github.io/categ/multiplayer/">🌐 Multiplayer</a>
+  <a href="https://unblockedgames-usa.github.io/categ/action/">💥 Action</a>
+  <a href="https://unblockedgames-usa.github.io/categ/skill/">🏆 Skill</a>
+  <a href="https://unblockedgames-usa.github.io/categ/adventure/">🗺️ Adventure</a>
+  <a href="https://unblockedgames-usa.github.io/categ/racing/">🏁 Racing</a>
+  <a href="https://unblockedgames-usa.github.io/categ/strategy/">♟️ Strategy</a>
+  <a href="https://unblockedgames-usa.github.io/categ/sports/">⚽ Sports</a>
+  <a href="https://unblockedgames-usa.github.io/categ/simulation/">🏙️ Simulation</a>
+  <a href="https://unblockedgames-usa.github.io/categ/clicker/">🖱️ Clicker</a>
+  <a href="https://unblockedgames-usa.github.io/categ/horror/">👻 Horror</a>
+  <a href="https://unblockedgames-usa.github.io/categ/kids/">🧸 Kids</a>
 </nav>
-</div>
-</header>
-<div class="container">
-<div class="hero-header">
-<h1>About Unblocked Games USA</h1>
-<p>Your favorite place to play free unblocked games instantly — no downloads, no sign-ups.</p>
-</div>
-<div class="site-description">
-<h2>🎮 Our Story</h2>
-<p>We created Unblocked Games USA to give students, workers, and gamers a reliable place to play the best browser games even on restricted networks.</p>
-<h2>Why Choose Us?</h2>
-<ul style="line-height:1.8; padding-left:1.5rem;">
-<li>✅ Hundreds of high-quality games</li>
-<li>✅ Works perfectly on school Chromebooks</li>
-<li>✅ No downloads or registration needed</li>
-<li>✅ Regularly updated</li>
-<li>✅ Fully mobile friendly</li>
-</ul>
-</div>
-</div>
-<footer>
-<p>© <span id="currentYear"></span> Unblocked Games USA. All rights reserved.</p>
-<div style="margin-top:10px;">
-<a href="/about-us" style="color:#ccc;">About Us</a> • 
-            <a href="/privacy-policy" style="color:#ccc;">Privacy Policy</a> • 
-            <a href="/faq" style="color:#ccc;">FAQ</a> • 
-            <a href="/contact" style="color:#ccc;">Contact Us</a>
-</div>
-</footer>
-<script>
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-    </script>
-<script>document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('navMenu')?.classList.toggle('open'));</script></body>
+<footer>
+<p>© <span id="currentYear"></span> Unblocked Games USA. All rights reserved.</p>
+<div style="margin-top:10px;">
+<a href="/about-us" style="color:#ccc;">About Us</a> • 
+            <a href="/privacy-policy" style="color:#ccc;">Privacy Policy</a> • 
+            <a href="/faq" style="color:#ccc;">FAQ</a> • 
+            <a href="/contact" style="color:#ccc;">Contact Us</a>
+</div>
+</footer>
+<script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+<script>document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('navMenu')?.classList.toggle('open'));</script></body>
 </html>
