@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Unblocked Games USA</title>
+    <meta name="description" content="Sorry, the page you are looking for doesn't exist. You'll be redirected to our homepage in 5 seconds.">
+    <meta name="robots" content="noindex, follow">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Press+Start+2P&amp;display=swap');
+        
+        :root {
+            --primary: #c0392b;
+            --dark: #0a0e1a;
+            --darker: #060b18;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0e1a 0%, #060b18 100%);
+            color: #dce8ff;
+            font-family: 'Inter', system_ui, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .error-code {
+            font-family: 'Press Start 2P', system_ui;
+            font-size: 120px;
+            font-weight: 700;
+            color: #c0392b;
+            text-shadow: 
+                0 0 20px rgba(192, 57, 43, 0.5),
+                4px 4px 0 #000;
+            line-height: 1;
+            margin-bottom: 10px;
+            animation: glitch 1s infinite;
+        }
+        
+        .error-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        
+        .error-message {
+            font-size: 1.1rem;
+            color: rgba(220, 232, 255, 0.7);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        
+        .countdown {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #c0392b;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .countdown-number {
+            background: #111827;
+            border: 2px solid #c0392b;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Press Start 2P', system_ui;
+            font-size: 1.5rem;
+            box-shadow: 0 0 15px rgba(192, 57, 43, 0.3);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #c0392b;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(192, 57, 43, 0.4);
+        }
+        
+        .btn:hover {
+            background: #e74c3c;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(192, 57, 43, 0.5);
+        }
+        
+        .links {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+        
+        .link-btn {
+            background: rgba(255,255,255,0.07);
+            color: #dce8ff;
+            padding: 10px 20px;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .link-btn:hover {
+            background: rgba(192, 57, 43, 0.2);
+            border-color: #c0392b;
+            color: #fff;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            background: #c0392b;
+            border-radius: 50%;
+            animation: particle-float 15s infinite ease-in-out;
+            opacity: 0.15;
+        }
+        
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+        }
+        
+        @keyframes particle-float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.15; }
+            50% { opacity: 0.4; }
+            100% { transform: translateY(-800px) rotate(360deg); opacity: 0; }
+        }
+        
+        .footer {
+            position: absolute;
+            bottom: 30px;
+            font-size: 0.85rem;
+            color: rgba(220, 232, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background particles -->
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <!-- Error Code -->
+        <div class="error-code">404</div>
+        
+        <h1 class="error-title">Page Not Found</h1>
+        
+        <p class="error-message">
+            Oops! The page you're looking for has vanished into the void.<br>
+            Don't worry — we'll take you back home in a few seconds.
+        </p>
+        
+        <!-- Countdown -->
+        <div class="countdown">
+            <span>Redirecting in</span>
+            <div class="countdown-number" id="countdown">5</div>
+            <span>seconds...</span>
+        </div>
+        
+        <!-- Manual Button -->
+        <a href="/" class="btn">
+            <span>🏠 Go to Homepage Now</span>
+        </a>
+        
+        <!-- Helpful Links -->
+        <div class="links">
+            <a href="/categ/shooter/" class="link-btn">🎯 Shooter Games</a>
+            <a href="/categ/sports/" class="link-btn">⚽ Sports Games</a>
+            <a href="/categ/puzzle/" class="link-btn">🧠 Puzzle Games</a>
+            <a href="/" class="link-btn">🎮 All Games</a>
+        </div>
+    </div>
+    
+    <div class="footer">
+        © 2026 Unblocked Games USA — Play Free at School &amp; Work
+    </div>
+    
+    <script>
+        // Countdown and auto redirect
+        let seconds = 5;
+        const countdownEl = document.getElementById('countdown');
+        
+        const countdownInterval = setInterval(() => {
+            seconds--;
+            countdownEl.textContent = seconds;
+            
+            if (seconds <= 0) {
+                clearInterval(countdownInterval);
+                window.location.href = '/';
+            }
+        }, 1000);
+        
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const colors = ['#c0392b', '#e74c3c', '#ff6b6b'];
+            
+            for (let i = 0; i < 35; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 6 + 3;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100 + 100}vh`;
+                
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.animationDuration = `${Math.random() * 12 + 10}s`;
+                particle.style.animationDelay = `-${Math.random() * 15}s`;
+                
+                container.appendChild(particle);
+                
+                // Remove particle after animation
+                setTimeout(() => {
+                    if (particle.parentNode) particle.parentNode.removeChild(particle);
+                }, 25000);
+            }
+        }
+        
+        // Keyboard support (press Enter to go home)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                window.location.href = '/';
+            }
+            if (e.key.toLowerCase() === 'h') {
+                window.location.href = '/';
+            }
+        });
+        
+        // Initialize
+        window.onload = function() {
+            createParticles();
+            
+            // Optional: Track 404 in analytics (if you have GA4)
+            // gtag('event', 'page_view', { 'page_title': '404 - Page Not Found' });
+        };
+        
+        // Prevent redirect if user interacts
+        let userInteracted = false;
+        document.addEventListener('click', () => userInteracted = true);
+        document.addEventListener('keydown', () => userInteracted = true);
+        
+        // Safety: if something blocks redirect, still allow manual navigation
+    </script>
+</body>
+</html>
