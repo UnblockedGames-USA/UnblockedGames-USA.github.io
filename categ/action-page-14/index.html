@@ -1,424 +1,425 @@
-<!DOCTYPE html>
-
-<html lang="en">
-<head>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-L6FNHSMWF4');
-</script>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Action Games – Free Online | Unblocked Games USA</title>
-<meta content="Play the best action games unblocked for free. No download needed." name="description"/>
-<link href="https://unblockedgames-usa.github.io/categ/multiplayer" rel="canonical"/>
-<meta content="index, follow" name="robots"/>
-<meta content="Unblocked Games USA" name="author"/>
-<meta content="Action Games – Free Online | Unblocked Games USA" property="og:title"/>
-<meta content="Play the best action games unblocked for free. No download needed." property="og:description"/>
-<meta content="https://unblockedgames-usa.github.io/categ/multiplayer" property="og:url"/>
-<meta content="website" property="og:type"/>
-<meta content="Unblocked Games USA" property="og:site_name"/>
-<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<style>
-:root {
-    --red:        #E8192C;
-    --blue:       #002868;
-    --blue-mid:   #1a3a8a;
-    --blue-light: #2655cc;
-    --white:      #FFFFFF;
-    --card-bg:    #07102b;
-    --border:     rgba(255,255,255,0.08);
-    --text:       #dce8ff;
-    --grad:       linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 50%, var(--red) 100%);
-    --cat-accent: #2655cc;
-}
-
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-    font-family: 'Barlow', sans-serif;
-    background: #000510;
-    color: var(--text);
-    min-height: 100vh;
-    line-height: 1.6;
-}
-
-body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image:
-        radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.3) 0%, transparent 100%),
-        radial-gradient(1px 1px at 45% 70%, rgba(255,255,255,0.25) 0%, transparent 100%),
-        radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,0.35) 0%, transparent 100%),
-        radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.2) 0%, transparent 100%);
-    pointer-events: none; z-index: 0;
-}
-
-.container { width:100%; max-width:1200px; margin:0 auto; padding:0 16px; position:relative; }
-
-header {
-    background: linear-gradient(90deg, var(--blue) 0%, #0d1f5c 40%, #1a0a2e 60%, var(--red) 100%);
-    border-bottom: 3px solid;
-    border-image: var(--grad) 1;
-    position: sticky; top: 0; z-index: 100;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.6);
-}
-.header-hidden { transform: translateY(-100%); }
-
-.header-content { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 10px 0; }
-
-.logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.9rem;
-    letter-spacing: 2px;
-    color: var(--white);
-    text-decoration: none;
-    display: flex; align-items: center; gap: 8px;
-    text-shadow: 0 0 20px rgba(232,25,44,0.6);
-}
-
-
-.search-bar { display:flex; position:relative; }
-.search-bar input {
-    padding: 0.45rem 1rem;
-    border: 1px solid var(--border);
-    border-radius: 50px 0 0 50px;
-    outline: none;
-    background: rgba(255,255,255,0.12);
-    color: white;
-    font-size: 0.9rem;
-    width: 200px;
-    transition: background 0.2s, width 0.3s;
-}
-.search-bar input:focus { background: rgba(255,255,255,0.18); width: 240px; }
-.search-bar input::placeholder { color: rgba(255,255,255,0.5); }
-.search-bar button {
-    background: var(--red);
-    color: white; border: none;
-    padding: 0.45rem 1rem;
-    border-radius: 0 50px 50px 0;
-    cursor: pointer;
-}
-.search-bar button:hover { background: #c0101f; }
-
-.main-nav { order: 1; width: 100%; }
-.nav-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; padding: 0.5rem; }
-
-.main-nav ul {
-    list-style: none;
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 4px;
-    padding: 10px 24px; margin: 6px 0 8px;
-    background: linear-gradient(135deg, #001a5e 0%, #0d1f6e 40%, #1a0a2e 70%, #4a0a14 100%);
-    border-radius: 50px;
-    border: 2px solid rgba(255,255,255,0.75);
-}
-
-.main-nav a {
-    color: rgba(255,255,255,0.88);
-    text-decoration: none;
-    padding: 4px 12px; border-radius: 50px;
-    font-size: 0.82rem; font-weight: 600;
-    transition: background 0.2s, color 0.2s;
-    border: 1px solid transparent;
-    white-space: nowrap;
-}
-
-
-.category-header {
-    border-radius: 14px;
-    margin: 1.5rem 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    padding: 2.5rem 2rem 2.2rem;
-    background: linear-gradient(135deg, #000c2e 0%, #001a5e 25%, #0d1545 45%, #1a0a2e 65%, #3a0515 85%, #1a000a 100%);
-    border: 2px solid transparent;
-    background-clip: padding-box;
-}
-.category-header::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; bottom: 0;
-    width: 5px;
-    background: linear-gradient(180deg, var(--blue-light) 0%, var(--cat-accent) 50%, var(--red) 100%);
-    border-radius: 14px 0 0 14px;
-}
-.category-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--blue) 0%, var(--blue-light) 30%, var(--cat-accent) 60%, var(--red) 100%);
-}
-.category-header-glow {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px; height: 200px;
-    background: radial-gradient(ellipse, rgba(38, 85, 204, 0.18) 0%, transparent 70%);
-    pointer-events: none;
-}
-.category-header h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.6rem;
-    letter-spacing: 3px;
-    background: linear-gradient(135deg, #ffffff 0%, #c8d8ff 50%, var(--red) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 0.5rem;
-    position: relative; z-index: 1;
-}
-.category-header p {
-    color: rgba(255,255,255,0.6);
-    font-size: 1rem;
-    max-width: 600px;
-    margin: 0 auto;
-    position: relative; z-index: 1;
-    font-weight: 600;
-}
-
-.section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 2px;
-    font-size: 1.8rem;
-    text-align: center;
-    margin: 2rem 0 1.2rem;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.games-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.2rem;
-    margin-bottom: 2rem;
-}
-.game-card {
-    background: var(--card-bg);
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    transition: all 0.25s;
-}
-.game-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 35px rgba(0,0,0,0.5);
-    border-color: rgba(232,25,44,0.4);
-}
-.game-image { height: 160px; background: linear-gradient(135deg, var(--blue), var(--red)); overflow: hidden; }
-.game-image img { width: 100%; height: 100%; object-fit: cover; }
-.game-title { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--white); padding: 10px 12px; text-align: center; }
-
-.pagination {
-    display: flex; justify-content: center; align-items: center;
-    margin: 1rem 0 2rem; gap: 0.5rem; flex-wrap: wrap;
-}
-.pagination a, .pagination span {
-    color: var(--text); padding: 0.45rem 1rem;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 50px;
-    font-weight: 600; font-size: 0.85rem;
-}
-.pagination a:hover { background: rgba(232,25,44,0.3); color: white; }
-.pagination .current { background: linear-gradient(135deg, var(--blue-mid), var(--red)); color: white; }
-
-.category-description {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 2rem;
-    margin: 0 0 2rem;
-}
-.category-description h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 2px;
-    font-size: 1.5rem;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center;
-}
-
-.categories { margin: 1rem 0 2rem; }
-.categories-title {
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 2px;
-    font-size: 1.8rem;
-    text-align: center;
-    margin-bottom: 1.2rem;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.category-grid {
-    display: flex; flex-wrap: wrap; gap: 10px;
-    justify-content: center; align-items: center;
-    background: linear-gradient(135deg, #0a1a4a 0%, #0d1f5c 40%, #1a0a2e 70%, #3a0a10 100%);
-    border: 1px solid rgba(232,25,44,0.25);
-    border-radius: 60px;
-    padding: 18px 28px;
-}
-.category-item {
-    color: white;
-    padding: 7px 16px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.83rem;
-    background: linear-gradient(135deg, rgba(26,58,138,0.7), rgba(232,25,44,0.6));
-    border: 1px solid rgba(255,255,255,0.12);
-    transition: all 0.2s;
-    white-space: nowrap;
-}
-.category-item:hover, .category-item.active {
-    background: linear-gradient(135deg, var(--blue-mid), var(--red));
-    transform: translateY(-2px);
-}
-
-#scrollToTopBtn {
-    position: fixed; bottom: 22px; right: 22px; z-index: 99;
-    border: none; background: var(--grad); color: white;
-    cursor: pointer; border-radius: 50%; width: 46px; height: 46px;
-    opacity: 0; visibility: hidden;
-}
-#scrollToTopBtn.show { opacity: 1; visibility: visible; }
-
-/* ══ HEADER & NAV — canonical, mobile-first ══ */
-.site-header{
-  background:linear-gradient(90deg,#001a6e,#0d1f6e 40%,#1a0a2e 65%,#8b0000);
-  border-bottom:3px solid #c0392b;
-  position:sticky;top:0;z-index:100;
-  box-shadow:0 4px 20px rgba(0,0,0,.7);
-}
-.hdr-inner{
-  display:flex;align-items:center;gap:12px;
-  padding:10px 16px;max-width:1280px;margin:0 auto;
-}
-.logo{
-  font-weight:800;font-size:1.25rem;color:#fff;
-  white-space:nowrap;text-shadow:0 0 16px rgba(192,57,43,.7);flex-shrink:0;
-}
-.logo:hover{text-shadow:0 0 24px rgba(192,57,43,1)}
-.search-wrap{
-  display:flex;position:relative;margin-left:auto;
-}
-.search-wrap input{
-  padding:.4rem .9rem;
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:20px 0 0 20px;
-  background:rgba(255,255,255,.12);color:#fff;
-  font-size:.88rem;width:180px;outline:none;
-}
-.search-wrap input::placeholder{color:rgba(255,255,255,.45)}
-.search-wrap input:focus{background:rgba(255,255,255,.2);width:220px;transition:width .2s}
-.search-wrap button{
-  background:#c0392b;color:#fff;border:none;
-  border-radius:0 20px 20px 0;padding:.4rem .9rem;
-  cursor:pointer;font-size:.9rem;flex-shrink:0;
-}
-
-/* Nav — always visible, scrolls horizontally on small screens */
-.nav-toggle{display:none!important}
-.main-nav{
-  background:linear-gradient(90deg,#001050,#0d1560 40%,#1a0825 70%,#500010);
-  border-top:1px solid rgba(255,255,255,.06);
-}
-.main-nav ul{
-  list-style:none;
-  display:flex!important;        /* always shown */
-  flex-wrap:nowrap;              /* single row */
-  overflow-x:auto;               /* scroll on mobile */
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;          /* hide scrollbar Firefox */
-  gap:4px;padding:7px 12px;
-  max-width:1280px;margin:0 auto;
-}
-.main-nav ul::-webkit-scrollbar{display:none}  /* hide scrollbar Chrome */
-.main-nav a{
-  color:rgba(255,255,255,.85);
-  padding:5px 12px;border-radius:20px;
-  font-size:.8rem;font-weight:600;
-  border:1px solid transparent;white-space:nowrap;
-  flex-shrink:0;
-  transition:background .15s,color .15s;
-}
-.main-nav a:hover,.main-nav a.active{
-  background:rgba(192,57,43,.35);color:#fff;
-  border-color:rgba(192,57,43,.4);
-}
-
-/* Search dropdown */
-#searchDrop{
-  position:absolute;top:calc(100% + 6px);left:0;right:0;
-  background:#0a1535;border:1px solid rgba(192,57,43,.3);
-  border-radius:10px;max-height:280px;overflow-y:auto;
-  z-index:300;display:none;box-shadow:0 8px 28px rgba(0,0,0,.8);
-}
-#searchDrop.open{display:block}
-#searchDrop a{
-  display:flex;align-items:center;gap:10px;padding:8px 12px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  font-size:.85rem;font-weight:600;
-}
-#searchDrop a:hover{background:rgba(192,57,43,.2);color:#fff}
-#searchDrop img{width:36px;height:26px;object-fit:cover;border-radius:4px;flex-shrink:0}
-#searchDrop .no-res{
-  padding:12px;color:rgba(255,255,255,.4);
-  text-align:center;font-size:.83rem;
-}
-
-/* Mobile tweaks */
-@media(max-width:600px){
-  .logo{font-size:1rem}
-  .hdr-inner{padding:8px 12px;gap:8px}
-  .search-wrap input{width:130px}
-  .search-wrap input:focus{width:160px}
-}
-/* ══ END HEADER & NAV ══ */
-</style>
-<style id="nav-fix">
-.nav-toggle{display:none!important}
-#navMenu{
-  display:flex!important;
-  flex-wrap:nowrap!important;
-  overflow-x:auto!important;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
-  gap:4px;
-  padding:7px 12px!important;
-  list-style:none;
-  max-width:1280px;
-  margin:0 auto;
-  align-items:center;
-}
-#navMenu::-webkit-scrollbar{display:none}
-#navMenu li{flex-shrink:0}
-#navMenu a{
-  white-space:nowrap;
-  flex-shrink:0;
-  padding:5px 12px;
-  border-radius:20px;
-  font-size:.8rem;
-  font-weight:600;
-  color:rgba(255,255,255,.85);
-  border:1px solid transparent;
-}
-#navMenu a:hover,#navMenu a.active{
-  background:rgba(192,57,43,.35);
-  color:#fff;
-  border-color:rgba(192,57,43,.4);
-}
-</style>
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L6FNHSMWF4');
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Action Games – Free Online | Unblocked Games USA</title>
+<meta content="Play the best action games unblocked for free. No download needed." name="description"/>
+<link href="https://unblockedgames-usa.github.io/categ/multiplayer" rel="canonical"/>
+<meta content="index, follow" name="robots"/>
+<meta content="Unblocked Games USA" name="author"/>
+<meta content="Action Games – Free Online | Unblocked Games USA" property="og:title"/>
+<meta content="Play the best action games unblocked for free. No download needed." property="og:description"/>
+<meta content="https://unblockedgames-usa.github.io/categ/multiplayer" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="Unblocked Games USA" property="og:site_name"/>
+<link href="/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+:root {
+    --red:        #E8192C;
+    --blue:       #002868;
+    --blue-mid:   #1a3a8a;
+    --blue-light: #2655cc;
+    --white:      #FFFFFF;
+    --card-bg:    #07102b;
+    --border:     rgba(255,255,255,0.08);
+    --text:       #dce8ff;
+    --grad:       linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 50%, var(--red) 100%);
+    --cat-accent: #2655cc;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: 'Barlow', sans-serif;
+    background: #000510;
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+        radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 70%, rgba(255,255,255,0.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,0.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.2) 0%, transparent 100%);
+    pointer-events: none; z-index: 0;
+}
+
+.container { width:100%; max-width:1200px; margin:0 auto; padding:0 16px; position:relative; }
+
+header {
+    background: linear-gradient(90deg, var(--blue) 0%, #0d1f5c 40%, #1a0a2e 60%, var(--red) 100%);
+    border-bottom: 3px solid;
+    border-image: var(--grad) 1;
+    position: sticky; top: 0; z-index: 100;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.6);
+}
+.header-hidden { transform: translateY(-100%); }
+
+.header-content { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; padding: 10px 0; }
+
+.logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.9rem;
+    letter-spacing: 2px;
+    color: var(--white);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+    text-shadow: 0 0 20px rgba(232,25,44,0.6);
+}
+
+
+.search-bar { display:flex; position:relative; }
+.search-bar input {
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 50px 0 0 50px;
+    outline: none;
+    background: rgba(255,255,255,0.12);
+    color: white;
+    font-size: 0.9rem;
+    width: 200px;
+    transition: background 0.2s, width 0.3s;
+}
+.search-bar input:focus { background: rgba(255,255,255,0.18); width: 240px; }
+.search-bar input::placeholder { color: rgba(255,255,255,0.5); }
+.search-bar button {
+    background: var(--red);
+    color: white; border: none;
+    padding: 0.45rem 1rem;
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+}
+.search-bar button:hover { background: #c0101f; }
+
+.main-nav { order: 1; width: 100%; }
+.nav-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; padding: 0.5rem; }
+
+.main-nav ul {
+    list-style: none;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 4px;
+    padding: 10px 24px; margin: 6px 0 8px;
+    background: linear-gradient(135deg, #001a5e 0%, #0d1f6e 40%, #1a0a2e 70%, #4a0a14 100%);
+    border-radius: 50px;
+    border: 2px solid rgba(255,255,255,0.75);
+}
+
+.main-nav a {
+    color: rgba(255,255,255,0.88);
+    text-decoration: none;
+    padding: 4px 12px; border-radius: 50px;
+    font-size: 0.82rem; font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+
+.category-header {
+    border-radius: 14px;
+    margin: 1.5rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2.5rem 2rem 2.2rem;
+    background: linear-gradient(135deg, #000c2e 0%, #001a5e 25%, #0d1545 45%, #1a0a2e 65%, #3a0515 85%, #1a000a 100%);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+.category-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 5px;
+    background: linear-gradient(180deg, var(--blue-light) 0%, var(--cat-accent) 50%, var(--red) 100%);
+    border-radius: 14px 0 0 14px;
+}
+.category-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue) 0%, var(--blue-light) 30%, var(--cat-accent) 60%, var(--red) 100%);
+}
+.category-header-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 200px;
+    background: radial-gradient(ellipse, rgba(38, 85, 204, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+.category-header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.6rem;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #ffffff 0%, #c8d8ff 50%, var(--red) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+    position: relative; z-index: 1;
+}
+.category-header p {
+    color: rgba(255,255,255,0.6);
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative; z-index: 1;
+    font-weight: 600;
+}
+
+.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 2rem 0 1.2rem;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+.game-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: all 0.25s;
+}
+.game-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.5);
+    border-color: rgba(232,25,44,0.4);
+}
+.game-image { height: 160px; background: linear-gradient(135deg, var(--blue), var(--red)); overflow: hidden; }
+.game-image img { width: 100%; height: 100%; object-fit: cover; }
+.game-title { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--white); padding: 10px 12px; text-align: center; }
+
+.pagination {
+    display: flex; justify-content: center; align-items: center;
+    margin: 1rem 0 2rem; gap: 0.5rem; flex-wrap: wrap;
+}
+.pagination a, .pagination span {
+    color: var(--text); padding: 0.45rem 1rem;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50px;
+    font-weight: 600; font-size: 0.85rem;
+}
+.pagination a:hover { background: rgba(232,25,44,0.3); color: white; }
+.pagination .current { background: linear-gradient(135deg, var(--blue-mid), var(--red)); color: white; }
+
+.category-description {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 0 0 2rem;
+}
+.category-description h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+}
+
+.categories { margin: 1rem 0 2rem; }
+.categories-title {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 1.2rem;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.category-grid {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    justify-content: center; align-items: center;
+    background: linear-gradient(135deg, #0a1a4a 0%, #0d1f5c 40%, #1a0a2e 70%, #3a0a10 100%);
+    border: 1px solid rgba(232,25,44,0.25);
+    border-radius: 60px;
+    padding: 18px 28px;
+}
+.category-item {
+    color: white;
+    padding: 7px 16px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.83rem;
+    background: linear-gradient(135deg, rgba(26,58,138,0.7), rgba(232,25,44,0.6));
+    border: 1px solid rgba(255,255,255,0.12);
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+.category-item:hover, .category-item.active {
+    background: linear-gradient(135deg, var(--blue-mid), var(--red));
+    transform: translateY(-2px);
+}
+
+#scrollToTopBtn {
+    position: fixed; bottom: 22px; right: 22px; z-index: 99;
+    border: none; background: var(--grad); color: white;
+    cursor: pointer; border-radius: 50%; width: 46px; height: 46px;
+    opacity: 0; visibility: hidden;
+}
+#scrollToTopBtn.show { opacity: 1; visibility: visible; }
+
+/* ══ HEADER & NAV — canonical, mobile-first ══ */
+.site-header{
+  background:linear-gradient(90deg,#001a6e,#0d1f6e 40%,#1a0a2e 65%,#8b0000);
+  border-bottom:3px solid #c0392b;
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 4px 20px rgba(0,0,0,.7);
+}
+.hdr-inner{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 16px;max-width:1280px;margin:0 auto;
+}
+.logo{
+  font-weight:800;font-size:1.25rem;color:#fff;
+  white-space:nowrap;text-shadow:0 0 16px rgba(192,57,43,.7);flex-shrink:0;
+}
+.logo:hover{text-shadow:0 0 24px rgba(192,57,43,1)}
+.search-wrap{
+  display:flex;position:relative;margin-left:auto;
+}
+.search-wrap input{
+  padding:.4rem .9rem;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:20px 0 0 20px;
+  background:rgba(255,255,255,.12);color:#fff;
+  font-size:.88rem;width:180px;outline:none;
+}
+.search-wrap input::placeholder{color:rgba(255,255,255,.45)}
+.search-wrap input:focus{background:rgba(255,255,255,.2);width:220px;transition:width .2s}
+.search-wrap button{
+  background:#c0392b;color:#fff;border:none;
+  border-radius:0 20px 20px 0;padding:.4rem .9rem;
+  cursor:pointer;font-size:.9rem;flex-shrink:0;
+}
+
+/* Nav — always visible, scrolls horizontally on small screens */
+.nav-toggle{display:none!important}
+.main-nav{
+  background:linear-gradient(90deg,#001050,#0d1560 40%,#1a0825 70%,#500010);
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.main-nav ul{
+  list-style:none;
+  display:flex!important;        /* always shown */
+  flex-wrap:nowrap;              /* single row */
+  overflow-x:auto;               /* scroll on mobile */
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;          /* hide scrollbar Firefox */
+  gap:4px;padding:7px 12px;
+  max-width:1280px;margin:0 auto;
+}
+.main-nav ul::-webkit-scrollbar{display:none}  /* hide scrollbar Chrome */
+.main-nav a{
+  color:rgba(255,255,255,.85);
+  padding:5px 12px;border-radius:20px;
+  font-size:.8rem;font-weight:600;
+  border:1px solid transparent;white-space:nowrap;
+  flex-shrink:0;
+  transition:background .15s,color .15s;
+}
+.main-nav a:hover,.main-nav a.active{
+  background:rgba(192,57,43,.35);color:#fff;
+  border-color:rgba(192,57,43,.4);
+}
+
+/* Search dropdown */
+#searchDrop{
+  position:absolute;top:calc(100% + 6px);left:0;right:0;
+  background:#0a1535;border:1px solid rgba(192,57,43,.3);
+  border-radius:10px;max-height:280px;overflow-y:auto;
+  z-index:300;display:none;box-shadow:0 8px 28px rgba(0,0,0,.8);
+}
+#searchDrop.open{display:block}
+#searchDrop a{
+  display:flex;align-items:center;gap:10px;padding:8px 12px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  font-size:.85rem;font-weight:600;
+}
+#searchDrop a:hover{background:rgba(192,57,43,.2);color:#fff}
+#searchDrop img{width:36px;height:26px;object-fit:cover;border-radius:4px;flex-shrink:0}
+#searchDrop .no-res{
+  padding:12px;color:rgba(255,255,255,.4);
+  text-align:center;font-size:.83rem;
+}
+
+/* Mobile tweaks */
+@media(max-width:600px){
+  .logo{font-size:1rem}
+  .hdr-inner{padding:8px 12px;gap:8px}
+  .search-wrap input{width:130px}
+  .search-wrap input:focus{width:160px}
+}
+/* ══ END HEADER & NAV ══ */
+</style>
+<style id="nav-fix">
+.nav-toggle{display:none!important}
+#navMenu{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  overflow-x:auto!important;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  gap:4px;
+  padding:7px 12px!important;
+  list-style:none;
+  max-width:1280px;
+  margin:0 auto;
+  align-items:center;
+}
+#navMenu::-webkit-scrollbar{display:none}
+#navMenu li{flex-shrink:0}
+#navMenu a{
+  white-space:nowrap;
+  flex-shrink:0;
+  padding:5px 12px;
+  border-radius:20px;
+  font-size:.8rem;
+  font-weight:600;
+  color:rgba(255,255,255,.85);
+  border:1px solid transparent;
+}
+#navMenu a:hover,#navMenu a.active{
+  background:rgba(192,57,43,.35);
+  color:#fff;
+  border-color:rgba(192,57,43,.4);
+}
+</style>
+
 <style id="a11y-contrast-fix">
 /* ── Accessibility: footer contrast fix (WCAG AA) ── */
 .site-footer,
@@ -446,9 +447,12 @@ span.yr {
 /* Bottom-nav bar added by fix_website.py */
 .bottom-nav-bar {
   background: #1a1a2e;
-  padding: 14px 12px 10px;
+  padding: 10px 12px;
+  margin: 0 !important;
   text-align: center;
-  border-top: 2px solid #e84545;     /* mirrors the existing red divider */
+  border-top: 2px solid #e84545;
+  border-bottom: 2px solid #e84545;
+  line-height: 1;
 }
 .bottom-nav-bar a {
   display: inline-block;
@@ -456,7 +460,7 @@ span.yr {
   font-size: 0.82rem;
   font-weight: 500;
   text-decoration: none;
-  margin: 4px 6px;
+  margin: 3px 5px;
   padding: 4px 8px;
   border-radius: 4px;
   transition: background 0.2s, color 0.2s;
@@ -465,178 +469,182 @@ span.yr {
   background: #e84545;
   color: #ffffff !important;
 }
+/* Kill any black gap around the nav bar */
+hr + .bottom-nav-bar { margin-top: 0 !important; }
+.bottom-nav-bar + footer,
+.bottom-nav-bar + .site-footer { margin-top: 0 !important; padding-top: 0 !important; }
 </style>
-</head>
-<body>
-<header>
-<div class="container header-content">
-<a class="logo" href="/">Unblocked Games USA</a>
-<div class="search-bar">
-<input autocomplete="off" id="searchInput" placeholder="Search games..." type="text"/>
-<button id="searchBtn"><i class="fas fa-search"></i></button>
-</div>
-<nav class="main-nav">
-<ul id="navMenu">
-<li><a href="/categ/shooter">🎯 Shooter</a></li>
-<li><a href="/categ/platformer">🏃 Platformer</a></li>
-<li><a href="/categ/2-player">👥 2-Player</a></li>
-<li><a href="/categ/fighting">🥊 Fighting</a></li>
-<li><a href="/categ/driving">🚗 Driving</a></li>
-<li><a href="/categ/puzzle">🧠 Puzzle</a></li>
-<li><a href="/categ/multiplayer">🌐 Multiplayer</a></li>
-<li><a href="/categ/action">💥 Action</a></li>
-<li><a href="/categ/skill">🏆 Skill</a></li>
-<li><a href="/categ/adventure">🗺️ Adventure</a></li>
-<li><a href="/categ/racing">🏁 Racing</a></li>
-<li><a href="/categ/strategy">♟️ Strategy</a></li>
-<li><a href="/categ/sports">⚽ Sports</a></li>
-<li><a href="/categ/simulation">🏙️ Simulation</a></li>
-<li><a href="/categ/clicker">🖱️ Clicker</a></li>
-<li><a href="/categ/horror">👻 Horror</a></li>
-<li><a href="/categ/kids">🧸 Kids</a></li>
-</ul>
-</nav>
-</div>
-</header>
-<div class="container">
-<div class="category-header" style="--cat-accent: #2655cc;">
-<h1>💥 Action Games</h1>
-<p>Play awesome unblocked games</p>
-</div>
-<h2 class="section-title">Popular Action Games</h2>
-<div class="games-grid" id="gamesGrid">
-<div class="games-grid">
-<a class="game-card" href="https://unblockedgames-usa.github.io/tank-trouble-2">
-<img alt="Tank Trouble 2 Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/tank-trouble-2.png"/>
-<h3>Tank Trouble 2 Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/tanuki-sunset">
-<img alt="Tanuki Sunset Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/tanuki-sunset.png"/>
-<h3>Tanuki Sunset Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/temple-of-boom">
-<img alt="Temple Of Boom Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/temple-of-boom.png"/>
-<h3>Temple Of Boom Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/temple-run-2">
-<img alt="Temple Run 2 Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/temple-run-2.png"/>
-<h3>Temple Run 2 Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/tetra-blocks">
-<img alt="Tetra Blocks Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/tetra-blocks.png"/>
-<h3>Tetra Blocks Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/the-little-giant">
-<img alt="The Little Giant Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/the-little-giant.png"/>
-<h3>The Little Giant Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/the-spear-stickman">
-<img alt="The Spear Stickman Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/the-spear-stickman.png"/>
-<h3>The Spear Stickman Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/there-is-no-game">
-<img alt="There Is No Game Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/there-is-no-game.png"/>
-<h3>There Is No Game Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/three-goblets">
-<img alt="Three Goblets Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/three-goblets.png"/>
-<h3>Three Goblets Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/tictactoe">
-<img alt="Tictactoe Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/tictactoe.png"/>
-<h3>Tictactoe Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/tiny-fishing">
-<img alt="Tiny Fishing Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/tiny-fishing.png"/>
-<h3>Tiny Fishing Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/tomb-of-the-mask">
-<img alt="Tomb Of The Mask Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/tomb-of-the-mask.png"/>
-<h3>Tomb Of The Mask Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/top-speed-3d">
-<img alt="Top Speed 3d Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/top-speed-3d.png"/>
-<h3>Top Speed 3d Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/total-recoil">
-<img alt="Total Recoil Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/total-recoil.png"/>
-<h3>Total Recoil Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/touchdowners">
-<img alt="Touchdowners Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/touchdowners.png"/>
-<h3>Touchdowners Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/traffic-escape">
-<img alt="Traffic Escape Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/traffic-escape.png"/>
-<h3>Traffic Escape Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/traffic-mania">
-<img alt="Traffic Mania Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/traffic-mania.png"/>
-<h3>Traffic Mania Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/traffic-rider">
-<img alt="Traffic Rider Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/traffic-rider.png"/>
-<h3>Traffic Rider Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/traffic-rush">
-<img alt="Traffic Rush Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/traffic-rush.png"/>
-<h3>Traffic Rush Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-<a class="game-card" href="https://unblockedgames-usa.github.io/tricks">
-<img alt="Tricks Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/tricks.png"/>
-<h3>Tricks Unblocked — Free 2-Player Platformer Puzzle Game</h3>
-</a>
-</div>
-</div>
-<div class="pagination">
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-13/">« Previous</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action/">1</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-2/">2</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-3/">3</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-4/">4</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-5/">5</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-6/">6</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-7/">7</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-8/">8</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-9/">9</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-10/">10</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-11/">11</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-12/">12</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-13/">13</a>
-<a class="page-btn active" href="https://unblockedgames-usa.github.io/categ/action-page-14/">14</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-15/">15</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-16/">16</a>
-<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-15/">Next »</a>
-</div>
-<div class="category-description">
-<h2>🌐 Join the World of Action Games</h2>
-<p>Play the best action games unblocked for free. No download needed.</p>
-</div>
-<div class="categories">
-<h2 class="categories-title">🎮 Browse by Category</h2>
-<div class="category-grid">
-<div class="category-links">
-<a href="https://unblockedgames-usa.github.io/categ/shooter">🎯 Shooter</a>
-<a href="https://unblockedgames-usa.github.io/categ/platformer">🏃 Platformer</a>
-<a href="https://unblockedgames-usa.github.io/categ/2-player">👥 2-Player</a>
-<a href="https://unblockedgames-usa.github.io/categ/fighting">🥊 Fighting</a>
-<a href="https://unblockedgames-usa.github.io/categ/driving">🚗 Driving</a>
-<a href="https://unblockedgames-usa.github.io/categ/puzzle">🧠 Puzzle</a>
-<a href="https://unblockedgames-usa.github.io/categ/multiplayer">🌐 Multiplayer</a>
-<a href="https://unblockedgames-usa.github.io/categ/action">💥 Action</a>
-<a href="https://unblockedgames-usa.github.io/categ/skill">🏆 Skill</a>
-<a href="https://unblockedgames-usa.github.io/categ/adventure">🗺️ Adventure</a>
-<a href="https://unblockedgames-usa.github.io/categ/racing">🏁 Racing</a>
-<a href="https://unblockedgames-usa.github.io/categ/strategy">♟️ Strategy</a>
-<a href="https://unblockedgames-usa.github.io/categ/sports">⚽ Sports</a>
-<a href="https://unblockedgames-usa.github.io/categ/simulation">🏙️ Simulation</a>
-<a href="https://unblockedgames-usa.github.io/categ/clicker">🖱️ Clicker</a>
-<a href="https://unblockedgames-usa.github.io/categ/horror">👻 Horror</a>
-<a href="https://unblockedgames-usa.github.io/categ/kids">🧸 Kids</a>
-</div>
-</div>
-</div>
-</div>
+</head>
+<body>
+<header>
+<div class="container header-content">
+<a class="logo" href="/">Unblocked Games USA</a>
+<div class="search-bar">
+<input autocomplete="off" id="searchInput" placeholder="Search games..." type="text"/>
+<button id="searchBtn"><i class="fas fa-search"></i></button>
+</div>
+<nav class="main-nav">
+<ul id="navMenu">
+<li><a href="/categ/shooter">🎯 Shooter</a></li>
+<li><a href="/categ/platformer">🏃 Platformer</a></li>
+<li><a href="/categ/2-player">👥 2-Player</a></li>
+<li><a href="/categ/fighting">🥊 Fighting</a></li>
+<li><a href="/categ/driving">🚗 Driving</a></li>
+<li><a href="/categ/puzzle">🧠 Puzzle</a></li>
+<li><a href="/categ/multiplayer">🌐 Multiplayer</a></li>
+<li><a href="/categ/action">💥 Action</a></li>
+<li><a href="/categ/skill">🏆 Skill</a></li>
+<li><a href="/categ/adventure">🗺️ Adventure</a></li>
+<li><a href="/categ/racing">🏁 Racing</a></li>
+<li><a href="/categ/strategy">♟️ Strategy</a></li>
+<li><a href="/categ/sports">⚽ Sports</a></li>
+<li><a href="/categ/simulation">🏙️ Simulation</a></li>
+<li><a href="/categ/clicker">🖱️ Clicker</a></li>
+<li><a href="/categ/horror">👻 Horror</a></li>
+<li><a href="/categ/kids">🧸 Kids</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<div class="container">
+<div class="category-header" style="--cat-accent: #2655cc;">
+<h1>💥 Action Games</h1>
+<p>Play awesome unblocked games</p>
+</div>
+<h2 class="section-title">Popular Action Games</h2>
+<div class="games-grid" id="gamesGrid">
+<div class="games-grid">
+<a class="game-card" href="https://unblockedgames-usa.github.io/tank-trouble-2">
+<img alt="Tank Trouble 2 Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/tank-trouble-2.png"/>
+<h3>Tank Trouble 2 Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/tanuki-sunset">
+<img alt="Tanuki Sunset Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/tanuki-sunset.png"/>
+<h3>Tanuki Sunset Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/temple-of-boom">
+<img alt="Temple Of Boom Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/temple-of-boom.png"/>
+<h3>Temple Of Boom Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/temple-run-2">
+<img alt="Temple Run 2 Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/temple-run-2.png"/>
+<h3>Temple Run 2 Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/tetra-blocks">
+<img alt="Tetra Blocks Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/tetra-blocks.png"/>
+<h3>Tetra Blocks Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/the-little-giant">
+<img alt="The Little Giant Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/the-little-giant.png"/>
+<h3>The Little Giant Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/the-spear-stickman">
+<img alt="The Spear Stickman Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/the-spear-stickman.png"/>
+<h3>The Spear Stickman Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/there-is-no-game">
+<img alt="There Is No Game Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/there-is-no-game.png"/>
+<h3>There Is No Game Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/three-goblets">
+<img alt="Three Goblets Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/three-goblets.png"/>
+<h3>Three Goblets Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/tictactoe">
+<img alt="Tictactoe Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/tictactoe.png"/>
+<h3>Tictactoe Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/tiny-fishing">
+<img alt="Tiny Fishing Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/tiny-fishing.png"/>
+<h3>Tiny Fishing Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/tomb-of-the-mask">
+<img alt="Tomb Of The Mask Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/tomb-of-the-mask.png"/>
+<h3>Tomb Of The Mask Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/top-speed-3d">
+<img alt="Top Speed 3d Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/top-speed-3d.png"/>
+<h3>Top Speed 3d Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/total-recoil">
+<img alt="Total Recoil Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/total-recoil.png"/>
+<h3>Total Recoil Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/touchdowners">
+<img alt="Touchdowners Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/touchdowners.png"/>
+<h3>Touchdowners Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/traffic-escape">
+<img alt="Traffic Escape Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/traffic-escape.png"/>
+<h3>Traffic Escape Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/traffic-mania">
+<img alt="Traffic Mania Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/traffic-mania.png"/>
+<h3>Traffic Mania Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/traffic-rider">
+<img alt="Traffic Rider Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/traffic-rider.png"/>
+<h3>Traffic Rider Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/traffic-rush">
+<img alt="Traffic Rush Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/traffic-rush.png"/>
+<h3>Traffic Rush Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+<a class="game-card" href="https://unblockedgames-usa.github.io/tricks">
+<img alt="Tricks Unblocked — Free 2-Player Platformer Puzzle Game" loading="lazy" src="https://unblockedgames-usa.github.io/images/tricks.png"/>
+<h3>Tricks Unblocked — Free 2-Player Platformer Puzzle Game</h3>
+</a>
+</div>
+</div>
+<div class="pagination">
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-13/">« Previous</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action/">1</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-2/">2</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-3/">3</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-4/">4</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-5/">5</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-6/">6</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-7/">7</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-8/">8</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-9/">9</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-10/">10</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-11/">11</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-12/">12</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-13/">13</a>
+<a class="page-btn active" href="https://unblockedgames-usa.github.io/categ/action-page-14/">14</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-15/">15</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-16/">16</a>
+<a class="page-btn" href="https://unblockedgames-usa.github.io/categ/action-page-15/">Next »</a>
+</div>
+<div class="category-description">
+<h2>🌐 Join the World of Action Games</h2>
+<p>Play the best action games unblocked for free. No download needed.</p>
+</div>
+<div class="categories">
+<h2 class="categories-title">🎮 Browse by Category</h2>
+<div class="category-grid">
+<div class="category-links">
+<a href="https://unblockedgames-usa.github.io/categ/shooter">🎯 Shooter</a>
+<a href="https://unblockedgames-usa.github.io/categ/platformer">🏃 Platformer</a>
+<a href="https://unblockedgames-usa.github.io/categ/2-player">👥 2-Player</a>
+<a href="https://unblockedgames-usa.github.io/categ/fighting">🥊 Fighting</a>
+<a href="https://unblockedgames-usa.github.io/categ/driving">🚗 Driving</a>
+<a href="https://unblockedgames-usa.github.io/categ/puzzle">🧠 Puzzle</a>
+<a href="https://unblockedgames-usa.github.io/categ/multiplayer">🌐 Multiplayer</a>
+<a href="https://unblockedgames-usa.github.io/categ/action">💥 Action</a>
+<a href="https://unblockedgames-usa.github.io/categ/skill">🏆 Skill</a>
+<a href="https://unblockedgames-usa.github.io/categ/adventure">🗺️ Adventure</a>
+<a href="https://unblockedgames-usa.github.io/categ/racing">🏁 Racing</a>
+<a href="https://unblockedgames-usa.github.io/categ/strategy">♟️ Strategy</a>
+<a href="https://unblockedgames-usa.github.io/categ/sports">⚽ Sports</a>
+<a href="https://unblockedgames-usa.github.io/categ/simulation">🏙️ Simulation</a>
+<a href="https://unblockedgames-usa.github.io/categ/clicker">🖱️ Clicker</a>
+<a href="https://unblockedgames-usa.github.io/categ/horror">👻 Horror</a>
+<a href="https://unblockedgames-usa.github.io/categ/kids">🧸 Kids</a>
+</div>
+</div>
+</div>
+</div>
 
 <nav class="bottom-nav-bar" aria-label="Bottom category navigation">
   <a href="https://unblockedgames-usa.github.io/categ/shooter/">🎯 Shooter</a>
@@ -657,42 +665,42 @@ span.yr {
   <a href="https://unblockedgames-usa.github.io/categ/horror/">👻 Horror</a>
   <a href="https://unblockedgames-usa.github.io/categ/kids/">🧸 Kids</a>
 </nav>
-<footer>
-<div class="container">
-<div class="footer-bottom">
-<p>© <span id="currentYear"></span> Unblocked Games USA. All rights reserved.</p>
-<div class="footer-links">
-<a href="/privacy-policy">Privacy Policy</a>
-<a href="/contact">Contact Us</a>
-<a href="/faq">FAQ</a>
-<a href="/dmca">DMCA</a>
-</div>
-</div>
-</div>
-</footer>
-<a href="#" id="scrollToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></a>
-<script>
-document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-const navToggle = document.getElementById('navToggle');
-const navMenu = document.getElementById('navMenu');
-navToggle?.addEventListener('click', () => navMenu.classList.toggle('active'));
-
-const header = document.querySelector('header');
-const scrollBtn = document.getElementById('scrollToTopBtn');
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-    const st = window.pageYOffset;
-    header.classList.toggle('header-hidden', st > lastScroll && st > header.offsetHeight);
-    lastScroll = st <= 0 ? 0 : st;
-    scrollBtn.classList.toggle('show', st > 100);
-});
-scrollBtn?.addEventListener('click', e => { e.preventDefault(); window.scrollTo({top:0, behavior:'smooth'}); });
-</script>
-<script>
-async function loadGames(){try{const r=await fetch('https://unblockedgames-usa.github.io/games.json');window._allGames=await r.json();}catch(e){window._allGames=[];}}
-loadGames();
-document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.activeElement.tagName==='INPUT'){const q=document.activeElement.value.trim();if(q)window.location.href='https://unblockedgames-usa.github.io/search/?q='+encodeURIComponent(q);}});
-</script>
-</body>
+<footer>
+<div class="container">
+<div class="footer-bottom">
+<p>© <span id="currentYear"></span> Unblocked Games USA. All rights reserved.</p>
+<div class="footer-links">
+<a href="/privacy-policy">Privacy Policy</a>
+<a href="/contact">Contact Us</a>
+<a href="/faq">FAQ</a>
+<a href="/dmca">DMCA</a>
+</div>
+</div>
+</div>
+</footer>
+<a href="#" id="scrollToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></a>
+<script>
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+navToggle?.addEventListener('click', () => navMenu.classList.toggle('active'));
+
+const header = document.querySelector('header');
+const scrollBtn = document.getElementById('scrollToTopBtn');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+    const st = window.pageYOffset;
+    header.classList.toggle('header-hidden', st > lastScroll && st > header.offsetHeight);
+    lastScroll = st <= 0 ? 0 : st;
+    scrollBtn.classList.toggle('show', st > 100);
+});
+scrollBtn?.addEventListener('click', e => { e.preventDefault(); window.scrollTo({top:0, behavior:'smooth'}); });
+</script>
+<script>
+async function loadGames(){try{const r=await fetch('https://unblockedgames-usa.github.io/games.json');window._allGames=await r.json();}catch(e){window._allGames=[];}}
+loadGames();
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.activeElement.tagName==='INPUT'){const q=document.activeElement.value.trim();if(q)window.location.href='https://unblockedgames-usa.github.io/search/?q='+encodeURIComponent(q);}});
+</script>
+</body>
 </html>

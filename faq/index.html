@@ -1,130 +1,130 @@
-<!DOCTYPE html>
-
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>FAQ — Frequently Asked Questions | Unblocked Games USA</title>
-<link href="https://unblockedgames-usa.github.io/assets/css/style.css" rel="stylesheet"/>
-<style>
-    body { background:#0d0d1a; color:#e0e0f0; font-family:'Segoe UI',sans-serif; margin:0; }
-    header { background:linear-gradient(135deg,#1a1a3e,#6b21a8); padding:16px 32px;
-              display:flex; align-items:center; justify-content:space-between; }
-    header .site-title { font-size:1.4rem; font-weight:900; text-transform:uppercase;
-              letter-spacing:2px; color:#fff; text-decoration:none; }
-    nav.cat-nav { background:rgba(255,255,255,.05); padding:10px 24px;
-                   display:flex; flex-wrap:wrap; gap:8px; }
-    nav.cat-nav a { color:#c4b5fd; text-decoration:none; font-size:.85rem;
-                     padding:4px 10px; border-radius:20px;
-                     border:1px solid rgba(196,181,253,.3); }
-    nav.cat-nav a:hover { background:rgba(196,181,253,.15); }
-    .legal-hero { background:linear-gradient(135deg,#1e1b4b 0%,#4c1d95 50%,#831843 100%);
-                   padding:48px 32px; text-align:center; border-left:4px solid #a855f7; }
-    .legal-hero h1 { font-size:2rem; color:#e9d5ff; margin:0; }
-    .legal-section { max-width:800px; margin:40px auto; padding:0 32px; line-height:1.8; }
-    .legal-section h2 { color:#818cf8; margin-top:32px; }
-    .legal-section a { color:#a78bfa; }
-    .legal-section ul { padding-left:20px; }
-    .legal-section li { margin-bottom:8px; }
-    .cta-button { display:inline-block; background:#7c3aed; color:#fff; padding:12px 24px;
-                   border-radius:8px; text-decoration:none; font-weight:600; margin:8px 0; }
-    footer { text-align:center; padding:24px; color:#6b7280; font-size:.8rem;
-              border-top:1px solid rgba(255,255,255,.05); margin-top:60px; }
-    footer a { color:#818cf8; text-decoration:none; margin:0 8px; }
-  
-/* ══ HEADER & NAV — canonical, mobile-first ══ */
-.site-header{
-  background:linear-gradient(90deg,#001a6e,#0d1f6e 40%,#1a0a2e 65%,#8b0000);
-  border-bottom:3px solid #c0392b;
-  position:sticky;top:0;z-index:100;
-  box-shadow:0 4px 20px rgba(0,0,0,.7);
-}
-.hdr-inner{
-  display:flex;align-items:center;gap:12px;
-  padding:10px 16px;max-width:1280px;margin:0 auto;
-}
-.logo{
-  font-weight:800;font-size:1.25rem;color:#fff;
-  white-space:nowrap;text-shadow:0 0 16px rgba(192,57,43,.7);flex-shrink:0;
-}
-.logo:hover{text-shadow:0 0 24px rgba(192,57,43,1)}
-.search-wrap{
-  display:flex;position:relative;margin-left:auto;
-}
-.search-wrap input{
-  padding:.4rem .9rem;
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:20px 0 0 20px;
-  background:rgba(255,255,255,.12);color:#fff;
-  font-size:.88rem;width:180px;outline:none;
-}
-.search-wrap input::placeholder{color:rgba(255,255,255,.45)}
-.search-wrap input:focus{background:rgba(255,255,255,.2);width:220px;transition:width .2s}
-.search-wrap button{
-  background:#c0392b;color:#fff;border:none;
-  border-radius:0 20px 20px 0;padding:.4rem .9rem;
-  cursor:pointer;font-size:.9rem;flex-shrink:0;
-}
-
-/* Nav — always visible, scrolls horizontally on small screens */
-.nav-toggle{display:none!important}
-.main-nav{
-  background:linear-gradient(90deg,#001050,#0d1560 40%,#1a0825 70%,#500010);
-  border-top:1px solid rgba(255,255,255,.06);
-}
-.main-nav ul{
-  list-style:none;
-  display:flex!important;        /* always shown */
-  flex-wrap:nowrap;              /* single row */
-  overflow-x:auto;               /* scroll on mobile */
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;          /* hide scrollbar Firefox */
-  gap:4px;padding:7px 12px;
-  max-width:1280px;margin:0 auto;
-}
-.main-nav ul::-webkit-scrollbar{display:none}  /* hide scrollbar Chrome */
-.main-nav a{
-  color:rgba(255,255,255,.85);
-  padding:5px 12px;border-radius:20px;
-  font-size:.8rem;font-weight:600;
-  border:1px solid transparent;white-space:nowrap;
-  flex-shrink:0;
-  transition:background .15s,color .15s;
-}
-.main-nav a:hover,.main-nav a.active{
-  background:rgba(192,57,43,.35);color:#fff;
-  border-color:rgba(192,57,43,.4);
-}
-
-/* Search dropdown */
-#searchDrop{
-  position:absolute;top:calc(100% + 6px);left:0;right:0;
-  background:#0a1535;border:1px solid rgba(192,57,43,.3);
-  border-radius:10px;max-height:280px;overflow-y:auto;
-  z-index:300;display:none;box-shadow:0 8px 28px rgba(0,0,0,.8);
-}
-#searchDrop.open{display:block}
-#searchDrop a{
-  display:flex;align-items:center;gap:10px;padding:8px 12px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  font-size:.85rem;font-weight:600;
-}
-#searchDrop a:hover{background:rgba(192,57,43,.2);color:#fff}
-#searchDrop img{width:36px;height:26px;object-fit:cover;border-radius:4px;flex-shrink:0}
-#searchDrop .no-res{
-  padding:12px;color:rgba(255,255,255,.4);
-  text-align:center;font-size:.83rem;
-}
-
-/* Mobile tweaks */
-@media(max-width:600px){
-  .logo{font-size:1rem}
-  .hdr-inner{padding:8px 12px;gap:8px}
-  .search-wrap input{width:130px}
-  .search-wrap input:focus{width:160px}
-}
-/* ══ END HEADER & NAV ══ */
-</style>
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FAQ — Frequently Asked Questions | Unblocked Games USA</title>
+<link href="https://unblockedgames-usa.github.io/assets/css/style.css" rel="stylesheet"/>
+<style>
+    body { background:#0d0d1a; color:#e0e0f0; font-family:'Segoe UI',sans-serif; margin:0; }
+    header { background:linear-gradient(135deg,#1a1a3e,#6b21a8); padding:16px 32px;
+              display:flex; align-items:center; justify-content:space-between; }
+    header .site-title { font-size:1.4rem; font-weight:900; text-transform:uppercase;
+              letter-spacing:2px; color:#fff; text-decoration:none; }
+    nav.cat-nav { background:rgba(255,255,255,.05); padding:10px 24px;
+                   display:flex; flex-wrap:wrap; gap:8px; }
+    nav.cat-nav a { color:#c4b5fd; text-decoration:none; font-size:.85rem;
+                     padding:4px 10px; border-radius:20px;
+                     border:1px solid rgba(196,181,253,.3); }
+    nav.cat-nav a:hover { background:rgba(196,181,253,.15); }
+    .legal-hero { background:linear-gradient(135deg,#1e1b4b 0%,#4c1d95 50%,#831843 100%);
+                   padding:48px 32px; text-align:center; border-left:4px solid #a855f7; }
+    .legal-hero h1 { font-size:2rem; color:#e9d5ff; margin:0; }
+    .legal-section { max-width:800px; margin:40px auto; padding:0 32px; line-height:1.8; }
+    .legal-section h2 { color:#818cf8; margin-top:32px; }
+    .legal-section a { color:#a78bfa; }
+    .legal-section ul { padding-left:20px; }
+    .legal-section li { margin-bottom:8px; }
+    .cta-button { display:inline-block; background:#7c3aed; color:#fff; padding:12px 24px;
+                   border-radius:8px; text-decoration:none; font-weight:600; margin:8px 0; }
+    footer { text-align:center; padding:24px; color:#6b7280; font-size:.8rem;
+              border-top:1px solid rgba(255,255,255,.05); margin-top:60px; }
+    footer a { color:#818cf8; text-decoration:none; margin:0 8px; }
+  
+/* ══ HEADER & NAV — canonical, mobile-first ══ */
+.site-header{
+  background:linear-gradient(90deg,#001a6e,#0d1f6e 40%,#1a0a2e 65%,#8b0000);
+  border-bottom:3px solid #c0392b;
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 4px 20px rgba(0,0,0,.7);
+}
+.hdr-inner{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 16px;max-width:1280px;margin:0 auto;
+}
+.logo{
+  font-weight:800;font-size:1.25rem;color:#fff;
+  white-space:nowrap;text-shadow:0 0 16px rgba(192,57,43,.7);flex-shrink:0;
+}
+.logo:hover{text-shadow:0 0 24px rgba(192,57,43,1)}
+.search-wrap{
+  display:flex;position:relative;margin-left:auto;
+}
+.search-wrap input{
+  padding:.4rem .9rem;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:20px 0 0 20px;
+  background:rgba(255,255,255,.12);color:#fff;
+  font-size:.88rem;width:180px;outline:none;
+}
+.search-wrap input::placeholder{color:rgba(255,255,255,.45)}
+.search-wrap input:focus{background:rgba(255,255,255,.2);width:220px;transition:width .2s}
+.search-wrap button{
+  background:#c0392b;color:#fff;border:none;
+  border-radius:0 20px 20px 0;padding:.4rem .9rem;
+  cursor:pointer;font-size:.9rem;flex-shrink:0;
+}
+
+/* Nav — always visible, scrolls horizontally on small screens */
+.nav-toggle{display:none!important}
+.main-nav{
+  background:linear-gradient(90deg,#001050,#0d1560 40%,#1a0825 70%,#500010);
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.main-nav ul{
+  list-style:none;
+  display:flex!important;        /* always shown */
+  flex-wrap:nowrap;              /* single row */
+  overflow-x:auto;               /* scroll on mobile */
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;          /* hide scrollbar Firefox */
+  gap:4px;padding:7px 12px;
+  max-width:1280px;margin:0 auto;
+}
+.main-nav ul::-webkit-scrollbar{display:none}  /* hide scrollbar Chrome */
+.main-nav a{
+  color:rgba(255,255,255,.85);
+  padding:5px 12px;border-radius:20px;
+  font-size:.8rem;font-weight:600;
+  border:1px solid transparent;white-space:nowrap;
+  flex-shrink:0;
+  transition:background .15s,color .15s;
+}
+.main-nav a:hover,.main-nav a.active{
+  background:rgba(192,57,43,.35);color:#fff;
+  border-color:rgba(192,57,43,.4);
+}
+
+/* Search dropdown */
+#searchDrop{
+  position:absolute;top:calc(100% + 6px);left:0;right:0;
+  background:#0a1535;border:1px solid rgba(192,57,43,.3);
+  border-radius:10px;max-height:280px;overflow-y:auto;
+  z-index:300;display:none;box-shadow:0 8px 28px rgba(0,0,0,.8);
+}
+#searchDrop.open{display:block}
+#searchDrop a{
+  display:flex;align-items:center;gap:10px;padding:8px 12px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  font-size:.85rem;font-weight:600;
+}
+#searchDrop a:hover{background:rgba(192,57,43,.2);color:#fff}
+#searchDrop img{width:36px;height:26px;object-fit:cover;border-radius:4px;flex-shrink:0}
+#searchDrop .no-res{
+  padding:12px;color:rgba(255,255,255,.4);
+  text-align:center;font-size:.83rem;
+}
+
+/* Mobile tweaks */
+@media(max-width:600px){
+  .logo{font-size:1rem}
+  .hdr-inner{padding:8px 12px;gap:8px}
+  .search-wrap input{width:130px}
+  .search-wrap input:focus{width:160px}
+}
+/* ══ END HEADER & NAV ══ */
+</style>
 
 <style id="a11y-contrast-fix">
 /* ── Accessibility: footer contrast fix (WCAG AA) ── */
@@ -153,9 +153,12 @@ span.yr {
 /* Bottom-nav bar added by fix_website.py */
 .bottom-nav-bar {
   background: #1a1a2e;
-  padding: 14px 12px 10px;
+  padding: 10px 12px;
+  margin: 0 !important;
   text-align: center;
-  border-top: 2px solid #e84545;     /* mirrors the existing red divider */
+  border-top: 2px solid #e84545;
+  border-bottom: 2px solid #e84545;
+  line-height: 1;
 }
 .bottom-nav-bar a {
   display: inline-block;
@@ -163,7 +166,7 @@ span.yr {
   font-size: 0.82rem;
   font-weight: 500;
   text-decoration: none;
-  margin: 4px 6px;
+  margin: 3px 5px;
   padding: 4px 8px;
   border-radius: 4px;
   transition: background 0.2s, color 0.2s;
@@ -172,70 +175,74 @@ span.yr {
   background: #e84545;
   color: #ffffff !important;
 }
+/* Kill any black gap around the nav bar */
+hr + .bottom-nav-bar { margin-top: 0 !important; }
+.bottom-nav-bar + footer,
+.bottom-nav-bar + .site-footer { margin-top: 0 !important; padding-top: 0 !important; }
 </style>
-</head>
-<body>
-<header>
-<a class="site-title" href="https://unblockedgames-usa.github.io/">Unblocked Games USA</a>
-</header>
-<nav class="cat-nav">
-<a href="https://unblockedgames-usa.github.io/categ/shooter">🎯 Shooter</a>
-<a href="https://unblockedgames-usa.github.io/categ/platformer">🏃 Platformer</a>
-<a href="https://unblockedgames-usa.github.io/categ/2-player">👥 2-Player</a>
-<a href="https://unblockedgames-usa.github.io/categ/fighting">🥊 Fighting</a>
-<a href="https://unblockedgames-usa.github.io/categ/driving">🚗 Driving</a>
-<a href="https://unblockedgames-usa.github.io/categ/puzzle">🧠 Puzzle</a>
-<a href="https://unblockedgames-usa.github.io/categ/multiplayer">🌐 Multiplayer</a>
-<a href="https://unblockedgames-usa.github.io/categ/action">💥 Action</a>
-<a href="https://unblockedgames-usa.github.io/categ/skill">🏆 Skill</a>
-<a href="https://unblockedgames-usa.github.io/categ/adventure">🗺️ Adventure</a>
-<a href="https://unblockedgames-usa.github.io/categ/racing">🏁 Racing</a>
-<a href="https://unblockedgames-usa.github.io/categ/strategy">♟️ Strategy</a>
-<a href="https://unblockedgames-usa.github.io/categ/sports">⚽ Sports</a>
-<a href="https://unblockedgames-usa.github.io/categ/simulation">🏙️ Simulation</a>
-<a href="https://unblockedgames-usa.github.io/categ/clicker">🖱️ Clicker</a>
-<a href="https://unblockedgames-usa.github.io/categ/horror">👻 Horror</a>
-<a href="https://unblockedgames-usa.github.io/categ/kids">🧸 Kids</a>
-</nav>
-<div class="legal-hero">
-<h1>❓ Frequently Asked Questions</h1>
-</div>
-<div class="legal-section">
-<h2>What is Unblocked Games USA?</h2>
-<p>Unblocked Games USA is a free browser-based gaming portal featuring hundreds of games
-  playable directly in your browser — no downloads, no sign-ups, no plugins required.
-  Our games work on school networks, public Wi-Fi, and anywhere else you want to play.</p>
-<h2>Are the games really free?</h2>
-<p>Yes — every game on this site is 100% free to play. We will never charge you or ask for
-  payment details. Just click and play instantly.</p>
-<h2>Do I need to create an account?</h2>
-<p>No account is needed. All games are accessible directly from the browser with no
-  registration, email, or personal information required.</p>
-<h2>Why are some games "unblocked"?</h2>
-<p>Many schools and workplaces block popular gaming sites. Our games are hosted on GitHub
-  Pages which is often whitelisted. If a game doesn't load, please check that your browser
-  allows iframes or JavaScript.</p>
-<h2>Which browsers are supported?</h2>
-<p>All modern browsers are supported — Google Chrome, Mozilla Firefox, Microsoft Edge,
-  Safari, and Opera. For the best experience we recommend using the latest version of
-  Google Chrome or Firefox.</p>
-<h2>Can I suggest a game?</h2>
-<p>We love suggestions! Please use our <a href="/contact/">Contact page</a> to send game
-  requests. We add new games regularly.</p>
-<h2>Are the games safe for kids?</h2>
-<p>We aim to keep all content school-friendly and age-appropriate. Games marked in the
-  <a href="/categ/kids/">Kids category</a> are specifically selected for younger audiences.
-  However, parental guidance is always recommended for online content.</p>
-<h2>Why does a game not load?</h2>
-<p>Please try: (1) Refreshing the page, (2) Clearing browser cache, (3) Trying a different
-  browser, (4) Disabling any ad-blocker extensions that may interfere with iframes.</p>
-<h2>How often are new games added?</h2>
-<p>We add new games frequently. Check back regularly or browse the categories to discover
-  new titles!</p>
-<h2>Do you collect personal data?</h2>
-<p>We do not collect personally identifiable information. Please see our
-  <a href="/privacy-policy/">Privacy Policy</a> for full details.</p>
-</div>
+</head>
+<body>
+<header>
+<a class="site-title" href="https://unblockedgames-usa.github.io/">Unblocked Games USA</a>
+</header>
+<nav class="cat-nav">
+<a href="https://unblockedgames-usa.github.io/categ/shooter">🎯 Shooter</a>
+<a href="https://unblockedgames-usa.github.io/categ/platformer">🏃 Platformer</a>
+<a href="https://unblockedgames-usa.github.io/categ/2-player">👥 2-Player</a>
+<a href="https://unblockedgames-usa.github.io/categ/fighting">🥊 Fighting</a>
+<a href="https://unblockedgames-usa.github.io/categ/driving">🚗 Driving</a>
+<a href="https://unblockedgames-usa.github.io/categ/puzzle">🧠 Puzzle</a>
+<a href="https://unblockedgames-usa.github.io/categ/multiplayer">🌐 Multiplayer</a>
+<a href="https://unblockedgames-usa.github.io/categ/action">💥 Action</a>
+<a href="https://unblockedgames-usa.github.io/categ/skill">🏆 Skill</a>
+<a href="https://unblockedgames-usa.github.io/categ/adventure">🗺️ Adventure</a>
+<a href="https://unblockedgames-usa.github.io/categ/racing">🏁 Racing</a>
+<a href="https://unblockedgames-usa.github.io/categ/strategy">♟️ Strategy</a>
+<a href="https://unblockedgames-usa.github.io/categ/sports">⚽ Sports</a>
+<a href="https://unblockedgames-usa.github.io/categ/simulation">🏙️ Simulation</a>
+<a href="https://unblockedgames-usa.github.io/categ/clicker">🖱️ Clicker</a>
+<a href="https://unblockedgames-usa.github.io/categ/horror">👻 Horror</a>
+<a href="https://unblockedgames-usa.github.io/categ/kids">🧸 Kids</a>
+</nav>
+<div class="legal-hero">
+<h1>❓ Frequently Asked Questions</h1>
+</div>
+<div class="legal-section">
+<h2>What is Unblocked Games USA?</h2>
+<p>Unblocked Games USA is a free browser-based gaming portal featuring hundreds of games
+  playable directly in your browser — no downloads, no sign-ups, no plugins required.
+  Our games work on school networks, public Wi-Fi, and anywhere else you want to play.</p>
+<h2>Are the games really free?</h2>
+<p>Yes — every game on this site is 100% free to play. We will never charge you or ask for
+  payment details. Just click and play instantly.</p>
+<h2>Do I need to create an account?</h2>
+<p>No account is needed. All games are accessible directly from the browser with no
+  registration, email, or personal information required.</p>
+<h2>Why are some games "unblocked"?</h2>
+<p>Many schools and workplaces block popular gaming sites. Our games are hosted on GitHub
+  Pages which is often whitelisted. If a game doesn't load, please check that your browser
+  allows iframes or JavaScript.</p>
+<h2>Which browsers are supported?</h2>
+<p>All modern browsers are supported — Google Chrome, Mozilla Firefox, Microsoft Edge,
+  Safari, and Opera. For the best experience we recommend using the latest version of
+  Google Chrome or Firefox.</p>
+<h2>Can I suggest a game?</h2>
+<p>We love suggestions! Please use our <a href="/contact/">Contact page</a> to send game
+  requests. We add new games regularly.</p>
+<h2>Are the games safe for kids?</h2>
+<p>We aim to keep all content school-friendly and age-appropriate. Games marked in the
+  <a href="/categ/kids/">Kids category</a> are specifically selected for younger audiences.
+  However, parental guidance is always recommended for online content.</p>
+<h2>Why does a game not load?</h2>
+<p>Please try: (1) Refreshing the page, (2) Clearing browser cache, (3) Trying a different
+  browser, (4) Disabling any ad-blocker extensions that may interfere with iframes.</p>
+<h2>How often are new games added?</h2>
+<p>We add new games frequently. Check back regularly or browse the categories to discover
+  new titles!</p>
+<h2>Do you collect personal data?</h2>
+<p>We do not collect personally identifiable information. Please see our
+  <a href="/privacy-policy/">Privacy Policy</a> for full details.</p>
+</div>
 
 <nav class="bottom-nav-bar" aria-label="Bottom category navigation">
   <a href="https://unblockedgames-usa.github.io/categ/shooter/">🎯 Shooter</a>
@@ -256,12 +263,12 @@ span.yr {
   <a href="https://unblockedgames-usa.github.io/categ/horror/">👻 Horror</a>
   <a href="https://unblockedgames-usa.github.io/categ/kids/">🧸 Kids</a>
 </nav>
-<footer>
-  © Unblocked Games USA. All rights reserved.
-  <a href="https://unblockedgames-usa.github.io/privacy-policy/">Privacy Policy</a>
-<a href="https://unblockedgames-usa.github.io/contact/">Contact Us</a>
-<a href="https://unblockedgames-usa.github.io/faq/">FAQ</a>
-<a href="https://unblockedgames-usa.github.io/dmca/">DMCA</a>
-</footer>
-<script>document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('navMenu')?.classList.toggle('open'));</script></body>
+<footer>
+  © Unblocked Games USA. All rights reserved.
+  <a href="https://unblockedgames-usa.github.io/privacy-policy/">Privacy Policy</a>
+<a href="https://unblockedgames-usa.github.io/contact/">Contact Us</a>
+<a href="https://unblockedgames-usa.github.io/faq/">FAQ</a>
+<a href="https://unblockedgames-usa.github.io/dmca/">DMCA</a>
+</footer>
+<script>document.getElementById('navToggle')?.addEventListener('click',()=>document.getElementById('navMenu')?.classList.toggle('open'));</script></body>
 </html>

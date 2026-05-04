@@ -75,9 +75,12 @@ span.yr {
 /* Bottom-nav bar added by fix_website.py */
 .bottom-nav-bar {
   background: #1a1a2e;
-  padding: 14px 12px 10px;
+  padding: 10px 12px;
+  margin: 0 !important;
   text-align: center;
-  border-top: 2px solid #e84545;     /* mirrors the existing red divider */
+  border-top: 2px solid #e84545;
+  border-bottom: 2px solid #e84545;
+  line-height: 1;
 }
 .bottom-nav-bar a {
   display: inline-block;
@@ -85,7 +88,7 @@ span.yr {
   font-size: 0.82rem;
   font-weight: 500;
   text-decoration: none;
-  margin: 4px 6px;
+  margin: 3px 5px;
   padding: 4px 8px;
   border-radius: 4px;
   transition: background 0.2s, color 0.2s;
@@ -94,6 +97,10 @@ span.yr {
   background: #e84545;
   color: #ffffff !important;
 }
+/* Kill any black gap around the nav bar */
+hr + .bottom-nav-bar { margin-top: 0 !important; }
+.bottom-nav-bar + footer,
+.bottom-nav-bar + .site-footer { margin-top: 0 !important; padding-top: 0 !important; }
 </style>
 """
 
@@ -139,31 +146,34 @@ def inject_contrast_css(html: str) -> tuple[str, bool]:
 
 def inject_bottom_nav(html: str) -> tuple[str, bool]:
     """
-    Insert the bottom-nav bar right after the FIRST <hr …> tag so it sits
-    just below the red divider line.  If no <hr> exists, fall back to
-    inserting before <footer.
+    Insert the bottom-nav bar just before the footer.
+    Uses the LAST <hr> on the page (= the bottom red divider, not a top one)
+    so there is no black gap. Falls back to before <footer>, then before </body>.
     """
     if 'class="bottom-nav-bar"' in html:
         return html, False
 
-    # Try after first <hr …> (with or without attributes / self-closing)
+    # Use the LAST <hr> — avoids the black gap caused by hitting a top <hr>
+    all_hrs = list(re.finditer(r"<hr\b[^>]*/?>", html, flags=re.IGNORECASE))
+    if all_hrs:
+        insert_pos = all_hrs[-1].end()
+        patched = html[:insert_pos] + BOTTOM_NAV_HTML + html[insert_pos:]
+        return patched, True
+
+    # Fallback 1: before <footer …>
     patched, n = re.subn(
-        r"(<hr\b[^>]*/?>)",
-        r"\1" + BOTTOM_NAV_HTML,
-        html,
-        count=1,
-        flags=re.IGNORECASE,
+        r"(<footer\b)",
+        BOTTOM_NAV_HTML + r"\1",
+        html, count=1, flags=re.IGNORECASE,
     )
     if n:
         return patched, True
 
-    # Fallback: before <footer
+    # Fallback 2: before </body>  — catches index.html with no <hr> or <footer>
     patched, n = re.subn(
-        r"(<footer\b)",
+        r"(</body>)",
         BOTTOM_NAV_HTML + r"\1",
-        html,
-        count=1,
-        flags=re.IGNORECASE,
+        html, count=1, flags=re.IGNORECASE,
     )
     return patched, bool(n)
 
