@@ -310,7 +310,39 @@ footer{background:#010812;color:white;padding:1.5rem 0;margin-top:2rem;border-to
 }
 /* ══ END HEADER & NAV ══ */
 </style>
-</head>
+<style id="nav-fix">
+.nav-toggle{display:none!important}
+#navMenu{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  overflow-x:auto!important;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  gap:4px;
+  padding:7px 12px!important;
+  list-style:none;
+  max-width:1280px;
+  margin:0 auto;
+  align-items:center;
+}
+#navMenu::-webkit-scrollbar{display:none}
+#navMenu li{flex-shrink:0}
+#navMenu a{
+  white-space:nowrap;
+  flex-shrink:0;
+  padding:5px 12px;
+  border-radius:20px;
+  font-size:.8rem;
+  font-weight:600;
+  color:rgba(255,255,255,.85);
+  border:1px solid transparent;
+}
+#navMenu a:hover,#navMenu a.active{
+  background:rgba(192,57,43,.35);
+  color:#fff;
+  border-color:rgba(192,57,43,.4);
+}
+</style></head>
 <body>
 <header>
 <div class="container header-content">
@@ -321,7 +353,6 @@ footer{background:#010812;color:white;padding:1.5rem 0;margin-top:2rem;border-to
 <div id="searchDropdown"></div>
 </div>
 <nav aria-label="Game categories" class="main-nav">
-
 <ul id="navMenu">
 <li><a href="/categ/shooter">🎯 Shooter</a></li>
 <li><a href="/categ/platformer">🏃 Platformer</a></li>
