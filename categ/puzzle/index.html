@@ -1,215 +1,802 @@
-<!DOCTYPE html>
-
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Puzzle Games – Free Online | Unblocked Games USA</title>
-<meta content="Play 93 free Puzzle Games online — no downloads, no sign-up. Works instantly at school or home." name="description"/>
-<link href="https://unblockedgames-usa.github.io/categ/puzzle/" rel="canonical"/>
-<meta content="index,follow" name="robots"/>
-<!-- Google tag (gtag.js) -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-L6FNHSMWF4');
-</script>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:system-ui,-apple-system,sans-serif;background:#0a0e1a;color:#dce8ff;line-height:1.6;min-height:100vh}
-a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
-.wrap{max-width:1280px;margin:0 auto;padding:0 16px}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.site-footer{background:#060b18;border-top:2px solid #c0392b;padding:28px 16px;margin-top:48px;text-align:center}
-.footer-cats{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:14px}
-.footer-cats a{background:rgba(255,255,255,.07);padding:4px 11px;border-radius:16px;font-size:.78rem}
-.footer-cats a:hover{background:rgba(192,57,43,.3)}
-.footer-links{display:flex;gap:16px;justify-content:center;margin-bottom:10px;font-size:.82rem;opacity:.7;flex-wrap:wrap}
-.footer-links a:hover{opacity:1}
-.footer-copy{font-size:.75rem;opacity:.35}
-.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:16px 0}
-.game-card{display:flex;flex-direction:column;background:#111827;border-radius:10px;
-  overflow:hidden;border:1px solid rgba(255,255,255,.07);transition:transform .2s,box-shadow .2s,border-color .2s}
-.game-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.5);border-color:rgba(192,57,43,.4)}
-.game-card img{width:100%;height:110px;object-fit:cover}
-.game-card span{padding:7px 8px;font-size:.78rem;text-align:center;font-weight:500;line-height:1.3}
-
-  .main-nav ul.open{display:flex}
-  
-  
-  
-}
-@media(max-width:600px){
-  .games-grid{grid-template-columns:repeat(2,1fr)}
-  
-}
-
-/* ══ HEADER & NAV — canonical, mobile-first ══ */
-.site-header{
-  background:linear-gradient(90deg,#001a6e,#0d1f6e 40%,#1a0a2e 65%,#8b0000);
-  border-bottom:3px solid #c0392b;
-  position:sticky;top:0;z-index:100;
-  box-shadow:0 4px 20px rgba(0,0,0,.7);
-}
-.hdr-inner{
-  display:flex;align-items:center;gap:12px;
-  padding:10px 16px;max-width:1280px;margin:0 auto;
-}
-.logo{
-  font-weight:800;font-size:1.25rem;color:#fff;
-  white-space:nowrap;text-shadow:0 0 16px rgba(192,57,43,.7);flex-shrink:0;
-}
-.logo:hover{text-shadow:0 0 24px rgba(192,57,43,1)}
-.search-wrap{
-  display:flex;position:relative;margin-left:auto;
-}
-.search-wrap input{
-  padding:.4rem .9rem;
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:20px 0 0 20px;
-  background:rgba(255,255,255,.12);color:#fff;
-  font-size:.88rem;width:180px;outline:none;
-}
-.search-wrap input::placeholder{color:rgba(255,255,255,.45)}
-.search-wrap input:focus{background:rgba(255,255,255,.2);width:220px;transition:width .2s}
-.search-wrap button{
-  background:#c0392b;color:#fff;border:none;
-  border-radius:0 20px 20px 0;padding:.4rem .9rem;
-  cursor:pointer;font-size:.9rem;flex-shrink:0;
-}
-
-/* Nav — always visible, scrolls horizontally on small screens */
-.nav-toggle{display:none!important}
-.main-nav{
-  background:linear-gradient(90deg,#001050,#0d1560 40%,#1a0825 70%,#500010);
-  border-top:1px solid rgba(255,255,255,.06);
-}
-.main-nav ul{
-  list-style:none;
-  display:flex!important;        /* always shown */
-  flex-wrap:nowrap;              /* single row */
-  overflow-x:auto;               /* scroll on mobile */
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;          /* hide scrollbar Firefox */
-  gap:4px;padding:7px 12px;
-  max-width:1280px;margin:0 auto;
-}
-.main-nav ul::-webkit-scrollbar{display:none}  /* hide scrollbar Chrome */
-.main-nav a{
-  color:rgba(255,255,255,.85);
-  padding:5px 12px;border-radius:20px;
-  font-size:.8rem;font-weight:600;
-  border:1px solid transparent;white-space:nowrap;
-  flex-shrink:0;
-  transition:background .15s,color .15s;
-}
-.main-nav a:hover,.main-nav a.active{
-  background:rgba(192,57,43,.35);color:#fff;
-  border-color:rgba(192,57,43,.4);
-}
-
-/* Search dropdown */
-#searchDrop{
-  position:absolute;top:calc(100% + 6px);left:0;right:0;
-  background:#0a1535;border:1px solid rgba(192,57,43,.3);
-  border-radius:10px;max-height:280px;overflow-y:auto;
-  z-index:300;display:none;box-shadow:0 8px 28px rgba(0,0,0,.8);
-}
-#searchDrop.open{display:block}
-#searchDrop a{
-  display:flex;align-items:center;gap:10px;padding:8px 12px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  font-size:.85rem;font-weight:600;
-}
-#searchDrop a:hover{background:rgba(192,57,43,.2);color:#fff}
-#searchDrop img{width:36px;height:26px;object-fit:cover;border-radius:4px;flex-shrink:0}
-#searchDrop .no-res{
-  padding:12px;color:rgba(255,255,255,.4);
-  text-align:center;font-size:.83rem;
-}
-
-/* Mobile tweaks */
-@media(max-width:600px){
-  .logo{font-size:1rem}
-  .hdr-inner{padding:8px 12px;gap:8px}
-  .search-wrap input{width:130px}
-  .search-wrap input:focus{width:160px}
-}
-/* ══ END HEADER & NAV ══ */
-</style><style>
-.categ-hero{text-align:center;padding:32px 16px 16px}
-.categ-hero h1{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:800;
-  background:linear-gradient(135deg,#4fa3ff,#ff4444);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.categ-hero p{color:rgba(255,255,255,.55);margin-top:8px}
-.pagination{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:28px 0}
-.pagination a{padding:7px 15px;background:#111827;color:#dce8ff;border-radius:8px;
-  font-weight:600;font-size:.9rem;border:1px solid rgba(255,255,255,.08)}
-.pagination a:hover{background:#1a2a4a;border-color:rgba(192,57,43,.4)}
-.pagination a.cur{background:#c0392b;color:#fff;border-color:#c0392b}
-.other-cats{margin:36px 0 0}
-.other-cats h2{font-size:1.1rem;font-weight:700;color:#4fa3ff;margin-bottom:12px}
-.other-cats div{display:flex;flex-wrap:wrap;gap:8px}
-.other-cats a{background:#111827;padding:6px 13px;border-radius:16px;font-size:.82rem;border:1px solid rgba(255,255,255,.07)}
-.other-cats a:hover{background:#1a2a4a}
-</style>
-<style id="nav-fix">
-.nav-toggle{display:none!important}
-#navMenu{
-  display:flex!important;
-  flex-wrap:nowrap!important;
-  overflow-x:auto!important;
-  -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
-  gap:4px;
-  padding:7px 12px!important;
-  list-style:none;
-  max-width:1280px;
-  margin:0 auto;
-  align-items:center;
-}
-#navMenu::-webkit-scrollbar{display:none}
-#navMenu li{flex-shrink:0}
-#navMenu a{
-  white-space:nowrap;
-  flex-shrink:0;
-  padding:5px 12px;
-  border-radius:20px;
-  font-size:.8rem;
-  font-weight:600;
-  color:rgba(255,255,255,.85);
-  border:1px solid transparent;
-}
-#navMenu a:hover,#navMenu a.active{
-  background:rgba(192,57,43,.35);
-  color:#fff;
-  border-color:rgba(192,57,43,.4);
-}
-</style>
+<!DOCTYPE html>
 
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Puzzle - Unblocked Games</title>
+<meta content="Puzzle unblocked games — train your brain with logic challenges, match tiles and mind-bending teasers. All free at school." name="description"/>
+<link href="https://unblockedgames-usa.github.io/categ/puzzle/" rel="canonical"/>
+<meta content="index,follow" name="robots"/>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
+<script>
+
+
+
+  window.dataLayer = window.dataLayer || [];
+
+
+
+  function gtag(){dataLayer.push(arguments);}
+
+
+
+  gtag('js', new Date());
+
+
+
+  gtag('config', 'G-L6FNHSMWF4');
+
+
+
+</script>
+<style>
+
+
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+
+
+html{scroll-behavior:smooth}
+
+
+
+body{font-family:system-ui,-apple-system,sans-serif;background:#0a0e1a;color:#dce8ff;line-height:1.6;min-height:100vh}
+
+
+
+a{color:inherit;text-decoration:none}
+
+
+
+img{display:block;max-width:100%}
+
+
+
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.site-footer{background:#060b18;border-top:2px solid #c0392b;padding:28px 16px;margin-top:48px;text-align:center}
+
+
+
+.footer-cats{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:14px}
+
+
+
+.footer-cats a{background:rgba(255,255,255,.07);padding:4px 11px;border-radius:16px;font-size:.78rem}
+
+
+
+.footer-cats a:hover{background:rgba(192,57,43,.3)}
+
+
+
+.footer-links{display:flex;gap:16px;justify-content:center;margin-bottom:10px;font-size:.82rem;opacity:.7;flex-wrap:wrap}
+
+
+
+.footer-links a:hover{opacity:1}
+
+
+
+.footer-copy{font-size:.75rem;opacity:.35}
+
+
+
+.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:16px 0}
+
+
+
+.game-card{display:flex;flex-direction:column;background:#111827;border-radius:10px;
+
+
+
+  overflow:hidden;border:1px solid rgba(255,255,255,.07);transition:transform .2s,box-shadow .2s,border-color .2s}
+
+
+
+.game-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.5);border-color:rgba(192,57,43,.4)}
+
+
+
+.game-card img{width:100%;height:110px;object-fit:cover}
+
+
+
+.game-card span{padding:7px 8px;font-size:.78rem;text-align:center;font-weight:500;line-height:1.3}
+
+
+
+
+
+
+
+  .main-nav ul.open{display:flex}
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+}
+
+
+
+@media(max-width:600px){
+
+
+
+  .games-grid{grid-template-columns:repeat(2,1fr)}
+
+
+
+  
+
+
+
+}
+
+
+
+
+
+
+
+/* ══ HEADER & NAV — canonical, mobile-first ══ */
+
+
+
+.site-header{
+
+
+
+  background:linear-gradient(90deg,#001a6e,#0d1f6e 40%,#1a0a2e 65%,#8b0000);
+
+
+
+  border-bottom:3px solid #c0392b;
+
+
+
+  position:sticky;top:0;z-index:100;
+
+
+
+  box-shadow:0 4px 20px rgba(0,0,0,.7);
+
+
+
+}
+
+
+
+.hdr-inner{
+
+
+
+  display:flex;align-items:center;gap:12px;
+
+
+
+  padding:10px 16px;max-width:1280px;margin:0 auto;
+
+
+
+}
+
+
+
+.logo{
+
+
+
+  font-weight:800;font-size:1.25rem;color:#fff;
+
+
+
+  white-space:nowrap;text-shadow:0 0 16px rgba(192,57,43,.7);flex-shrink:0;
+
+
+
+}
+
+
+
+.logo:hover{text-shadow:0 0 24px rgba(192,57,43,1)}
+
+
+
+.search-wrap{
+
+
+
+  display:flex;position:relative;margin-left:auto;
+
+
+
+}
+
+
+
+.search-wrap input{
+
+
+
+  padding:.4rem .9rem;
+
+
+
+  border:1px solid rgba(255,255,255,.15);
+
+
+
+  border-radius:20px 0 0 20px;
+
+
+
+  background:rgba(255,255,255,.12);color:#fff;
+
+
+
+  font-size:.88rem;width:180px;outline:none;
+
+
+
+}
+
+
+
+.search-wrap input::placeholder{color:rgba(255,255,255,.45)}
+
+
+
+.search-wrap input:focus{background:rgba(255,255,255,.2);width:220px;transition:width .2s}
+
+
+
+.search-wrap button{
+
+
+
+  background:#c0392b;color:#fff;border:none;
+
+
+
+  border-radius:0 20px 20px 0;padding:.4rem .9rem;
+
+
+
+  cursor:pointer;font-size:.9rem;flex-shrink:0;
+
+
+
+}
+
+
+
+
+
+
+
+/* Nav — always visible, scrolls horizontally on small screens */
+
+
+
+.nav-toggle{display:none!important}
+
+
+
+.main-nav{
+
+
+
+  background:linear-gradient(90deg,#001050,#0d1560 40%,#1a0825 70%,#500010);
+
+
+
+  border-top:1px solid rgba(255,255,255,.06);
+
+
+
+}
+
+
+
+.main-nav ul{
+
+
+
+  list-style:none;
+
+
+
+  display:flex!important;        /* always shown */
+
+
+
+  flex-wrap:nowrap;              /* single row */
+
+
+
+  overflow-x:auto;               /* scroll on mobile */
+
+
+
+  -webkit-overflow-scrolling:touch;
+
+
+
+  scrollbar-width:none;          /* hide scrollbar Firefox */
+
+
+
+  gap:4px;padding:7px 12px;
+
+
+
+  max-width:1280px;margin:0 auto;
+
+
+
+}
+
+
+
+.main-nav ul::-webkit-scrollbar{display:none}  /* hide scrollbar Chrome */
+
+
+
+.main-nav a{
+
+
+
+  color:rgba(255,255,255,.85);
+
+
+
+  padding:5px 12px;border-radius:20px;
+
+
+
+  font-size:.8rem;font-weight:600;
+
+
+
+  border:1px solid transparent;white-space:nowrap;
+
+
+
+  flex-shrink:0;
+
+
+
+  transition:background .15s,color .15s;
+
+
+
+}
+
+
+
+.main-nav a:hover,.main-nav a.active{
+
+
+
+  background:rgba(192,57,43,.35);color:#fff;
+
+
+
+  border-color:rgba(192,57,43,.4);
+
+
+
+}
+
+
+
+
+
+
+
+/* Search dropdown */
+
+
+
+#searchDrop{
+
+
+
+  position:absolute;top:calc(100% + 6px);left:0;right:0;
+
+
+
+  background:#0a1535;border:1px solid rgba(192,57,43,.3);
+
+
+
+  border-radius:10px;max-height:280px;overflow-y:auto;
+
+
+
+  z-index:300;display:none;box-shadow:0 8px 28px rgba(0,0,0,.8);
+
+
+
+}
+
+
+
+#searchDrop.open{display:block}
+
+
+
+#searchDrop a{
+
+
+
+  display:flex;align-items:center;gap:10px;padding:8px 12px;
+
+
+
+  border-bottom:1px solid rgba(255,255,255,.06);
+
+
+
+  font-size:.85rem;font-weight:600;
+
+
+
+}
+
+
+
+#searchDrop a:hover{background:rgba(192,57,43,.2);color:#fff}
+
+
+
+#searchDrop img{width:36px;height:26px;object-fit:cover;border-radius:4px;flex-shrink:0}
+
+
+
+#searchDrop .no-res{
+
+
+
+  padding:12px;color:rgba(255,255,255,.4);
+
+
+
+  text-align:center;font-size:.83rem;
+
+
+
+}
+
+
+
+
+
+
+
+/* Mobile tweaks */
+
+
+
+@media(max-width:600px){
+
+
+
+  .logo{font-size:1rem}
+
+
+
+  .hdr-inner{padding:8px 12px;gap:8px}
+
+
+
+  .search-wrap input{width:130px}
+
+
+
+  .search-wrap input:focus{width:160px}
+
+
+
+}
+
+
+
+/* ══ END HEADER & NAV ══ */
+
+
+
+</style><style>
+
+
+
+.categ-hero{text-align:center;padding:32px 16px 16px}
+
+
+
+.categ-hero h1{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:800;
+
+
+
+  background:linear-gradient(135deg,#4fa3ff,#ff4444);
+
+
+
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+
+
+.categ-hero p{color:rgba(255,255,255,.55);margin-top:8px}
+
+
+
+.pagination{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:28px 0}
+
+
+
+.pagination a{padding:7px 15px;background:#111827;color:#dce8ff;border-radius:8px;
+
+
+
+  font-weight:600;font-size:.9rem;border:1px solid rgba(255,255,255,.08)}
+
+
+
+.pagination a:hover{background:#1a2a4a;border-color:rgba(192,57,43,.4)}
+
+
+
+.pagination a.cur{background:#c0392b;color:#fff;border-color:#c0392b}
+
+
+
+.other-cats{margin:36px 0 0}
+
+
+
+.other-cats h2{font-size:1.1rem;font-weight:700;color:#4fa3ff;margin-bottom:12px}
+
+
+
+.other-cats div{display:flex;flex-wrap:wrap;gap:8px}
+
+
+
+.other-cats a{background:#111827;padding:6px 13px;border-radius:16px;font-size:.82rem;border:1px solid rgba(255,255,255,.07)}
+
+
+
+.other-cats a:hover{background:#1a2a4a}
+
+
+
+</style>
+<style id="nav-fix">
+
+
+
+.nav-toggle{display:none!important}
+
+
+
+#navMenu{
+
+
+
+  display:flex!important;
+
+
+
+  flex-wrap:nowrap!important;
+
+
+
+  overflow-x:auto!important;
+
+
+
+  -webkit-overflow-scrolling:touch;
+
+
+
+  scrollbar-width:none;
+
+
+
+  gap:4px;
+
+
+
+  padding:7px 12px!important;
+
+
+
+  list-style:none;
+
+
+
+  max-width:1280px;
+
+
+
+  margin:0 auto;
+
+
+
+  align-items:center;
+
+
+
+}
+
+
+
+#navMenu::-webkit-scrollbar{display:none}
+
+
+
+#navMenu li{flex-shrink:0}
+
+
+
+#navMenu a{
+
+
+
+  white-space:nowrap;
+
+
+
+  flex-shrink:0;
+
+
+
+  padding:5px 12px;
+
+
+
+  border-radius:20px;
+
+
+
+  font-size:.8rem;
+
+
+
+  font-weight:600;
+
+
+
+  color:rgba(255,255,255,.85);
+
+
+
+  border:1px solid transparent;
+
+
+
+}
+
+
+
+#navMenu a:hover,#navMenu a.active{
+
+
+
+  background:rgba(192,57,43,.35);
+
+
+
+  color:#fff;
+
+
+
+  border-color:rgba(192,57,43,.4);
+
+
+
+}
+
+
+
+</style>
 <style id="a11y-contrast-fix">
 /* ── Accessibility: footer contrast fix (WCAG AA) ── */
 .site-footer,
@@ -219,7 +806,8 @@ footer.site-footer {
 }
 .footer-copy,
 p.footer-copy {
-  color: #c8c8d0 !important;          /* light grey, ratio > 7:1 on #1a1a2e */
+  color: #ffffff !important;          /* light grey, ratio > 7:1 on #1a1a2e */
+  opacity: 1 !important;
 }
 .yr,
 span.yr {
@@ -227,7 +815,7 @@ span.yr {
 }
 .site-footer a,
 .footer-copy a {
-  color: #90caf9 !important;          /* accessible blue link on dark bg */
+  color: #ffffff !important;          /* accessible blue link on dark bg */
   text-decoration: underline;
 }
 .site-footer a:hover,
@@ -264,166 +852,276 @@ hr + .bottom-nav-bar { margin-top: 0 !important; }
 .bottom-nav-bar + footer,
 .bottom-nav-bar + .site-footer { margin-top: 0 !important; padding-top: 0 !important; }
 </style>
-</head>
-<body>
-<header class="site-header">
-<div class="wrap hdr-inner">
-<a class="logo" href="/">🎮 Unblocked Games USA</a>
-<div class="search-wrap">
-<input autocomplete="off" id="searchInput" placeholder="Search games…" type="text"/>
-<button aria-label="Search" id="searchBtn">🔍</button>
-</div>
-</div>
-<nav class="main-nav">
-<ul id="navMenu">
-<li><a href="/categ/shooter/">🎯 Shooter</a></li>
-<li><a href="/categ/platformer/">🏃 Platformer</a></li>
-<li><a href="/categ/2-player/">👥 2-Player</a></li>
-<li><a href="/categ/fighting/">🥊 Fighting</a></li>
-<li><a href="/categ/driving/">🚗 Driving</a></li>
-<li><a href="/categ/puzzle/">🧠 Puzzle</a></li>
-<li><a href="/categ/multiplayer/">🌐 Multiplayer</a></li>
-<li><a href="/categ/action/">💥 Action</a></li>
-<li><a href="/categ/skill/">🏆 Skill</a></li>
-<li><a href="/categ/adventure/">🗺️ Adventure</a></li>
-<li><a href="/categ/racing/">🏁 Racing</a></li>
-<li><a href="/categ/strategy/">♟️ Strategy</a></li>
-<li><a href="/categ/sports/">⚽ Sports</a></li>
-<li><a href="/categ/simulation/">🏙️ Simulation</a></li>
-<li><a href="/categ/clicker/">🖱️ Clicker</a></li>
-<li><a href="/categ/horror/">👻 Horror</a></li>
-<li><a href="/categ/kids/">🧸 Kids</a></li>
-</ul>
-</nav>
-</header>
-<div class="wrap">
-<div class="categ-hero">
-<h1>🧠 Puzzle Unblocked Games</h1>
-<p>93 free games — play instantly, no downloads needed</p>
-</div>
-<div class="games-grid">
-<a class="game-card" href="/2048/"><img alt="2048" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/2048.png" width="150"/><span>2048</span></a>
-<a class="game-card" href="/2048-multitask/"><img alt="2048 Multitask" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/2048-multitask.png" width="150"/><span>2048 Multitask</span></a>
-<a class="game-card" href="/2048-online/"><img alt="2048 Online" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/2048-online.png" width="150"/><span>2048 Online</span></a>
-<a class="game-card" href="/2048-suika/"><img alt="2048 Suika" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/2048-suika.png" width="150"/><span>2048 Suika</span></a>
-<a class="game-card" href="/2048-watermelon/"><img alt="2048 Watermelon" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/2048-watermelon.png" width="150"/><span>2048 Watermelon</span></a>
-<a class="game-card" href="/amazing-bubble-breaker/"><img alt="Amazing Bubble Breaker" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/amazing-bubble-breaker.png" width="150"/><span>Amazing Bubble Breaker</span></a>
-<a class="game-card" href="/amazing-bubble-connect/"><img alt="Amazing Bubble Connect" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/amazing-bubble-connect.png" width="150"/><span>Amazing Bubble Connect</span></a>
-<a class="game-card" href="/arithmetica/"><img alt="Arithmetica" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/arithmetica.png" width="150"/><span>Arithmetica</span></a>
-<a class="game-card" href="/blob-drop/"><img alt="Blob Drop" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/blob-drop.png" width="150"/><span>Blob Drop</span></a>
-<a class="game-card" href="/block-puzzle/"><img alt="Block Puzzle" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/block-puzzle.png" width="150"/><span>Block Puzzle</span></a>
-<a class="game-card" href="/block-the-pig/"><img alt="Block The Pig" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/block-the-pig.png" width="150"/><span>Block The Pig</span></a>
-<a class="game-card" href="/bloxorz/"><img alt="Bloxorz" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/bloxorz.png" width="150"/><span>Bloxorz</span></a>
-<a class="game-card" href="/blumgi-ball/"><img alt="Blumgi Ball" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/blumgi-ball.png" width="150"/><span>Blumgi Ball</span></a>
-<a class="game-card" href="/blumgi-bloom/"><img alt="Blumgi Bloom" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/blumgi-bloom.png" width="150"/><span>Blumgi Bloom</span></a>
-<a class="game-card" href="/boxrob/"><img alt="Boxrob" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/boxrob.png" width="150"/><span>Boxrob</span></a>
-<a class="game-card" href="/boxrob-2/"><img alt="Boxrob 2" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/boxrob-2.png" width="150"/><span>Boxrob 2</span></a>
-<a class="game-card" href="/boxrob-3/"><img alt="Boxrob 3" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/boxrob-3.png" width="150"/><span>Boxrob 3</span></a>
-<a class="game-card" href="/brain-test-2-tricky-stories/"><img alt="Brain Test 2 Tricky Stories" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/brain-test-2-tricky-stories.png" width="150"/><span>Brain Test 2 Tricky Stories</span></a>
-<a class="game-card" href="/brain-test-3-tricky-quests/"><img alt="Brain Test 3 Tricky Quests" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/brain-test-3-tricky-quests.png" width="150"/><span>Brain Test 3 Tricky Quests</span></a>
-<a class="game-card" href="/brain-test-tricky-puzzles/"><img alt="Brain Test Tricky Puzzles" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/brain-test-tricky-puzzles.png" width="150"/><span>Brain Test Tricky Puzzles</span></a>
-<a class="game-card" href="/bubble-shooter/"><img alt="Bubble Shooter" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/bubble-shooter.png" width="150"/><span>Bubble Shooter</span></a>
-<a class="game-card" href="/bubble-trouble/"><img alt="Bubble Trouble" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/bubble-trouble.png" width="150"/><span>Bubble Trouble</span></a>
-<a class="game-card" href="/bubble-trouble-3/"><img alt="Bubble Trouble 3" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/bubble-trouble-3.png" width="150"/><span>Bubble Trouble 3</span></a>
-<a class="game-card" href="/bubbles-cool/"><img alt="Bubbles Cool" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/bubbles-cool.png" width="150"/><span>Bubbles Cool</span></a>
-<a class="game-card" href="/cat-trap/"><img alt="Cat Trap" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/cat-trap.png" width="150"/><span>Cat Trap</span></a>
-<a class="game-card" href="/chicken-merge/"><img alt="Chicken Merge" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/chicken-merge.png" width="150"/><span>Chicken Merge</span></a>
-<a class="game-card" href="/chicky-farm/"><img alt="Chicky Farm" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/chicky-farm.png" width="150"/><span>Chicky Farm</span></a>
-<a class="game-card" href="/craftomation-1/"><img alt="Craftomation 1" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/craftomation-1.png" width="150"/><span>Craftomation 1</span></a>
-<a class="game-card" href="/cubes-king/"><img alt="Cubes King" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/cubes-king.png" width="150"/><span>Cubes King</span></a>
-<a class="game-card" href="/cubito-mayhem/"><img alt="Cubito Mayhem" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/cubito-mayhem.png" width="150"/><span>Cubito Mayhem</span></a>
-<a class="game-card" href="/detective-dan/"><img alt="Detective Dan" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/detective-dan.png" width="150"/><span>Detective Dan</span></a>
-<a class="game-card" href="/detective-loupe-puzzle/"><img alt="Detective Loupe Puzzle" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/detective-loupe-puzzle.png" width="150"/><span>Detective Loupe Puzzle</span></a>
-<a class="game-card" href="/doodle-champion-island/"><img alt="Doodle Champion Island" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/doodle-champion-island.png" width="150"/><span>Doodle Champion Island</span></a>
-<a class="game-card" href="/element-blocks/"><img alt="Element Blocks" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/element-blocks.png" width="150"/><span>Element Blocks</span></a>
-<a class="game-card" href="/factory-balls-forever/"><img alt="Factory Balls Forever" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/factory-balls-forever.png" width="150"/><span>Factory Balls Forever</span></a>
-<a class="game-card" href="/forgotten-hill-the-wardrobe/"><img alt="Forgotten Hill The Wardrobe" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/forgotten-hill-the-wardrobe.png" width="150"/><span>Forgotten Hill The Wardrobe</span></a>
-<a class="game-card" href="/forgotten-hill-the-wardrobe-3/"><img alt="Forgotten Hill The Wardrobe 3" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/forgotten-hill-the-wardrobe-3.png" width="150"/><span>Forgotten Hill The Wardrobe 3</span></a>
-<a class="game-card" href="/four-in-a-row/"><img alt="Four In A Row" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/four-in-a-row.png" width="150"/><span>Four In A Row</span></a>
-<a class="game-card" href="/free-the-key/"><img alt="Free The Key" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/free-the-key.png" width="150"/><span>Free The Key</span></a>
-<a class="game-card" href="/game-of-farmers/"><img alt="Game Of Farmers" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/game-of-farmers.png" width="150"/><span>Game Of Farmers</span></a>
-<a class="game-card" href="/grass-land/"><img alt="Grass Land" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/grass-land.png" width="150"/><span>Grass Land</span></a>
-<a class="game-card" href="/hextris/"><img alt="Hextris" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/hextris.png" width="150"/><span>Hextris</span></a>
-<a class="game-card" href="/infinity-loop/"><img alt="Infinity Loop" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/infinity-loop.png" width="150"/><span>Infinity Loop</span></a>
-<a class="game-card" href="/italian-brainrot-clicker/"><img alt="Italian Brainrot Clicker" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/italian-brainrot-clicker.png" width="150"/><span>Italian Brainrot Clicker</span></a>
-<a class="game-card" href="/ludo-hero/"><img alt="Ludo Hero" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/ludo-hero.png" width="150"/><span>Ludo Hero</span></a>
-<a class="game-card" href="/ludo-multiplayer/"><img alt="Ludo Multiplayer" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/ludo-multiplayer.png" width="150"/><span>Ludo Multiplayer</span></a>
-<a class="game-card" href="/master-checkers/"><img alt="Master Checkers" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/master-checkers.png" width="150"/><span>Master Checkers</span></a>
-<a class="game-card" href="/master-chess/"><img alt="Master Chess" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/master-chess.png" width="150"/><span>Master Chess</span></a>
-<a class="game-card" href="/maze-path-of-light/"><img alt="Maze Path Of Light" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/maze-path-of-light.png" width="150"/><span>Maze Path Of Light</span></a>
-<a class="game-card" href="/maze-planet-3d/"><img alt="Maze Planet 3d" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/maze-planet-3d.png" width="150"/><span>Maze Planet 3d</span></a>
-</div>
-<div class="pagination"><a class="cur" href="/categ/puzzle/">1</a><a href="/categ/puzzle-page-2/">2</a><a href="/categ/puzzle-page-2/">Next »</a></div>
-</div>
-
-<nav class="bottom-nav-bar" aria-label="Bottom category navigation">
-  <a href="https://unblockedgames-usa.github.io/categ/shooter/">🎯 Shooter</a>
-  <a href="https://unblockedgames-usa.github.io/categ/platformer/">🏃 Platformer</a>
-  <a href="https://unblockedgames-usa.github.io/categ/2-player/">👥 2-Player</a>
-  <a href="https://unblockedgames-usa.github.io/categ/fighting/">🥊 Fighting</a>
-  <a href="https://unblockedgames-usa.github.io/categ/driving/">🚗 Driving</a>
-  <a href="https://unblockedgames-usa.github.io/categ/puzzle/">🧠 Puzzle</a>
-  <a href="https://unblockedgames-usa.github.io/categ/multiplayer/">🌐 Multiplayer</a>
-  <a href="https://unblockedgames-usa.github.io/categ/action/">💥 Action</a>
-  <a href="https://unblockedgames-usa.github.io/categ/skill/">🏆 Skill</a>
-  <a href="https://unblockedgames-usa.github.io/categ/adventure/">🗺️ Adventure</a>
-  <a href="https://unblockedgames-usa.github.io/categ/racing/">🏁 Racing</a>
-  <a href="https://unblockedgames-usa.github.io/categ/strategy/">♟️ Strategy</a>
-  <a href="https://unblockedgames-usa.github.io/categ/sports/">⚽ Sports</a>
-  <a href="https://unblockedgames-usa.github.io/categ/simulation/">🏙️ Simulation</a>
-  <a href="https://unblockedgames-usa.github.io/categ/clicker/">🖱️ Clicker</a>
-  <a href="https://unblockedgames-usa.github.io/categ/horror/">👻 Horror</a>
-  <a href="https://unblockedgames-usa.github.io/categ/kids/">🧸 Kids</a>
+<link href="/favicon.png" rel="icon" type="image/png"/><link href="/favicon.png" rel="shortcut icon"/><link href="/favicon.png" rel="apple-touch-icon"/><meta content="website" property="og:type"/><meta content="Unblocked Games USA" property="og:site_name"/><meta content="Puzzle - Unblocked Games" property="og:title"/><meta content="Puzzle unblocked games — train your brain with logic challenges, match tiles and mind-bending teasers. All free at school." property="og:description"/><meta content="https://unblockedgames-usa.github.io/categ/puzzle/" property="og:url"/><meta content="https://unblockedgames-usa.github.io/favicon.png" property="og:image"/></head>
+<body>
+<header class="site-header">
+<div class="wrap hdr-inner">
+<a class="logo" href="/">🎮 Unblocked Games USA</a>
+<div class="search-wrap">
+<input autocomplete="off" id="searchInput" placeholder="Search games…" type="text"/>
+<button aria-label="Search" id="searchBtn">🔍</button>
+</div>
+</div>
+<nav class="main-nav">
+<ul id="navMenu">
+<li><a href="/categ/shooter/">🎯 Shooter</a></li>
+<li><a href="/categ/platformer/">🏃 Platformer</a></li>
+<li><a href="/categ/2-player/">👥 2-Player</a></li>
+<li><a href="/categ/fighting/">🥊 Fighting</a></li>
+<li><a href="/categ/driving/">🚗 Driving</a></li>
+<li><a href="/categ/puzzle/">🧠 Puzzle</a></li>
+<li><a href="/categ/multiplayer/">🌐 Multiplayer</a></li>
+<li><a href="/categ/action/">💥 Action</a></li>
+<li><a href="/categ/skill/">🏆 Skill</a></li>
+<li><a href="/categ/adventure/">🗺️ Adventure</a></li>
+<li><a href="/categ/racing/">🏁 Racing</a></li>
+<li><a href="/categ/strategy/">♟️ Strategy</a></li>
+<li><a href="/categ/sports/">⚽ Sports</a></li>
+<li><a href="/categ/simulation/">🏙️ Simulation</a></li>
+<li><a href="/categ/clicker/">🖱️ Clicker</a></li>
+<li><a href="/categ/horror/">👻 Horror</a></li>
+<li><a href="/categ/kids/">🧸 Kids</a></li>
+</ul>
 </nav>
-<footer class="site-footer">
-<div class="wrap">
-<div class="footer-links">
-<a href="/privacy-policy">Privacy Policy</a>
-<a href="/contact">Contact Us</a>
-<a href="/faq">FAQ</a>
-<a href="/dmca">DMCA</a>
-</div>
-<p class="footer-copy">© <span class="yr"></span> Unblocked Games USA. All rights reserved.</p>
-</div>
-</footer>
-<script>document.querySelectorAll('.yr').forEach(e=>e.textContent=new Date().getFullYear());</script>
-<script>
-document.getElementById('navToggle')?.addEventListener('click',()=>
-  document.getElementById('navMenu')?.classList.toggle('open'));
-(function(){
-  var inp=document.getElementById('searchInput');
-  var drop=document.getElementById('searchDrop');
-  var btn=document.getElementById('searchBtn');
-  if(!inp||!drop)return;
-  var _games=null;
-  function loadGames(cb){
-    if(_games)return cb(_games);
-    fetch('/search-index.json').then(r=>r.json()).then(d=>{_games=d;cb(d);}).catch(()=>cb([]));
-  }
-  function close(){drop.classList.remove('open');drop.innerHTML='';}
-  inp.addEventListener('input',function(){
-    var q=this.value.trim();
-    if(!q){close();return;}
-    loadGames(function(games){
-      var t=q.toLowerCase();
-      var res=games.filter(g=>g.title.toLowerCase().includes(t)||g.slug.replace(/-/g,' ').includes(t)).slice(0,8);
-      if(!res.length){
-        drop.innerHTML='<div class="no-res">No results for "'+q+'"</div>';
-      } else {
-        drop.innerHTML=res.map(g=>
-          '<a href="/'+g.slug+'"><img src="'+g.image+'" alt="'+g.title+'" loading="lazy"><span>'+g.title+'</span></a>'
-        ).join('');
-      }
-      drop.classList.add('open');
-    });
-  });
-  inp.addEventListener('keydown',function(e){
-    if(e.key==='Enter'){var q=inp.value.trim();if(q){close();window.location='/?q='+encodeURIComponent(q);}}
-    if(e.key==='Escape')close();
-  });
-  btn.addEventListener('click',function(){var q=inp.value.trim();if(q){close();window.location='/?q='+encodeURIComponent(q);}});
-  document.addEventListener('click',function(e){if(!e.target.closest('.search-wrap'))close();});
-})();
-</script>
-</body>
+</header>
+<div class="wrap">
+<div class="categ-hero">
+<h1>🧠 Puzzle Unblocked Games</h1>
+<p>93 free games — play instantly, no downloads needed</p>
+</div>
+<div class="games-grid">
+<a class="game-card" href="/2048/"><img alt="2048" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/2048.png" width="150"/><span>2048</span></a>
+<a class="game-card" href="/2048-multitask/"><img alt="2048 Multitask" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/2048-multitask.png" width="150"/><span>2048 Multitask</span></a>
+<a class="game-card" href="/2048-online/"><img alt="2048 Online" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/2048-online.png" width="150"/><span>2048 Online</span></a>
+<a class="game-card" href="/2048-suika/"><img alt="2048 Suika" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/2048-suika.png" width="150"/><span>2048 Suika</span></a>
+<a class="game-card" href="/2048-watermelon/"><img alt="2048 Watermelon" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/2048-watermelon.png" width="150"/><span>2048 Watermelon</span></a>
+<a class="game-card" href="/amazing-bubble-breaker/"><img alt="Amazing Bubble Breaker" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/amazing-bubble-breaker.png" width="150"/><span>Amazing Bubble Breaker</span></a>
+<a class="game-card" href="/amazing-bubble-connect/"><img alt="Amazing Bubble Connect" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/amazing-bubble-connect.png" width="150"/><span>Amazing Bubble Connect</span></a>
+<a class="game-card" href="/arithmetica/"><img alt="Arithmetica" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/arithmetica.png" width="150"/><span>Arithmetica</span></a>
+<a class="game-card" href="/blob-drop/"><img alt="Blob Drop" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/blob-drop.png" width="150"/><span>Blob Drop</span></a>
+<a class="game-card" href="/block-puzzle/"><img alt="Block Puzzle" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/block-puzzle.png" width="150"/><span>Block Puzzle</span></a>
+<a class="game-card" href="/block-the-pig/"><img alt="Block The Pig" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/block-the-pig.png" width="150"/><span>Block The Pig</span></a>
+<a class="game-card" href="/bloxorz/"><img alt="Bloxorz" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/bloxorz.png" width="150"/><span>Bloxorz</span></a>
+<a class="game-card" href="/blumgi-ball/"><img alt="Blumgi Ball" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/blumgi-ball.png" width="150"/><span>Blumgi Ball</span></a>
+<a class="game-card" href="/blumgi-bloom/"><img alt="Blumgi Bloom" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/blumgi-bloom.png" width="150"/><span>Blumgi Bloom</span></a>
+<a class="game-card" href="/boxrob/"><img alt="Boxrob" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/boxrob.png" width="150"/><span>Boxrob</span></a>
+<a class="game-card" href="/boxrob-2/"><img alt="Boxrob 2" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/boxrob-2.png" width="150"/><span>Boxrob 2</span></a>
+<a class="game-card" href="/boxrob-3/"><img alt="Boxrob 3" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/boxrob-3.png" width="150"/><span>Boxrob 3</span></a>
+<a class="game-card" href="/brain-test-2-tricky-stories/"><img alt="Brain Test 2 Tricky Stories" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/brain-test-2-tricky-stories.png" width="150"/><span>Brain Test 2 Tricky Stories</span></a>
+<a class="game-card" href="/brain-test-3-tricky-quests/"><img alt="Brain Test 3 Tricky Quests" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/brain-test-3-tricky-quests.png" width="150"/><span>Brain Test 3 Tricky Quests</span></a>
+<a class="game-card" href="/brain-test-tricky-puzzles/"><img alt="Brain Test Tricky Puzzles" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/brain-test-tricky-puzzles.png" width="150"/><span>Brain Test Tricky Puzzles</span></a>
+<a class="game-card" href="/bubble-shooter/"><img alt="Bubble Shooter" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/bubble-shooter.png" width="150"/><span>Bubble Shooter</span></a>
+<a class="game-card" href="/bubble-trouble/"><img alt="Bubble Trouble" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/bubble-trouble.png" width="150"/><span>Bubble Trouble</span></a>
+<a class="game-card" href="/bubble-trouble-3/"><img alt="Bubble Trouble 3" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/bubble-trouble-3.png" width="150"/><span>Bubble Trouble 3</span></a>
+<a class="game-card" href="/bubbles-cool/"><img alt="Bubbles Cool" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/bubbles-cool.png" width="150"/><span>Bubbles Cool</span></a>
+<a class="game-card" href="/cat-trap/"><img alt="Cat Trap" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/cat-trap.png" width="150"/><span>Cat Trap</span></a>
+<a class="game-card" href="/chicken-merge/"><img alt="Chicken Merge" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/chicken-merge.png" width="150"/><span>Chicken Merge</span></a>
+<a class="game-card" href="/chicky-farm/"><img alt="Chicky Farm" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/chicky-farm.png" width="150"/><span>Chicky Farm</span></a>
+<a class="game-card" href="/craftomation-1/"><img alt="Craftomation 1" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/craftomation-1.png" width="150"/><span>Craftomation 1</span></a>
+<a class="game-card" href="/cubes-king/"><img alt="Cubes King" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/cubes-king.png" width="150"/><span>Cubes King</span></a>
+<a class="game-card" href="/cubito-mayhem/"><img alt="Cubito Mayhem" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/cubito-mayhem.png" width="150"/><span>Cubito Mayhem</span></a>
+<a class="game-card" href="/detective-dan/"><img alt="Detective Dan" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/detective-dan.png" width="150"/><span>Detective Dan</span></a>
+<a class="game-card" href="/detective-loupe-puzzle/"><img alt="Detective Loupe Puzzle" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/detective-loupe-puzzle.png" width="150"/><span>Detective Loupe Puzzle</span></a>
+<a class="game-card" href="/doodle-champion-island/"><img alt="Doodle Champion Island" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/doodle-champion-island.png" width="150"/><span>Doodle Champion Island</span></a>
+<a class="game-card" href="/element-blocks/"><img alt="Element Blocks" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/element-blocks.png" width="150"/><span>Element Blocks</span></a>
+<a class="game-card" href="/factory-balls-forever/"><img alt="Factory Balls Forever" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/factory-balls-forever.png" width="150"/><span>Factory Balls Forever</span></a>
+<a class="game-card" href="/forgotten-hill-the-wardrobe/"><img alt="Forgotten Hill The Wardrobe" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/forgotten-hill-the-wardrobe.png" width="150"/><span>Forgotten Hill The Wardrobe</span></a>
+<a class="game-card" href="/forgotten-hill-the-wardrobe-3/"><img alt="Forgotten Hill The Wardrobe 3" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/forgotten-hill-the-wardrobe-3.png" width="150"/><span>Forgotten Hill The Wardrobe 3</span></a>
+<a class="game-card" href="/four-in-a-row/"><img alt="Four In A Row" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/four-in-a-row.png" width="150"/><span>Four In A Row</span></a>
+<a class="game-card" href="/free-the-key/"><img alt="Free The Key" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/free-the-key.png" width="150"/><span>Free The Key</span></a>
+<a class="game-card" href="/game-of-farmers/"><img alt="Game Of Farmers" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/game-of-farmers.png" width="150"/><span>Game Of Farmers</span></a>
+<a class="game-card" href="/grass-land/"><img alt="Grass Land" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/grass-land.png" width="150"/><span>Grass Land</span></a>
+<a class="game-card" href="/hextris/"><img alt="Hextris" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/hextris.png" width="150"/><span>Hextris</span></a>
+<a class="game-card" href="/infinity-loop/"><img alt="Infinity Loop" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/infinity-loop.png" width="150"/><span>Infinity Loop</span></a>
+<a class="game-card" href="/italian-brainrot-clicker/"><img alt="Italian Brainrot Clicker" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/italian-brainrot-clicker.png" width="150"/><span>Italian Brainrot Clicker</span></a>
+<a class="game-card" href="/ludo-hero/"><img alt="Ludo Hero" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/ludo-hero.png" width="150"/><span>Ludo Hero</span></a>
+<a class="game-card" href="/ludo-multiplayer/"><img alt="Ludo Multiplayer" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/ludo-multiplayer.png" width="150"/><span>Ludo Multiplayer</span></a>
+<a class="game-card" href="/master-checkers/"><img alt="Master Checkers" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/master-checkers.png" width="150"/><span>Master Checkers</span></a>
+<a class="game-card" href="/master-chess/"><img alt="Master Chess" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/master-chess.png" width="150"/><span>Master Chess</span></a>
+<a class="game-card" href="/maze-path-of-light/"><img alt="Maze Path Of Light" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/maze-path-of-light.png" width="150"/><span>Maze Path Of Light</span></a>
+<a class="game-card" href="/maze-planet-3d/"><img alt="Maze Planet 3d" height="110" loading="lazy" src="https://unblockedgames-usa.github.io/images/maze-planet-3d.png" width="150"/><span>Maze Planet 3d</span></a>
+</div>
+<div class="pagination"><a class="cur" href="/categ/puzzle/">1</a><a href="/categ/puzzle-page-2/">2</a><a href="/categ/puzzle-page-2/">Next »</a></div>
+</div>
+<nav aria-label="Bottom category navigation" class="bottom-nav-bar">
+<a href="https://unblockedgames-usa.github.io/categ/shooter/">🎯 Shooter</a>
+<a href="https://unblockedgames-usa.github.io/categ/platformer/">🏃 Platformer</a>
+<a href="https://unblockedgames-usa.github.io/categ/2-player/">👥 2-Player</a>
+<a href="https://unblockedgames-usa.github.io/categ/fighting/">🥊 Fighting</a>
+<a href="https://unblockedgames-usa.github.io/categ/driving/">🚗 Driving</a>
+<a href="https://unblockedgames-usa.github.io/categ/puzzle/">🧠 Puzzle</a>
+<a href="https://unblockedgames-usa.github.io/categ/multiplayer/">🌐 Multiplayer</a>
+<a href="https://unblockedgames-usa.github.io/categ/action/">💥 Action</a>
+<a href="https://unblockedgames-usa.github.io/categ/skill/">🏆 Skill</a>
+<a href="https://unblockedgames-usa.github.io/categ/adventure/">🗺️ Adventure</a>
+<a href="https://unblockedgames-usa.github.io/categ/racing/">🏁 Racing</a>
+<a href="https://unblockedgames-usa.github.io/categ/strategy/">♟️ Strategy</a>
+<a href="https://unblockedgames-usa.github.io/categ/sports/">⚽ Sports</a>
+<a href="https://unblockedgames-usa.github.io/categ/simulation/">🏙️ Simulation</a>
+<a href="https://unblockedgames-usa.github.io/categ/clicker/">🖱️ Clicker</a>
+<a href="https://unblockedgames-usa.github.io/categ/horror/">👻 Horror</a>
+<a href="https://unblockedgames-usa.github.io/categ/kids/">🧸 Kids</a>
+</nav>
+<footer class="site-footer">
+<div class="wrap">
+<div class="footer-links">
+<a href="/privacy-policy">Privacy Policy</a>
+<a href="/contact">Contact Us</a>
+<a href="/faq">FAQ</a>
+<a href="/dmca">DMCA</a>
+</div>
+<p class="footer-copy" style="color:#ffffff;opacity:1">© <span class="yr"></span> Unblocked Games USA. All rights reserved.</p>
+</div>
+</footer>
+<script>document.querySelectorAll('.yr').forEach(e=>e.textContent=new Date().getFullYear());</script>
+<script>
+
+
+
+document.getElementById('navToggle')?.addEventListener('click',()=>
+
+
+
+  document.getElementById('navMenu')?.classList.toggle('open'));
+
+
+
+(function(){
+
+
+
+  var inp=document.getElementById('searchInput');
+
+
+
+  var drop=document.getElementById('searchDrop');
+
+
+
+  var btn=document.getElementById('searchBtn');
+
+
+
+  if(!inp||!drop)return;
+
+
+
+  var _games=null;
+
+
+
+  function loadGames(cb){
+
+
+
+    if(_games)return cb(_games);
+
+
+
+    fetch('/search-index.json').then(r=>r.json()).then(d=>{_games=d;cb(d);}).catch(()=>cb([]));
+
+
+
+  }
+
+
+
+  function close(){drop.classList.remove('open');drop.innerHTML='';}
+
+
+
+  inp.addEventListener('input',function(){
+
+
+
+    var q=this.value.trim();
+
+
+
+    if(!q){close();return;}
+
+
+
+    loadGames(function(games){
+
+
+
+      var t=q.toLowerCase();
+
+
+
+      var res=games.filter(g=>g.title.toLowerCase().includes(t)||g.slug.replace(/-/g,' ').includes(t)).slice(0,8);
+
+
+
+      if(!res.length){
+
+
+
+        drop.innerHTML='<div class="no-res">No results for "'+q+'"</div>';
+
+
+
+      } else {
+
+
+
+        drop.innerHTML=res.map(g=>
+
+
+
+          '<a href="/'+g.slug+'"><img src="'+g.image+'" alt="'+g.title+'" loading="lazy"><span>'+g.title+'</span></a>'
+
+
+
+        ).join('');
+
+
+
+      }
+
+
+
+      drop.classList.add('open');
+
+
+
+    });
+
+
+
+  });
+
+
+
+  inp.addEventListener('keydown',function(e){
+
+
+
+    if(e.key==='Enter'){var q=inp.value.trim();if(q){close();window.location='/?q='+encodeURIComponent(q);}}
+
+
+
+    if(e.key==='Escape')close();
+
+
+
+  });
+
+
+
+  btn.addEventListener('click',function(){var q=inp.value.trim();if(q){close();window.location='/?q='+encodeURIComponent(q);}});
+
+
+
+  document.addEventListener('click',function(e){if(!e.target.closest('.search-wrap'))close();});
+
+
+
+})();
+
+
+
+</script>
+</body>
 </html>
