@@ -1,4 +1,4 @@
-/* Word Guess — daily five-letter word game.
+/* Wordle — daily five-letter word game.
    Vanilla JS, no build step. Progress is stored in this browser only (no accounts).
    */
 (() => {

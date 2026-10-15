@@ -383,7 +383,7 @@ def home_page():
       <section class="panel home-about" aria-labelledby="aboutTitle">
         <h2 id="aboutTitle">Free online games that run in your browser</h2>
         <p>Unblocked Games USA is a library of {len(games)} free browser games. Every game has its own page with a short guide, controls, tips and answers to common questions, so you know what to expect before you press play.</p>
-        <p>Looking for something to try? Start with {cats_links}, or open the <a href="/games/">A–Z list</a> of every game. Word puzzle fans can try <a href="/game/word-guess/">Word Guess, an unlimited Wordle alternative</a> or browse more <a href="/games-like-wordle/">games like Wordle</a>. There are no downloads or installs, and games run on desktop, tablet and phone browsers, though availability can depend on your network.</p>
+        <p>Looking for something to try? Start with {cats_links}, or open the <a href="/games/">A–Z list</a> of every game. Word puzzle fans can try <a href="/game/word-guess/">Wordle, a free unlimited Wordle game</a> or browse more <a href="/games-like-wordle/">games like Wordle</a>. There are no downloads or installs, and games run on desktop, tablet and phone browsers, though availability can depend on your network.</p>
       </section>
     </div>
   </main>
@@ -399,10 +399,10 @@ def wordle_hub_page():
     wg = next(x for x in games if x["id"] == "word-guess")
     others = [x for x in by_cat["word"] if x["id"] != "word-guess"]
     title = f"Games Like Wordle: Free Word Games Online | {BRAND}"
-    desc = f"Looking for games like Wordle? Play Word Guess, a free unlimited Wordle alternative, plus {len(others)} more word games in your browser. No sign-up, no download."
+    desc = f"Looking for games like Wordle? Play Wordle, a free unlimited Wordle game, plus {len(others)} more word games in your browser. No sign-up, no download."
     faqs = [
-      ["What are the best games like Wordle?", f"Word Guess is our unlimited Wordle alternative: guess a hidden five-letter word in six tries, with a daily puzzle and endless practice rounds. If you want other word challenges, this page also lists {len(others)} more free word games, from word searches to letter puzzles."],
-      ["Is there an unlimited Wordle?", "The official Wordle by The New York Times gives one puzzle per day. Word Guess is an independent Wordle-style game with an Unlimited mode, so you can play as many random five-letter words as you like."],
+      ["What are the best games like Wordle?", f"Wordle is our free unlimited Wordle game: guess a hidden five-letter word in six tries, with a daily puzzle and endless practice rounds. If you want other word challenges, this page also lists {len(others)} more free word games, from word searches to letter puzzles."],
+      ["Is there an unlimited Wordle?", "The official Wordle by The New York Times gives one puzzle per day. Our Wordle is an independent Wordle-style game with an Unlimited mode, so you can play as many random five-letter words as you like."],
       ["Are these games official Wordle?", "No. The games on this page are independent and are not affiliated with or endorsed by The New York Times or Wordle. The official game is at nytimes.com/games/wordle."],
       ["Do I need an account or a download?", "No. Every game runs in your browser, with no sign-up and no install."],
       ["Can I play these at school or work?", "They are ordinary web pages, but whether they open depends on the filter on your network. We cannot guarantee access on every school or work network."],
@@ -418,14 +418,14 @@ def wordle_hub_page():
     body = f'''  <main id="main" class="container container--wide game-page">
     {crumb_html}
     <header class="cat-head panel"><h1>Games Like Wordle: Free Word Games to Play Online</h1>
-      <p class="lead">Love guessing a hidden word in a few tries? These free browser games scratch the same itch. Start with Word Guess, our unlimited Wordle alternative, then try more word puzzles. Everything runs in your browser with no sign-up and no download.</p></header>
+      <p class="lead">Love guessing a hidden word in a few tries? These free browser games scratch the same itch. Start with Wordle, our free unlimited Wordle game, then try more word puzzles. Everything runs in your browser with no sign-up and no download.</p></header>
     <section class="panel hub-feature" aria-labelledby="hubFeat">
-      <a class="hub-feature-img" href="/game/word-guess/"><img src="/{wg['poster']}" alt="Word Guess, a free unlimited Wordle alternative" width="300" height="300" loading="eager" decoding="async" /></a>
+      <a class="hub-feature-img" href="/game/word-guess/"><img src="/{wg['poster']}" alt="Wordle, a free unlimited Wordle game" width="300" height="300" loading="eager" decoding="async" /></a>
       <div>
-        <h2 id="hubFeat">Word Guess: the unlimited Wordle alternative</h2>
+        <h2 id="hubFeat">Wordle: the free unlimited Wordle game</h2>
         <p>Find the hidden five-letter word in six tries. Green, yellow and grey tiles show how close each guess is. There is a daily puzzle, an Unlimited mode for endless practice, hard mode, a colour-blind palette and shareable results, and no account is needed.</p>
         <ul class="ticks"><li>Daily puzzle plus unlimited random words</li><li>Over 12,900 accepted words</li><li>Works on desktop, tablet and phone</li></ul>
-        <p><a class="btn btn-primary" href="/game/word-guess/">Play Word Guess</a></p>
+        <p><a class="btn btn-primary" href="/game/word-guess/">Play Wordle</a></p>
       </div>
     </section>
     <section class="shelf" aria-labelledby="hubMore"><div class="shelf-head"><h2 id="hubMore">More free word games</h2><a class="shelf-link" href="/category/word/">All word games ›</a></div>
@@ -433,11 +433,11 @@ def wordle_hub_page():
     </section>
     <section class="panel" aria-labelledby="hubChoose"><h2 id="hubChoose">How to choose a word game</h2>
       <ul class="ticks">
-        <li>Want the classic five-letter guessing format? Play Word Guess, with a daily puzzle and unlimited practice.</li>
+        <li>Want the classic five-letter guessing format? Play Wordle, with a daily puzzle and unlimited practice.</li>
         <li>Want to train spelling and vocabulary? Browse the other word games above and open any page for its short guide and controls.</li>
         <li>Short on time? Every game loads in your browser in seconds, so you can try a few and keep the ones you like.</li>
       </ul>
-      <p>Looking for the official daily puzzle? It lives at <a href="https://www.nytimes.com/games/wordle/index.html" rel="noopener">nytimes.com/games/wordle</a>. Word Guess and the other games here are independent and not affiliated with The New York Times.</p></section>
+      <p>Looking for the official daily puzzle? It lives at <a href="https://www.nytimes.com/games/wordle/index.html" rel="noopener">nytimes.com/games/wordle</a>. Our Wordle and the other games here are independent and not affiliated with The New York Times.</p></section>
     <section class="panel" aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
       {"".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in faqs)}</section>
     {ad()}

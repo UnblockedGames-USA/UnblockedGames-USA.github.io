@@ -168,7 +168,7 @@ section[aria-labelledby^="l-"] h2 { font-family: var(--font-display); }
 @media (max-width: 639px) { .player-frame--tall { height: clamp(520px, 80vh, 700px); } }
 .player-frame--tall .play-poster img { object-position: 50% 30%; }
 
-/* Word Guess data panels and Wordle hub */
+/* Wordle game data panels and Wordle hub */
 .freq { list-style: none; padding: 0; margin: var(--space-4) 0; display: grid; gap: 8px; }
 .freq li { display: grid; grid-template-columns: 2ch 1fr 4ch; align-items: center; gap: 12px; font-weight: 700; }
 .freq-l { font-family: 'Fredoka', sans-serif; letter-spacing: .04em; }

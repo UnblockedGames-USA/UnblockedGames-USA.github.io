@@ -1,7 +1,7 @@
 [
  {
   "id": "word-guess",
-  "title": "Word Guess",
+  "title": "Wordle",
   "categories": [
    "word",
    "puzzle"
@@ -9,8 +9,8 @@
   "image": "images/word-guess.jpg",
   "embedUrl": "local/word-guess/index.html",
   "frame": "tall",
-  "metaDescription": "Play Word Guess, a free unlimited Wordle alternative. Guess the hidden 5-letter word in 6 tries, daily or unlimited. No sign-up, no download.",
-  "description": "Word Guess is a free, unlimited Wordle alternative that runs in your browser. A secret five-letter word is hidden and you have six tries to find it. After every guess the tiles change colour to show which letters are in the right place, which are in the word but in the wrong place, and which are not in the word at all. There is a new daily puzzle for everyone, plus an Unlimited mode so you can keep playing as many rounds as you like. Word Guess is an independent game and is not affiliated with The New York Times or Wordle.",
+  "metaDescription": "Play Wordle, a free, independent Wordle-style game. Guess five-letter words in six tries with daily and unlimited modes. No sign-up or download.",
+  "description": "Wordle is a free, unlimited Wordle game that runs in your browser. A secret five-letter word is hidden and you have six tries to find it. After every guess the tiles change colour to show which letters are in the right place, which are in the word but in the wrong place, and which are not in the word at all. There is a new daily puzzle for everyone, plus an Unlimited mode so you can keep playing as many rounds as you like. This Wordle is an independent game and is not affiliated with The New York Times.",
   "howToPlay": [
    "Press Play Now and type any real five-letter word, using your keyboard or the on-screen keys, then press Enter.",
    "Green means the letter is correct and in the right spot. Yellow means the letter is in the word but in a different spot. Grey means the letter is not in the word.",
@@ -39,22 +39,22 @@
   "faq": [
    [
     "Is there an unlimited Wordle?",
-    "Word Guess is a free Wordle-style game with an Unlimited mode. Switch to the Unlimited tab for as many random five-letter words as you like. The official Wordle from The New York Times has one puzzle a day, and Word Guess is a separate, independent game."
+    "This Wordle is a free Wordle-style game with an Unlimited mode. Switch to the Unlimited tab for as many random five-letter words as you like. The official Wordle from The New York Times has one puzzle a day, and this Wordle is a separate, independent game."
    ],
    [
-    "Is Word Guess a good Wordle alternative?",
-    "If you like Wordle, you already know how to play. You get six tries to find a five-letter word, with green, yellow and grey tiles, plus extras: unlimited rounds, hard mode, a colour-blind palette and shareable results. It needs no account."
+    "Is this the official Wordle?",
+    "No. This is a free, independent Wordle-style game, but if you like Wordle you already know how to play. You get six tries to find a five-letter word, with green, yellow and grey tiles, plus unlimited rounds, hard mode, a colour-blind palette and shareable results. It needs no account."
    ],
    [
     "Can I play Wordle-style games unblocked at school or work?",
-    "Word Guess is an ordinary web page with nothing to install. Whether it opens depends on the filter on your school or work network, so we cannot promise it will load everywhere."
+    "This Wordle is an ordinary web page with nothing to install. Whether it opens depends on the filter on your school or work network, so we cannot promise it will load everywhere."
    ],
    [
     "What is the best starting word?",
     "Based on the answers in this game, ALERT, LATER, IRATE, AROSE and STARE share letters with the most answers. Any opener with common letters such as E, A, R, O and T and different vowels is a good choice."
    ],
    [
-    "How do you play Word Guess?",
+    "How do you play Wordle?",
     "You have six tries to guess a hidden five-letter word. After each guess the letters turn green if they are in the right spot, yellow if they are in the word but in the wrong spot, and grey if they are not in the word."
    ],
    [
@@ -66,8 +66,8 @@
     "Yes. Switch to Unlimited mode at the top of the game for as many random words as you like. Unlimited games do not change your daily statistics or streak."
    ],
    [
-    "Is Word Guess the same as Wordle?",
-    "It is an independent word puzzle in the same genre. Word Guess is not affiliated with, endorsed by or connected to The New York Times or Wordle, and it has its own design, word handling and daily schedule."
+    "Is this Wordle affiliated with The New York Times?",
+    "No. It is an independent word puzzle in the same genre. This Wordle is not affiliated with, endorsed by or connected to The New York Times, and it has its own design, word handling and daily schedule."
    ],
    [
     "Do I need an account, and are my stats saved?",
@@ -82,29 +82,29 @@
     "Every guess must be a valid five-letter English word from the game's word list of almost 13,000 words. Names, abbreviations and very unusual words may be rejected."
    ],
    [
-    "Is Word Guess free to play?",
+    "Is Wordle free to play?",
     "Yes. It is completely free, runs in your browser and needs no download, installation or sign-up."
    ]
   ],
   "poster": "images/word-guess-poster.jpg",
-  "seoTitle": "Unlimited Wordle Alternative \u2013 Word Guess | Unblocked Games USA",
-  "h1": "Word Guess \u2013 Unlimited Wordle Alternative",
-  "alt": "Word Guess, a free unlimited Wordle alternative: guess the hidden five-letter word",
+  "seoTitle": "Wordle \u2013 Free Unlimited Wordle Game | Unblocked Games USA",
+  "h1": "Wordle \u2013 Free Unlimited Wordle Game",
+  "alt": "Wordle, a free unlimited Wordle game: guess the hidden five-letter word",
   "sections": [
    {
     "id": "unlimited",
     "h2": "Wordle-style play: daily puzzle or unlimited",
-    "html": "<p>The official Wordle gives you one puzzle a day. Word Guess keeps that familiar format and adds a choice. Use the Daily tab for the shared puzzle of the day, which is the same for every player, or switch to the Unlimited tab for a fresh random word the moment you finish the last one.</p><p>Unlimited rounds never touch your daily streak, so you can practise new starting words and strategies freely. Hard mode, dark and light themes and a colour-blind palette are in Settings, and nothing needs an account.</p>"
+    "html": "<p>The official Wordle gives you one puzzle a day. This Wordle keeps that familiar format and adds a choice. Use the Daily tab for the shared puzzle of the day, which is the same for every player, or switch to the Unlimited tab for a fresh random word the moment you finish the last one.</p><p>Unlimited rounds never touch your daily streak, so you can practise new starting words and strategies freely. Hard mode, dark and light themes and a colour-blind palette are in Settings, and nothing needs an account.</p>"
    },
    {
     "id": "starters",
-    "h2": "Best starting words for Word Guess",
+    "h2": "Best starting words for Wordle",
     "html": "<p>We counted the letters across the 2,315 puzzle answers in this game and ranked every answer with five different letters by how many answers share its letters. These openers came out on top:</p><ul class=\"starter-list\" aria-label=\"Top starting words\"><li>ALERT</li><li>LATER</li><li>IRATE</li><li>AROSE</li><li>STARE</li><li>RAISE</li><li>ARISE</li><li>LEARN</li></ul><p>Pick one opener, then use your second guess to test fresh letters rather than repeating yellow ones in the same spot.</p>"
    },
    {
     "id": "letters",
     "h2": "Which letters appear most often",
-    "html": "<p>Share of the 2,315 Word Guess answers that contain each letter at least once:</p><ul class=\"freq\" aria-label=\"Letter frequency\"><li><span class=\"freq-l\">E</span><span class=\"bar\"><i style=\"width:100%\"></i></span><span class=\"freq-p\">46%</span></li><li><span class=\"freq-l\">A</span><span class=\"bar\"><i style=\"width:86%\"></i></span><span class=\"freq-p\">39%</span></li><li><span class=\"freq-l\">R</span><span class=\"bar\"><i style=\"width:79%\"></i></span><span class=\"freq-p\">36%</span></li><li><span class=\"freq-l\">O</span><span class=\"bar\"><i style=\"width:64%\"></i></span><span class=\"freq-p\">29%</span></li><li><span class=\"freq-l\">T</span><span class=\"bar\"><i style=\"width:63%\"></i></span><span class=\"freq-p\">29%</span></li><li><span class=\"freq-l\">L</span><span class=\"bar\"><i style=\"width:61%\"></i></span><span class=\"freq-p\">28%</span></li><li><span class=\"freq-l\">I</span><span class=\"bar\"><i style=\"width:61%\"></i></span><span class=\"freq-p\">28%</span></li><li><span class=\"freq-l\">S</span><span class=\"bar\"><i style=\"width:59%\"></i></span><span class=\"freq-p\">27%</span></li><li><span class=\"freq-l\">N</span><span class=\"bar\"><i style=\"width:52%\"></i></span><span class=\"freq-p\">24%</span></li><li><span class=\"freq-l\">U</span><span class=\"bar\"><i style=\"width:43%\"></i></span><span class=\"freq-p\">20%</span></li><li><span class=\"freq-l\">C</span><span class=\"bar\"><i style=\"width:42%\"></i></span><span class=\"freq-p\">19%</span></li><li><span class=\"freq-l\">Y</span><span class=\"bar\"><i style=\"width:39%\"></i></span><span class=\"freq-p\">18%</span></li></ul><ul class=\"ticks\"><li>Most common first letters: S (16%), C (9%), B (7%), T (6%), P (6%).</li><li>Most common last letters: E (18%), Y (16%), T (11%), R (9%), L (7%).</li><li>About 32% of answers repeat at least one letter, so do not rule out doubles.</li><li>About 58% of answers contain exactly two vowels.</li></ul>"
+    "html": "<p>Share of the 2,315 Wordle answers that contain each letter at least once:</p><ul class=\"freq\" aria-label=\"Letter frequency\"><li><span class=\"freq-l\">E</span><span class=\"bar\"><i style=\"width:100%\"></i></span><span class=\"freq-p\">46%</span></li><li><span class=\"freq-l\">A</span><span class=\"bar\"><i style=\"width:86%\"></i></span><span class=\"freq-p\">39%</span></li><li><span class=\"freq-l\">R</span><span class=\"bar\"><i style=\"width:79%\"></i></span><span class=\"freq-p\">36%</span></li><li><span class=\"freq-l\">O</span><span class=\"bar\"><i style=\"width:64%\"></i></span><span class=\"freq-p\">29%</span></li><li><span class=\"freq-l\">T</span><span class=\"bar\"><i style=\"width:63%\"></i></span><span class=\"freq-p\">29%</span></li><li><span class=\"freq-l\">L</span><span class=\"bar\"><i style=\"width:61%\"></i></span><span class=\"freq-p\">28%</span></li><li><span class=\"freq-l\">I</span><span class=\"bar\"><i style=\"width:61%\"></i></span><span class=\"freq-p\">28%</span></li><li><span class=\"freq-l\">S</span><span class=\"bar\"><i style=\"width:59%\"></i></span><span class=\"freq-p\">27%</span></li><li><span class=\"freq-l\">N</span><span class=\"bar\"><i style=\"width:52%\"></i></span><span class=\"freq-p\">24%</span></li><li><span class=\"freq-l\">U</span><span class=\"bar\"><i style=\"width:43%\"></i></span><span class=\"freq-p\">20%</span></li><li><span class=\"freq-l\">C</span><span class=\"bar\"><i style=\"width:42%\"></i></span><span class=\"freq-p\">19%</span></li><li><span class=\"freq-l\">Y</span><span class=\"bar\"><i style=\"width:39%\"></i></span><span class=\"freq-p\">18%</span></li></ul><ul class=\"ticks\"><li>Most common first letters: S (16%), C (9%), B (7%), T (6%), P (6%).</li><li>Most common last letters: E (18%), Y (16%), T (11%), R (9%), L (7%).</li><li>About 32% of answers repeat at least one letter, so do not rule out doubles.</li><li>About 58% of answers contain exactly two vowels.</li></ul>"
    },
    {
     "id": "similar",
