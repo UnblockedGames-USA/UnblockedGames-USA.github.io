@@ -135,7 +135,7 @@
     li.style.listStyle = 'none';
     var a = document.createElement('a');
     a.className = 'game-card';
-    a.href = 'game.html?id=' + encodeURIComponent(g.id);
+    a.href = '/game/' + g.id.replace(/-+/g, '-').replace(/^-|-$/g, '') + '/';
     a.setAttribute('aria-label', 'Play ' + g.title);
 
     var img = document.createElement('img');
@@ -275,7 +275,7 @@
     items.forEach(function (g, i) {
       var a = document.createElement('a');
       a.className = 'suggest-item';
-      a.href = 'game.html?id=' + encodeURIComponent(g.id);
+      a.href = '/game/' + g.id.replace(/-+/g, '-').replace(/^-|-$/g, '') + '/';
       a.setAttribute('role', 'option');
       var img = document.createElement('img');
       img.src = g.image;
