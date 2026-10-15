@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Play — Unblocked Games USA</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <!-- ============================================================
+       ADSENSE — uncomment the line below when you are ready to show ads.
+       Your publisher ID is already filled in (from your live ads.txt).
+       Keep ads.txt in the repo root — it is included in this ZIP with
+       the exact same content as your current site.
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4672956141931257" crossorigin="anonymous"></script>
+  -->
+  <!-- Google Analytics (carried over from your previous site) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-L6FNHSMWF4');
+  </script>
+  <link rel="stylesheet" href="assets/base.css" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#player">Skip to game</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="Unblocked Games USA — home">
+        <svg class="brand-mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect x="2" y="2" width="28" height="28" rx="7" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M12 10.5v11l9-5.5-9-5.5z" fill="currentColor"/>
+          <rect x="20.5" y="21" width="3" height="3" fill="currentColor"/>
+          <rect x="24.5" y="21" width="3" height="3" fill="currentColor" opacity=".45"/>
+        </svg>
+        <span class="brand-name">Unblocked<span class="brand-accent">Games</span></span>
+      </a>
+      <div class="header-spacer"></div>
+      <button class="icon-btn" data-theme-toggle aria-label="Switch to light mode" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container game-page">
+    <a class="back-link" href="./">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg>
+      All games
+    </a>
+
+    <div id="gameContent">
+      <div class="game-head">
+        <h1 id="gameTitle">Loading game…</h1>
+        <div class="game-meta" id="gameBadges"></div>
+      </div>
+
+      <div class="player" id="player">
+        <div class="player-frame" id="playerFrame">
+          <div class="player-skeleton" id="playerSkeleton">
+            <div class="skeleton-bar"></div>
+          </div>
+        </div>
+        <div class="player-bar">
+          <p class="player-hint">Click the game to focus it. If the keyboard stops responding inside the game, click the game area once.</p>
+          <div class="player-actions">
+            <button class="btn btn-ghost" id="reloadBtn" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6"/></svg>
+              Restart
+            </button>
+            <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M8 21H3v-5m13 5h5v-5"/></svg>
+              Expand
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <section class="related" id="related" aria-labelledby="relatedTitle">
+        <h2 id="relatedTitle">More games</h2>
+        <ul class="game-grid game-grid--related" id="relatedGrid"></ul>
+      </section>
+    </div>
+
+    <div class="empty-state" id="gameNotFound" hidden>
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M17 8V6a5 5 0 0 0-10 0v2"/></svg>
+      <h3>Game not found</h3>
+      <p>That game may have been removed or the link is mistyped.</p>
+      <a class="btn btn-primary" href="./">Back to all games</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Unblocked Games USA — free browser games, always.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/game.js?v=3" defer></script>
+</body>
+</html>
