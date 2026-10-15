@@ -33,9 +33,46 @@
       notFound.querySelector('p').textContent = 'The game catalog could not be loaded. Check data/games.json.';
     });
 
+  /* SEO helpers */
+  function setMeta(name, content) {
+    var m = document.querySelector('meta[name="' + name + '"]') ||
+            document.createElement('meta');
+    m.setAttribute('name', name);
+    m.setAttribute('content', content);
+    if (!m.parentNode) document.head.appendChild(m);
+  }
+  function setOG(prop, content) {
+    var m = document.querySelector('meta[property="' + prop + '"]') ||
+            document.createElement('meta');
+    m.setAttribute('property', prop);
+    m.setAttribute('content', content);
+    if (!m.parentNode) document.head.appendChild(m);
+  }
+
   function init(game, games) {
     document.title = game.title + ' — Play Free | Unblocked Games USA';
     titleEl.textContent = game.title;
+
+    /* dynamic SEO: meta description + Open Graph */
+    var desc = 'Play ' + game.title + ' free in your browser. No download, no sign-up — part of ' + games.length + ' free games on Unblocked Games USA.';
+    setMeta('description', desc);
+    setOG('og:title', game.title + ' — Play Free');
+    setOG('og:description', desc);
+    setOG('og:url', 'https://unblockedgames-usa.github.io/game.html?id=' + game.id);
+    setOG('og:image', new URL(game.image, location.href).href);
+
+    /* JSON-LD for the game */
+    var ld = document.createElement('script');
+    ld.type = 'application/ld+json';
+    ld.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'VideoGame',
+      'name': game.title,
+      'genre': game.categories || [],
+      'playMode': 'SinglePlayer',
+      'url': location.href
+    });
+    document.head.appendChild(ld);
 
     (game.categories || []).forEach(function (c) {
       var chip = document.createElement('span');
@@ -130,6 +167,29 @@
     li.appendChild(a);
     return li;
   }
+
+  /* ---- burger menu ---- */
+  (function () {
+    var menuBtn = document.getElementById('menuBtn');
+    var menuClose = document.getElementById('menuClose');
+    var menuPanel = document.getElementById('menuPanel');
+    var menuBackdrop = document.getElementById('menuBackdrop');
+    if (!menuBtn || !menuPanel) return;
+
+    function openMenu(open) {
+      menuPanel.hidden = !open;
+      menuBackdrop.hidden = !open;
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    menuBtn.addEventListener('click', function () { openMenu(true); });
+    menuClose.addEventListener('click', function () { openMenu(false); });
+    menuBackdrop.addEventListener('click', function () { openMenu(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !menuPanel.hidden) openMenu(false);
+    });
+  })();
 
   /* theme toggle (shared behavior) */
   var toggle = document.querySelector('[data-theme-toggle]');

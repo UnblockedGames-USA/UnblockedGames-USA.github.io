@@ -1,0 +1,57 @@
+/* Legal pages (DMCA, Privacy, Terms) */
+.legal-page {
+  max-width: 760px;
+  padding-block: var(--space-10) var(--space-16);
+}
+.legal-page h1 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+.legal-updated {
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+  margin-bottom: var(--space-6);
+}
+.legal-page h2 {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-3);
+}
+.legal-page p {
+  color: var(--color-text-muted);
+}
+.legal-page p strong {
+  color: var(--color-text);
+}
+.legal-list {
+  margin: var(--space-3) 0 var(--space-4) var(--space-6);
+  color: var(--color-text-muted);
+  display: grid;
+  gap: var(--space-2);
+}
+.legal-list li::marker {
+  color: var(--color-primary);
+}
+.legal-contact {
+  background: color-mix(in oklab, var(--color-primary) 12%, transparent);
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-sm);
+}
+.legal-page a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.footer-legal {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+.footer-legal a {
+  color: var(--color-text-muted);
+}
+.footer-legal a:hover {
+  color: var(--color-primary);
+}

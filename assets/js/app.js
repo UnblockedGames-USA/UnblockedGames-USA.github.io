@@ -22,6 +22,15 @@
   fetch('data/games.json')
     .then(function (r) { return r.json(); })
     .then(function (data) {
+      initMenu();
+
+      /* support ?q= search links (used by the JSON-LD SearchAction) */
+      var urlQ = new URLSearchParams(window.location.search).get('q');
+      if (urlQ) {
+        searchInput.value = urlQ;
+        query = urlQ;
+        searchInput.focus();
+      }
       games = data;
       /* keep visible counts in sync with the catalog */
       var n = games.length;
@@ -203,23 +212,6 @@
 
   /* ---- search ---- */
   var debounce;
-  searchInput.addEventListener('input', function () {
-    clearTimeout(debounce);
-    debounce = setTimeout(function () {
-      query = searchInput.value;
-      applyFilters();
-    }, 120);
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === '/' && document.activeElement !== searchInput) {
-      e.preventDefault();
-      searchInput.focus();
-    }
-    if (e.key === 'Escape' && document.activeElement === searchInput) {
-      searchInput.blur();
-    }
-  });
 
   clearBtn.addEventListener('click', function () {
     searchInput.value = '';
@@ -229,6 +221,130 @@
       el.setAttribute('aria-pressed', el === chipsWrap.firstChild ? 'true' : 'false');
     });
     applyFilters();
+  });
+
+  /* ---- burger menu ---- */
+  function initMenu() {
+    var menuBtn = document.getElementById('menuBtn');
+    var menuClose = document.getElementById('menuClose');
+    var menuPanel = document.getElementById('menuPanel');
+    var menuBackdrop = document.getElementById('menuBackdrop');
+    if (!menuBtn || !menuPanel) return;
+
+    function openMenu(open) {
+      menuPanel.hidden = !open;
+      menuBackdrop.hidden = !open;
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    menuBtn.addEventListener('click', function () { openMenu(true); });
+    menuClose.addEventListener('click', function () { openMenu(false); });
+    menuBackdrop.addEventListener('click', function () { openMenu(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !menuPanel.hidden) openMenu(false);
+    });
+
+    /* category shortcuts inside the menu activate the matching chip */
+    menuPanel.querySelectorAll('[data-menu-category]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        openMenu(false);
+        var cat = link.getAttribute('data-menu-category');
+        var chip = Array.prototype.find.call(
+          chipsWrap.querySelectorAll('.chip'),
+          function (c) { return c.textContent.toLowerCase().indexOf(cat) === 0; }
+        );
+        if (chip) chip.click();
+      });
+    });
+  }
+
+  /* ---- live search suggestions ---- */
+  var suggestWrap = document.createElement('div');
+  suggestWrap.className = 'search-suggest';
+  suggestWrap.setAttribute('role', 'listbox');
+  suggestWrap.hidden = true;
+  var headerSearch = document.querySelector('.header-search');
+  headerSearch.appendChild(suggestWrap);
+  var suggestIndex = -1;
+
+  function renderSuggestions(items) {
+    suggestWrap.innerHTML = '';
+    if (!items.length) { suggestWrap.hidden = true; return; }
+    suggestIndex = -1;
+    items.forEach(function (g, i) {
+      var a = document.createElement('a');
+      a.className = 'suggest-item';
+      a.href = 'game.html?id=' + encodeURIComponent(g.id);
+      a.setAttribute('role', 'option');
+      var img = document.createElement('img');
+      img.src = g.image;
+      img.alt = '';
+      img.loading = 'lazy';
+      var span = document.createElement('span');
+      span.textContent = g.title;
+      a.appendChild(img);
+      a.appendChild(span);
+      suggestWrap.appendChild(a);
+    });
+    suggestWrap.hidden = false;
+  }
+
+  function updateSuggestions() {
+    var q = searchInput.value.trim().toLowerCase();
+    if (!q || !games.length) { suggestWrap.hidden = true; return; }
+    var hits = games.filter(function (g) {
+      return (g.title || '').toLowerCase().indexOf(q) !== -1 || g.id.indexOf(q) !== -1;
+    }).slice(0, 6);
+    renderSuggestions(hits);
+  }
+
+  function moveSuggest(dir) {
+    var items = suggestWrap.querySelectorAll('.suggest-item');
+    if (!items.length) return;
+    suggestIndex = (suggestIndex + dir + items.length) % items.length;
+    items.forEach(function (el, i) {
+      el.classList.toggle('active', i === suggestIndex);
+      if (i === suggestIndex) el.setAttribute('aria-selected', 'true');
+      else el.removeAttribute('aria-selected');
+    });
+  }
+
+  searchInput.addEventListener('input', function () {
+    clearTimeout(debounce);
+    debounce = setTimeout(function () {
+      query = searchInput.value;
+      applyFilters();
+      updateSuggestions();
+    }, 120);
+  });
+
+  searchInput.addEventListener('keydown', function (e) {
+    if (!suggestWrap.hidden) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); moveSuggest(1); return; }
+      if (e.key === 'ArrowUp') { e.preventDefault(); moveSuggest(-1); return; }
+      if (e.key === 'Enter' && suggestIndex >= 0) {
+        e.preventDefault();
+        suggestWrap.querySelectorAll('.suggest-item')[suggestIndex].click();
+        return;
+      }
+    }
+    if (e.key === 'Escape') {
+      suggestWrap.hidden = true;
+      searchInput.blur();
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!headerSearch.contains(e.target)) suggestWrap.hidden = true;
+  });
+
+  /* '/' focuses search from anywhere on the page */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === '/' && document.activeElement !== searchInput) {
+      e.preventDefault();
+      searchInput.focus();
+    }
   });
 
   /* ---- theme toggle ---- */
