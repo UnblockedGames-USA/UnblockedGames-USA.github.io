@@ -9,7 +9,10 @@ Reads data/games.json and writes:
   sitemap.xml, game.html (redirect for old ?id= links)
 Optional per-game fields in data/games.json (they override the generic copy):
   frame ("tall" = portrait-friendly player for word/puzzle games), poster (square image shown before Play),
-  description, howToPlay (list), controls (string), tips (list), features (list), faq ([[q,a],...])
+  description, howToPlay (list), controls (string), tips (list), features (list), faq ([[q,a],...]),
+  seoTitle (title tag override), h1 (visible heading override), alt (poster alt text),
+  sections ([{id, h2, html}, ...] extra content panels shown before the FAQ)
+Also writes /games-like-wordle/ (hub page listing the site's word games).
 """
 import json, re, os, html, hashlib, datetime, shutil, sys
 sys.path.insert(0, os.path.dirname(__file__))
@@ -88,7 +91,7 @@ def head(title, desc, canonical, og_image=None, og_type="website", ld=(), robots
   <link rel="stylesheet" href="/assets/base.css" />
   <link rel="stylesheet" href="/assets/style.css" />
   <link rel="stylesheet" href="/assets/seo.css?v=2" />
-  <link rel="stylesheet" href="/assets/fun.css?v=3" />
+  <link rel="stylesheet" href="/assets/fun.css?v=4" />
 </head>
 '''
 
@@ -100,6 +103,7 @@ def cat_bar(active=None):
 def header_nav(active=None):
     items = [f'<li><a href="/">{svg("home")}Home</a></li>', f'<li><a href="/games/">{svg("grid")}All games A–Z</a></li>']
     items += [f'<li><a href="/category/{c}/">{svg("tag")}{esc(cat(c)["label"])}</a></li>' for c in cat_order if len(by_cat[c]) > 1]
+    items += [f'<li><a href="/games-like-wordle/">{svg("tag")}Games like Wordle</a></li>']
     items += [f'<li><a href="/about%20us.html">{svg("info")}About us</a></li>', f'<li><a href="/dmca.html">{svg("info")}DMCA</a></li>',
               f'<li><a href="/privacy-policy.html">{svg("info")}Privacy policy</a></li>', f'<li><a href="/terms.html">{svg("info")}Terms of use</a></li>']
     return f'''<body>
@@ -132,7 +136,7 @@ def footer():
     cats = " ".join(f'<a href="/category/{c}/">{esc(cat(c)["label"])}</a>' for c in cat_order if len(by_cat[c]) > 1)
     return f'''  <footer class="site-footer">
     <div class="container footer-inner">
-      <nav class="footer-cats" aria-label="Game categories"><strong>Categories:</strong> {cats} <a href="/games/">All games A–Z</a></nav>
+      <nav class="footer-cats" aria-label="Game categories"><strong>Categories:</strong> {cats} <a href="/games-like-wordle/">Games like Wordle</a> <a href="/games/">All games A–Z</a></nav>
       <p>{BRAND} — free browser games, always.</p>
       <nav class="footer-legal" aria-label="Legal">
         <a href="/about%20us.html">About</a><a href="/dmca.html">DMCA</a><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a>
@@ -182,6 +186,8 @@ def game_page(g):
     seo_title = f"{t} – Play Free {genre} Game Online | {BRAND}"
     if len(seo_title) > 66: seo_title = f"{t} – Play Free Online | {BRAND}"
     if len(seo_title) > 66: seo_title = trunc(f"{t} – Play Free Online", 66)
+    seo_title = g.get("seoTitle") or seo_title
+    h1 = g.get("h1") or t
     desc = g.get("metaDescription") or trunc(g.get("description") or f"Play {t} free online in your browser. No download, no sign-up. {an(low).capitalize()} {low} game on {BRAND}: instant play on desktop, tablet and mobile.", 158)
     img = abs_url(g["image"])
     intro_variants = [
@@ -203,6 +209,7 @@ def game_page(g):
       [f"{t} will not load. What should I do?", "Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network."],
       list(c0["faq"]),
     ]
+    extra_secs = "".join(f'<section class="panel" aria-labelledby="sec-{x["id"]}"><h2 id="sec-{x["id"]}">{esc(x["h2"])}</h2>{x["html"]}</section>' for x in g.get("sections", []))
     crumb_html, crumb_ld = breadcrumb([("Home", "/"), (f"{genre} Games", f"/category/{g['primary']}/"), (t, f"/game/{slug}/")])
     ld = [
       {"@context": "https://schema.org", "@type": "VideoGame", "name": t, "url": url, "image": img, "description": desc,
@@ -225,14 +232,14 @@ def game_page(g):
     <div class="play-layout">
       <div class="play-main">
         <div class="game-head">
-          <h1>{esc(t)}</h1>
+          <h1>{esc(h1)}</h1>
           <div class="game-meta">{chips}</div>
         </div>
 
         <section class="player" id="player" aria-label="Play {esc(t, quote=True)}">
           <div class="player-frame{' player-frame--tall' if g.get('frame') == 'tall' else ''}" id="playerFrame" data-embed="{esc(embed, quote=True)}" data-title="{esc(t, quote=True)}">
             <button class="play-poster" id="playBtn" type="button" aria-label="Play {esc(t, quote=True)} now">
-              <img src="/{g.get('poster') or g['image']}" alt="Play {esc(t, quote=True)} online free — {low} game" width="{'640' if not g.get('poster') else '900'}" height="{'360' if not g.get('poster') else '900'}" fetchpriority="high" decoding="async" />
+              <img src="/{g.get('poster') or g['image']}" alt="{esc(g.get('alt') or f'Play {t} online free — {low} game', quote=True)}" width="{'640' if not g.get('poster') else '900'}" height="{'360' if not g.get('poster') else '900'}" fetchpriority="high" decoding="async" />
               <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
             </button>
             <noscript><p class="noscript-note">Please enable JavaScript to play {esc(t)}.</p></noscript>
@@ -258,6 +265,7 @@ def game_page(g):
             <ul class="ticks">{"".join(f"<li>{esc(s)}</li>" for s in tips)}</ul></section>
           <section class="panel" aria-labelledby="features"><h2 id="features">Features</h2>
             <ul class="ticks">{"".join(f"<li>{esc(s)}</li>" for s in feats)}</ul></section>
+          {extra_secs}
           <section class="panel" aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
             {"".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in faqs)}</section>
         </article>
@@ -306,7 +314,7 @@ def category_page(c):
     body = f'''  <main id="main" class="container container--wide game-page">
     {crumb_html}
     <header class="cat-head panel"><h1><span aria-hidden="true">{EMOJI.get(c, "🎮")}</span> {esc(info["h1"])}</h1><p class="lead">{esc(info["intro"])}</p>
-      <p class="lead">{len(items)} {esc(label.lower())} games, all free, all in your browser, on desktop, tablet and mobile.</p></header>
+      <p class="lead">{len(items)} {esc(label.lower())} games, all free, all in your browser, on desktop, tablet and mobile.{' Fans of five-letter guessing games should see our <a href="/games-like-wordle/">games like Wordle</a> page.' if c == 'word' else ''}</p></header>
     {grid(items)}
     {ad()}
   </main>
@@ -375,7 +383,7 @@ def home_page():
       <section class="panel home-about" aria-labelledby="aboutTitle">
         <h2 id="aboutTitle">Free online games that run in your browser</h2>
         <p>Unblocked Games USA is a library of {len(games)} free browser games. Every game has its own page with a short guide, controls, tips and answers to common questions, so you know what to expect before you press play.</p>
-        <p>Looking for something to try? Start with {cats_links}, or open the <a href="/games/">A–Z list</a> of every game. There are no downloads or installs, and games run on desktop, tablet and phone browsers, though availability can depend on your network.</p>
+        <p>Looking for something to try? Start with {cats_links}, or open the <a href="/games/">A–Z list</a> of every game. Word puzzle fans can try <a href="/game/word-guess/">Word Guess, an unlimited Wordle alternative</a> or browse more <a href="/games-like-wordle/">games like Wordle</a>. There are no downloads or installs, and games run on desktop, tablet and phone browsers, though availability can depend on your network.</p>
       </section>
     </div>
   </main>
@@ -384,12 +392,66 @@ def home_page():
                 f"Play {len(games)} free browser games instantly. No downloads, no sign-ups. Action, racing, puzzle, arcade, sports and more — works right in your browser.",
                 url, og_image=f"{SITE}/images/basketball-superstars.jpg", ld=ld) + header_nav("home") + body + footer()
 
+
+# ---------- Wordle-style hub ----------
+def wordle_hub_page():
+    url = f"{SITE}/games-like-wordle/"
+    wg = next(x for x in games if x["id"] == "word-guess")
+    others = [x for x in by_cat["word"] if x["id"] != "word-guess"]
+    title = f"Games Like Wordle: Free Word Games Online | {BRAND}"
+    desc = f"Looking for games like Wordle? Play Word Guess, a free unlimited Wordle alternative, plus {len(others)} more word games in your browser. No sign-up, no download."
+    faqs = [
+      ["What are the best games like Wordle?", f"Word Guess is our unlimited Wordle alternative: guess a hidden five-letter word in six tries, with a daily puzzle and endless practice rounds. If you want other word challenges, this page also lists {len(others)} more free word games, from word searches to letter puzzles."],
+      ["Is there an unlimited Wordle?", "The official Wordle by The New York Times gives one puzzle per day. Word Guess is an independent Wordle-style game with an Unlimited mode, so you can play as many random five-letter words as you like."],
+      ["Are these games official Wordle?", "No. The games on this page are independent and are not affiliated with or endorsed by The New York Times or Wordle. The official game is at nytimes.com/games/wordle."],
+      ["Do I need an account or a download?", "No. Every game runs in your browser, with no sign-up and no install."],
+      ["Can I play these at school or work?", "They are ordinary web pages, but whether they open depends on the filter on your network. We cannot guarantee access on every school or work network."],
+    ]
+    crumb_html, crumb_ld = breadcrumb([("Home", "/"), ("Games Like Wordle", "/games-like-wordle/")])
+    ld = [crumb_ld,
+      {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Games Like Wordle", "url": url, "description": desc,
+       "isPartOf": {"@type": "WebSite", "name": BRAND, "url": SITE + "/"}},
+      {"@context": "https://schema.org", "@type": "ItemList", "numberOfItems": len(others) + 1, "itemListElement": [
+          {"@type": "ListItem", "position": i + 1, "url": f"{SITE}/game/{x['slug']}/", "name": x["title"]} for i, x in enumerate([wg] + others)]},
+      {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+          {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]}]
+    body = f'''  <main id="main" class="container container--wide game-page">
+    {crumb_html}
+    <header class="cat-head panel"><h1>Games Like Wordle: Free Word Games to Play Online</h1>
+      <p class="lead">Love guessing a hidden word in a few tries? These free browser games scratch the same itch. Start with Word Guess, our unlimited Wordle alternative, then try more word puzzles. Everything runs in your browser with no sign-up and no download.</p></header>
+    <section class="panel hub-feature" aria-labelledby="hubFeat">
+      <a class="hub-feature-img" href="/game/word-guess/"><img src="/{wg['poster']}" alt="Word Guess, a free unlimited Wordle alternative" width="300" height="300" loading="eager" decoding="async" /></a>
+      <div>
+        <h2 id="hubFeat">Word Guess: the unlimited Wordle alternative</h2>
+        <p>Find the hidden five-letter word in six tries. Green, yellow and grey tiles show how close each guess is. There is a daily puzzle, an Unlimited mode for endless practice, hard mode, a colour-blind palette and shareable results, and no account is needed.</p>
+        <ul class="ticks"><li>Daily puzzle plus unlimited random words</li><li>Over 12,900 accepted words</li><li>Works on desktop, tablet and phone</li></ul>
+        <p><a class="btn btn-primary" href="/game/word-guess/">Play Word Guess</a></p>
+      </div>
+    </section>
+    <section class="shelf" aria-labelledby="hubMore"><div class="shelf-head"><h2 id="hubMore">More free word games</h2><a class="shelf-link" href="/category/word/">All word games ›</a></div>
+      {grid(others)}
+    </section>
+    <section class="panel" aria-labelledby="hubChoose"><h2 id="hubChoose">How to choose a word game</h2>
+      <ul class="ticks">
+        <li>Want the classic five-letter guessing format? Play Word Guess, with a daily puzzle and unlimited practice.</li>
+        <li>Want to train spelling and vocabulary? Browse the other word games above and open any page for its short guide and controls.</li>
+        <li>Short on time? Every game loads in your browser in seconds, so you can try a few and keep the ones you like.</li>
+      </ul>
+      <p>Looking for the official daily puzzle? It lives at <a href="https://www.nytimes.com/games/wordle/index.html" rel="noopener">nytimes.com/games/wordle</a>. Word Guess and the other games here are independent and not affiliated with The New York Times.</p></section>
+    <section class="panel" aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
+      {"".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in faqs)}</section>
+    {ad()}
+  </main>
+'''
+    return head(title, desc, url, og_image=abs_url(wg["image"]), ld=ld) + header_nav("word") + body + footer()
+
 # ---------- build ----------
-for d in ("game", "category", "games"):
+for d in ("game", "category", "games", "games-like-wordle"):
     shutil.rmtree(os.path.join(ROOT, d), ignore_errors=True)
 for g in games: write(f"game/{g['slug']}/index.html", game_page(g))
 for c in cat_order: write(f"category/{c}/index.html", category_page(c))
 write("games/index.html", index_page())
+write("games-like-wordle/index.html", wordle_hub_page())
 write("index.html", home_page())
 
 # old ?id= links -> new URLs (GitHub Pages cannot 301)
@@ -398,7 +460,7 @@ write("game.html", f'''<!DOCTYPE html><html lang="en"><head><meta charset="utf-8
 <noscript><meta http-equiv="refresh" content="0; url=/" /></noscript></head><body><p>Redirecting to <a href="/">{BRAND}</a>…</p></body></html>
 ''')
 
-urls = [(SITE + "/", "1.0", "daily"), (SITE + "/games/", "0.8", "weekly")]
+urls = [(SITE + "/", "1.0", "daily"), (SITE + "/games/", "0.8", "weekly"), (SITE + "/games-like-wordle/", "0.9", "weekly")]
 urls += [(f"{SITE}/category/{c}/", "0.8", "weekly") for c in cat_order]
 urls += [(f"{SITE}/game/{g['slug']}/", "0.7", "monthly") for g in games]
 urls += [(f"{SITE}/{p}", "0.3", "yearly") for p in ("about%20us.html", "dmca.html", "privacy-policy.html", "terms.html")]

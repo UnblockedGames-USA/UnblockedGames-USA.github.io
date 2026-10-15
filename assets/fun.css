@@ -167,3 +167,17 @@ section[aria-labelledby^="l-"] h2 { font-family: var(--font-display); }
 .player-frame--tall { aspect-ratio: auto; height: clamp(560px, 82vh, 780px); }
 @media (max-width: 639px) { .player-frame--tall { height: clamp(520px, 80vh, 700px); } }
 .player-frame--tall .play-poster img { object-position: 50% 30%; }
+
+/* Word Guess data panels and Wordle hub */
+.freq { list-style: none; padding: 0; margin: var(--space-4) 0; display: grid; gap: 8px; }
+.freq li { display: grid; grid-template-columns: 2ch 1fr 4ch; align-items: center; gap: 12px; font-weight: 700; }
+.freq-l { font-family: 'Fredoka', sans-serif; letter-spacing: .04em; }
+.freq-p { text-align: right; font-variant-numeric: tabular-nums; color: var(--color-text-muted, inherit); }
+.freq .bar { height: 14px; border-radius: 999px; background: var(--color-surface-offset); overflow: hidden; display: block; }
+.freq .bar i { display: block; height: 100%; border-radius: 999px; background: var(--color-primary); }
+.starter-list { list-style: none; padding: 0; margin: var(--space-4) 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.starter-list li { font-family: 'Fredoka', sans-serif; font-weight: 700; letter-spacing: .14em; font-size: 1.1rem; padding: 6px 14px; border-radius: 10px; background: var(--color-primary); color: var(--color-primary-ink); }
+.hub-feature { display: grid; grid-template-columns: 220px 1fr; gap: var(--space-6); align-items: center; margin-bottom: var(--space-6); }
+.hub-feature-img img { width: 100%; height: auto; border-radius: 16px; display: block; }
+.hub-feature h2 { margin-top: 0; }
+@media (max-width: 640px) { .hub-feature { grid-template-columns: 1fr; } .hub-feature-img { max-width: 220px; } }
