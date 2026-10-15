@@ -24,11 +24,13 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-L6FNHSMWF4');</script>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://api.fontshare.com" />
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,400..700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/base.css" />
   <link rel="stylesheet" href="/assets/style.css" />
-  <link rel="stylesheet" href="/assets/seo.css?v=1" />
+  <link rel="stylesheet" href="/assets/seo.css?v=2" />
+  <link rel="stylesheet" href="/assets/fun.css?v=2" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -45,6 +47,7 @@
       <button class="icon-btn" data-theme-toggle aria-label="Switch to light mode" type="button"></button>
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
+    <nav class="cat-bar" aria-label="Game categories"><div class="container cat-bar-inner"><a class="cat-pill" href="/"><span aria-hidden="true">🏠</span>Home</a><a class="cat-pill" href="/category/action/"><span aria-hidden="true">⚡</span>Action</a><a class="cat-pill is-active" href="/category/arcade/"><span aria-hidden="true">🕹️</span>Arcade</a><a class="cat-pill" href="/category/puzzle/"><span aria-hidden="true">🧩</span>Puzzle</a><a class="cat-pill" href="/category/simulation/"><span aria-hidden="true">🏗️</span>Simulation</a><a class="cat-pill" href="/category/clicker/"><span aria-hidden="true">👆</span>Clicker</a><a class="cat-pill" href="/category/driving/"><span aria-hidden="true">🏎️</span>Driving &amp; Racing</a><a class="cat-pill" href="/category/adventure/"><span aria-hidden="true">🗺️</span>Adventure</a><a class="cat-pill" href="/category/casual/"><span aria-hidden="true">🌈</span>Casual</a><a class="cat-pill" href="/category/shooting/"><span aria-hidden="true">🎯</span>Shooting</a><a class="cat-pill" href="/category/sports/"><span aria-hidden="true">⚽</span>Sports</a><a class="cat-pill" href="/category/beauty/"><span aria-hidden="true">💄</span>Beauty &amp; Dress Up</a><a class="cat-pill" href="/category/strategy/"><span aria-hidden="true">♟️</span>Strategy</a><a class="cat-pill" href="/category/word/"><span aria-hidden="true">🔤</span>Word</a><a class="cat-pill" href="/games/"><span aria-hidden="true">🔤</span>A–Z</a></div></nav>
   </header>
   <div class="menu-backdrop" id="menuBackdrop" hidden></div>
   <nav class="menu-panel" id="menuPanel" aria-label="Site menu" hidden>
@@ -71,70 +74,72 @@
       <li><a href="/terms.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg>Terms of use</a></li>
     </ul>
   </nav>
-  <main id="main" class="container game-page">
+  <main id="main" class="container container--wide game-page">
     <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/category/arcade/">Arcade Games</a></li><li aria-current="page">Obby: Firefighter Tycoon</li></ol></nav>
-    <div class="game-head">
-      <h1>Obby: Firefighter Tycoon</h1>
-      <div class="game-meta"><a class="chip" href="/category/arcade/">Arcade</a></div>
-    </div>
-
-    <section class="player" id="player" aria-label="Play Obby: Firefighter Tycoon">
-      <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/obby-firefighter-tycoon" data-title="Obby: Firefighter Tycoon">
-        <button class="play-poster" id="playBtn" type="button" aria-label="Play Obby: Firefighter Tycoon now">
-          <img src="/images/obby-firefighter-tycoon.jpg" alt="Play Obby: Firefighter Tycoon online free — arcade game" width="640" height="360" fetchpriority="high" decoding="async" />
-          <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
-        </button>
-        <noscript><p class="noscript-note">Please enable JavaScript to play Obby: Firefighter Tycoon.</p></noscript>
-      </div>
-      <div class="player-bar">
-        <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
-        <div class="player-actions">
-          <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
-          <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+    <div class="play-layout">
+      <div class="play-main">
+        <div class="game-head">
+          <h1>Obby: Firefighter Tycoon</h1>
+          <div class="game-meta"><a class="chip" href="/category/arcade/">Arcade</a></div>
         </div>
+
+        <section class="player" id="player" aria-label="Play Obby: Firefighter Tycoon">
+          <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/obby-firefighter-tycoon" data-title="Obby: Firefighter Tycoon">
+            <button class="play-poster" id="playBtn" type="button" aria-label="Play Obby: Firefighter Tycoon now">
+              <img src="/images/obby-firefighter-tycoon.jpg" alt="Play Obby: Firefighter Tycoon online free — arcade game" width="640" height="360" fetchpriority="high" decoding="async" />
+              <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
+            </button>
+            <noscript><p class="noscript-note">Please enable JavaScript to play Obby: Firefighter Tycoon.</p></noscript>
+          </div>
+          <div class="player-bar">
+            <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
+            <div class="player-actions">
+              <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
+              <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+            </div>
+          </div>
+        </section>
+
+        <article class="game-content">
+          <section class="panel" aria-labelledby="about"><h2 id="about">About Obby: Firefighter Tycoon</h2><p>Obby: Firefighter Tycoon is an free arcade game you can play instantly in your browser. It works on desktop, tablet and phone, with no download and no registration, so you can jump in whenever you have a few minutes.</p>
+            <p>It is part of our collection of 104 free <a href="/category/arcade/">arcade games</a>, inside a library of 705 browser games you can play without installing anything.</p></section>
+          <section class="panel" aria-labelledby="howto"><h2 id="howto">How to Play Obby: Firefighter Tycoon</h2>
+            <ol class="steps"><li>Press Play Now and let the game load.</li><li>Try the first round slowly to learn the rhythm and the scoring.</li><li>Chase streaks and combos: they are usually where the high scores come from.</li></ol></section>
+          <section class="panel" aria-labelledby="controls"><h2 id="controls">Controls</h2>
+            <dl class="controls"><div><dt>Desktop</dt><dd>Most arcade games use the mouse or the arrow keys. Click, tap or press Space for the main action as the game&#x27;s first screen explains.</dd></div><div><dt>Mobile and tablet</dt><dd>Tap or swipe on the screen. Most arcade games are designed for one-handed play.</dd></div></dl>
+            <p class="note">Controls can differ between games. Check the start screen or tutorial of Obby: Firefighter Tycoon for the exact keys.</p></section>
+          <section class="panel" aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Obby: Firefighter Tycoon</h2>
+            <ul class="ticks"><li>Streaks and combos usually multiply your score, so protect them.</li><li>Do not chase every bonus; safe progress beats risky pickups.</li><li>Watch the edges of the screen, because that is where surprises come from.</li><li>Play a few short rounds in a row; your timing warms up quickly.</li><li>Beat your own best score instead of comparing with others.</li></ul></section>
+          <section class="panel" aria-labelledby="features"><h2 id="features">Features</h2>
+            <ul class="ticks"><li>Instant play, no download</li><li>Simple rules that are easy to learn and hard to master</li><li>Score-chasing replay value</li><li>Runs on desktop, tablet and mobile browsers</li></ul></section>
+          <section class="panel" aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
+            <details><summary>Is Obby: Firefighter Tycoon free to play?</summary><p>Yes. Obby: Firefighter Tycoon is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Obby: Firefighter Tycoon on mobile?</summary><p>Yes. Obby: Firefighter Tycoon runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Obby: Firefighter Tycoon?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Obby: Firefighter Tycoon will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>Do arcade games save my high score?</summary><p>That depends on the game. Many keep a score for the current session; if you close the tab it may reset, so note your best score if it matters to you.</p></details></section>
+        </article>
       </div>
-    </section>
 
-    <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
-
-    <div class="game-layout">
-      <article class="game-content">
-        <section aria-labelledby="about"><h2 id="about">About Obby: Firefighter Tycoon</h2><p>Obby: Firefighter Tycoon is an free arcade game you can play instantly in your browser. It works on desktop, tablet and phone, with no download and no registration, so you can jump in whenever you have a few minutes.</p>
-          <p>It is part of our collection of 104 free <a href="/category/arcade/">arcade games</a>, which sits inside a library of 705 browser games you can play without installing anything.</p></section>
-        <section aria-labelledby="howto"><h2 id="howto">How to Play Obby: Firefighter Tycoon</h2>
-          <ol><li>Press Play Now and let the game load.</li><li>Try the first round slowly to learn the rhythm and the scoring.</li><li>Chase streaks and combos: they are usually where the high scores come from.</li></ol></section>
-        <section aria-labelledby="controls"><h2 id="controls">Controls</h2>
-          <dl class="controls"><div><dt>Desktop</dt><dd>Most arcade games use the mouse or the arrow keys. Click, tap or press Space for the main action as the game&#x27;s first screen explains.</dd></div><div><dt>Mobile and tablet</dt><dd>Tap or swipe on the screen. Most arcade games are designed for one-handed play.</dd></div></dl>
-          <p class="note">Controls can differ between games. Check the start screen or tutorial of Obby: Firefighter Tycoon for the exact keys.</p></section>
-        <section aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Obby: Firefighter Tycoon</h2>
-          <ul><li>Streaks and combos usually multiply your score, so protect them.</li><li>Do not chase every bonus; safe progress beats risky pickups.</li><li>Watch the edges of the screen, because that is where surprises come from.</li><li>Play a few short rounds in a row; your timing warms up quickly.</li><li>Beat your own best score instead of comparing with others.</li></ul></section>
-        <section aria-labelledby="features"><h2 id="features">Features</h2>
-          <ul><li>Instant play, no download</li><li>Simple rules that are easy to learn and hard to master</li><li>Score-chasing replay value</li><li>Runs on desktop, tablet and mobile browsers</li></ul></section>
-        <section aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
-          <details><summary>Is Obby: Firefighter Tycoon free to play?</summary><p>Yes. Obby: Firefighter Tycoon is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Obby: Firefighter Tycoon on mobile?</summary><p>Yes. Obby: Firefighter Tycoon runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Obby: Firefighter Tycoon?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Obby: Firefighter Tycoon will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>Do arcade games save my high score?</summary><p>That depends on the game. Many keep a score for the current session; if you close the tab it may reset, so note your best score if it matters to you.</p></details></section>
-      </article>
-      <aside class="game-aside" aria-label="Game details">
-        <h2>Game info</h2>
-        <dl class="info">
-          <div><dt>Title</dt><dd>Obby: Firefighter Tycoon</dd></div>
-          <div><dt>Genre</dt><dd><a href="/category/arcade/">Arcade</a></dd></div>
-          <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
-          <div><dt>Technology</dt><dd>HTML5</dd></div>
-          <div><dt>Price</dt><dd>Free, no download</dd></div>
-        </dl>
-        <h3>Browse more</h3>
-        <ul class="aside-links">
-          <li><a href="/category/arcade/">All arcade games (104)</a></li>
-          <li><a href="/games/">All games A–Z</a></li>
-          <li><a href="/">Home</a></li>
-        </ul>
+      <aside class="play-side" aria-label="Game details and more games">
+        <section class="side-card">
+          <h2>Game info</h2>
+          <dl class="info">
+            <div><dt>Title</dt><dd>Obby: Firefighter Tycoon</dd></div>
+            <div><dt>Genre</dt><dd><a href="/category/arcade/">Arcade</a></dd></div>
+            <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
+            <div><dt>Technology</dt><dd>HTML5</dd></div>
+            <div><dt>Price</dt><dd>Free, no download</dd></div>
+          </dl>
+        </section>
+        <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+        <section class="side-card">
+          <h2>More arcade games</h2>
+          <ul class="tile-grid tile-grid--side"><li class=""><a class="tile" href="/game/catch-lucky-block/" aria-label="Play Catch Lucky Block"><img src="/images/catch-lucky-block.jpg" alt="Catch Lucky Block – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Catch Lucky Block</span></a></li><li class=""><a class="tile" href="/game/ghost-slurp/" aria-label="Play Ghost Slurp"><img src="/images/ghost-slurp.jpg" alt="Ghost Slurp – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Ghost Slurp</span></a></li><li class=""><a class="tile" href="/game/hole-io-uyt/" aria-label="Play Hole.io"><img src="/images/hole-io-uyt.jpg" alt="Hole.io – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Hole.io</span></a></li><li class=""><a class="tile" href="/game/sprout-king-kmm/" aria-label="Play Sprout King"><img src="/images/sprout-king-kmm.jpg" alt="Sprout King – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Sprout King</span></a></li><li class=""><a class="tile" href="/game/obby-steal-an-egg-kwy/" aria-label="Play Obby Steal Eggs"><img src="/images/obby-steal-an-egg-kwy.jpg" alt="Obby Steal Eggs – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby Steal Eggs</span></a></li><li class=""><a class="tile" href="/game/obby-stronger-drill-deeper-mine/" aria-label="Play Obby: Stronger Drill, Deeper Mine"><img src="/images/obby-stronger-drill-deeper-mine.jpg" alt="Obby: Stronger Drill, Deeper Mine – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby: Stronger Drill, Deeper Mine</span></a></li><li class=""><a class="tile" href="/game/obby-1-laser-to-break-walls-pks/" aria-label="Play Obby: +1 Laser to Break Walls"><img src="/images/obby-1-laser-to-break-walls-pks.jpg" alt="Obby: +1 Laser to Break Walls – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby: +1 Laser to Break Walls</span></a></li><li class=""><a class="tile" href="/game/swing-sword-for-brainrots/" aria-label="Play Swing Sword for Brainrots"><img src="/images/swing-sword-for-brainrots.jpg" alt="Swing Sword for Brainrots – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Swing Sword for Brainrots</span></a></li><li class=""><a class="tile" href="/game/obby-climb-slide-minecarts/" aria-label="Play Obby: Climb"><img src="/images/obby-climb-slide-minecarts.jpg" alt="Obby: Climb – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby: Climb</span></a></li><li class=""><a class="tile" href="/game/breakstoneball/" aria-label="Play BreakStoneBALL"><img src="/images/breakstoneball.jpg" alt="BreakStoneBALL – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">BreakStoneBALL</span></a></li></ul>
+          <p class="see-all"><a class="btn btn-primary" href="/category/arcade/">All 104 arcade games</a></p>
+        </section>
       </aside>
     </div>
 
-    <section class="related" aria-labelledby="relatedTitle">
-      <h2 id="relatedTitle">More arcade games you may like</h2>
-      <ul class="game-grid"><li><a class="game-card" href="/game/obby-bomb-blast-for-pets/" aria-label="Play Obby Bomb Blast For Pets"><img class="card-thumb" src="/images/obby-bomb-blast-for-pets.jpg" alt="Obby Bomb Blast For Pets — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Obby Bomb Blast For Pets</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/jelly-dye-wjc/" aria-label="Play Jelly Dye"><img class="card-thumb" src="/images/jelly-dye-wjc.jpg" alt="Jelly Dye — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Jelly Dye</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/i-am-prankster-taxi-driver/" aria-label="Play I Am Taxi Prankster Sim"><img class="card-thumb" src="/images/i-am-prankster-taxi-driver.jpg" alt="I Am Taxi Prankster Sim — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">I Am Taxi Prankster Sim</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/bomb-evolution-runner/" aria-label="Play Bomb Evolution Runner"><img class="card-thumb" src="/images/bomb-evolution-runner.jpg" alt="Bomb Evolution Runner — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Bomb Evolution Runner</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/cattosu-chonk-cat-merge-game/" aria-label="Play Cattosu Chonk! Cat Merge Game"><img class="card-thumb" src="/images/cattosu-chonk-cat-merge-game.jpg" alt="Cattosu Chonk! Cat Merge Game — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Cattosu Chonk! Cat Merge Game</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/nitro-racing-go/" aria-label="Play Nitro Racing Go"><img class="card-thumb" src="/images/nitro-racing-go.jpg" alt="Nitro Racing Go — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Nitro Racing Go</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/pinball-mania-grv/" aria-label="Play Pinball Mania"><img class="card-thumb" src="/images/pinball-mania-grv.jpg" alt="Pinball Mania — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Pinball Mania</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/ladder-to-brainhot-climb/" aria-label="Play Ladder to Brainhot: Climb"><img class="card-thumb" src="/images/ladder-to-brainhot-climb.jpg" alt="Ladder to Brainhot: Climb — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Ladder to Brainhot: Climb</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/cart-ride-danger-mount/" aria-label="Play Cart Ride Danger Mount"><img class="card-thumb" src="/images/cart-ride-danger-mount.jpg" alt="Cart Ride Danger Mount — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Cart Ride Danger Mount</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/bills-must-be-paid/" aria-label="Play Bills Must Be Paid"><img class="card-thumb" src="/images/bills-must-be-paid.jpg" alt="Bills Must Be Paid — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Bills Must Be Paid</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/cat-snack-bar/" aria-label="Play Cat Snack Bar"><img class="card-thumb" src="/images/cat-snack-bar.png" alt="Cat Snack Bar — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Cat Snack Bar</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/battle-brigade/" aria-label="Play Battle Brigade"><img class="card-thumb" src="/images/battle-brigade.png" alt="Battle Brigade — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Battle Brigade</span><span class="card-cat">Arcade</span></div></a></li></ul>
-      <p class="see-all"><a class="btn btn-ghost" href="/category/arcade/">See all 104 arcade games</a></p>
+    <section class="shelf" aria-labelledby="relatedTitle">
+      <div class="shelf-head"><h2 id="relatedTitle">You may also like</h2><a class="shelf-link" href="/category/arcade/">See all</a></div>
+      <ul class="tile-grid"><li class=""><a class="tile" href="/game/obby-bomb-blast-for-pets/" aria-label="Play Obby Bomb Blast For Pets"><img src="/images/obby-bomb-blast-for-pets.jpg" alt="Obby Bomb Blast For Pets – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby Bomb Blast For Pets</span></a></li><li class=""><a class="tile" href="/game/jelly-dye-wjc/" aria-label="Play Jelly Dye"><img src="/images/jelly-dye-wjc.jpg" alt="Jelly Dye – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Jelly Dye</span></a></li><li class=""><a class="tile" href="/game/i-am-prankster-taxi-driver/" aria-label="Play I Am Taxi Prankster Sim"><img src="/images/i-am-prankster-taxi-driver.jpg" alt="I Am Taxi Prankster Sim – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">I Am Taxi Prankster Sim</span></a></li><li class=""><a class="tile" href="/game/bomb-evolution-runner/" aria-label="Play Bomb Evolution Runner"><img src="/images/bomb-evolution-runner.jpg" alt="Bomb Evolution Runner – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Bomb Evolution Runner</span></a></li><li class=""><a class="tile" href="/game/cattosu-chonk-cat-merge-game/" aria-label="Play Cattosu Chonk! Cat Merge Game"><img src="/images/cattosu-chonk-cat-merge-game.jpg" alt="Cattosu Chonk! Cat Merge Game – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Cattosu Chonk! Cat Merge Game</span></a></li><li class=""><a class="tile" href="/game/nitro-racing-go/" aria-label="Play Nitro Racing Go"><img src="/images/nitro-racing-go.jpg" alt="Nitro Racing Go – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Nitro Racing Go</span></a></li><li class=""><a class="tile" href="/game/pinball-mania-grv/" aria-label="Play Pinball Mania"><img src="/images/pinball-mania-grv.jpg" alt="Pinball Mania – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Pinball Mania</span></a></li><li class=""><a class="tile" href="/game/ladder-to-brainhot-climb/" aria-label="Play Ladder to Brainhot: Climb"><img src="/images/ladder-to-brainhot-climb.jpg" alt="Ladder to Brainhot: Climb – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Ladder to Brainhot: Climb</span></a></li><li class=""><a class="tile" href="/game/cart-ride-danger-mount/" aria-label="Play Cart Ride Danger Mount"><img src="/images/cart-ride-danger-mount.jpg" alt="Cart Ride Danger Mount – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Cart Ride Danger Mount</span></a></li><li class=""><a class="tile" href="/game/bills-must-be-paid/" aria-label="Play Bills Must Be Paid"><img src="/images/bills-must-be-paid.jpg" alt="Bills Must Be Paid – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Bills Must Be Paid</span></a></li><li class=""><a class="tile" href="/game/cat-snack-bar/" aria-label="Play Cat Snack Bar"><img src="/images/cat-snack-bar.png" alt="Cat Snack Bar – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Cat Snack Bar</span></a></li><li class=""><a class="tile" href="/game/battle-brigade/" aria-label="Play Battle Brigade"><img src="/images/battle-brigade.png" alt="Battle Brigade – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Battle Brigade</span></a></li></ul>
     </section>
   </main>
   <footer class="site-footer">
@@ -146,6 +151,6 @@
       </nav>
     </div>
   </footer>
-  <script src="/assets/js/page.js?v=1" defer></script>
+  <script src="/assets/js/page.js?v=2" defer></script>
 </body>
 </html>

@@ -24,11 +24,13 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-L6FNHSMWF4');</script>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://api.fontshare.com" />
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,400..700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/base.css" />
   <link rel="stylesheet" href="/assets/style.css" />
-  <link rel="stylesheet" href="/assets/seo.css?v=1" />
+  <link rel="stylesheet" href="/assets/seo.css?v=2" />
+  <link rel="stylesheet" href="/assets/fun.css?v=2" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -45,6 +47,7 @@
       <button class="icon-btn" data-theme-toggle aria-label="Switch to light mode" type="button"></button>
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
+    <nav class="cat-bar" aria-label="Game categories"><div class="container cat-bar-inner"><a class="cat-pill" href="/"><span aria-hidden="true">🏠</span>Home</a><a class="cat-pill" href="/category/action/"><span aria-hidden="true">⚡</span>Action</a><a class="cat-pill" href="/category/arcade/"><span aria-hidden="true">🕹️</span>Arcade</a><a class="cat-pill" href="/category/puzzle/"><span aria-hidden="true">🧩</span>Puzzle</a><a class="cat-pill" href="/category/simulation/"><span aria-hidden="true">🏗️</span>Simulation</a><a class="cat-pill" href="/category/clicker/"><span aria-hidden="true">👆</span>Clicker</a><a class="cat-pill" href="/category/driving/"><span aria-hidden="true">🏎️</span>Driving &amp; Racing</a><a class="cat-pill" href="/category/adventure/"><span aria-hidden="true">🗺️</span>Adventure</a><a class="cat-pill is-active" href="/category/casual/"><span aria-hidden="true">🌈</span>Casual</a><a class="cat-pill" href="/category/shooting/"><span aria-hidden="true">🎯</span>Shooting</a><a class="cat-pill" href="/category/sports/"><span aria-hidden="true">⚽</span>Sports</a><a class="cat-pill" href="/category/beauty/"><span aria-hidden="true">💄</span>Beauty &amp; Dress Up</a><a class="cat-pill" href="/category/strategy/"><span aria-hidden="true">♟️</span>Strategy</a><a class="cat-pill" href="/category/word/"><span aria-hidden="true">🔤</span>Word</a><a class="cat-pill" href="/games/"><span aria-hidden="true">🔤</span>A–Z</a></div></nav>
   </header>
   <div class="menu-backdrop" id="menuBackdrop" hidden></div>
   <nav class="menu-panel" id="menuPanel" aria-label="Site menu" hidden>
@@ -71,70 +74,72 @@
       <li><a href="/terms.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg>Terms of use</a></li>
     </ul>
   </nav>
-  <main id="main" class="container game-page">
+  <main id="main" class="container container--wide game-page">
     <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/category/casual/">Casual Games</a></li><li aria-current="page">Man Runner 2048</li></ol></nav>
-    <div class="game-head">
-      <h1>Man Runner 2048</h1>
-      <div class="game-meta"><a class="chip" href="/category/casual/">Casual</a></div>
-    </div>
-
-    <section class="player" id="player" aria-label="Play Man Runner 2048">
-      <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/man-runner-2048" data-title="Man Runner 2048">
-        <button class="play-poster" id="playBtn" type="button" aria-label="Play Man Runner 2048 now">
-          <img src="/images/man-runner-2048.jpg" alt="Play Man Runner 2048 online free — casual game" width="640" height="360" fetchpriority="high" decoding="async" />
-          <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
-        </button>
-        <noscript><p class="noscript-note">Please enable JavaScript to play Man Runner 2048.</p></noscript>
-      </div>
-      <div class="player-bar">
-        <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
-        <div class="player-actions">
-          <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
-          <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+    <div class="play-layout">
+      <div class="play-main">
+        <div class="game-head">
+          <h1>Man Runner 2048</h1>
+          <div class="game-meta"><a class="chip" href="/category/casual/">Casual</a></div>
         </div>
+
+        <section class="player" id="player" aria-label="Play Man Runner 2048">
+          <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/man-runner-2048" data-title="Man Runner 2048">
+            <button class="play-poster" id="playBtn" type="button" aria-label="Play Man Runner 2048 now">
+              <img src="/images/man-runner-2048.jpg" alt="Play Man Runner 2048 online free — casual game" width="640" height="360" fetchpriority="high" decoding="async" />
+              <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
+            </button>
+            <noscript><p class="noscript-note">Please enable JavaScript to play Man Runner 2048.</p></noscript>
+          </div>
+          <div class="player-bar">
+            <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
+            <div class="player-actions">
+              <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
+              <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+            </div>
+          </div>
+        </section>
+
+        <article class="game-content">
+          <section class="panel" aria-labelledby="about"><h2 id="about">About Man Runner 2048</h2><p>Man Runner 2048 is a free casual game you can play instantly in your browser. It works on desktop, tablet and phone, with no download and no registration, so you can jump in whenever you have a few minutes.</p>
+            <p>It is part of our collection of 39 free <a href="/category/casual/">casual games</a>, inside a library of 705 browser games you can play without installing anything.</p></section>
+          <section class="panel" aria-labelledby="howto"><h2 id="howto">How to Play Man Runner 2048</h2>
+            <ol class="steps"><li>Press Play Now and wait for the game to load.</li><li>Follow the short intro; most casual games explain everything in a few seconds.</li><li>Play at your own pace and replay levels for a better score.</li></ol></section>
+          <section class="panel" aria-labelledby="controls"><h2 id="controls">Controls</h2>
+            <dl class="controls"><div><dt>Desktop</dt><dd>Use the mouse to click, drag or select. Occasionally the arrow keys or Space are used as well.</dd></div><div><dt>Mobile and tablet</dt><dd>Tap and drag with a finger. These games are designed to be easy on a phone.</dd></div></dl>
+            <p class="note">Controls can differ between games. Check the start screen or tutorial of Man Runner 2048 for the exact keys.</p></section>
+          <section class="panel" aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Man Runner 2048</h2>
+            <ul class="ticks"><li>Watch for bonus items that give a bigger payoff.</li><li>Keep sessions short and fun.</li><li>Click the game area once if keyboard controls do not respond.</li><li>Look at the first tutorial tip, as it is often the key mechanic.</li><li>Experiment; there is rarely a penalty for trying something new.</li></ul></section>
+          <section class="panel" aria-labelledby="features"><h2 id="features">Features</h2>
+            <ul class="ticks"><li>Instant play, no download</li><li>Easy to learn, with no stress</li><li>Perfect for short breaks</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
+          <section class="panel" aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
+            <details><summary>Is Man Runner 2048 free to play?</summary><p>Yes. Man Runner 2048 is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Man Runner 2048 on mobile?</summary><p>Yes. Man Runner 2048 runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Man Runner 2048?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Man Runner 2048 will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>Are casual games good for kids?</summary><p>Many are simple and easy to learn, but content varies by game. Parents should check each game before letting younger children play.</p></details></section>
+        </article>
       </div>
-    </section>
 
-    <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
-
-    <div class="game-layout">
-      <article class="game-content">
-        <section aria-labelledby="about"><h2 id="about">About Man Runner 2048</h2><p>Man Runner 2048 is a free casual game you can play instantly in your browser. It works on desktop, tablet and phone, with no download and no registration, so you can jump in whenever you have a few minutes.</p>
-          <p>It is part of our collection of 39 free <a href="/category/casual/">casual games</a>, which sits inside a library of 705 browser games you can play without installing anything.</p></section>
-        <section aria-labelledby="howto"><h2 id="howto">How to Play Man Runner 2048</h2>
-          <ol><li>Press Play Now and wait for the game to load.</li><li>Follow the short intro; most casual games explain everything in a few seconds.</li><li>Play at your own pace and replay levels for a better score.</li></ol></section>
-        <section aria-labelledby="controls"><h2 id="controls">Controls</h2>
-          <dl class="controls"><div><dt>Desktop</dt><dd>Use the mouse to click, drag or select. Occasionally the arrow keys or Space are used as well.</dd></div><div><dt>Mobile and tablet</dt><dd>Tap and drag with a finger. These games are designed to be easy on a phone.</dd></div></dl>
-          <p class="note">Controls can differ between games. Check the start screen or tutorial of Man Runner 2048 for the exact keys.</p></section>
-        <section aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Man Runner 2048</h2>
-          <ul><li>Watch for bonus items that give a bigger payoff.</li><li>Keep sessions short and fun.</li><li>Click the game area once if keyboard controls do not respond.</li><li>Look at the first tutorial tip, as it is often the key mechanic.</li><li>Experiment; there is rarely a penalty for trying something new.</li></ul></section>
-        <section aria-labelledby="features"><h2 id="features">Features</h2>
-          <ul><li>Instant play, no download</li><li>Easy to learn, with no stress</li><li>Perfect for short breaks</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
-        <section aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
-          <details><summary>Is Man Runner 2048 free to play?</summary><p>Yes. Man Runner 2048 is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Man Runner 2048 on mobile?</summary><p>Yes. Man Runner 2048 runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Man Runner 2048?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Man Runner 2048 will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>Are casual games good for kids?</summary><p>Many are simple and easy to learn, but content varies by game. Parents should check each game before letting younger children play.</p></details></section>
-      </article>
-      <aside class="game-aside" aria-label="Game details">
-        <h2>Game info</h2>
-        <dl class="info">
-          <div><dt>Title</dt><dd>Man Runner 2048</dd></div>
-          <div><dt>Genre</dt><dd><a href="/category/casual/">Casual</a></dd></div>
-          <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
-          <div><dt>Technology</dt><dd>HTML5</dd></div>
-          <div><dt>Price</dt><dd>Free, no download</dd></div>
-        </dl>
-        <h3>Browse more</h3>
-        <ul class="aside-links">
-          <li><a href="/category/casual/">All casual games (39)</a></li>
-          <li><a href="/games/">All games A–Z</a></li>
-          <li><a href="/">Home</a></li>
-        </ul>
+      <aside class="play-side" aria-label="Game details and more games">
+        <section class="side-card">
+          <h2>Game info</h2>
+          <dl class="info">
+            <div><dt>Title</dt><dd>Man Runner 2048</dd></div>
+            <div><dt>Genre</dt><dd><a href="/category/casual/">Casual</a></dd></div>
+            <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
+            <div><dt>Technology</dt><dd>HTML5</dd></div>
+            <div><dt>Price</dt><dd>Free, no download</dd></div>
+          </dl>
+        </section>
+        <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+        <section class="side-card">
+          <h2>More casual games</h2>
+          <ul class="tile-grid tile-grid--side"><li class=""><a class="tile" href="/game/color-farm/" aria-label="Play Color Farm"><img src="/images/color-farm.jpg" alt="Color Farm – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Color Farm</span></a></li><li class=""><a class="tile" href="/game/sworded-io-spin-and-rub/" aria-label="Play Sworded io - Spin and Rub"><img src="/images/sworded-io---spin-and-rub.jpg" alt="Sworded io - Spin and Rub – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Sworded io - Spin and Rub</span></a></li><li class=""><a class="tile" href="/game/supermarket-empire/" aria-label="Play Supermarket Empire"><img src="/images/supermarket-empire.jpg" alt="Supermarket Empire – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Supermarket Empire</span></a></li><li class=""><a class="tile" href="/game/water-pool-heroes-io/" aria-label="Play Water Pool Heroes.io"><img src="/images/water-pool-heroes-io.jpg" alt="Water Pool Heroes.io – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Water Pool Heroes.io</span></a></li><li class=""><a class="tile" href="/game/bridge-race/" aria-label="Play Bridge Race"><img src="/images/bridge-race.jpg" alt="Bridge Race – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Bridge Race</span></a></li><li class=""><a class="tile" href="/game/big-catch/" aria-label="Play Big Catch"><img src="/images/big-catch.jpg" alt="Big Catch – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Big Catch</span></a></li><li class=""><a class="tile" href="/game/bubble-pop-fairyland-xtl/" aria-label="Play Bubble Pop Fairyland"><img src="/images/bubble-pop-fairyland-xtl.jpg" alt="Bubble Pop Fairyland – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Bubble Pop Fairyland</span></a></li><li class=""><a class="tile" href="/game/join-clash-3d/" aria-label="Play Join Clash 3D"><img src="/images/join-clash-3d.jpg" alt="Join Clash 3D – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Join Clash 3D</span></a></li><li class=""><a class="tile" href="/game/cat-and-granny-2/" aria-label="Play Cat and Granny 2"><img src="/images/cat-and-granny-2.jpg" alt="Cat and Granny 2 – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Cat and Granny 2</span></a></li><li class=""><a class="tile" href="/game/obby-plane-power-challenge-fly/" aria-label="Play Obby Plane Power Challenge: Fly"><img src="/images/obby-plane-power-challenge-fly.jpg" alt="Obby Plane Power Challenge: Fly – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby Plane Power Challenge: Fly</span></a></li></ul>
+          <p class="see-all"><a class="btn btn-primary" href="/category/casual/">All 39 casual games</a></p>
+        </section>
       </aside>
     </div>
 
-    <section class="related" aria-labelledby="relatedTitle">
-      <h2 id="relatedTitle">More casual games you may like</h2>
-      <ul class="game-grid"><li><a class="game-card" href="/game/jet-rush/" aria-label="Play Jet Rush"><img class="card-thumb" src="/images/jet-rush.jpg" alt="Jet Rush — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Jet Rush</span><span class="card-cat">Casual</span></div></a></li><li><a class="game-card" href="/game/my-bakery/" aria-label="Play My bakery"><img class="card-thumb" src="/images/my-bakery.jpg" alt="My bakery — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">My bakery</span><span class="card-cat">Casual</span></div></a></li><li><a class="game-card" href="/game/crazy-zoo-monkey/" aria-label="Play Crazy Zoo Monkey"><img class="card-thumb" src="/images/crazy-zoo-monkey.jpg" alt="Crazy Zoo Monkey — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Crazy Zoo Monkey</span><span class="card-cat">Casual</span></div></a></li><li><a class="game-card" href="/game/count-masters-stickman-games/" aria-label="Play Count Masters: Stickman Games"><img class="card-thumb" src="/images/count-masters-stickman-games.jpg" alt="Count Masters: Stickman Games — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Count Masters: Stickman Games</span><span class="card-cat">Casual</span></div></a></li><li><a class="game-card" href="/game/space-waves/" aria-label="Play Space Waves"><img class="card-thumb" src="/images/space-waves.jpg" alt="Space Waves — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Space Waves</span><span class="card-cat">Casual</span></div></a></li><li><a class="game-card" href="/game/land-explorers-merge-build/" aria-label="Play Land Explorers: Merge"><img class="card-thumb" src="/images/land-explorers-merge-build.jpg" alt="Land Explorers: Merge — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Land Explorers: Merge</span><span class="card-cat">Casual</span></div></a></li><li><a class="game-card" href="/game/merge-dragons-vs-knights/" aria-label="Play Merge! Dragons vs Knights"><img class="card-thumb" src="/images/merge-dragons-vs-knights.jpg" alt="Merge! Dragons vs Knights — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Merge! Dragons vs Knights</span><span class="card-cat">Casual</span></div></a></li><li><a class="game-card" href="/game/obby-fish-challenge-ride/" aria-label="Play Obby Fish Challenge: Ride"><img class="card-thumb" src="/images/obby-fish-challenge-ride.png" alt="Obby Fish Challenge: Ride — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Obby Fish Challenge: Ride</span><span class="card-cat">Casual</span></div></a></li><li><a class="game-card" href="/game/island-expander/" aria-label="Play Island Expander"><img class="card-thumb" src="/images/island-expander.png" alt="Island Expander — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Island Expander</span><span class="card-cat">Casual</span></div></a></li><li><a class="game-card" href="/game/high-school-popular-games/" aria-label="Play High School Popular Girls"><img class="card-thumb" src="/images/high-school-popular-games.jpg" alt="High School Popular Girls — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">High School Popular Girls</span><span class="card-cat">Casual</span></div></a></li><li><a class="game-card" href="/game/my-phone-store-gqp/" aria-label="Play My Phone Store"><img class="card-thumb" src="/images/my-phone-store-gqp.jpg" alt="My Phone Store — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">My Phone Store</span><span class="card-cat">Casual</span></div></a></li><li><a class="game-card" href="/game/gas-station-stick-simulator/" aria-label="Play Gas Station - Stick Simulator"><img class="card-thumb" src="/images/gas-station---stick-simulator.jpg" alt="Gas Station - Stick Simulator — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Gas Station - Stick Simulator</span><span class="card-cat">Casual</span></div></a></li></ul>
-      <p class="see-all"><a class="btn btn-ghost" href="/category/casual/">See all 39 casual games</a></p>
+    <section class="shelf" aria-labelledby="relatedTitle">
+      <div class="shelf-head"><h2 id="relatedTitle">You may also like</h2><a class="shelf-link" href="/category/casual/">See all</a></div>
+      <ul class="tile-grid"><li class=""><a class="tile" href="/game/jet-rush/" aria-label="Play Jet Rush"><img src="/images/jet-rush.jpg" alt="Jet Rush – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Jet Rush</span></a></li><li class=""><a class="tile" href="/game/my-bakery/" aria-label="Play My bakery"><img src="/images/my-bakery.jpg" alt="My bakery – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">My bakery</span></a></li><li class=""><a class="tile" href="/game/crazy-zoo-monkey/" aria-label="Play Crazy Zoo Monkey"><img src="/images/crazy-zoo-monkey.jpg" alt="Crazy Zoo Monkey – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Crazy Zoo Monkey</span></a></li><li class=""><a class="tile" href="/game/count-masters-stickman-games/" aria-label="Play Count Masters: Stickman Games"><img src="/images/count-masters-stickman-games.jpg" alt="Count Masters: Stickman Games – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Count Masters: Stickman Games</span></a></li><li class=""><a class="tile" href="/game/space-waves/" aria-label="Play Space Waves"><img src="/images/space-waves.jpg" alt="Space Waves – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Space Waves</span></a></li><li class=""><a class="tile" href="/game/land-explorers-merge-build/" aria-label="Play Land Explorers: Merge"><img src="/images/land-explorers-merge-build.jpg" alt="Land Explorers: Merge – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Land Explorers: Merge</span></a></li><li class=""><a class="tile" href="/game/merge-dragons-vs-knights/" aria-label="Play Merge! Dragons vs Knights"><img src="/images/merge-dragons-vs-knights.jpg" alt="Merge! Dragons vs Knights – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Merge! Dragons vs Knights</span></a></li><li class=""><a class="tile" href="/game/obby-fish-challenge-ride/" aria-label="Play Obby Fish Challenge: Ride"><img src="/images/obby-fish-challenge-ride.png" alt="Obby Fish Challenge: Ride – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby Fish Challenge: Ride</span></a></li><li class=""><a class="tile" href="/game/island-expander/" aria-label="Play Island Expander"><img src="/images/island-expander.png" alt="Island Expander – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Island Expander</span></a></li><li class=""><a class="tile" href="/game/high-school-popular-games/" aria-label="Play High School Popular Girls"><img src="/images/high-school-popular-games.jpg" alt="High School Popular Girls – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">High School Popular Girls</span></a></li><li class=""><a class="tile" href="/game/my-phone-store-gqp/" aria-label="Play My Phone Store"><img src="/images/my-phone-store-gqp.jpg" alt="My Phone Store – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">My Phone Store</span></a></li><li class=""><a class="tile" href="/game/gas-station-stick-simulator/" aria-label="Play Gas Station - Stick Simulator"><img src="/images/gas-station---stick-simulator.jpg" alt="Gas Station - Stick Simulator – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Gas Station - Stick Simulator</span></a></li></ul>
     </section>
   </main>
   <footer class="site-footer">
@@ -146,6 +151,6 @@
       </nav>
     </div>
   </footer>
-  <script src="/assets/js/page.js?v=1" defer></script>
+  <script src="/assets/js/page.js?v=2" defer></script>
 </body>
 </html>

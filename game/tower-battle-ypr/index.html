@@ -24,11 +24,13 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-L6FNHSMWF4');</script>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://api.fontshare.com" />
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,400..700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/base.css" />
   <link rel="stylesheet" href="/assets/style.css" />
-  <link rel="stylesheet" href="/assets/seo.css?v=1" />
+  <link rel="stylesheet" href="/assets/seo.css?v=2" />
+  <link rel="stylesheet" href="/assets/fun.css?v=2" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -45,6 +47,7 @@
       <button class="icon-btn" data-theme-toggle aria-label="Switch to light mode" type="button"></button>
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
+    <nav class="cat-bar" aria-label="Game categories"><div class="container cat-bar-inner"><a class="cat-pill" href="/"><span aria-hidden="true">🏠</span>Home</a><a class="cat-pill" href="/category/action/"><span aria-hidden="true">⚡</span>Action</a><a class="cat-pill" href="/category/arcade/"><span aria-hidden="true">🕹️</span>Arcade</a><a class="cat-pill" href="/category/puzzle/"><span aria-hidden="true">🧩</span>Puzzle</a><a class="cat-pill" href="/category/simulation/"><span aria-hidden="true">🏗️</span>Simulation</a><a class="cat-pill" href="/category/clicker/"><span aria-hidden="true">👆</span>Clicker</a><a class="cat-pill" href="/category/driving/"><span aria-hidden="true">🏎️</span>Driving &amp; Racing</a><a class="cat-pill" href="/category/adventure/"><span aria-hidden="true">🗺️</span>Adventure</a><a class="cat-pill" href="/category/casual/"><span aria-hidden="true">🌈</span>Casual</a><a class="cat-pill" href="/category/shooting/"><span aria-hidden="true">🎯</span>Shooting</a><a class="cat-pill" href="/category/sports/"><span aria-hidden="true">⚽</span>Sports</a><a class="cat-pill" href="/category/beauty/"><span aria-hidden="true">💄</span>Beauty &amp; Dress Up</a><a class="cat-pill is-active" href="/category/strategy/"><span aria-hidden="true">♟️</span>Strategy</a><a class="cat-pill" href="/category/word/"><span aria-hidden="true">🔤</span>Word</a><a class="cat-pill" href="/games/"><span aria-hidden="true">🔤</span>A–Z</a></div></nav>
   </header>
   <div class="menu-backdrop" id="menuBackdrop" hidden></div>
   <nav class="menu-panel" id="menuPanel" aria-label="Site menu" hidden>
@@ -71,70 +74,72 @@
       <li><a href="/terms.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg>Terms of use</a></li>
     </ul>
   </nav>
-  <main id="main" class="container game-page">
+  <main id="main" class="container container--wide game-page">
     <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/category/strategy/">Strategy Games</a></li><li aria-current="page">Tower Battle</li></ol></nav>
-    <div class="game-head">
-      <h1>Tower Battle</h1>
-      <div class="game-meta"><a class="chip" href="/category/strategy/">Strategy</a></div>
-    </div>
-
-    <section class="player" id="player" aria-label="Play Tower Battle">
-      <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/tower-battle-ypr" data-title="Tower Battle">
-        <button class="play-poster" id="playBtn" type="button" aria-label="Play Tower Battle now">
-          <img src="/images/tower-battle-ypr.jpg" alt="Play Tower Battle online free — strategy game" width="640" height="360" fetchpriority="high" decoding="async" />
-          <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
-        </button>
-        <noscript><p class="noscript-note">Please enable JavaScript to play Tower Battle.</p></noscript>
-      </div>
-      <div class="player-bar">
-        <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
-        <div class="player-actions">
-          <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
-          <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+    <div class="play-layout">
+      <div class="play-main">
+        <div class="game-head">
+          <h1>Tower Battle</h1>
+          <div class="game-meta"><a class="chip" href="/category/strategy/">Strategy</a></div>
         </div>
+
+        <section class="player" id="player" aria-label="Play Tower Battle">
+          <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/tower-battle-ypr" data-title="Tower Battle">
+            <button class="play-poster" id="playBtn" type="button" aria-label="Play Tower Battle now">
+              <img src="/images/tower-battle-ypr.jpg" alt="Play Tower Battle online free — strategy game" width="640" height="360" fetchpriority="high" decoding="async" />
+              <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
+            </button>
+            <noscript><p class="noscript-note">Please enable JavaScript to play Tower Battle.</p></noscript>
+          </div>
+          <div class="player-bar">
+            <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
+            <div class="player-actions">
+              <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
+              <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+            </div>
+          </div>
+        </section>
+
+        <article class="game-content">
+          <section class="panel" aria-labelledby="about"><h2 id="about">About Tower Battle</h2><p>Play Tower Battle online for free. It is a strategy game that runs right in your browser, so there is nothing to download or install and no account to create. Press Play Now and you can start within a few seconds.</p>
+            <p>It is part of our collection of 20 free <a href="/category/strategy/">strategy games</a>, inside a library of 705 browser games you can play without installing anything.</p></section>
+          <section class="panel" aria-labelledby="howto"><h2 id="howto">How to Play Tower Battle</h2>
+            <ol class="steps"><li>Press Play Now and complete the short tutorial if there is one.</li><li>Build up resources and defences before you attack.</li><li>Adapt your plan to the enemy; changing strategy is part of the fun.</li></ol></section>
+          <section class="panel" aria-labelledby="controls"><h2 id="controls">Controls</h2>
+            <dl class="controls"><div><dt>Desktop</dt><dd>Use the mouse to select units, place buildings and open menus. Keyboard shortcuts are available in some games.</dd></div><div><dt>Mobile and tablet</dt><dd>Tap to select and place, and drag to move around the map.</dd></div></dl>
+            <p class="note">Controls can differ between games. Check the start screen or tutorial of Tower Battle for the exact keys.</p></section>
+          <section class="panel" aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Tower Battle</h2>
+            <ul class="ticks"><li>Economy first: a strong income wins long games.</li><li>Do not spread units too thin.</li><li>Scout before you commit to an attack.</li><li>Upgrade the units you use the most.</li><li>Defend chokepoints rather than open ground.</li></ul></section>
+          <section class="panel" aria-labelledby="features"><h2 id="features">Features</h2>
+            <ul class="ticks"><li>Instant play, no download</li><li>Depth and replayability from a simple set of rules</li><li>Varied difficulty for new and experienced players</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
+          <section class="panel" aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
+            <details><summary>Is Tower Battle free to play?</summary><p>Yes. Tower Battle is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Tower Battle on mobile?</summary><p>Yes. Tower Battle runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Tower Battle?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Tower Battle will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>Are strategy games hard to learn?</summary><p>Most browser strategy games teach their rules in the first few levels. Start on an easy difficulty and increase it as you get comfortable.</p></details></section>
+        </article>
       </div>
-    </section>
 
-    <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
-
-    <div class="game-layout">
-      <article class="game-content">
-        <section aria-labelledby="about"><h2 id="about">About Tower Battle</h2><p>Play Tower Battle online for free. It is a strategy game that runs right in your browser, so there is nothing to download or install and no account to create. Press Play Now and you can start within a few seconds.</p>
-          <p>It is part of our collection of 20 free <a href="/category/strategy/">strategy games</a>, which sits inside a library of 705 browser games you can play without installing anything.</p></section>
-        <section aria-labelledby="howto"><h2 id="howto">How to Play Tower Battle</h2>
-          <ol><li>Press Play Now and complete the short tutorial if there is one.</li><li>Build up resources and defences before you attack.</li><li>Adapt your plan to the enemy; changing strategy is part of the fun.</li></ol></section>
-        <section aria-labelledby="controls"><h2 id="controls">Controls</h2>
-          <dl class="controls"><div><dt>Desktop</dt><dd>Use the mouse to select units, place buildings and open menus. Keyboard shortcuts are available in some games.</dd></div><div><dt>Mobile and tablet</dt><dd>Tap to select and place, and drag to move around the map.</dd></div></dl>
-          <p class="note">Controls can differ between games. Check the start screen or tutorial of Tower Battle for the exact keys.</p></section>
-        <section aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Tower Battle</h2>
-          <ul><li>Economy first: a strong income wins long games.</li><li>Do not spread units too thin.</li><li>Scout before you commit to an attack.</li><li>Upgrade the units you use the most.</li><li>Defend chokepoints rather than open ground.</li></ul></section>
-        <section aria-labelledby="features"><h2 id="features">Features</h2>
-          <ul><li>Instant play, no download</li><li>Depth and replayability from a simple set of rules</li><li>Varied difficulty for new and experienced players</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
-        <section aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
-          <details><summary>Is Tower Battle free to play?</summary><p>Yes. Tower Battle is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Tower Battle on mobile?</summary><p>Yes. Tower Battle runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Tower Battle?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Tower Battle will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>Are strategy games hard to learn?</summary><p>Most browser strategy games teach their rules in the first few levels. Start on an easy difficulty and increase it as you get comfortable.</p></details></section>
-      </article>
-      <aside class="game-aside" aria-label="Game details">
-        <h2>Game info</h2>
-        <dl class="info">
-          <div><dt>Title</dt><dd>Tower Battle</dd></div>
-          <div><dt>Genre</dt><dd><a href="/category/strategy/">Strategy</a></dd></div>
-          <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
-          <div><dt>Technology</dt><dd>HTML5</dd></div>
-          <div><dt>Price</dt><dd>Free, no download</dd></div>
-        </dl>
-        <h3>Browse more</h3>
-        <ul class="aside-links">
-          <li><a href="/category/strategy/">All strategy games (20)</a></li>
-          <li><a href="/games/">All games A–Z</a></li>
-          <li><a href="/">Home</a></li>
-        </ul>
+      <aside class="play-side" aria-label="Game details and more games">
+        <section class="side-card">
+          <h2>Game info</h2>
+          <dl class="info">
+            <div><dt>Title</dt><dd>Tower Battle</dd></div>
+            <div><dt>Genre</dt><dd><a href="/category/strategy/">Strategy</a></dd></div>
+            <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
+            <div><dt>Technology</dt><dd>HTML5</dd></div>
+            <div><dt>Price</dt><dd>Free, no download</dd></div>
+          </dl>
+        </section>
+        <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+        <section class="side-card">
+          <h2>More strategy games</h2>
+          <ul class="tile-grid tile-grid--side"><li class=""><a class="tile" href="/game/machine-eater/" aria-label="Play Machine Eater"><img src="/images/machine-eater.jpg" alt="Machine Eater – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Machine Eater</span></a></li><li class=""><a class="tile" href="/game/merge-team-tactics/" aria-label="Play Merge Team Tactics"><img src="/images/merge-team-tactics.jpg" alt="Merge Team Tactics – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Merge Team Tactics</span></a></li><li class=""><a class="tile" href="/game/operator/" aria-label="Play Operator: Emergency Dispatcher"><img src="/images/operator.jpg" alt="Operator: Emergency Dispatcher – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Operator: Emergency Dispatcher</span></a></li><li class=""><a class="tile" href="/game/fortress-merge/" aria-label="Play Fortress Merge"><img src="/images/fortress-merge.jpg" alt="Fortress Merge – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Fortress Merge</span></a></li><li class=""><a class="tile" href="/game/jurassic-merge-dino-evolution/" aria-label="Play Jurassic Merge: Dino Evolution"><img src="/images/jurassic-merge-dino-evolution.jpg" alt="Jurassic Merge: Dino Evolution – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Jurassic Merge: Dino Evolution</span></a></li><li class=""><a class="tile" href="/game/zombie-protocol/" aria-label="Play Zombie Protocol"><img src="/images/zombie-protocol.jpg" alt="Zombie Protocol – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Zombie Protocol</span></a></li><li class=""><a class="tile" href="/game/age-of-heroes/" aria-label="Play Age of Heroes"><img src="/images/age-of-heroes.jpg" alt="Age of Heroes – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Age of Heroes</span></a></li><li class=""><a class="tile" href="/game/world-of-stickman-classic-rts/" aria-label="Play World of Stickman Classic RTS"><img src="/images/world-of-stickman-classic-rts.jpg" alt="World of Stickman Classic RTS – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">World of Stickman Classic RTS</span></a></li><li class=""><a class="tile" href="/game/clash-of-warriors-ofd/" aria-label="Play Clash of Warriors"><img src="/images/clash-of-warriors-ofd.jpg" alt="Clash of Warriors – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Clash of Warriors</span></a></li><li class=""><a class="tile" href="/game/knight-of-chess/" aria-label="Play Knight of Chess"><img src="/images/knight-of-chess.jpg" alt="Knight of Chess – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Knight of Chess</span></a></li></ul>
+          <p class="see-all"><a class="btn btn-primary" href="/category/strategy/">All 20 strategy games</a></p>
+        </section>
       </aside>
     </div>
 
-    <section class="related" aria-labelledby="relatedTitle">
-      <h2 id="relatedTitle">More strategy games you may like</h2>
-      <ul class="game-grid"><li><a class="game-card" href="/game/world-of-stickman-classic-rts/" aria-label="Play World of Stickman Classic RTS"><img class="card-thumb" src="/images/world-of-stickman-classic-rts.jpg" alt="World of Stickman Classic RTS — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">World of Stickman Classic RTS</span><span class="card-cat">Strategy</span></div></a></li><li><a class="game-card" href="/game/clash-of-warriors-ofd/" aria-label="Play Clash of Warriors"><img class="card-thumb" src="/images/clash-of-warriors-ofd.jpg" alt="Clash of Warriors — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Clash of Warriors</span><span class="card-cat">Strategy</span></div></a></li><li><a class="game-card" href="/game/knight-of-chess/" aria-label="Play Knight of Chess"><img class="card-thumb" src="/images/knight-of-chess.jpg" alt="Knight of Chess — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Knight of Chess</span><span class="card-cat">Strategy</span></div></a></li><li><a class="game-card" href="/game/tower-defense/" aria-label="Play Tower Defense"><img class="card-thumb" src="/images/tower-defense.jpg" alt="Tower Defense — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Tower Defense</span><span class="card-cat">Strategy</span></div></a></li><li><a class="game-card" href="/game/stickman-tower-defense-idle-3d/" aria-label="Play Stickman Tower Defense Idle 3D"><img class="card-thumb" src="/images/stickman-tower-defense-idle-3d.jpg" alt="Stickman Tower Defense Idle 3D — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Stickman Tower Defense Idle 3D</span><span class="card-cat">Strategy</span></div></a></li><li><a class="game-card" href="/game/evo-gears/" aria-label="Play Evo Gears"><img class="card-thumb" src="/images/evo-gears.jpg" alt="Evo Gears — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Evo Gears</span><span class="card-cat">Strategy</span></div></a></li><li><a class="game-card" href="/game/aod-art-of-defense/" aria-label="Play AOD - Art Of Defense"><img class="card-thumb" src="/images/aod---art-of-defense.jpg" alt="AOD - Art Of Defense — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">AOD - Art Of Defense</span><span class="card-cat">Strategy</span></div></a></li><li><a class="game-card" href="/game/pumpkin-defense-merge-cannon/" aria-label="Play Pumpkin Defense: Merge Cannon"><img class="card-thumb" src="/images/pumpkin-defense-merge-cannon.jpg" alt="Pumpkin Defense: Merge Cannon — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Pumpkin Defense: Merge Cannon</span><span class="card-cat">Strategy</span></div></a></li><li><a class="game-card" href="/game/warlink-crown-clash/" aria-label="Play WarLink: Crown"><img class="card-thumb" src="/images/warlink-crown-clash.jpg" alt="WarLink: Crown — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">WarLink: Crown</span><span class="card-cat">Strategy</span></div></a></li><li><a class="game-card" href="/game/galaxy-merge-starships-wars/" aria-label="Play Galaxy Merge Starships Wars"><img class="card-thumb" src="/images/galaxy-merge-starships-wars.jpg" alt="Galaxy Merge Starships Wars — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Galaxy Merge Starships Wars</span><span class="card-cat">Strategy</span></div></a></li><li><a class="game-card" href="/game/base-defence/" aria-label="Play Base Defence"><img class="card-thumb" src="/images/base-defence.jpg" alt="Base Defence — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Base Defence</span><span class="card-cat">Strategy</span></div></a></li><li><a class="game-card" href="/game/evil-tower-lli/" aria-label="Play Evil Tower"><img class="card-thumb" src="/images/evil-tower-lli.jpg" alt="Evil Tower — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Evil Tower</span><span class="card-cat">Strategy</span></div></a></li></ul>
-      <p class="see-all"><a class="btn btn-ghost" href="/category/strategy/">See all 20 strategy games</a></p>
+    <section class="shelf" aria-labelledby="relatedTitle">
+      <div class="shelf-head"><h2 id="relatedTitle">You may also like</h2><a class="shelf-link" href="/category/strategy/">See all</a></div>
+      <ul class="tile-grid"><li class=""><a class="tile" href="/game/world-of-stickman-classic-rts/" aria-label="Play World of Stickman Classic RTS"><img src="/images/world-of-stickman-classic-rts.jpg" alt="World of Stickman Classic RTS – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">World of Stickman Classic RTS</span></a></li><li class=""><a class="tile" href="/game/clash-of-warriors-ofd/" aria-label="Play Clash of Warriors"><img src="/images/clash-of-warriors-ofd.jpg" alt="Clash of Warriors – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Clash of Warriors</span></a></li><li class=""><a class="tile" href="/game/knight-of-chess/" aria-label="Play Knight of Chess"><img src="/images/knight-of-chess.jpg" alt="Knight of Chess – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Knight of Chess</span></a></li><li class=""><a class="tile" href="/game/tower-defense/" aria-label="Play Tower Defense"><img src="/images/tower-defense.jpg" alt="Tower Defense – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Tower Defense</span></a></li><li class=""><a class="tile" href="/game/stickman-tower-defense-idle-3d/" aria-label="Play Stickman Tower Defense Idle 3D"><img src="/images/stickman-tower-defense-idle-3d.jpg" alt="Stickman Tower Defense Idle 3D – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Stickman Tower Defense Idle 3D</span></a></li><li class=""><a class="tile" href="/game/evo-gears/" aria-label="Play Evo Gears"><img src="/images/evo-gears.jpg" alt="Evo Gears – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Evo Gears</span></a></li><li class=""><a class="tile" href="/game/aod-art-of-defense/" aria-label="Play AOD - Art Of Defense"><img src="/images/aod---art-of-defense.jpg" alt="AOD - Art Of Defense – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">AOD - Art Of Defense</span></a></li><li class=""><a class="tile" href="/game/pumpkin-defense-merge-cannon/" aria-label="Play Pumpkin Defense: Merge Cannon"><img src="/images/pumpkin-defense-merge-cannon.jpg" alt="Pumpkin Defense: Merge Cannon – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Pumpkin Defense: Merge Cannon</span></a></li><li class=""><a class="tile" href="/game/warlink-crown-clash/" aria-label="Play WarLink: Crown"><img src="/images/warlink-crown-clash.jpg" alt="WarLink: Crown – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">WarLink: Crown</span></a></li><li class=""><a class="tile" href="/game/galaxy-merge-starships-wars/" aria-label="Play Galaxy Merge Starships Wars"><img src="/images/galaxy-merge-starships-wars.jpg" alt="Galaxy Merge Starships Wars – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Galaxy Merge Starships Wars</span></a></li><li class=""><a class="tile" href="/game/base-defence/" aria-label="Play Base Defence"><img src="/images/base-defence.jpg" alt="Base Defence – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Base Defence</span></a></li><li class=""><a class="tile" href="/game/evil-tower-lli/" aria-label="Play Evil Tower"><img src="/images/evil-tower-lli.jpg" alt="Evil Tower – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Evil Tower</span></a></li></ul>
     </section>
   </main>
   <footer class="site-footer">
@@ -146,6 +151,6 @@
       </nav>
     </div>
   </footer>
-  <script src="/assets/js/page.js?v=1" defer></script>
+  <script src="/assets/js/page.js?v=2" defer></script>
 </body>
 </html>

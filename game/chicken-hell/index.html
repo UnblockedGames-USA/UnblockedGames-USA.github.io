@@ -24,11 +24,13 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-L6FNHSMWF4');</script>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://api.fontshare.com" />
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,400..700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/base.css" />
   <link rel="stylesheet" href="/assets/style.css" />
-  <link rel="stylesheet" href="/assets/seo.css?v=1" />
+  <link rel="stylesheet" href="/assets/seo.css?v=2" />
+  <link rel="stylesheet" href="/assets/fun.css?v=2" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -45,6 +47,7 @@
       <button class="icon-btn" data-theme-toggle aria-label="Switch to light mode" type="button"></button>
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
+    <nav class="cat-bar" aria-label="Game categories"><div class="container cat-bar-inner"><a class="cat-pill" href="/"><span aria-hidden="true">🏠</span>Home</a><a class="cat-pill" href="/category/action/"><span aria-hidden="true">⚡</span>Action</a><a class="cat-pill is-active" href="/category/arcade/"><span aria-hidden="true">🕹️</span>Arcade</a><a class="cat-pill" href="/category/puzzle/"><span aria-hidden="true">🧩</span>Puzzle</a><a class="cat-pill" href="/category/simulation/"><span aria-hidden="true">🏗️</span>Simulation</a><a class="cat-pill" href="/category/clicker/"><span aria-hidden="true">👆</span>Clicker</a><a class="cat-pill" href="/category/driving/"><span aria-hidden="true">🏎️</span>Driving &amp; Racing</a><a class="cat-pill" href="/category/adventure/"><span aria-hidden="true">🗺️</span>Adventure</a><a class="cat-pill" href="/category/casual/"><span aria-hidden="true">🌈</span>Casual</a><a class="cat-pill" href="/category/shooting/"><span aria-hidden="true">🎯</span>Shooting</a><a class="cat-pill" href="/category/sports/"><span aria-hidden="true">⚽</span>Sports</a><a class="cat-pill" href="/category/beauty/"><span aria-hidden="true">💄</span>Beauty &amp; Dress Up</a><a class="cat-pill" href="/category/strategy/"><span aria-hidden="true">♟️</span>Strategy</a><a class="cat-pill" href="/category/word/"><span aria-hidden="true">🔤</span>Word</a><a class="cat-pill" href="/games/"><span aria-hidden="true">🔤</span>A–Z</a></div></nav>
   </header>
   <div class="menu-backdrop" id="menuBackdrop" hidden></div>
   <nav class="menu-panel" id="menuPanel" aria-label="Site menu" hidden>
@@ -71,70 +74,72 @@
       <li><a href="/terms.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg>Terms of use</a></li>
     </ul>
   </nav>
-  <main id="main" class="container game-page">
+  <main id="main" class="container container--wide game-page">
     <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/category/arcade/">Arcade Games</a></li><li aria-current="page">Chicken Hell</li></ol></nav>
-    <div class="game-head">
-      <h1>Chicken Hell</h1>
-      <div class="game-meta"><a class="chip" href="/category/arcade/">Arcade</a></div>
-    </div>
-
-    <section class="player" id="player" aria-label="Play Chicken Hell">
-      <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/chicken-hell" data-title="Chicken Hell">
-        <button class="play-poster" id="playBtn" type="button" aria-label="Play Chicken Hell now">
-          <img src="/images/chicken-hell.jpg" alt="Play Chicken Hell online free — arcade game" width="640" height="360" fetchpriority="high" decoding="async" />
-          <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
-        </button>
-        <noscript><p class="noscript-note">Please enable JavaScript to play Chicken Hell.</p></noscript>
-      </div>
-      <div class="player-bar">
-        <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
-        <div class="player-actions">
-          <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
-          <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+    <div class="play-layout">
+      <div class="play-main">
+        <div class="game-head">
+          <h1>Chicken Hell</h1>
+          <div class="game-meta"><a class="chip" href="/category/arcade/">Arcade</a></div>
         </div>
+
+        <section class="player" id="player" aria-label="Play Chicken Hell">
+          <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/chicken-hell" data-title="Chicken Hell">
+            <button class="play-poster" id="playBtn" type="button" aria-label="Play Chicken Hell now">
+              <img src="/images/chicken-hell.jpg" alt="Play Chicken Hell online free — arcade game" width="640" height="360" fetchpriority="high" decoding="async" />
+              <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
+            </button>
+            <noscript><p class="noscript-note">Please enable JavaScript to play Chicken Hell.</p></noscript>
+          </div>
+          <div class="player-bar">
+            <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
+            <div class="player-actions">
+              <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
+              <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+            </div>
+          </div>
+        </section>
+
+        <article class="game-content">
+          <section class="panel" aria-labelledby="about"><h2 id="about">About Chicken Hell</h2><p>Ready to play Chicken Hell? This free arcade game loads in your browser in seconds. There is no installation, no sign-up and no cost, just press Play Now to start.</p>
+            <p>It is part of our collection of 104 free <a href="/category/arcade/">arcade games</a>, inside a library of 705 browser games you can play without installing anything.</p></section>
+          <section class="panel" aria-labelledby="howto"><h2 id="howto">How to Play Chicken Hell</h2>
+            <ol class="steps"><li>Press Play Now and let the game load.</li><li>Try the first round slowly to learn the rhythm and the scoring.</li><li>Chase streaks and combos: they are usually where the high scores come from.</li></ol></section>
+          <section class="panel" aria-labelledby="controls"><h2 id="controls">Controls</h2>
+            <dl class="controls"><div><dt>Desktop</dt><dd>Most arcade games use the mouse or the arrow keys. Click, tap or press Space for the main action as the game&#x27;s first screen explains.</dd></div><div><dt>Mobile and tablet</dt><dd>Tap or swipe on the screen. Most arcade games are designed for one-handed play.</dd></div></dl>
+            <p class="note">Controls can differ between games. Check the start screen or tutorial of Chicken Hell for the exact keys.</p></section>
+          <section class="panel" aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Chicken Hell</h2>
+            <ul class="ticks"><li>Do not chase every bonus; safe progress beats risky pickups.</li><li>Watch the edges of the screen, because that is where surprises come from.</li><li>Play a few short rounds in a row; your timing warms up quickly.</li><li>Beat your own best score instead of comparing with others.</li><li>If controls feel off, click the game area once to give it focus.</li></ul></section>
+          <section class="panel" aria-labelledby="features"><h2 id="features">Features</h2>
+            <ul class="ticks"><li>Instant play, no download</li><li>Simple rules that are easy to learn and hard to master</li><li>Score-chasing replay value</li><li>Runs on desktop, tablet and mobile browsers</li></ul></section>
+          <section class="panel" aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
+            <details><summary>Is Chicken Hell free to play?</summary><p>Yes. Chicken Hell is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Chicken Hell on mobile?</summary><p>Yes. Chicken Hell runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Chicken Hell?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Chicken Hell will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>Do arcade games save my high score?</summary><p>That depends on the game. Many keep a score for the current session; if you close the tab it may reset, so note your best score if it matters to you.</p></details></section>
+        </article>
       </div>
-    </section>
 
-    <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
-
-    <div class="game-layout">
-      <article class="game-content">
-        <section aria-labelledby="about"><h2 id="about">About Chicken Hell</h2><p>Ready to play Chicken Hell? This free arcade game loads in your browser in seconds. There is no installation, no sign-up and no cost, just press Play Now to start.</p>
-          <p>It is part of our collection of 104 free <a href="/category/arcade/">arcade games</a>, which sits inside a library of 705 browser games you can play without installing anything.</p></section>
-        <section aria-labelledby="howto"><h2 id="howto">How to Play Chicken Hell</h2>
-          <ol><li>Press Play Now and let the game load.</li><li>Try the first round slowly to learn the rhythm and the scoring.</li><li>Chase streaks and combos: they are usually where the high scores come from.</li></ol></section>
-        <section aria-labelledby="controls"><h2 id="controls">Controls</h2>
-          <dl class="controls"><div><dt>Desktop</dt><dd>Most arcade games use the mouse or the arrow keys. Click, tap or press Space for the main action as the game&#x27;s first screen explains.</dd></div><div><dt>Mobile and tablet</dt><dd>Tap or swipe on the screen. Most arcade games are designed for one-handed play.</dd></div></dl>
-          <p class="note">Controls can differ between games. Check the start screen or tutorial of Chicken Hell for the exact keys.</p></section>
-        <section aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Chicken Hell</h2>
-          <ul><li>Do not chase every bonus; safe progress beats risky pickups.</li><li>Watch the edges of the screen, because that is where surprises come from.</li><li>Play a few short rounds in a row; your timing warms up quickly.</li><li>Beat your own best score instead of comparing with others.</li><li>If controls feel off, click the game area once to give it focus.</li></ul></section>
-        <section aria-labelledby="features"><h2 id="features">Features</h2>
-          <ul><li>Instant play, no download</li><li>Simple rules that are easy to learn and hard to master</li><li>Score-chasing replay value</li><li>Runs on desktop, tablet and mobile browsers</li></ul></section>
-        <section aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
-          <details><summary>Is Chicken Hell free to play?</summary><p>Yes. Chicken Hell is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Chicken Hell on mobile?</summary><p>Yes. Chicken Hell runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Chicken Hell?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Chicken Hell will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>Do arcade games save my high score?</summary><p>That depends on the game. Many keep a score for the current session; if you close the tab it may reset, so note your best score if it matters to you.</p></details></section>
-      </article>
-      <aside class="game-aside" aria-label="Game details">
-        <h2>Game info</h2>
-        <dl class="info">
-          <div><dt>Title</dt><dd>Chicken Hell</dd></div>
-          <div><dt>Genre</dt><dd><a href="/category/arcade/">Arcade</a></dd></div>
-          <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
-          <div><dt>Technology</dt><dd>HTML5</dd></div>
-          <div><dt>Price</dt><dd>Free, no download</dd></div>
-        </dl>
-        <h3>Browse more</h3>
-        <ul class="aside-links">
-          <li><a href="/category/arcade/">All arcade games (104)</a></li>
-          <li><a href="/games/">All games A–Z</a></li>
-          <li><a href="/">Home</a></li>
-        </ul>
+      <aside class="play-side" aria-label="Game details and more games">
+        <section class="side-card">
+          <h2>Game info</h2>
+          <dl class="info">
+            <div><dt>Title</dt><dd>Chicken Hell</dd></div>
+            <div><dt>Genre</dt><dd><a href="/category/arcade/">Arcade</a></dd></div>
+            <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
+            <div><dt>Technology</dt><dd>HTML5</dd></div>
+            <div><dt>Price</dt><dd>Free, no download</dd></div>
+          </dl>
+        </section>
+        <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+        <section class="side-card">
+          <h2>More arcade games</h2>
+          <ul class="tile-grid tile-grid--side"><li class=""><a class="tile" href="/game/catch-lucky-block/" aria-label="Play Catch Lucky Block"><img src="/images/catch-lucky-block.jpg" alt="Catch Lucky Block – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Catch Lucky Block</span></a></li><li class=""><a class="tile" href="/game/ghost-slurp/" aria-label="Play Ghost Slurp"><img src="/images/ghost-slurp.jpg" alt="Ghost Slurp – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Ghost Slurp</span></a></li><li class=""><a class="tile" href="/game/hole-io-uyt/" aria-label="Play Hole.io"><img src="/images/hole-io-uyt.jpg" alt="Hole.io – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Hole.io</span></a></li><li class=""><a class="tile" href="/game/sprout-king-kmm/" aria-label="Play Sprout King"><img src="/images/sprout-king-kmm.jpg" alt="Sprout King – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Sprout King</span></a></li><li class=""><a class="tile" href="/game/obby-steal-an-egg-kwy/" aria-label="Play Obby Steal Eggs"><img src="/images/obby-steal-an-egg-kwy.jpg" alt="Obby Steal Eggs – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby Steal Eggs</span></a></li><li class=""><a class="tile" href="/game/obby-stronger-drill-deeper-mine/" aria-label="Play Obby: Stronger Drill, Deeper Mine"><img src="/images/obby-stronger-drill-deeper-mine.jpg" alt="Obby: Stronger Drill, Deeper Mine – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby: Stronger Drill, Deeper Mine</span></a></li><li class=""><a class="tile" href="/game/obby-1-laser-to-break-walls-pks/" aria-label="Play Obby: +1 Laser to Break Walls"><img src="/images/obby-1-laser-to-break-walls-pks.jpg" alt="Obby: +1 Laser to Break Walls – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby: +1 Laser to Break Walls</span></a></li><li class=""><a class="tile" href="/game/swing-sword-for-brainrots/" aria-label="Play Swing Sword for Brainrots"><img src="/images/swing-sword-for-brainrots.jpg" alt="Swing Sword for Brainrots – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Swing Sword for Brainrots</span></a></li><li class=""><a class="tile" href="/game/obby-climb-slide-minecarts/" aria-label="Play Obby: Climb"><img src="/images/obby-climb-slide-minecarts.jpg" alt="Obby: Climb – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby: Climb</span></a></li><li class=""><a class="tile" href="/game/breakstoneball/" aria-label="Play BreakStoneBALL"><img src="/images/breakstoneball.jpg" alt="BreakStoneBALL – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">BreakStoneBALL</span></a></li></ul>
+          <p class="see-all"><a class="btn btn-primary" href="/category/arcade/">All 104 arcade games</a></p>
+        </section>
       </aside>
     </div>
 
-    <section class="related" aria-labelledby="relatedTitle">
-      <h2 id="relatedTitle">More arcade games you may like</h2>
-      <ul class="game-grid"><li><a class="game-card" href="/game/panic-patrol/" aria-label="Play Panic Patrol"><img class="card-thumb" src="/images/panic-patrol.jpg" alt="Panic Patrol — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Panic Patrol</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/the-flowers-merge-and-sell-bouquets/" aria-label="Play The Flowers Merge and Sell Bouquets"><img class="card-thumb" src="/images/the-flowers-merge-and-sell-bouquets.jpg" alt="The Flowers Merge and Sell Bouquets — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">The Flowers Merge and Sell Bouquets</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/downhill-racer-bvk/" aria-label="Play Downhill Racer"><img class="card-thumb" src="/images/downhill-racer-bvk.jpg" alt="Downhill Racer — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Downhill Racer</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/master-scavenger/" aria-label="Play Master Scavenger"><img class="card-thumb" src="/images/master-scavenger.jpg" alt="Master Scavenger — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Master Scavenger</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/droll-world-cup-zze/" aria-label="Play Droll World Cup"><img class="card-thumb" src="/images/droll-world-cup-zze.jpg" alt="Droll World Cup — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Droll World Cup</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/kick-the-buddy-yxa/" aria-label="Play Kick the Buddy"><img class="card-thumb" src="/images/kick-the-buddy-yxa.jpg" alt="Kick the Buddy — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Kick the Buddy</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/robby-cross-the-road-for-brainrot/" aria-label="Play Robby: Cross the Road for Brainrot"><img class="card-thumb" src="/images/robby-cross-the-road-for-brainrot.jpg" alt="Robby: Cross the Road for Brainrot — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Robby: Cross the Road for Brainrot</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/mega-hole-attack/" aria-label="Play Mega Hole Attack"><img class="card-thumb" src="/images/mega-hole-attack.jpg" alt="Mega Hole Attack — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Mega Hole Attack</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/slide-out/" aria-label="Play Slide Out"><img class="card-thumb" src="/images/slide-out.jpg" alt="Slide Out — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Slide Out</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/obby-1-click-wall-breaker/" aria-label="Play Obby: +1 Click Wall Breaker"><img class="card-thumb" src="/images/obby-1-click-wall-breaker.jpg" alt="Obby: +1 Click Wall Breaker — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Obby: +1 Click Wall Breaker</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/dino-world-hso/" aria-label="Play Dino World"><img class="card-thumb" src="/images/dino-world-hso.jpg" alt="Dino World — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Dino World</span><span class="card-cat">Arcade</span></div></a></li><li><a class="game-card" href="/game/obby-break-rocks-for-brainrots/" aria-label="Play Obby: Break Rocks For Brainrots"><img class="card-thumb" src="/images/obby-break-rocks-for-brainrots.jpg" alt="Obby: Break Rocks For Brainrots — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Obby: Break Rocks For Brainrots</span><span class="card-cat">Arcade</span></div></a></li></ul>
-      <p class="see-all"><a class="btn btn-ghost" href="/category/arcade/">See all 104 arcade games</a></p>
+    <section class="shelf" aria-labelledby="relatedTitle">
+      <div class="shelf-head"><h2 id="relatedTitle">You may also like</h2><a class="shelf-link" href="/category/arcade/">See all</a></div>
+      <ul class="tile-grid"><li class=""><a class="tile" href="/game/panic-patrol/" aria-label="Play Panic Patrol"><img src="/images/panic-patrol.jpg" alt="Panic Patrol – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Panic Patrol</span></a></li><li class=""><a class="tile" href="/game/the-flowers-merge-and-sell-bouquets/" aria-label="Play The Flowers Merge and Sell Bouquets"><img src="/images/the-flowers-merge-and-sell-bouquets.jpg" alt="The Flowers Merge and Sell Bouquets – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">The Flowers Merge and Sell Bouquets</span></a></li><li class=""><a class="tile" href="/game/downhill-racer-bvk/" aria-label="Play Downhill Racer"><img src="/images/downhill-racer-bvk.jpg" alt="Downhill Racer – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Downhill Racer</span></a></li><li class=""><a class="tile" href="/game/master-scavenger/" aria-label="Play Master Scavenger"><img src="/images/master-scavenger.jpg" alt="Master Scavenger – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Master Scavenger</span></a></li><li class=""><a class="tile" href="/game/droll-world-cup-zze/" aria-label="Play Droll World Cup"><img src="/images/droll-world-cup-zze.jpg" alt="Droll World Cup – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Droll World Cup</span></a></li><li class=""><a class="tile" href="/game/kick-the-buddy-yxa/" aria-label="Play Kick the Buddy"><img src="/images/kick-the-buddy-yxa.jpg" alt="Kick the Buddy – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Kick the Buddy</span></a></li><li class=""><a class="tile" href="/game/robby-cross-the-road-for-brainrot/" aria-label="Play Robby: Cross the Road for Brainrot"><img src="/images/robby-cross-the-road-for-brainrot.jpg" alt="Robby: Cross the Road for Brainrot – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Robby: Cross the Road for Brainrot</span></a></li><li class=""><a class="tile" href="/game/mega-hole-attack/" aria-label="Play Mega Hole Attack"><img src="/images/mega-hole-attack.jpg" alt="Mega Hole Attack – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Mega Hole Attack</span></a></li><li class=""><a class="tile" href="/game/slide-out/" aria-label="Play Slide Out"><img src="/images/slide-out.jpg" alt="Slide Out – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Slide Out</span></a></li><li class=""><a class="tile" href="/game/obby-1-click-wall-breaker/" aria-label="Play Obby: +1 Click Wall Breaker"><img src="/images/obby-1-click-wall-breaker.jpg" alt="Obby: +1 Click Wall Breaker – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby: +1 Click Wall Breaker</span></a></li><li class=""><a class="tile" href="/game/dino-world-hso/" aria-label="Play Dino World"><img src="/images/dino-world-hso.jpg" alt="Dino World – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Dino World</span></a></li><li class=""><a class="tile" href="/game/obby-break-rocks-for-brainrots/" aria-label="Play Obby: Break Rocks For Brainrots"><img src="/images/obby-break-rocks-for-brainrots.jpg" alt="Obby: Break Rocks For Brainrots – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby: Break Rocks For Brainrots</span></a></li></ul>
     </section>
   </main>
   <footer class="site-footer">
@@ -146,6 +151,6 @@
       </nav>
     </div>
   </footer>
-  <script src="/assets/js/page.js?v=1" defer></script>
+  <script src="/assets/js/page.js?v=2" defer></script>
 </body>
 </html>

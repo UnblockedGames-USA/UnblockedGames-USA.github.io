@@ -24,11 +24,13 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-L6FNHSMWF4');</script>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://api.fontshare.com" />
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,400..700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/base.css" />
   <link rel="stylesheet" href="/assets/style.css" />
-  <link rel="stylesheet" href="/assets/seo.css?v=1" />
+  <link rel="stylesheet" href="/assets/seo.css?v=2" />
+  <link rel="stylesheet" href="/assets/fun.css?v=2" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -45,6 +47,7 @@
       <button class="icon-btn" data-theme-toggle aria-label="Switch to light mode" type="button"></button>
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
+    <nav class="cat-bar" aria-label="Game categories"><div class="container cat-bar-inner"><a class="cat-pill" href="/"><span aria-hidden="true">🏠</span>Home</a><a class="cat-pill" href="/category/action/"><span aria-hidden="true">⚡</span>Action</a><a class="cat-pill" href="/category/arcade/"><span aria-hidden="true">🕹️</span>Arcade</a><a class="cat-pill" href="/category/puzzle/"><span aria-hidden="true">🧩</span>Puzzle</a><a class="cat-pill" href="/category/simulation/"><span aria-hidden="true">🏗️</span>Simulation</a><a class="cat-pill" href="/category/clicker/"><span aria-hidden="true">👆</span>Clicker</a><a class="cat-pill" href="/category/driving/"><span aria-hidden="true">🏎️</span>Driving &amp; Racing</a><a class="cat-pill" href="/category/adventure/"><span aria-hidden="true">🗺️</span>Adventure</a><a class="cat-pill" href="/category/casual/"><span aria-hidden="true">🌈</span>Casual</a><a class="cat-pill is-active" href="/category/shooting/"><span aria-hidden="true">🎯</span>Shooting</a><a class="cat-pill" href="/category/sports/"><span aria-hidden="true">⚽</span>Sports</a><a class="cat-pill" href="/category/beauty/"><span aria-hidden="true">💄</span>Beauty &amp; Dress Up</a><a class="cat-pill" href="/category/strategy/"><span aria-hidden="true">♟️</span>Strategy</a><a class="cat-pill" href="/category/word/"><span aria-hidden="true">🔤</span>Word</a><a class="cat-pill" href="/games/"><span aria-hidden="true">🔤</span>A–Z</a></div></nav>
   </header>
   <div class="menu-backdrop" id="menuBackdrop" hidden></div>
   <nav class="menu-panel" id="menuPanel" aria-label="Site menu" hidden>
@@ -71,70 +74,72 @@
       <li><a href="/terms.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg>Terms of use</a></li>
     </ul>
   </nav>
-  <main id="main" class="container game-page">
+  <main id="main" class="container container--wide game-page">
     <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/category/shooting/">Shooting Games</a></li><li aria-current="page">Online Robot Royale</li></ol></nav>
-    <div class="game-head">
-      <h1>Online Robot Royale</h1>
-      <div class="game-meta"><a class="chip" href="/category/shooting/">Shooting</a></div>
-    </div>
-
-    <section class="player" id="player" aria-label="Play Online Robot Royale">
-      <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/online-robot-royale" data-title="Online Robot Royale">
-        <button class="play-poster" id="playBtn" type="button" aria-label="Play Online Robot Royale now">
-          <img src="/images/online-robot-royale.jpg" alt="Play Online Robot Royale online free — shooting game" width="640" height="360" fetchpriority="high" decoding="async" />
-          <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
-        </button>
-        <noscript><p class="noscript-note">Please enable JavaScript to play Online Robot Royale.</p></noscript>
-      </div>
-      <div class="player-bar">
-        <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
-        <div class="player-actions">
-          <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
-          <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+    <div class="play-layout">
+      <div class="play-main">
+        <div class="game-head">
+          <h1>Online Robot Royale</h1>
+          <div class="game-meta"><a class="chip" href="/category/shooting/">Shooting</a></div>
         </div>
+
+        <section class="player" id="player" aria-label="Play Online Robot Royale">
+          <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/online-robot-royale" data-title="Online Robot Royale">
+            <button class="play-poster" id="playBtn" type="button" aria-label="Play Online Robot Royale now">
+              <img src="/images/online-robot-royale.jpg" alt="Play Online Robot Royale online free — shooting game" width="640" height="360" fetchpriority="high" decoding="async" />
+              <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
+            </button>
+            <noscript><p class="noscript-note">Please enable JavaScript to play Online Robot Royale.</p></noscript>
+          </div>
+          <div class="player-bar">
+            <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
+            <div class="player-actions">
+              <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
+              <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+            </div>
+          </div>
+        </section>
+
+        <article class="game-content">
+          <section class="panel" aria-labelledby="about"><h2 id="about">About Online Robot Royale</h2><p>Ready to play Online Robot Royale? This free shooting game loads in your browser in seconds. There is no installation, no sign-up and no cost, just press Play Now to start.</p>
+            <p>It is part of our collection of 30 free <a href="/category/shooting/">shooting games</a>, inside a library of 705 browser games you can play without installing anything.</p></section>
+          <section class="panel" aria-labelledby="howto"><h2 id="howto">How to Play Online Robot Royale</h2>
+            <ol class="steps"><li>Press Play Now and check the on-screen controls.</li><li>Take the first wave slowly to get used to aiming and reloading.</li><li>Upgrade your weapons and defences between rounds.</li></ol></section>
+          <section class="panel" aria-labelledby="controls"><h2 id="controls">Controls</h2>
+            <dl class="controls"><div><dt>Desktop</dt><dd>Move with WASD, aim with the mouse and fire with the left click. Reload with R and switch weapons with the number keys or mouse wheel, where the game supports them.</dd></div><div><dt>Mobile and tablet</dt><dd>Use the left stick to move, drag on the right to aim and tap the fire button. Some games auto-aim.</dd></div></dl>
+            <p class="note">Controls can differ between games. Check the start screen or tutorial of Online Robot Royale for the exact keys.</p></section>
+          <section class="panel" aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Online Robot Royale</h2>
+            <ul class="ticks"><li>Move while you shoot; stationary players get hit.</li><li>Use corners to control where enemies come from.</li><li>Spend upgrade currency on a weapon you actually enjoy using.</li><li>Practise in lower difficulty levels to learn the maps.</li><li>Aim before you fire; accuracy beats spraying.</li></ul></section>
+          <section class="panel" aria-labelledby="features"><h2 id="features">Features</h2>
+            <ul class="ticks"><li>Instant play, no download</li><li>Weapon upgrades and progression</li><li>Waves and levels that scale with your skill</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
+          <section class="panel" aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
+            <details><summary>Is Online Robot Royale free to play?</summary><p>Yes. Online Robot Royale is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Online Robot Royale on mobile?</summary><p>Yes. Online Robot Royale runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Online Robot Royale?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Online Robot Royale will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>How can I improve my aim in browser shooting games?</summary><p>Lower your mouse sensitivity if the game allows it, aim at head height, and practise tracking moving targets instead of snapping to them.</p></details></section>
+        </article>
       </div>
-    </section>
 
-    <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
-
-    <div class="game-layout">
-      <article class="game-content">
-        <section aria-labelledby="about"><h2 id="about">About Online Robot Royale</h2><p>Ready to play Online Robot Royale? This free shooting game loads in your browser in seconds. There is no installation, no sign-up and no cost, just press Play Now to start.</p>
-          <p>It is part of our collection of 30 free <a href="/category/shooting/">shooting games</a>, which sits inside a library of 705 browser games you can play without installing anything.</p></section>
-        <section aria-labelledby="howto"><h2 id="howto">How to Play Online Robot Royale</h2>
-          <ol><li>Press Play Now and check the on-screen controls.</li><li>Take the first wave slowly to get used to aiming and reloading.</li><li>Upgrade your weapons and defences between rounds.</li></ol></section>
-        <section aria-labelledby="controls"><h2 id="controls">Controls</h2>
-          <dl class="controls"><div><dt>Desktop</dt><dd>Move with WASD, aim with the mouse and fire with the left click. Reload with R and switch weapons with the number keys or mouse wheel, where the game supports them.</dd></div><div><dt>Mobile and tablet</dt><dd>Use the left stick to move, drag on the right to aim and tap the fire button. Some games auto-aim.</dd></div></dl>
-          <p class="note">Controls can differ between games. Check the start screen or tutorial of Online Robot Royale for the exact keys.</p></section>
-        <section aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Online Robot Royale</h2>
-          <ul><li>Move while you shoot; stationary players get hit.</li><li>Use corners to control where enemies come from.</li><li>Spend upgrade currency on a weapon you actually enjoy using.</li><li>Practise in lower difficulty levels to learn the maps.</li><li>Aim before you fire; accuracy beats spraying.</li></ul></section>
-        <section aria-labelledby="features"><h2 id="features">Features</h2>
-          <ul><li>Instant play, no download</li><li>Weapon upgrades and progression</li><li>Waves and levels that scale with your skill</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
-        <section aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
-          <details><summary>Is Online Robot Royale free to play?</summary><p>Yes. Online Robot Royale is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Online Robot Royale on mobile?</summary><p>Yes. Online Robot Royale runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Online Robot Royale?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Online Robot Royale will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>How can I improve my aim in browser shooting games?</summary><p>Lower your mouse sensitivity if the game allows it, aim at head height, and practise tracking moving targets instead of snapping to them.</p></details></section>
-      </article>
-      <aside class="game-aside" aria-label="Game details">
-        <h2>Game info</h2>
-        <dl class="info">
-          <div><dt>Title</dt><dd>Online Robot Royale</dd></div>
-          <div><dt>Genre</dt><dd><a href="/category/shooting/">Shooting</a></dd></div>
-          <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
-          <div><dt>Technology</dt><dd>HTML5</dd></div>
-          <div><dt>Price</dt><dd>Free, no download</dd></div>
-        </dl>
-        <h3>Browse more</h3>
-        <ul class="aside-links">
-          <li><a href="/category/shooting/">All shooting games (30)</a></li>
-          <li><a href="/games/">All games A–Z</a></li>
-          <li><a href="/">Home</a></li>
-        </ul>
+      <aside class="play-side" aria-label="Game details and more games">
+        <section class="side-card">
+          <h2>Game info</h2>
+          <dl class="info">
+            <div><dt>Title</dt><dd>Online Robot Royale</dd></div>
+            <div><dt>Genre</dt><dd><a href="/category/shooting/">Shooting</a></dd></div>
+            <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
+            <div><dt>Technology</dt><dd>HTML5</dd></div>
+            <div><dt>Price</dt><dd>Free, no download</dd></div>
+          </dl>
+        </section>
+        <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+        <section class="side-card">
+          <h2>More shooting games</h2>
+          <ul class="tile-grid tile-grid--side"><li class=""><a class="tile" href="/game/camo-sniper/" aria-label="Play Camo Sniper"><img src="/images/camo-sniper.jpg" alt="Camo Sniper – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Camo Sniper</span></a></li><li class=""><a class="tile" href="/game/destructors-online/" aria-label="Play Destructors Online"><img src="/images/destructors-online.jpg" alt="Destructors Online – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Destructors Online</span></a></li><li class=""><a class="tile" href="/game/ks-z/" aria-label="Play KS Z"><img src="/images/ks-z.png" alt="KS Z – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">KS Z</span></a></li><li class=""><a class="tile" href="/game/mine-shooter-2-noob-vs-mobs/" aria-label="Play Mine Shooter 2: Noob vs Mobs"><img src="/images/mine-shooter-2-noob-vs-mobs.png" alt="Mine Shooter 2: Noob vs Mobs – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Mine Shooter 2: Noob vs Mobs</span></a></li><li class=""><a class="tile" href="/game/muscle-gun-io/" aria-label="Play Muscle Gun.IO"><img src="/images/muscle-gun-io.png" alt="Muscle Gun.IO – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Muscle Gun.IO</span></a></li><li class=""><a class="tile" href="/game/craft-destroy/" aria-label="Play Craft Destroy"><img src="/images/craft-destroy.jpg" alt="Craft Destroy – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Craft Destroy</span></a></li><li class=""><a class="tile" href="/game/bulletstorm-zer/" aria-label="Play Bulletstorm"><img src="/images/bulletstorm-zer.jpg" alt="Bulletstorm – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Bulletstorm</span></a></li><li class=""><a class="tile" href="/game/forward-assault/" aria-label="Play Forward Assault Remix"><img src="/images/forward-assault.jpg" alt="Forward Assault Remix – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Forward Assault Remix</span></a></li><li class=""><a class="tile" href="/game/bodycamera-shooter/" aria-label="Play BodyCamera Shooter"><img src="/images/bodycamera-shooter.jpg" alt="BodyCamera Shooter – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">BodyCamera Shooter</span></a></li><li class=""><a class="tile" href="/game/gridpunk-3v3-battle-royale/" aria-label="Play Gridpunk - 3v3 Battle Royale"><img src="/images/gridpunk---3v3-battle-royale.jpg" alt="Gridpunk - 3v3 Battle Royale – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Gridpunk - 3v3 Battle Royale</span></a></li></ul>
+          <p class="see-all"><a class="btn btn-primary" href="/category/shooting/">All 30 shooting games</a></p>
+        </section>
       </aside>
     </div>
 
-    <section class="related" aria-labelledby="relatedTitle">
-      <h2 id="relatedTitle">More shooting games you may like</h2>
-      <ul class="game-grid"><li><a class="game-card" href="/game/zomblox-mzc/" aria-label="Play Zomblox"><img class="card-thumb" src="/images/zomblox-mzc.jpg" alt="Zomblox — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Zomblox</span><span class="card-cat">Shooting</span></div></a></li><li><a class="game-card" href="/game/bank-robbery-2/" aria-label="Play Bank Robbery 2"><img class="card-thumb" src="/images/bank-robbery-2.jpg" alt="Bank Robbery 2 — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Bank Robbery 2</span><span class="card-cat">Shooting</span></div></a></li><li><a class="game-card" href="/game/lethal-sniper-3d-army-soldier/" aria-label="Play Lethal Sniper 3D: Army Soldier"><img class="card-thumb" src="/images/lethal-sniper-3d-army-soldier.jpg" alt="Lethal Sniper 3D: Army Soldier — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Lethal Sniper 3D: Army Soldier</span><span class="card-cat">Shooting</span></div></a></li><li><a class="game-card" href="/game/zombies-shooter-part-1/" aria-label="Play Zombies Shooter"><img class="card-thumb" src="/images/zombies-shooter-part-1.jpg" alt="Zombies Shooter — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Zombies Shooter</span><span class="card-cat">Shooting</span></div></a></li><li><a class="game-card" href="/game/grand-escape-prison/" aria-label="Play Grand Escape: Prison"><img class="card-thumb" src="/images/grand-escape-prison.jpg" alt="Grand Escape: Prison — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Grand Escape: Prison</span><span class="card-cat">Shooting</span></div></a></li><li><a class="game-card" href="/game/fnaf-shooter/" aria-label="Play FNaF Shooter"><img class="card-thumb" src="/images/fnaf-shooter.jpg" alt="FNaF Shooter — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">FNaF Shooter</span><span class="card-cat">Shooting</span></div></a></li><li><a class="game-card" href="/game/bullets-in-a-china-shop-mdi/" aria-label="Play BULLets in a China Shop"><img class="card-thumb" src="/images/bullets-in-a-china-shop-mdi.jpg" alt="BULLets in a China Shop — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">BULLets in a China Shop</span><span class="card-cat">Shooting</span></div></a></li><li><a class="game-card" href="/game/ships-battlefield-3d/" aria-label="Play Ships Battlefield 3D"><img class="card-thumb" src="/images/ships-battlefield-3d.png" alt="Ships Battlefield 3D — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Ships Battlefield 3D</span><span class="card-cat">Shooting</span></div></a></li><li><a class="game-card" href="/game/horde-crusher/" aria-label="Play Horde Crusher"><img class="card-thumb" src="/images/horde-crusher.jpg" alt="Horde Crusher — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Horde Crusher</span><span class="card-cat">Shooting</span></div></a></li><li><a class="game-card" href="/game/mine-shooter-3d/" aria-label="Play Mine Shooter 3D"><img class="card-thumb" src="/images/mine-shooter-3d.jpg" alt="Mine Shooter 3D — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Mine Shooter 3D</span><span class="card-cat">Shooting</span></div></a></li><li><a class="game-card" href="/game/cannon-ball-blast/" aria-label="Play Cannon Ball Blast"><img class="card-thumb" src="/images/cannon-ball-blast.jpg" alt="Cannon Ball Blast — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Cannon Ball Blast</span><span class="card-cat">Shooting</span></div></a></li><li><a class="game-card" href="/game/path-of-survivor/" aria-label="Play Path of Survivor"><img class="card-thumb" src="/images/path-of-survivor.jpg" alt="Path of Survivor — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Path of Survivor</span><span class="card-cat">Shooting</span></div></a></li></ul>
-      <p class="see-all"><a class="btn btn-ghost" href="/category/shooting/">See all 30 shooting games</a></p>
+    <section class="shelf" aria-labelledby="relatedTitle">
+      <div class="shelf-head"><h2 id="relatedTitle">You may also like</h2><a class="shelf-link" href="/category/shooting/">See all</a></div>
+      <ul class="tile-grid"><li class=""><a class="tile" href="/game/zomblox-mzc/" aria-label="Play Zomblox"><img src="/images/zomblox-mzc.jpg" alt="Zomblox – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Zomblox</span></a></li><li class=""><a class="tile" href="/game/bank-robbery-2/" aria-label="Play Bank Robbery 2"><img src="/images/bank-robbery-2.jpg" alt="Bank Robbery 2 – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Bank Robbery 2</span></a></li><li class=""><a class="tile" href="/game/lethal-sniper-3d-army-soldier/" aria-label="Play Lethal Sniper 3D: Army Soldier"><img src="/images/lethal-sniper-3d-army-soldier.jpg" alt="Lethal Sniper 3D: Army Soldier – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Lethal Sniper 3D: Army Soldier</span></a></li><li class=""><a class="tile" href="/game/zombies-shooter-part-1/" aria-label="Play Zombies Shooter"><img src="/images/zombies-shooter-part-1.jpg" alt="Zombies Shooter – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Zombies Shooter</span></a></li><li class=""><a class="tile" href="/game/grand-escape-prison/" aria-label="Play Grand Escape: Prison"><img src="/images/grand-escape-prison.jpg" alt="Grand Escape: Prison – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Grand Escape: Prison</span></a></li><li class=""><a class="tile" href="/game/fnaf-shooter/" aria-label="Play FNaF Shooter"><img src="/images/fnaf-shooter.jpg" alt="FNaF Shooter – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">FNaF Shooter</span></a></li><li class=""><a class="tile" href="/game/bullets-in-a-china-shop-mdi/" aria-label="Play BULLets in a China Shop"><img src="/images/bullets-in-a-china-shop-mdi.jpg" alt="BULLets in a China Shop – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">BULLets in a China Shop</span></a></li><li class=""><a class="tile" href="/game/ships-battlefield-3d/" aria-label="Play Ships Battlefield 3D"><img src="/images/ships-battlefield-3d.png" alt="Ships Battlefield 3D – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Ships Battlefield 3D</span></a></li><li class=""><a class="tile" href="/game/horde-crusher/" aria-label="Play Horde Crusher"><img src="/images/horde-crusher.jpg" alt="Horde Crusher – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Horde Crusher</span></a></li><li class=""><a class="tile" href="/game/mine-shooter-3d/" aria-label="Play Mine Shooter 3D"><img src="/images/mine-shooter-3d.jpg" alt="Mine Shooter 3D – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Mine Shooter 3D</span></a></li><li class=""><a class="tile" href="/game/cannon-ball-blast/" aria-label="Play Cannon Ball Blast"><img src="/images/cannon-ball-blast.jpg" alt="Cannon Ball Blast – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Cannon Ball Blast</span></a></li><li class=""><a class="tile" href="/game/path-of-survivor/" aria-label="Play Path of Survivor"><img src="/images/path-of-survivor.jpg" alt="Path of Survivor – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Path of Survivor</span></a></li></ul>
     </section>
   </main>
   <footer class="site-footer">
@@ -146,6 +151,6 @@
       </nav>
     </div>
   </footer>
-  <script src="/assets/js/page.js?v=1" defer></script>
+  <script src="/assets/js/page.js?v=2" defer></script>
 </body>
 </html>

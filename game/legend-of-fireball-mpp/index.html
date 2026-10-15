@@ -24,11 +24,13 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-L6FNHSMWF4');</script>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://api.fontshare.com" />
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,400..700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/base.css" />
   <link rel="stylesheet" href="/assets/style.css" />
-  <link rel="stylesheet" href="/assets/seo.css?v=1" />
+  <link rel="stylesheet" href="/assets/seo.css?v=2" />
+  <link rel="stylesheet" href="/assets/fun.css?v=2" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -45,6 +47,7 @@
       <button class="icon-btn" data-theme-toggle aria-label="Switch to light mode" type="button"></button>
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
+    <nav class="cat-bar" aria-label="Game categories"><div class="container cat-bar-inner"><a class="cat-pill" href="/"><span aria-hidden="true">🏠</span>Home</a><a class="cat-pill" href="/category/action/"><span aria-hidden="true">⚡</span>Action</a><a class="cat-pill" href="/category/arcade/"><span aria-hidden="true">🕹️</span>Arcade</a><a class="cat-pill" href="/category/puzzle/"><span aria-hidden="true">🧩</span>Puzzle</a><a class="cat-pill" href="/category/simulation/"><span aria-hidden="true">🏗️</span>Simulation</a><a class="cat-pill is-active" href="/category/clicker/"><span aria-hidden="true">👆</span>Clicker</a><a class="cat-pill" href="/category/driving/"><span aria-hidden="true">🏎️</span>Driving &amp; Racing</a><a class="cat-pill" href="/category/adventure/"><span aria-hidden="true">🗺️</span>Adventure</a><a class="cat-pill" href="/category/casual/"><span aria-hidden="true">🌈</span>Casual</a><a class="cat-pill" href="/category/shooting/"><span aria-hidden="true">🎯</span>Shooting</a><a class="cat-pill" href="/category/sports/"><span aria-hidden="true">⚽</span>Sports</a><a class="cat-pill" href="/category/beauty/"><span aria-hidden="true">💄</span>Beauty &amp; Dress Up</a><a class="cat-pill" href="/category/strategy/"><span aria-hidden="true">♟️</span>Strategy</a><a class="cat-pill" href="/category/word/"><span aria-hidden="true">🔤</span>Word</a><a class="cat-pill" href="/games/"><span aria-hidden="true">🔤</span>A–Z</a></div></nav>
   </header>
   <div class="menu-backdrop" id="menuBackdrop" hidden></div>
   <nav class="menu-panel" id="menuPanel" aria-label="Site menu" hidden>
@@ -71,70 +74,72 @@
       <li><a href="/terms.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg>Terms of use</a></li>
     </ul>
   </nav>
-  <main id="main" class="container game-page">
+  <main id="main" class="container container--wide game-page">
     <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/category/clicker/">Clicker Games</a></li><li aria-current="page">Legend Of Fireball</li></ol></nav>
-    <div class="game-head">
-      <h1>Legend Of Fireball</h1>
-      <div class="game-meta"><a class="chip" href="/category/clicker/">Clicker</a></div>
-    </div>
-
-    <section class="player" id="player" aria-label="Play Legend Of Fireball">
-      <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/legend-of-fireball-mpp" data-title="Legend Of Fireball">
-        <button class="play-poster" id="playBtn" type="button" aria-label="Play Legend Of Fireball now">
-          <img src="/images/legend-of-fireball-mpp.jpg" alt="Play Legend Of Fireball online free — clicker game" width="640" height="360" fetchpriority="high" decoding="async" />
-          <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
-        </button>
-        <noscript><p class="noscript-note">Please enable JavaScript to play Legend Of Fireball.</p></noscript>
-      </div>
-      <div class="player-bar">
-        <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
-        <div class="player-actions">
-          <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
-          <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+    <div class="play-layout">
+      <div class="play-main">
+        <div class="game-head">
+          <h1>Legend Of Fireball</h1>
+          <div class="game-meta"><a class="chip" href="/category/clicker/">Clicker</a></div>
         </div>
+
+        <section class="player" id="player" aria-label="Play Legend Of Fireball">
+          <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/legend-of-fireball-mpp" data-title="Legend Of Fireball">
+            <button class="play-poster" id="playBtn" type="button" aria-label="Play Legend Of Fireball now">
+              <img src="/images/legend-of-fireball-mpp.jpg" alt="Play Legend Of Fireball online free — clicker game" width="640" height="360" fetchpriority="high" decoding="async" />
+              <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
+            </button>
+            <noscript><p class="noscript-note">Please enable JavaScript to play Legend Of Fireball.</p></noscript>
+          </div>
+          <div class="player-bar">
+            <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
+            <div class="player-actions">
+              <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
+              <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+            </div>
+          </div>
+        </section>
+
+        <article class="game-content">
+          <section class="panel" aria-labelledby="about"><h2 id="about">About Legend Of Fireball</h2><p>Legend Of Fireball is a free clicker game you can play instantly in your browser. It works on desktop, tablet and phone, with no download and no registration, so you can jump in whenever you have a few minutes.</p>
+            <p>It is part of our collection of 56 free <a href="/category/clicker/">clicker games</a>, inside a library of 705 browser games you can play without installing anything.</p></section>
+          <section class="panel" aria-labelledby="howto"><h2 id="howto">How to Play Legend Of Fireball</h2>
+            <ol class="steps"><li>Press Play Now and tap or click the main object to start earning.</li><li>Buy the first cheap upgrade as soon as you can afford it.</li><li>Alternate between active clicking and buying passive or automatic upgrades.</li></ol></section>
+          <section class="panel" aria-labelledby="controls"><h2 id="controls">Controls</h2>
+            <dl class="controls"><div><dt>Desktop</dt><dd>Click with the mouse on the main object or button, then click the upgrade menu to spend your earnings.</dd></div><div><dt>Mobile and tablet</dt><dd>Tap the main object as fast as you like and tap upgrades in the menu.</dd></div></dl>
+            <p class="note">Controls can differ between games. Check the start screen or tutorial of Legend Of Fireball for the exact keys.</p></section>
+          <section class="panel" aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Legend Of Fireball</h2>
+            <ul class="ticks"><li>Compare cost against gain before each purchase.</li><li>Do not hoard currency unless you are saving for a clear target.</li><li>Check for rebirth or prestige options once progress slows.</li><li>Use short bursts of active play, then let passive income run.</li><li>Take note of multipliers; they beat flat bonuses later on.</li></ul></section>
+          <section class="panel" aria-labelledby="features"><h2 id="features">Features</h2>
+            <ul class="ticks"><li>Instant play, no download</li><li>Satisfying progression with constant rewards</li><li>Idle mechanics that continue while you do other things</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
+          <section class="panel" aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
+            <details><summary>Is Legend Of Fireball free to play?</summary><p>Yes. Legend Of Fireball is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Legend Of Fireball on mobile?</summary><p>Yes. Legend Of Fireball runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Legend Of Fireball?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Legend Of Fireball will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>What is the fastest way to progress in a clicker game?</summary><p>Buy the upgrade with the best payback first, then add automation. After that, look for multipliers or prestige options.</p></details></section>
+        </article>
       </div>
-    </section>
 
-    <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
-
-    <div class="game-layout">
-      <article class="game-content">
-        <section aria-labelledby="about"><h2 id="about">About Legend Of Fireball</h2><p>Legend Of Fireball is a free clicker game you can play instantly in your browser. It works on desktop, tablet and phone, with no download and no registration, so you can jump in whenever you have a few minutes.</p>
-          <p>It is part of our collection of 56 free <a href="/category/clicker/">clicker games</a>, which sits inside a library of 705 browser games you can play without installing anything.</p></section>
-        <section aria-labelledby="howto"><h2 id="howto">How to Play Legend Of Fireball</h2>
-          <ol><li>Press Play Now and tap or click the main object to start earning.</li><li>Buy the first cheap upgrade as soon as you can afford it.</li><li>Alternate between active clicking and buying passive or automatic upgrades.</li></ol></section>
-        <section aria-labelledby="controls"><h2 id="controls">Controls</h2>
-          <dl class="controls"><div><dt>Desktop</dt><dd>Click with the mouse on the main object or button, then click the upgrade menu to spend your earnings.</dd></div><div><dt>Mobile and tablet</dt><dd>Tap the main object as fast as you like and tap upgrades in the menu.</dd></div></dl>
-          <p class="note">Controls can differ between games. Check the start screen or tutorial of Legend Of Fireball for the exact keys.</p></section>
-        <section aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Legend Of Fireball</h2>
-          <ul><li>Compare cost against gain before each purchase.</li><li>Do not hoard currency unless you are saving for a clear target.</li><li>Check for rebirth or prestige options once progress slows.</li><li>Use short bursts of active play, then let passive income run.</li><li>Take note of multipliers; they beat flat bonuses later on.</li></ul></section>
-        <section aria-labelledby="features"><h2 id="features">Features</h2>
-          <ul><li>Instant play, no download</li><li>Satisfying progression with constant rewards</li><li>Idle mechanics that continue while you do other things</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
-        <section aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
-          <details><summary>Is Legend Of Fireball free to play?</summary><p>Yes. Legend Of Fireball is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Legend Of Fireball on mobile?</summary><p>Yes. Legend Of Fireball runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Legend Of Fireball?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Legend Of Fireball will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>What is the fastest way to progress in a clicker game?</summary><p>Buy the upgrade with the best payback first, then add automation. After that, look for multipliers or prestige options.</p></details></section>
-      </article>
-      <aside class="game-aside" aria-label="Game details">
-        <h2>Game info</h2>
-        <dl class="info">
-          <div><dt>Title</dt><dd>Legend Of Fireball</dd></div>
-          <div><dt>Genre</dt><dd><a href="/category/clicker/">Clicker</a></dd></div>
-          <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
-          <div><dt>Technology</dt><dd>HTML5</dd></div>
-          <div><dt>Price</dt><dd>Free, no download</dd></div>
-        </dl>
-        <h3>Browse more</h3>
-        <ul class="aside-links">
-          <li><a href="/category/clicker/">All clicker games (56)</a></li>
-          <li><a href="/games/">All games A–Z</a></li>
-          <li><a href="/">Home</a></li>
-        </ul>
+      <aside class="play-side" aria-label="Game details and more games">
+        <section class="side-card">
+          <h2>Game info</h2>
+          <dl class="info">
+            <div><dt>Title</dt><dd>Legend Of Fireball</dd></div>
+            <div><dt>Genre</dt><dd><a href="/category/clicker/">Clicker</a></dd></div>
+            <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
+            <div><dt>Technology</dt><dd>HTML5</dd></div>
+            <div><dt>Price</dt><dd>Free, no download</dd></div>
+          </dl>
+        </section>
+        <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+        <section class="side-card">
+          <h2>More clicker games</h2>
+          <ul class="tile-grid tile-grid--side"><li class=""><a class="tile" href="/game/pickaxe-3d-idle-miner/" aria-label="Play Pickaxe 3D Idle Miner"><img src="/images/pickaxe-3d-idle-miner.jpg" alt="Pickaxe 3D Idle Miner – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Pickaxe 3D Idle Miner</span></a></li><li class=""><a class="tile" href="/game/slime-horde-td/" aria-label="Play Slime Horde TD"><img src="/images/slime-horde-td.jpg" alt="Slime Horde TD – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Slime Horde TD</span></a></li><li class=""><a class="tile" href="/game/trash-vacuum-idle-clicker/" aria-label="Play Trash Vacuum Idle Clicker"><img src="/images/trash-vacuum-idle-clicker.jpg" alt="Trash Vacuum Idle Clicker – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Trash Vacuum Idle Clicker</span></a></li><li class=""><a class="tile" href="/game/forge-heat-glow/" aria-label="Play Forge Heat-Glow"><img src="/images/forge-heat-glow.jpg" alt="Forge Heat-Glow – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Forge Heat-Glow</span></a></li><li class=""><a class="tile" href="/game/heroes-vs-monsters-idle-rpg/" aria-label="Play Heroes vs Monsters: Idle RPG"><img src="/images/heroes-vs-monsters-idle-rpg.jpg" alt="Heroes vs Monsters: Idle RPG – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Heroes vs Monsters: Idle RPG</span></a></li><li class=""><a class="tile" href="/game/idle-dairy-tycoon/" aria-label="Play Idle Dairy Tycoon"><img src="/images/idle-dairy-tycoon.jpg" alt="Idle Dairy Tycoon – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Idle Dairy Tycoon</span></a></li><li class=""><a class="tile" href="/game/zad-archery-ens/" aria-label="Play Zad Archery - Demo"><img src="/images/zad-archery-ens.jpg" alt="Zad Archery - Demo – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Zad Archery - Demo</span></a></li><li class=""><a class="tile" href="/game/conveyor-idle/" aria-label="Play Conveyor Idle"><img src="/images/conveyor-idle.jpg" alt="Conveyor Idle – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Conveyor Idle</span></a></li><li class=""><a class="tile" href="/game/drift-tycoon/" aria-label="Play Drift Tycoon"><img src="/images/drift-tycoon.jpg" alt="Drift Tycoon – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Drift Tycoon</span></a></li><li class=""><a class="tile" href="/game/pong-clicker-nrt/" aria-label="Play Pong Clicker"><img src="/images/pong-clicker-nrt.jpg" alt="Pong Clicker – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Pong Clicker</span></a></li></ul>
+          <p class="see-all"><a class="btn btn-primary" href="/category/clicker/">All 56 clicker games</a></p>
+        </section>
       </aside>
     </div>
 
-    <section class="related" aria-labelledby="relatedTitle">
-      <h2 id="relatedTitle">More clicker games you may like</h2>
-      <ul class="game-grid"><li><a class="game-card" href="/game/click-to-grill/" aria-label="Play Click To Grill"><img class="card-thumb" src="/images/click-to-grill.jpg" alt="Click To Grill — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Click To Grill</span><span class="card-cat">Clicker</span></div></a></li><li><a class="game-card" href="/game/empire-clicker/" aria-label="Play Empire Clicker"><img class="card-thumb" src="/images/empire-clicker.jpg" alt="Empire Clicker — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Empire Clicker</span><span class="card-cat">Clicker</span></div></a></li><li><a class="game-card" href="/game/speed-per-click-obby/" aria-label="Play Speed per Click: Obby"><img class="card-thumb" src="/images/speed-per-click-obby.jpg" alt="Speed per Click: Obby — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Speed per Click: Obby</span><span class="card-cat">Clicker</span></div></a></li><li><a class="game-card" href="/game/money-maker-bex/" aria-label="Play Money Maker"><img class="card-thumb" src="/images/money-maker-bex.jpg" alt="Money Maker — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Money Maker</span><span class="card-cat">Clicker</span></div></a></li><li><a class="game-card" href="/game/obby-1-jump-per-click/" aria-label="Play Obby: +1 Jump per Click"><img class="card-thumb" src="/images/obby-1-jump-per-click.jpg" alt="Obby: +1 Jump per Click — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Obby: +1 Jump per Click</span><span class="card-cat">Clicker</span></div></a></li><li><a class="game-card" href="/game/farm-ring-idle/" aria-label="Play Farm Ring Idle"><img class="card-thumb" src="/images/farm-ring-idle.jpg" alt="Farm Ring Idle — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Farm Ring Idle</span><span class="card-cat">Clicker</span></div></a></li><li><a class="game-card" href="/game/slimer-merge/" aria-label="Play Slimer Merge"><img class="card-thumb" src="/images/slimer-merge.png" alt="Slimer Merge — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Slimer Merge</span><span class="card-cat">Clicker</span></div></a></li><li><a class="game-card" href="/game/planet-destroy-idle/" aria-label="Play Planet Destroy Idle"><img class="card-thumb" src="/images/planet-destroy-idle.png" alt="Planet Destroy Idle — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Planet Destroy Idle</span><span class="card-cat">Clicker</span></div></a></li><li><a class="game-card" href="/game/cat-vs-dog-merge/" aria-label="Play Cat VS Dog Merge"><img class="card-thumb" src="/images/cat-vs-dog-merge.jpg" alt="Cat VS Dog Merge — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Cat VS Dog Merge</span><span class="card-cat">Clicker</span></div></a></li><li><a class="game-card" href="/game/black-hole-idle/" aria-label="Play Black Hole Idle"><img class="card-thumb" src="/images/black-hole-idle.jpg" alt="Black Hole Idle — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Black Hole Idle</span><span class="card-cat">Clicker</span></div></a></li><li><a class="game-card" href="/game/merge-steal-brainrot/" aria-label="Play Merge"><img class="card-thumb" src="/images/merge-steal-brainrot.jpg" alt="Merge — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Merge</span><span class="card-cat">Clicker</span></div></a></li><li><a class="game-card" href="/game/king-of-cash-idle-business-sim/" aria-label="Play King of Cash Business Idle"><img class="card-thumb" src="/images/king-of-cash-idle-business-sim.jpg" alt="King of Cash Business Idle — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">King of Cash Business Idle</span><span class="card-cat">Clicker</span></div></a></li></ul>
-      <p class="see-all"><a class="btn btn-ghost" href="/category/clicker/">See all 56 clicker games</a></p>
+    <section class="shelf" aria-labelledby="relatedTitle">
+      <div class="shelf-head"><h2 id="relatedTitle">You may also like</h2><a class="shelf-link" href="/category/clicker/">See all</a></div>
+      <ul class="tile-grid"><li class=""><a class="tile" href="/game/click-to-grill/" aria-label="Play Click To Grill"><img src="/images/click-to-grill.jpg" alt="Click To Grill – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Click To Grill</span></a></li><li class=""><a class="tile" href="/game/empire-clicker/" aria-label="Play Empire Clicker"><img src="/images/empire-clicker.jpg" alt="Empire Clicker – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Empire Clicker</span></a></li><li class=""><a class="tile" href="/game/speed-per-click-obby/" aria-label="Play Speed per Click: Obby"><img src="/images/speed-per-click-obby.jpg" alt="Speed per Click: Obby – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Speed per Click: Obby</span></a></li><li class=""><a class="tile" href="/game/money-maker-bex/" aria-label="Play Money Maker"><img src="/images/money-maker-bex.jpg" alt="Money Maker – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Money Maker</span></a></li><li class=""><a class="tile" href="/game/obby-1-jump-per-click/" aria-label="Play Obby: +1 Jump per Click"><img src="/images/obby-1-jump-per-click.jpg" alt="Obby: +1 Jump per Click – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby: +1 Jump per Click</span></a></li><li class=""><a class="tile" href="/game/farm-ring-idle/" aria-label="Play Farm Ring Idle"><img src="/images/farm-ring-idle.jpg" alt="Farm Ring Idle – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Farm Ring Idle</span></a></li><li class=""><a class="tile" href="/game/slimer-merge/" aria-label="Play Slimer Merge"><img src="/images/slimer-merge.png" alt="Slimer Merge – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Slimer Merge</span></a></li><li class=""><a class="tile" href="/game/planet-destroy-idle/" aria-label="Play Planet Destroy Idle"><img src="/images/planet-destroy-idle.png" alt="Planet Destroy Idle – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Planet Destroy Idle</span></a></li><li class=""><a class="tile" href="/game/cat-vs-dog-merge/" aria-label="Play Cat VS Dog Merge"><img src="/images/cat-vs-dog-merge.jpg" alt="Cat VS Dog Merge – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Cat VS Dog Merge</span></a></li><li class=""><a class="tile" href="/game/black-hole-idle/" aria-label="Play Black Hole Idle"><img src="/images/black-hole-idle.jpg" alt="Black Hole Idle – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Black Hole Idle</span></a></li><li class=""><a class="tile" href="/game/merge-steal-brainrot/" aria-label="Play Merge"><img src="/images/merge-steal-brainrot.jpg" alt="Merge – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Merge</span></a></li><li class=""><a class="tile" href="/game/king-of-cash-idle-business-sim/" aria-label="Play King of Cash Business Idle"><img src="/images/king-of-cash-idle-business-sim.jpg" alt="King of Cash Business Idle – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">King of Cash Business Idle</span></a></li></ul>
     </section>
   </main>
   <footer class="site-footer">
@@ -146,6 +151,6 @@
       </nav>
     </div>
   </footer>
-  <script src="/assets/js/page.js?v=1" defer></script>
+  <script src="/assets/js/page.js?v=2" defer></script>
 </body>
 </html>

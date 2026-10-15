@@ -25,6 +25,52 @@
   setTheme(theme);
   if (toggle) toggle.addEventListener('click', function () { setTheme(theme === 'dark' ? 'light' : 'dark'); });
 
+  /* search: live suggestions on every page, results on the homepage */
+  var form = document.querySelector('.header-search'), input = form && form.querySelector('input');
+  var catalog = null;
+  function load(cb) {
+    if (catalog) return cb(catalog);
+    fetch('/data/games.json').then(function (r) { return r.json(); }).then(function (d) { catalog = d; cb(d); });
+  }
+  function slug(id) { return id.replace(/-+/g, '-').replace(/^-|-$/g, ''); }
+  function find(d, q) {
+    q = q.trim().toLowerCase(); if (!q) return [];
+    return d.filter(function (g) { return g.title.toLowerCase().indexOf(q) !== -1 || (g.categories || []).join(' ').indexOf(q) !== -1; });
+  }
+  if (input) {
+    var box = document.createElement('div'); box.className = 'search-suggest'; box.setAttribute('role', 'listbox'); box.hidden = true; form.appendChild(box);
+    input.addEventListener('input', function () {
+      var v = input.value; if (v.trim().length < 2) { box.hidden = true; return; }
+      load(function (d) {
+        var hits = find(d, v).slice(0, 6); box.innerHTML = '';
+        hits.forEach(function (g) {
+          var a = document.createElement('a'); a.className = 'suggest-item'; a.href = '/game/' + slug(g.id) + '/';
+          var im = document.createElement('img'); im.src = '/' + g.image; im.alt = ''; im.loading = 'lazy';
+          var sp = document.createElement('span'); sp.textContent = g.title; a.appendChild(im); a.appendChild(sp); box.appendChild(a);
+        });
+        box.hidden = !hits.length;
+      });
+    });
+    document.addEventListener('click', function (e) { if (!form.contains(e.target)) box.hidden = true; });
+    input.addEventListener('keydown', function (e) { if (e.key === 'Escape') box.hidden = true; });
+  }
+  var results = document.getElementById('searchResults');
+  var qParam = new URLSearchParams(location.search).get('q');
+  if (results && qParam) {
+    if (input) input.value = qParam;
+    load(function (d) {
+      var hits = find(d, qParam), grid = document.getElementById('searchGrid');
+      document.getElementById('searchTitle').textContent = 'Results for "' + qParam + '" (' + hits.length + ')';
+      hits.slice(0, 120).forEach(function (g) {
+        var li = document.createElement('li'), a = document.createElement('a'); a.className = 'tile'; a.href = '/game/' + slug(g.id) + '/';
+        var im = document.createElement('img'); im.src = '/' + g.image; im.alt = g.title + ' – play free online'; im.loading = 'lazy'; im.width = 480; im.height = 270;
+        var t = document.createElement('span'); t.className = 'tile-title'; t.textContent = g.title; a.appendChild(im); a.appendChild(t); li.appendChild(a); grid.appendChild(li);
+      });
+      document.getElementById('searchEmpty').hidden = hits.length > 0;
+      results.hidden = false; document.getElementById('shelves').hidden = true;
+    });
+  }
+
   /* player */
   var frame = document.getElementById('playerFrame');
   if (!frame) { document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && panel && !panel.hidden) openMenu(false); }); return; }

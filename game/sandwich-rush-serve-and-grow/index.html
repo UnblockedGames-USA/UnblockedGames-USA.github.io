@@ -24,11 +24,13 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-L6FNHSMWF4');</script>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://api.fontshare.com" />
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,400..700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/base.css" />
   <link rel="stylesheet" href="/assets/style.css" />
-  <link rel="stylesheet" href="/assets/seo.css?v=1" />
+  <link rel="stylesheet" href="/assets/seo.css?v=2" />
+  <link rel="stylesheet" href="/assets/fun.css?v=2" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -45,6 +47,7 @@
       <button class="icon-btn" data-theme-toggle aria-label="Switch to light mode" type="button"></button>
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
+    <nav class="cat-bar" aria-label="Game categories"><div class="container cat-bar-inner"><a class="cat-pill" href="/"><span aria-hidden="true">🏠</span>Home</a><a class="cat-pill" href="/category/action/"><span aria-hidden="true">⚡</span>Action</a><a class="cat-pill" href="/category/arcade/"><span aria-hidden="true">🕹️</span>Arcade</a><a class="cat-pill" href="/category/puzzle/"><span aria-hidden="true">🧩</span>Puzzle</a><a class="cat-pill is-active" href="/category/simulation/"><span aria-hidden="true">🏗️</span>Simulation</a><a class="cat-pill" href="/category/clicker/"><span aria-hidden="true">👆</span>Clicker</a><a class="cat-pill" href="/category/driving/"><span aria-hidden="true">🏎️</span>Driving &amp; Racing</a><a class="cat-pill" href="/category/adventure/"><span aria-hidden="true">🗺️</span>Adventure</a><a class="cat-pill" href="/category/casual/"><span aria-hidden="true">🌈</span>Casual</a><a class="cat-pill" href="/category/shooting/"><span aria-hidden="true">🎯</span>Shooting</a><a class="cat-pill" href="/category/sports/"><span aria-hidden="true">⚽</span>Sports</a><a class="cat-pill" href="/category/beauty/"><span aria-hidden="true">💄</span>Beauty &amp; Dress Up</a><a class="cat-pill" href="/category/strategy/"><span aria-hidden="true">♟️</span>Strategy</a><a class="cat-pill" href="/category/word/"><span aria-hidden="true">🔤</span>Word</a><a class="cat-pill" href="/games/"><span aria-hidden="true">🔤</span>A–Z</a></div></nav>
   </header>
   <div class="menu-backdrop" id="menuBackdrop" hidden></div>
   <nav class="menu-panel" id="menuPanel" aria-label="Site menu" hidden>
@@ -71,70 +74,72 @@
       <li><a href="/terms.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg>Terms of use</a></li>
     </ul>
   </nav>
-  <main id="main" class="container game-page">
+  <main id="main" class="container container--wide game-page">
     <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/category/simulation/">Simulation Games</a></li><li aria-current="page">Sandwich Rush Serve and Grow</li></ol></nav>
-    <div class="game-head">
-      <h1>Sandwich Rush Serve and Grow</h1>
-      <div class="game-meta"><a class="chip" href="/category/simulation/">Simulation</a></div>
-    </div>
-
-    <section class="player" id="player" aria-label="Play Sandwich Rush Serve and Grow">
-      <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/sandwich-rush-serve-and-grow" data-title="Sandwich Rush Serve and Grow">
-        <button class="play-poster" id="playBtn" type="button" aria-label="Play Sandwich Rush Serve and Grow now">
-          <img src="/images/sandwich-rush-serve-and-grow.jpg" alt="Play Sandwich Rush Serve and Grow online free — simulation game" width="640" height="360" fetchpriority="high" decoding="async" />
-          <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
-        </button>
-        <noscript><p class="noscript-note">Please enable JavaScript to play Sandwich Rush Serve and Grow.</p></noscript>
-      </div>
-      <div class="player-bar">
-        <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
-        <div class="player-actions">
-          <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
-          <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+    <div class="play-layout">
+      <div class="play-main">
+        <div class="game-head">
+          <h1>Sandwich Rush Serve and Grow</h1>
+          <div class="game-meta"><a class="chip" href="/category/simulation/">Simulation</a></div>
         </div>
+
+        <section class="player" id="player" aria-label="Play Sandwich Rush Serve and Grow">
+          <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/sandwich-rush-serve-and-grow" data-title="Sandwich Rush Serve and Grow">
+            <button class="play-poster" id="playBtn" type="button" aria-label="Play Sandwich Rush Serve and Grow now">
+              <img src="/images/sandwich-rush-serve-and-grow.jpg" alt="Play Sandwich Rush Serve and Grow online free — simulation game" width="640" height="360" fetchpriority="high" decoding="async" />
+              <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
+            </button>
+            <noscript><p class="noscript-note">Please enable JavaScript to play Sandwich Rush Serve and Grow.</p></noscript>
+          </div>
+          <div class="player-bar">
+            <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
+            <div class="player-actions">
+              <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
+              <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+            </div>
+          </div>
+        </section>
+
+        <article class="game-content">
+          <section class="panel" aria-labelledby="about"><h2 id="about">About Sandwich Rush Serve and Grow</h2><p>Ready to play Sandwich Rush Serve and Grow? This free simulation game loads in your browser in seconds. There is no installation, no sign-up and no cost, just press Play Now to start.</p>
+            <p>It is part of our collection of 58 free <a href="/category/simulation/">simulation games</a>, inside a library of 705 browser games you can play without installing anything.</p></section>
+          <section class="panel" aria-labelledby="howto"><h2 id="howto">How to Play Sandwich Rush Serve and Grow</h2>
+            <ol class="steps"><li>Press Play Now and follow the first tutorial tasks.</li><li>Earn your first income, then reinvest in the upgrade that pays back fastest.</li><li>Expand step by step and keep an eye on stock, time and money.</li></ol></section>
+          <section class="panel" aria-labelledby="controls"><h2 id="controls">Controls</h2>
+            <dl class="controls"><div><dt>Desktop</dt><dd>Use the mouse to click on items, menus and upgrades. Some games add WASD or arrow-key movement for walking around a store, farm or city.</dd></div><div><dt>Mobile and tablet</dt><dd>Tap menus and objects; drag to move around the map or scene.</dd></div></dl>
+            <p class="note">Controls can differ between games. Check the start screen or tutorial of Sandwich Rush Serve and Grow for the exact keys.</p></section>
+          <section class="panel" aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Sandwich Rush Serve and Grow</h2>
+            <ul class="ticks"><li>Plan your layout so that your most-used areas are close together.</li><li>Read item descriptions; they often show exactly what an upgrade changes.</li><li>Reinvest early income; growth compounds.</li><li>Fix bottlenecks first: the slowest part of your setup decides your speed.</li><li>Unlock helpers or automation as soon as you can afford them.</li></ul></section>
+          <section class="panel" aria-labelledby="features"><h2 id="features">Features</h2>
+            <ul class="ticks"><li>Instant play in the browser</li><li>Deep progression with upgrades and unlocks</li><li>Play at your own pace, with no pressure</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
+          <section class="panel" aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
+            <details><summary>Is Sandwich Rush Serve and Grow free to play?</summary><p>Yes. Sandwich Rush Serve and Grow is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Sandwich Rush Serve and Grow on mobile?</summary><p>Yes. Sandwich Rush Serve and Grow runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Sandwich Rush Serve and Grow?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Sandwich Rush Serve and Grow will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>Do simulation games progress while the tab is closed?</summary><p>Only some do. Many browser simulations pause when the tab is closed, so check the game&#x27;s own menu or notes for offline earnings.</p></details></section>
+        </article>
       </div>
-    </section>
 
-    <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
-
-    <div class="game-layout">
-      <article class="game-content">
-        <section aria-labelledby="about"><h2 id="about">About Sandwich Rush Serve and Grow</h2><p>Ready to play Sandwich Rush Serve and Grow? This free simulation game loads in your browser in seconds. There is no installation, no sign-up and no cost, just press Play Now to start.</p>
-          <p>It is part of our collection of 58 free <a href="/category/simulation/">simulation games</a>, which sits inside a library of 705 browser games you can play without installing anything.</p></section>
-        <section aria-labelledby="howto"><h2 id="howto">How to Play Sandwich Rush Serve and Grow</h2>
-          <ol><li>Press Play Now and follow the first tutorial tasks.</li><li>Earn your first income, then reinvest in the upgrade that pays back fastest.</li><li>Expand step by step and keep an eye on stock, time and money.</li></ol></section>
-        <section aria-labelledby="controls"><h2 id="controls">Controls</h2>
-          <dl class="controls"><div><dt>Desktop</dt><dd>Use the mouse to click on items, menus and upgrades. Some games add WASD or arrow-key movement for walking around a store, farm or city.</dd></div><div><dt>Mobile and tablet</dt><dd>Tap menus and objects; drag to move around the map or scene.</dd></div></dl>
-          <p class="note">Controls can differ between games. Check the start screen or tutorial of Sandwich Rush Serve and Grow for the exact keys.</p></section>
-        <section aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Sandwich Rush Serve and Grow</h2>
-          <ul><li>Plan your layout so that your most-used areas are close together.</li><li>Read item descriptions; they often show exactly what an upgrade changes.</li><li>Reinvest early income; growth compounds.</li><li>Fix bottlenecks first: the slowest part of your setup decides your speed.</li><li>Unlock helpers or automation as soon as you can afford them.</li></ul></section>
-        <section aria-labelledby="features"><h2 id="features">Features</h2>
-          <ul><li>Instant play in the browser</li><li>Deep progression with upgrades and unlocks</li><li>Play at your own pace, with no pressure</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
-        <section aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
-          <details><summary>Is Sandwich Rush Serve and Grow free to play?</summary><p>Yes. Sandwich Rush Serve and Grow is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Sandwich Rush Serve and Grow on mobile?</summary><p>Yes. Sandwich Rush Serve and Grow runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Sandwich Rush Serve and Grow?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Sandwich Rush Serve and Grow will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>Do simulation games progress while the tab is closed?</summary><p>Only some do. Many browser simulations pause when the tab is closed, so check the game&#x27;s own menu or notes for offline earnings.</p></details></section>
-      </article>
-      <aside class="game-aside" aria-label="Game details">
-        <h2>Game info</h2>
-        <dl class="info">
-          <div><dt>Title</dt><dd>Sandwich Rush Serve and Grow</dd></div>
-          <div><dt>Genre</dt><dd><a href="/category/simulation/">Simulation</a></dd></div>
-          <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
-          <div><dt>Technology</dt><dd>HTML5</dd></div>
-          <div><dt>Price</dt><dd>Free, no download</dd></div>
-        </dl>
-        <h3>Browse more</h3>
-        <ul class="aside-links">
-          <li><a href="/category/simulation/">All simulation games (58)</a></li>
-          <li><a href="/games/">All games A–Z</a></li>
-          <li><a href="/">Home</a></li>
-        </ul>
+      <aside class="play-side" aria-label="Game details and more games">
+        <section class="side-card">
+          <h2>Game info</h2>
+          <dl class="info">
+            <div><dt>Title</dt><dd>Sandwich Rush Serve and Grow</dd></div>
+            <div><dt>Genre</dt><dd><a href="/category/simulation/">Simulation</a></dd></div>
+            <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
+            <div><dt>Technology</dt><dd>HTML5</dd></div>
+            <div><dt>Price</dt><dd>Free, no download</dd></div>
+          </dl>
+        </section>
+        <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+        <section class="side-card">
+          <h2>More simulation games</h2>
+          <ul class="tile-grid tile-grid--side"><li class=""><a class="tile" href="/game/gun-maker/" aria-label="Play Gun Maker"><img src="/images/gun-maker.jpg" alt="Gun Maker – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Gun Maker</span></a></li><li class=""><a class="tile" href="/game/sports-store-supermarket-simulator/" aria-label="Play Sports Store Supermarket Simulator"><img src="/images/sports-store-supermarket-simulator.jpg" alt="Sports Store Supermarket Simulator – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Sports Store Supermarket Simulator</span></a></li><li class=""><a class="tile" href="/game/city-gas-station-simulator/" aria-label="Play City Gas Station Simulator"><img src="/images/city-gas-station-simulator.jpg" alt="City Gas Station Simulator – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">City Gas Station Simulator</span></a></li><li class=""><a class="tile" href="/game/retro-video-shop-simulator/" aria-label="Play Retro Video Shop Simulator"><img src="/images/retro-video-shop-simulator.jpg" alt="Retro Video Shop Simulator – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Retro Video Shop Simulator</span></a></li><li class=""><a class="tile" href="/game/cabin-crew-tycoon-ebb/" aria-label="Play Cabin Crew Tycoon"><img src="/images/cabin-crew-tycoon-ebb.jpg" alt="Cabin Crew Tycoon – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Cabin Crew Tycoon</span></a></li><li class=""><a class="tile" href="/game/railway-empire/" aria-label="Play Railway Empire"><img src="/images/railway-empire.jpg" alt="Railway Empire – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Railway Empire</span></a></li><li class=""><a class="tile" href="/game/idle-bank-simulator-money-game/" aria-label="Play Idle Bank Simulator Money Game"><img src="/images/idle-bank-simulator-money-game.jpg" alt="Idle Bank Simulator Money Game – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Idle Bank Simulator Money Game</span></a></li><li class=""><a class="tile" href="/game/car-parking-driving-game/" aria-label="Play Car Parking Driving"><img src="/images/car-parking-driving-game.jpg" alt="Car Parking Driving – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Car Parking Driving</span></a></li><li class=""><a class="tile" href="/game/falafel-master/" aria-label="Play Falafel Master"><img src="/images/falafel-master.jpg" alt="Falafel Master – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Falafel Master</span></a></li><li class=""><a class="tile" href="/game/my-clothing-store-simulator-3d/" aria-label="Play My Clothing Store Simulator 3D"><img src="/images/my-clothing-store-simulator-3d.jpg" alt="My Clothing Store Simulator 3D – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">My Clothing Store Simulator 3D</span></a></li></ul>
+          <p class="see-all"><a class="btn btn-primary" href="/category/simulation/">All 58 simulation games</a></p>
+        </section>
       </aside>
     </div>
 
-    <section class="related" aria-labelledby="relatedTitle">
-      <h2 id="relatedTitle">More simulation games you may like</h2>
-      <ul class="game-grid"><li><a class="game-card" href="/game/brainrot-factory-tycoon/" aria-label="Play Brainrot Factory Tycoon"><img class="card-thumb" src="/images/brainrot-factory-tycoon.jpg" alt="Brainrot Factory Tycoon — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Brainrot Factory Tycoon</span><span class="card-cat">Simulation</span></div></a></li><li><a class="game-card" href="/game/my-perfect-clinic/" aria-label="Play Idle Physio Clinic Tycoon"><img class="card-thumb" src="/images/my-perfect-clinic.jpg" alt="Idle Physio Clinic Tycoon — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Idle Physio Clinic Tycoon</span><span class="card-cat">Simulation</span></div></a></li><li><a class="game-card" href="/game/loop-farm/" aria-label="Play Loop Farm"><img class="card-thumb" src="/images/loop-farm.jpg" alt="Loop Farm — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Loop Farm</span><span class="card-cat">Simulation</span></div></a></li><li><a class="game-card" href="/game/idle-car-service-tycoon/" aria-label="Play Idle Car Service: Tycoon"><img class="card-thumb" src="/images/idle-car-service-tycoon.jpg" alt="Idle Car Service: Tycoon — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Idle Car Service: Tycoon</span><span class="card-cat">Simulation</span></div></a></li><li><a class="game-card" href="/game/build-a-plane-xea/" aria-label="Play Build A Plane"><img class="card-thumb" src="/images/build-a-plane-xea.jpg" alt="Build A Plane — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Build A Plane</span><span class="card-cat">Simulation</span></div></a></li><li><a class="game-card" href="/game/slurp/" aria-label="Play Slurp"><img class="card-thumb" src="/images/slurp.jpg" alt="Slurp — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Slurp</span><span class="card-cat">Simulation</span></div></a></li><li><a class="game-card" href="/game/home-makeover-cleaning-game/" aria-label="Play Home Makeover Cleaning Game"><img class="card-thumb" src="/images/home-makeover-cleaning-game.jpg" alt="Home Makeover Cleaning Game — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Home Makeover Cleaning Game</span><span class="card-cat">Simulation</span></div></a></li><li><a class="game-card" href="/game/boba-shop-kck/" aria-label="Play Boba Shop"><img class="card-thumb" src="/images/boba-shop-kck.jpg" alt="Boba Shop — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Boba Shop</span><span class="card-cat">Simulation</span></div></a></li><li><a class="game-card" href="/game/my-cake-shop/" aria-label="Play My Cake Shop"><img class="card-thumb" src="/images/my-cake-shop.jpg" alt="My Cake Shop — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">My Cake Shop</span><span class="card-cat">Simulation</span></div></a></li><li><a class="game-card" href="/game/mother-life-simulator-prank/" aria-label="Play Mother Life Simulator: Prank"><img class="card-thumb" src="/images/mother-life-simulator-prank.jpg" alt="Mother Life Simulator: Prank — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Mother Life Simulator: Prank</span><span class="card-cat">Simulation</span></div></a></li><li><a class="game-card" href="/game/high-school-teacher-games-life/" aria-label="Play High School Teacher Simulator"><img class="card-thumb" src="/images/high-school-teacher-games-life.jpg" alt="High School Teacher Simulator — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">High School Teacher Simulator</span><span class="card-cat">Simulation</span></div></a></li><li><a class="game-card" href="/game/pizza-inc/" aria-label="Play Pizza Inc."><img class="card-thumb" src="/images/pizza-inc.jpg" alt="Pizza Inc. — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Pizza Inc.</span><span class="card-cat">Simulation</span></div></a></li></ul>
-      <p class="see-all"><a class="btn btn-ghost" href="/category/simulation/">See all 58 simulation games</a></p>
+    <section class="shelf" aria-labelledby="relatedTitle">
+      <div class="shelf-head"><h2 id="relatedTitle">You may also like</h2><a class="shelf-link" href="/category/simulation/">See all</a></div>
+      <ul class="tile-grid"><li class=""><a class="tile" href="/game/brainrot-factory-tycoon/" aria-label="Play Brainrot Factory Tycoon"><img src="/images/brainrot-factory-tycoon.jpg" alt="Brainrot Factory Tycoon – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Brainrot Factory Tycoon</span></a></li><li class=""><a class="tile" href="/game/my-perfect-clinic/" aria-label="Play Idle Physio Clinic Tycoon"><img src="/images/my-perfect-clinic.jpg" alt="Idle Physio Clinic Tycoon – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Idle Physio Clinic Tycoon</span></a></li><li class=""><a class="tile" href="/game/loop-farm/" aria-label="Play Loop Farm"><img src="/images/loop-farm.jpg" alt="Loop Farm – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Loop Farm</span></a></li><li class=""><a class="tile" href="/game/idle-car-service-tycoon/" aria-label="Play Idle Car Service: Tycoon"><img src="/images/idle-car-service-tycoon.jpg" alt="Idle Car Service: Tycoon – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Idle Car Service: Tycoon</span></a></li><li class=""><a class="tile" href="/game/build-a-plane-xea/" aria-label="Play Build A Plane"><img src="/images/build-a-plane-xea.jpg" alt="Build A Plane – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Build A Plane</span></a></li><li class=""><a class="tile" href="/game/slurp/" aria-label="Play Slurp"><img src="/images/slurp.jpg" alt="Slurp – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Slurp</span></a></li><li class=""><a class="tile" href="/game/home-makeover-cleaning-game/" aria-label="Play Home Makeover Cleaning Game"><img src="/images/home-makeover-cleaning-game.jpg" alt="Home Makeover Cleaning Game – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Home Makeover Cleaning Game</span></a></li><li class=""><a class="tile" href="/game/boba-shop-kck/" aria-label="Play Boba Shop"><img src="/images/boba-shop-kck.jpg" alt="Boba Shop – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Boba Shop</span></a></li><li class=""><a class="tile" href="/game/my-cake-shop/" aria-label="Play My Cake Shop"><img src="/images/my-cake-shop.jpg" alt="My Cake Shop – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">My Cake Shop</span></a></li><li class=""><a class="tile" href="/game/mother-life-simulator-prank/" aria-label="Play Mother Life Simulator: Prank"><img src="/images/mother-life-simulator-prank.jpg" alt="Mother Life Simulator: Prank – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Mother Life Simulator: Prank</span></a></li><li class=""><a class="tile" href="/game/high-school-teacher-games-life/" aria-label="Play High School Teacher Simulator"><img src="/images/high-school-teacher-games-life.jpg" alt="High School Teacher Simulator – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">High School Teacher Simulator</span></a></li><li class=""><a class="tile" href="/game/pizza-inc/" aria-label="Play Pizza Inc."><img src="/images/pizza-inc.jpg" alt="Pizza Inc. – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Pizza Inc.</span></a></li></ul>
     </section>
   </main>
   <footer class="site-footer">
@@ -146,6 +151,6 @@
       </nav>
     </div>
   </footer>
-  <script src="/assets/js/page.js?v=1" defer></script>
+  <script src="/assets/js/page.js?v=2" defer></script>
 </body>
 </html>

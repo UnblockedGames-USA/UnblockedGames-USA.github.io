@@ -24,11 +24,13 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-L6FNHSMWF4');</script>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://api.fontshare.com" />
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,400..700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/base.css" />
   <link rel="stylesheet" href="/assets/style.css" />
-  <link rel="stylesheet" href="/assets/seo.css?v=1" />
+  <link rel="stylesheet" href="/assets/seo.css?v=2" />
+  <link rel="stylesheet" href="/assets/fun.css?v=2" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -45,6 +47,7 @@
       <button class="icon-btn" data-theme-toggle aria-label="Switch to light mode" type="button"></button>
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
+    <nav class="cat-bar" aria-label="Game categories"><div class="container cat-bar-inner"><a class="cat-pill" href="/"><span aria-hidden="true">🏠</span>Home</a><a class="cat-pill" href="/category/action/"><span aria-hidden="true">⚡</span>Action</a><a class="cat-pill" href="/category/arcade/"><span aria-hidden="true">🕹️</span>Arcade</a><a class="cat-pill" href="/category/puzzle/"><span aria-hidden="true">🧩</span>Puzzle</a><a class="cat-pill" href="/category/simulation/"><span aria-hidden="true">🏗️</span>Simulation</a><a class="cat-pill" href="/category/clicker/"><span aria-hidden="true">👆</span>Clicker</a><a class="cat-pill is-active" href="/category/driving/"><span aria-hidden="true">🏎️</span>Driving &amp; Racing</a><a class="cat-pill" href="/category/adventure/"><span aria-hidden="true">🗺️</span>Adventure</a><a class="cat-pill" href="/category/casual/"><span aria-hidden="true">🌈</span>Casual</a><a class="cat-pill" href="/category/shooting/"><span aria-hidden="true">🎯</span>Shooting</a><a class="cat-pill" href="/category/sports/"><span aria-hidden="true">⚽</span>Sports</a><a class="cat-pill" href="/category/beauty/"><span aria-hidden="true">💄</span>Beauty &amp; Dress Up</a><a class="cat-pill" href="/category/strategy/"><span aria-hidden="true">♟️</span>Strategy</a><a class="cat-pill" href="/category/word/"><span aria-hidden="true">🔤</span>Word</a><a class="cat-pill" href="/games/"><span aria-hidden="true">🔤</span>A–Z</a></div></nav>
   </header>
   <div class="menu-backdrop" id="menuBackdrop" hidden></div>
   <nav class="menu-panel" id="menuPanel" aria-label="Site menu" hidden>
@@ -71,70 +74,72 @@
       <li><a href="/terms.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg>Terms of use</a></li>
     </ul>
   </nav>
-  <main id="main" class="container game-page">
+  <main id="main" class="container container--wide game-page">
     <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/category/driving/">Driving &amp; Racing Games</a></li><li aria-current="page">Xtreme City Drifting</li></ol></nav>
-    <div class="game-head">
-      <h1>Xtreme City Drifting</h1>
-      <div class="game-meta"><a class="chip" href="/category/driving/">Driving &amp; Racing</a></div>
-    </div>
-
-    <section class="player" id="player" aria-label="Play Xtreme City Drifting">
-      <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/xtreme-city-drifting" data-title="Xtreme City Drifting">
-        <button class="play-poster" id="playBtn" type="button" aria-label="Play Xtreme City Drifting now">
-          <img src="/images/xtreme-city-drifting.jpg" alt="Play Xtreme City Drifting online free — driving & racing game" width="640" height="360" fetchpriority="high" decoding="async" />
-          <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
-        </button>
-        <noscript><p class="noscript-note">Please enable JavaScript to play Xtreme City Drifting.</p></noscript>
-      </div>
-      <div class="player-bar">
-        <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
-        <div class="player-actions">
-          <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
-          <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+    <div class="play-layout">
+      <div class="play-main">
+        <div class="game-head">
+          <h1>Xtreme City Drifting</h1>
+          <div class="game-meta"><a class="chip" href="/category/driving/">Driving &amp; Racing</a></div>
         </div>
+
+        <section class="player" id="player" aria-label="Play Xtreme City Drifting">
+          <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/xtreme-city-drifting" data-title="Xtreme City Drifting">
+            <button class="play-poster" id="playBtn" type="button" aria-label="Play Xtreme City Drifting now">
+              <img src="/images/xtreme-city-drifting.jpg" alt="Play Xtreme City Drifting online free — driving & racing game" width="640" height="360" fetchpriority="high" decoding="async" />
+              <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
+            </button>
+            <noscript><p class="noscript-note">Please enable JavaScript to play Xtreme City Drifting.</p></noscript>
+          </div>
+          <div class="player-bar">
+            <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
+            <div class="player-actions">
+              <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
+              <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+            </div>
+          </div>
+        </section>
+
+        <article class="game-content">
+          <section class="panel" aria-labelledby="about"><h2 id="about">About Xtreme City Drifting</h2><p>Play Xtreme City Drifting online for free. It is a driving &amp; racing game that runs right in your browser, so there is nothing to download or install and no account to create. Press Play Now and you can start within a few seconds.</p>
+            <p>It is part of our collection of 54 free <a href="/category/driving/">driving &amp; racing games</a>, inside a library of 705 browser games you can play without installing anything.</p></section>
+          <section class="panel" aria-labelledby="howto"><h2 id="howto">How to Play Xtreme City Drifting</h2>
+            <ol class="steps"><li>Press Play Now and pick a car or mode if the game asks.</li><li>Do the first lap or course gently to learn how the car handles.</li><li>Brake before corners, accelerate out of them, and use your winnings to upgrade.</li></ol></section>
+          <section class="panel" aria-labelledby="controls"><h2 id="controls">Controls</h2>
+            <dl class="controls"><div><dt>Desktop</dt><dd>Steer with the arrow keys or A and D, accelerate with W or the up arrow, and brake with S, the down arrow or Space.</dd></div><div><dt>Mobile and tablet</dt><dd>Tilt or use the on-screen steering buttons, with separate buttons for gas and brake.</dd></div></dl>
+            <p class="note">Controls can differ between games. Check the start screen or tutorial of Xtreme City Drifting for the exact keys.</p></section>
+          <section class="panel" aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Xtreme City Drifting</h2>
+            <ul class="ticks"><li>Look ahead instead of at the car in front of you.</li><li>Smooth steering is faster than sharp corrections.</li><li>Upgrade handling and brakes before pure top speed.</li><li>Use shortcuts only when you can complete them reliably.</li><li>Learn the course; a second attempt is usually a lot faster.</li></ul></section>
+          <section class="panel" aria-labelledby="features"><h2 id="features">Features</h2>
+            <ul class="ticks"><li>Instant play, no download</li><li>Controls you can learn in a minute</li><li>Upgrades and unlocks that reward replay</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
+          <section class="panel" aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
+            <details><summary>Is Xtreme City Drifting free to play?</summary><p>Yes. Xtreme City Drifting is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Xtreme City Drifting on mobile?</summary><p>Yes. Xtreme City Drifting runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Xtreme City Drifting?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Xtreme City Drifting will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>How do I control the car with a keyboard?</summary><p>Most driving games use the arrow keys or WASD to steer and accelerate, and Space to brake. The game&#x27;s start screen shows the exact keys.</p></details></section>
+        </article>
       </div>
-    </section>
 
-    <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
-
-    <div class="game-layout">
-      <article class="game-content">
-        <section aria-labelledby="about"><h2 id="about">About Xtreme City Drifting</h2><p>Play Xtreme City Drifting online for free. It is a driving &amp; racing game that runs right in your browser, so there is nothing to download or install and no account to create. Press Play Now and you can start within a few seconds.</p>
-          <p>It is part of our collection of 54 free <a href="/category/driving/">driving &amp; racing games</a>, which sits inside a library of 705 browser games you can play without installing anything.</p></section>
-        <section aria-labelledby="howto"><h2 id="howto">How to Play Xtreme City Drifting</h2>
-          <ol><li>Press Play Now and pick a car or mode if the game asks.</li><li>Do the first lap or course gently to learn how the car handles.</li><li>Brake before corners, accelerate out of them, and use your winnings to upgrade.</li></ol></section>
-        <section aria-labelledby="controls"><h2 id="controls">Controls</h2>
-          <dl class="controls"><div><dt>Desktop</dt><dd>Steer with the arrow keys or A and D, accelerate with W or the up arrow, and brake with S, the down arrow or Space.</dd></div><div><dt>Mobile and tablet</dt><dd>Tilt or use the on-screen steering buttons, with separate buttons for gas and brake.</dd></div></dl>
-          <p class="note">Controls can differ between games. Check the start screen or tutorial of Xtreme City Drifting for the exact keys.</p></section>
-        <section aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Xtreme City Drifting</h2>
-          <ul><li>Look ahead instead of at the car in front of you.</li><li>Smooth steering is faster than sharp corrections.</li><li>Upgrade handling and brakes before pure top speed.</li><li>Use shortcuts only when you can complete them reliably.</li><li>Learn the course; a second attempt is usually a lot faster.</li></ul></section>
-        <section aria-labelledby="features"><h2 id="features">Features</h2>
-          <ul><li>Instant play, no download</li><li>Controls you can learn in a minute</li><li>Upgrades and unlocks that reward replay</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
-        <section aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
-          <details><summary>Is Xtreme City Drifting free to play?</summary><p>Yes. Xtreme City Drifting is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Xtreme City Drifting on mobile?</summary><p>Yes. Xtreme City Drifting runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Xtreme City Drifting?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Xtreme City Drifting will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>How do I control the car with a keyboard?</summary><p>Most driving games use the arrow keys or WASD to steer and accelerate, and Space to brake. The game&#x27;s start screen shows the exact keys.</p></details></section>
-      </article>
-      <aside class="game-aside" aria-label="Game details">
-        <h2>Game info</h2>
-        <dl class="info">
-          <div><dt>Title</dt><dd>Xtreme City Drifting</dd></div>
-          <div><dt>Genre</dt><dd><a href="/category/driving/">Driving &amp; Racing</a></dd></div>
-          <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
-          <div><dt>Technology</dt><dd>HTML5</dd></div>
-          <div><dt>Price</dt><dd>Free, no download</dd></div>
-        </dl>
-        <h3>Browse more</h3>
-        <ul class="aside-links">
-          <li><a href="/category/driving/">All driving &amp; racing games (54)</a></li>
-          <li><a href="/games/">All games A–Z</a></li>
-          <li><a href="/">Home</a></li>
-        </ul>
+      <aside class="play-side" aria-label="Game details and more games">
+        <section class="side-card">
+          <h2>Game info</h2>
+          <dl class="info">
+            <div><dt>Title</dt><dd>Xtreme City Drifting</dd></div>
+            <div><dt>Genre</dt><dd><a href="/category/driving/">Driving &amp; Racing</a></dd></div>
+            <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
+            <div><dt>Technology</dt><dd>HTML5</dd></div>
+            <div><dt>Price</dt><dd>Free, no download</dd></div>
+          </dl>
+        </section>
+        <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+        <section class="side-card">
+          <h2>More driving &amp; racing games</h2>
+          <ul class="tile-grid tile-grid--side"><li class=""><a class="tile" href="/game/racers-io/" aria-label="Play Racers.io"><img src="/images/racers-io.jpg" alt="Racers.io – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Racers.io</span></a></li><li class=""><a class="tile" href="/game/crazy-bike-simulator/" aria-label="Play Extreme Bike Driving"><img src="/images/crazy-bike-simulator.jpg" alt="Extreme Bike Driving – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Extreme Bike Driving</span></a></li><li class=""><a class="tile" href="/game/test-drive-car-parking/" aria-label="Play Test Drive Car Parking"><img src="/images/test-drive-car-parking.jpg" alt="Test Drive Car Parking – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Test Drive Car Parking</span></a></li><li class=""><a class="tile" href="/game/obby-car-crash-sandbox/" aria-label="Play Obby: Car Crash Sandbox"><img src="/images/obby-car-crash-sandbox.jpg" alt="Obby: Car Crash Sandbox – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby: Car Crash Sandbox</span></a></li><li class=""><a class="tile" href="/game/desert-rally-3-0-2d/" aria-label="Play Desert Rally"><img src="/images/desert-rally-3-0-2d.jpg" alt="Desert Rally – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Desert Rally</span></a></li><li class=""><a class="tile" href="/game/midnight-kanjo-racing/" aria-label="Play Crash Skill Racing"><img src="/images/midnight-kanjo-racing.jpg" alt="Crash Skill Racing – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Crash Skill Racing</span></a></li><li class=""><a class="tile" href="/game/real-car-driving/" aria-label="Play Real Car Driving"><img src="/images/real-car-driving.jpg" alt="Real Car Driving – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Real Car Driving</span></a></li><li class=""><a class="tile" href="/game/escape-road-3/" aria-label="Play Escape Road 3"><img src="/images/escape-road-3.jpg" alt="Escape Road 3 – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Escape Road 3</span></a></li><li class=""><a class="tile" href="/game/asphalt-rush/" aria-label="Play Asphalt Rush"><img src="/images/asphalt-rush.jpg" alt="Asphalt Rush – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Asphalt Rush</span></a></li><li class=""><a class="tile" href="/game/stunt-racer/" aria-label="Play Stunt Racer"><img src="/images/stunt-racer.jpg" alt="Stunt Racer – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Stunt Racer</span></a></li></ul>
+          <p class="see-all"><a class="btn btn-primary" href="/category/driving/">All 54 driving &amp; racing games</a></p>
+        </section>
       </aside>
     </div>
 
-    <section class="related" aria-labelledby="relatedTitle">
-      <h2 id="relatedTitle">More driving &amp; racing games you may like</h2>
-      <ul class="game-grid"><li><a class="game-card" href="/game/jet-boat-racing/" aria-label="Play Jet Boat Racing"><img class="card-thumb" src="/images/jet-boat-racing.jpg" alt="Jet Boat Racing — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Jet Boat Racing</span><span class="card-cat">Driving &amp; Racing</span></div></a></li><li><a class="game-card" href="/game/xtreme-drift-racing/" aria-label="Play Xtreme DRIFT Racing"><img class="card-thumb" src="/images/xtreme-drift-racing.jpg" alt="Xtreme DRIFT Racing — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Xtreme DRIFT Racing</span><span class="card-cat">Driving &amp; Racing</span></div></a></li><li><a class="game-card" href="/game/gearshift-one/" aria-label="Play Gearshift One"><img class="card-thumb" src="/images/gearshift-one.jpg" alt="Gearshift One — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Gearshift One</span><span class="card-cat">Driving &amp; Racing</span></div></a></li><li><a class="game-card" href="/game/evolution-factor-1/" aria-label="Play Evolution Factor"><img class="card-thumb" src="/images/evolution-factor-1.jpg" alt="Evolution Factor — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Evolution Factor</span><span class="card-cat">Driving &amp; Racing</span></div></a></li><li><a class="game-card" href="/game/tram-simulator/" aria-label="Play Tram Simulator"><img class="card-thumb" src="/images/tram-simulator.jpg" alt="Tram Simulator — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Tram Simulator</span><span class="card-cat">Driving &amp; Racing</span></div></a></li><li><a class="game-card" href="/game/escape-road-asm/" aria-label="Play Escape Road"><img class="card-thumb" src="/images/escape-road-asm.jpg" alt="Escape Road — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Escape Road</span><span class="card-cat">Driving &amp; Racing</span></div></a></li><li><a class="game-card" href="/game/drift-hunters/" aria-label="Play Drift Hunters"><img class="card-thumb" src="/images/drift-hunters.jpg" alt="Drift Hunters — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Drift Hunters</span><span class="card-cat">Driving &amp; Racing</span></div></a></li><li><a class="game-card" href="/game/escape-road-2/" aria-label="Play Escape Road 2"><img class="card-thumb" src="/images/escape-road-2.jpg" alt="Escape Road 2 — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Escape Road 2</span><span class="card-cat">Driving &amp; Racing</span></div></a></li><li><a class="game-card" href="/game/demolition-derby-3/" aria-label="Play Demolition Derby 3"><img class="card-thumb" src="/images/demolition-derby-3.jpg" alt="Demolition Derby 3 — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Demolition Derby 3</span><span class="card-cat">Driving &amp; Racing</span></div></a></li><li><a class="game-card" href="/game/drive-quest-car-game/" aria-label="Play Drive Quest"><img class="card-thumb" src="/images/drive-quest---car-game.jpg" alt="Drive Quest — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Drive Quest</span><span class="card-cat">Driving &amp; Racing</span></div></a></li><li><a class="game-card" href="/game/night-city-racing/" aria-label="Play Night City Racing"><img class="card-thumb" src="/images/night-city-racing.jpg" alt="Night City Racing — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Night City Racing</span><span class="card-cat">Driving &amp; Racing</span></div></a></li><li><a class="game-card" href="/game/racing-limits/" aria-label="Play Racing Limits"><img class="card-thumb" src="/images/racing-limits.jpg" alt="Racing Limits — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Racing Limits</span><span class="card-cat">Driving &amp; Racing</span></div></a></li></ul>
-      <p class="see-all"><a class="btn btn-ghost" href="/category/driving/">See all 54 driving &amp; racing games</a></p>
+    <section class="shelf" aria-labelledby="relatedTitle">
+      <div class="shelf-head"><h2 id="relatedTitle">You may also like</h2><a class="shelf-link" href="/category/driving/">See all</a></div>
+      <ul class="tile-grid"><li class=""><a class="tile" href="/game/jet-boat-racing/" aria-label="Play Jet Boat Racing"><img src="/images/jet-boat-racing.jpg" alt="Jet Boat Racing – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Jet Boat Racing</span></a></li><li class=""><a class="tile" href="/game/xtreme-drift-racing/" aria-label="Play Xtreme DRIFT Racing"><img src="/images/xtreme-drift-racing.jpg" alt="Xtreme DRIFT Racing – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Xtreme DRIFT Racing</span></a></li><li class=""><a class="tile" href="/game/gearshift-one/" aria-label="Play Gearshift One"><img src="/images/gearshift-one.jpg" alt="Gearshift One – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Gearshift One</span></a></li><li class=""><a class="tile" href="/game/evolution-factor-1/" aria-label="Play Evolution Factor"><img src="/images/evolution-factor-1.jpg" alt="Evolution Factor – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Evolution Factor</span></a></li><li class=""><a class="tile" href="/game/tram-simulator/" aria-label="Play Tram Simulator"><img src="/images/tram-simulator.jpg" alt="Tram Simulator – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Tram Simulator</span></a></li><li class=""><a class="tile" href="/game/escape-road-asm/" aria-label="Play Escape Road"><img src="/images/escape-road-asm.jpg" alt="Escape Road – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Escape Road</span></a></li><li class=""><a class="tile" href="/game/drift-hunters/" aria-label="Play Drift Hunters"><img src="/images/drift-hunters.jpg" alt="Drift Hunters – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Drift Hunters</span></a></li><li class=""><a class="tile" href="/game/escape-road-2/" aria-label="Play Escape Road 2"><img src="/images/escape-road-2.jpg" alt="Escape Road 2 – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Escape Road 2</span></a></li><li class=""><a class="tile" href="/game/demolition-derby-3/" aria-label="Play Demolition Derby 3"><img src="/images/demolition-derby-3.jpg" alt="Demolition Derby 3 – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Demolition Derby 3</span></a></li><li class=""><a class="tile" href="/game/drive-quest-car-game/" aria-label="Play Drive Quest"><img src="/images/drive-quest---car-game.jpg" alt="Drive Quest – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Drive Quest</span></a></li><li class=""><a class="tile" href="/game/night-city-racing/" aria-label="Play Night City Racing"><img src="/images/night-city-racing.jpg" alt="Night City Racing – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Night City Racing</span></a></li><li class=""><a class="tile" href="/game/racing-limits/" aria-label="Play Racing Limits"><img src="/images/racing-limits.jpg" alt="Racing Limits – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Racing Limits</span></a></li></ul>
     </section>
   </main>
   <footer class="site-footer">
@@ -146,6 +151,6 @@
       </nav>
     </div>
   </footer>
-  <script src="/assets/js/page.js?v=1" defer></script>
+  <script src="/assets/js/page.js?v=2" defer></script>
 </body>
 </html>

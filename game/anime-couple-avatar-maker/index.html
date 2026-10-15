@@ -24,11 +24,13 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-L6FNHSMWF4');</script>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://api.fontshare.com" />
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,400..700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/base.css" />
   <link rel="stylesheet" href="/assets/style.css" />
-  <link rel="stylesheet" href="/assets/seo.css?v=1" />
+  <link rel="stylesheet" href="/assets/seo.css?v=2" />
+  <link rel="stylesheet" href="/assets/fun.css?v=2" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -45,6 +47,7 @@
       <button class="icon-btn" data-theme-toggle aria-label="Switch to light mode" type="button"></button>
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
+    <nav class="cat-bar" aria-label="Game categories"><div class="container cat-bar-inner"><a class="cat-pill" href="/"><span aria-hidden="true">🏠</span>Home</a><a class="cat-pill" href="/category/action/"><span aria-hidden="true">⚡</span>Action</a><a class="cat-pill" href="/category/arcade/"><span aria-hidden="true">🕹️</span>Arcade</a><a class="cat-pill" href="/category/puzzle/"><span aria-hidden="true">🧩</span>Puzzle</a><a class="cat-pill" href="/category/simulation/"><span aria-hidden="true">🏗️</span>Simulation</a><a class="cat-pill" href="/category/clicker/"><span aria-hidden="true">👆</span>Clicker</a><a class="cat-pill" href="/category/driving/"><span aria-hidden="true">🏎️</span>Driving &amp; Racing</a><a class="cat-pill" href="/category/adventure/"><span aria-hidden="true">🗺️</span>Adventure</a><a class="cat-pill" href="/category/casual/"><span aria-hidden="true">🌈</span>Casual</a><a class="cat-pill" href="/category/shooting/"><span aria-hidden="true">🎯</span>Shooting</a><a class="cat-pill" href="/category/sports/"><span aria-hidden="true">⚽</span>Sports</a><a class="cat-pill is-active" href="/category/beauty/"><span aria-hidden="true">💄</span>Beauty &amp; Dress Up</a><a class="cat-pill" href="/category/strategy/"><span aria-hidden="true">♟️</span>Strategy</a><a class="cat-pill" href="/category/word/"><span aria-hidden="true">🔤</span>Word</a><a class="cat-pill" href="/games/"><span aria-hidden="true">🔤</span>A–Z</a></div></nav>
   </header>
   <div class="menu-backdrop" id="menuBackdrop" hidden></div>
   <nav class="menu-panel" id="menuPanel" aria-label="Site menu" hidden>
@@ -71,70 +74,72 @@
       <li><a href="/terms.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg>Terms of use</a></li>
     </ul>
   </nav>
-  <main id="main" class="container game-page">
+  <main id="main" class="container container--wide game-page">
     <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/category/beauty/">Beauty &amp; Dress Up Games</a></li><li aria-current="page">Anime Couple: Avatar Maker</li></ol></nav>
-    <div class="game-head">
-      <h1>Anime Couple: Avatar Maker</h1>
-      <div class="game-meta"><a class="chip" href="/category/beauty/">Beauty &amp; Dress Up</a></div>
-    </div>
-
-    <section class="player" id="player" aria-label="Play Anime Couple: Avatar Maker">
-      <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/anime-couple-avatar-maker" data-title="Anime Couple: Avatar Maker">
-        <button class="play-poster" id="playBtn" type="button" aria-label="Play Anime Couple: Avatar Maker now">
-          <img src="/images/anime-couple-avatar-maker.jpg" alt="Play Anime Couple: Avatar Maker online free — beauty & dress up game" width="640" height="360" fetchpriority="high" decoding="async" />
-          <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
-        </button>
-        <noscript><p class="noscript-note">Please enable JavaScript to play Anime Couple: Avatar Maker.</p></noscript>
-      </div>
-      <div class="player-bar">
-        <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
-        <div class="player-actions">
-          <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
-          <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+    <div class="play-layout">
+      <div class="play-main">
+        <div class="game-head">
+          <h1>Anime Couple: Avatar Maker</h1>
+          <div class="game-meta"><a class="chip" href="/category/beauty/">Beauty &amp; Dress Up</a></div>
         </div>
+
+        <section class="player" id="player" aria-label="Play Anime Couple: Avatar Maker">
+          <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/anime-couple-avatar-maker" data-title="Anime Couple: Avatar Maker">
+            <button class="play-poster" id="playBtn" type="button" aria-label="Play Anime Couple: Avatar Maker now">
+              <img src="/images/anime-couple-avatar-maker.jpg" alt="Play Anime Couple: Avatar Maker online free — beauty & dress up game" width="640" height="360" fetchpriority="high" decoding="async" />
+              <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
+            </button>
+            <noscript><p class="noscript-note">Please enable JavaScript to play Anime Couple: Avatar Maker.</p></noscript>
+          </div>
+          <div class="player-bar">
+            <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
+            <div class="player-actions">
+              <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
+              <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+            </div>
+          </div>
+        </section>
+
+        <article class="game-content">
+          <section class="panel" aria-labelledby="about"><h2 id="about">About Anime Couple: Avatar Maker</h2><p>Play Anime Couple: Avatar Maker online for free. It is a beauty &amp; dress up game that runs right in your browser, so there is nothing to download or install and no account to create. Press Play Now and you can start within a few seconds.</p>
+            <p>It is part of our collection of 22 free <a href="/category/beauty/">beauty &amp; dress up games</a>, inside a library of 705 browser games you can play without installing anything.</p></section>
+          <section class="panel" aria-labelledby="howto"><h2 id="howto">How to Play Anime Couple: Avatar Maker</h2>
+            <ol class="steps"><li>Press Play Now and look at the starting character or request.</li><li>Pick clothes, makeup or accessories from the menu.</li><li>Mix and match until you like the look, then save or move on to the next level.</li></ol></section>
+          <section class="panel" aria-labelledby="controls"><h2 id="controls">Controls</h2>
+            <dl class="controls"><div><dt>Desktop</dt><dd>Click items to select them, then click again on the character to apply them. Drag and drop is used in some games.</dd></div><div><dt>Mobile and tablet</dt><dd>Tap items and drag them onto the character. Pinch to zoom is available in some games.</dd></div></dl>
+            <p class="note">Controls can differ between games. Check the start screen or tutorial of Anime Couple: Avatar Maker for the exact keys.</p></section>
+          <section class="panel" aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Anime Couple: Avatar Maker</h2>
+            <ul class="ticks"><li>Use accessories to tie an outfit together.</li><li>Take your time; there is rarely a timer.</li><li>Come back later to try new unlocks.</li><li>Match colours first, then add accessories.</li><li>Try something unexpected; there is no wrong answer.</li></ul></section>
+          <section class="panel" aria-labelledby="features"><h2 id="features">Features</h2>
+            <ul class="ticks"><li>Instant play, no download</li><li>Hundreds of style combinations in many games</li><li>Relaxed, creative gameplay</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
+          <section class="panel" aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
+            <details><summary>Is Anime Couple: Avatar Maker free to play?</summary><p>Yes. Anime Couple: Avatar Maker is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Anime Couple: Avatar Maker on mobile?</summary><p>Yes. Anime Couple: Avatar Maker runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Anime Couple: Avatar Maker?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Anime Couple: Avatar Maker will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>Can I save my dress-up creations?</summary><p>That depends on the game. If there is no save button, taking a screenshot is the easiest way to keep a look.</p></details></section>
+        </article>
       </div>
-    </section>
 
-    <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
-
-    <div class="game-layout">
-      <article class="game-content">
-        <section aria-labelledby="about"><h2 id="about">About Anime Couple: Avatar Maker</h2><p>Play Anime Couple: Avatar Maker online for free. It is a beauty &amp; dress up game that runs right in your browser, so there is nothing to download or install and no account to create. Press Play Now and you can start within a few seconds.</p>
-          <p>It is part of our collection of 22 free <a href="/category/beauty/">beauty &amp; dress up games</a>, which sits inside a library of 705 browser games you can play without installing anything.</p></section>
-        <section aria-labelledby="howto"><h2 id="howto">How to Play Anime Couple: Avatar Maker</h2>
-          <ol><li>Press Play Now and look at the starting character or request.</li><li>Pick clothes, makeup or accessories from the menu.</li><li>Mix and match until you like the look, then save or move on to the next level.</li></ol></section>
-        <section aria-labelledby="controls"><h2 id="controls">Controls</h2>
-          <dl class="controls"><div><dt>Desktop</dt><dd>Click items to select them, then click again on the character to apply them. Drag and drop is used in some games.</dd></div><div><dt>Mobile and tablet</dt><dd>Tap items and drag them onto the character. Pinch to zoom is available in some games.</dd></div></dl>
-          <p class="note">Controls can differ between games. Check the start screen or tutorial of Anime Couple: Avatar Maker for the exact keys.</p></section>
-        <section aria-labelledby="tips"><h2 id="tips">Tips and Tricks for Anime Couple: Avatar Maker</h2>
-          <ul><li>Use accessories to tie an outfit together.</li><li>Take your time; there is rarely a timer.</li><li>Come back later to try new unlocks.</li><li>Match colours first, then add accessories.</li><li>Try something unexpected; there is no wrong answer.</li></ul></section>
-        <section aria-labelledby="features"><h2 id="features">Features</h2>
-          <ul><li>Instant play, no download</li><li>Hundreds of style combinations in many games</li><li>Relaxed, creative gameplay</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
-        <section aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
-          <details><summary>Is Anime Couple: Avatar Maker free to play?</summary><p>Yes. Anime Couple: Avatar Maker is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play Anime Couple: Avatar Maker on mobile?</summary><p>Yes. Anime Couple: Avatar Maker runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing Anime Couple: Avatar Maker?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>Anime Couple: Avatar Maker will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>Can I save my dress-up creations?</summary><p>That depends on the game. If there is no save button, taking a screenshot is the easiest way to keep a look.</p></details></section>
-      </article>
-      <aside class="game-aside" aria-label="Game details">
-        <h2>Game info</h2>
-        <dl class="info">
-          <div><dt>Title</dt><dd>Anime Couple: Avatar Maker</dd></div>
-          <div><dt>Genre</dt><dd><a href="/category/beauty/">Beauty &amp; Dress Up</a></dd></div>
-          <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
-          <div><dt>Technology</dt><dd>HTML5</dd></div>
-          <div><dt>Price</dt><dd>Free, no download</dd></div>
-        </dl>
-        <h3>Browse more</h3>
-        <ul class="aside-links">
-          <li><a href="/category/beauty/">All beauty &amp; dress up games (22)</a></li>
-          <li><a href="/games/">All games A–Z</a></li>
-          <li><a href="/">Home</a></li>
-        </ul>
+      <aside class="play-side" aria-label="Game details and more games">
+        <section class="side-card">
+          <h2>Game info</h2>
+          <dl class="info">
+            <div><dt>Title</dt><dd>Anime Couple: Avatar Maker</dd></div>
+            <div><dt>Genre</dt><dd><a href="/category/beauty/">Beauty &amp; Dress Up</a></dd></div>
+            <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
+            <div><dt>Technology</dt><dd>HTML5</dd></div>
+            <div><dt>Price</dt><dd>Free, no download</dd></div>
+          </dl>
+        </section>
+        <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+        <section class="side-card">
+          <h2>More beauty &amp; dress up games</h2>
+          <ul class="tile-grid tile-grid--side"><li class=""><a class="tile" href="/game/anime-boy-dress-up-games/" aria-label="Play Anime Boy"><img src="/images/anime-boy-dress-up-games.jpg" alt="Anime Boy – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Anime Boy</span></a></li><li class=""><a class="tile" href="/game/billionaire-wife-dress-up-game/" aria-label="Play Billionaire Wife Dress Up"><img src="/images/billionaire-wife-dress-up-game.jpg" alt="Billionaire Wife Dress Up – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Billionaire Wife Dress Up</span></a></li><li class=""><a class="tile" href="/game/anime-girls-dress-up-games/" aria-label="Play Anime Girls Dress Up Games"><img src="/images/anime-girls-dress-up-games.jpg" alt="Anime Girls Dress Up Games – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Anime Girls Dress Up Games</span></a></li><li class=""><a class="tile" href="/game/fashion-dress-up-challenge/" aria-label="Play Fashion Dress Up Challenge"><img src="/images/fashion-dress-up-challenge.jpg" alt="Fashion Dress Up Challenge – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Fashion Dress Up Challenge</span></a></li><li class=""><a class="tile" href="/game/royal-dress-up-fashion-queen/" aria-label="Play Royal Dress Up - Fashion Queen"><img src="/images/royal-dress-up---fashion-queen.jpg" alt="Royal Dress Up - Fashion Queen – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Royal Dress Up - Fashion Queen</span></a></li><li class=""><a class="tile" href="/game/monster-makeup-3d/" aria-label="Play Monster Makeup 3D"><img src="/images/monster-makeup-3d.jpg" alt="Monster Makeup 3D – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Monster Makeup 3D</span></a></li><li class=""><a class="tile" href="/game/diy-makeup-salon-spa-makeover/" aria-label="Play DIY Makeup Salon: SPA Makeover"><img src="/images/diy-makeup-salon-spa-makeover.jpg" alt="DIY Makeup Salon: SPA Makeover – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">DIY Makeup Salon: SPA Makeover</span></a></li><li class=""><a class="tile" href="/game/fashion-challenge-catwalk-run/" aria-label="Play Fashion Challenge: Catwalk Run"><img src="/images/fashion-challenge-catwalk-run.jpg" alt="Fashion Challenge: Catwalk Run – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Fashion Challenge: Catwalk Run</span></a></li><li class=""><a class="tile" href="/game/tailor-stylist-fashion-diary/" aria-label="Play Tailor Stylist: Fashion Diary"><img src="/images/tailor-stylist-fashion-diary.jpg" alt="Tailor Stylist: Fashion Diary – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Tailor Stylist: Fashion Diary</span></a></li><li class=""><a class="tile" href="/game/idol-livestream-fashion-game/" aria-label="Play Idol Livestream: Fashion Game"><img src="/images/idol-livestream-fashion-game.jpg" alt="Idol Livestream: Fashion Game – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Idol Livestream: Fashion Game</span></a></li></ul>
+          <p class="see-all"><a class="btn btn-primary" href="/category/beauty/">All 22 beauty &amp; dress up games</a></p>
+        </section>
       </aside>
     </div>
 
-    <section class="related" aria-labelledby="relatedTitle">
-      <h2 id="relatedTitle">More beauty &amp; dress up games you may like</h2>
-      <ul class="game-grid"><li><a class="game-card" href="/game/idol-livestream-fashion-game/" aria-label="Play Idol Livestream: Fashion Game"><img class="card-thumb" src="/images/idol-livestream-fashion-game.jpg" alt="Idol Livestream: Fashion Game — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Idol Livestream: Fashion Game</span><span class="card-cat">Beauty &amp; Dress Up</span></div></a></li><li><a class="game-card" href="/game/bff-makeover-spa-dress-up/" aria-label="Play BFF Makeover - Spa"><img class="card-thumb" src="/images/bff-makeover---spa-dress-up.jpg" alt="BFF Makeover - Spa — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">BFF Makeover - Spa</span><span class="card-cat">Beauty &amp; Dress Up</span></div></a></li><li><a class="game-card" href="/game/fashion-x-fashion-cwu/" aria-label="Play Fashion x Fashion"><img class="card-thumb" src="/images/fashion-x-fashion-cwu.jpg" alt="Fashion x Fashion — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Fashion x Fashion</span><span class="card-cat">Beauty &amp; Dress Up</span></div></a></li><li><a class="game-card" href="/game/royal-glow-princess-makeover-nen/" aria-label="Play Royal Glow Princess Makeover"><img class="card-thumb" src="/images/royal-glow-princess-makeover-nen.png" alt="Royal Glow Princess Makeover — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Royal Glow Princess Makeover</span><span class="card-cat">Beauty &amp; Dress Up</span></div></a></li><li><a class="game-card" href="/game/anime-kawaii-dress-up-games/" aria-label="Play Anime Kawaii Dress Up"><img class="card-thumb" src="/images/anime-kawaii-dress-up-games.jpg" alt="Anime Kawaii Dress Up — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Anime Kawaii Dress Up</span><span class="card-cat">Beauty &amp; Dress Up</span></div></a></li><li><a class="game-card" href="/game/anime-couple-dress-up/" aria-label="Play Anime Couple Dress Up"><img class="card-thumb" src="/images/anime-couple-dress-up.jpg" alt="Anime Couple Dress Up — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Anime Couple Dress Up</span><span class="card-cat">Beauty &amp; Dress Up</span></div></a></li><li><a class="game-card" href="/game/dress-up-games-for-girls/" aria-label="Play Princess Dress Up"><img class="card-thumb" src="/images/dress-up---games-for-girls.jpg" alt="Princess Dress Up — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Princess Dress Up</span><span class="card-cat">Beauty &amp; Dress Up</span></div></a></li><li><a class="game-card" href="/game/luxury-inc/" aria-label="Play Luxury Inc"><img class="card-thumb" src="/images/luxury-inc.jpg" alt="Luxury Inc — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Luxury Inc</span><span class="card-cat">Beauty &amp; Dress Up</span></div></a></li><li><a class="game-card" href="/game/fashion-trip-dress-up-games/" aria-label="Play Fashion Trip"><img class="card-thumb" src="/images/fashion-trip-dress-up-games.jpg" alt="Fashion Trip — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Fashion Trip</span><span class="card-cat">Beauty &amp; Dress Up</span></div></a></li><li><a class="game-card" href="/game/high-school-anime-dress-up/" aria-label="Play High School Anime Dress Up"><img class="card-thumb" src="/images/high-school-anime-dress-up.jpg" alt="High School Anime Dress Up — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">High School Anime Dress Up</span><span class="card-cat">Beauty &amp; Dress Up</span></div></a></li><li><a class="game-card" href="/game/fashionista-makeup-dress-up/" aria-label="Play Fashionista Makeup"><img class="card-thumb" src="/images/fashionista-makeup-dress-up.jpg" alt="Fashionista Makeup — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Fashionista Makeup</span><span class="card-cat">Beauty &amp; Dress Up</span></div></a></li><li><a class="game-card" href="/game/furry-dress-up-anime-creator/" aria-label="Play Furry Dress Up: Anime Creator"><img class="card-thumb" src="/images/furry-dress-up-anime-creator.jpg" alt="Furry Dress Up: Anime Creator — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Furry Dress Up: Anime Creator</span><span class="card-cat">Beauty &amp; Dress Up</span></div></a></li></ul>
-      <p class="see-all"><a class="btn btn-ghost" href="/category/beauty/">See all 22 beauty &amp; dress up games</a></p>
+    <section class="shelf" aria-labelledby="relatedTitle">
+      <div class="shelf-head"><h2 id="relatedTitle">You may also like</h2><a class="shelf-link" href="/category/beauty/">See all</a></div>
+      <ul class="tile-grid"><li class=""><a class="tile" href="/game/idol-livestream-fashion-game/" aria-label="Play Idol Livestream: Fashion Game"><img src="/images/idol-livestream-fashion-game.jpg" alt="Idol Livestream: Fashion Game – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Idol Livestream: Fashion Game</span></a></li><li class=""><a class="tile" href="/game/bff-makeover-spa-dress-up/" aria-label="Play BFF Makeover - Spa"><img src="/images/bff-makeover---spa-dress-up.jpg" alt="BFF Makeover - Spa – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">BFF Makeover - Spa</span></a></li><li class=""><a class="tile" href="/game/fashion-x-fashion-cwu/" aria-label="Play Fashion x Fashion"><img src="/images/fashion-x-fashion-cwu.jpg" alt="Fashion x Fashion – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Fashion x Fashion</span></a></li><li class=""><a class="tile" href="/game/royal-glow-princess-makeover-nen/" aria-label="Play Royal Glow Princess Makeover"><img src="/images/royal-glow-princess-makeover-nen.png" alt="Royal Glow Princess Makeover – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Royal Glow Princess Makeover</span></a></li><li class=""><a class="tile" href="/game/anime-kawaii-dress-up-games/" aria-label="Play Anime Kawaii Dress Up"><img src="/images/anime-kawaii-dress-up-games.jpg" alt="Anime Kawaii Dress Up – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Anime Kawaii Dress Up</span></a></li><li class=""><a class="tile" href="/game/anime-couple-dress-up/" aria-label="Play Anime Couple Dress Up"><img src="/images/anime-couple-dress-up.jpg" alt="Anime Couple Dress Up – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Anime Couple Dress Up</span></a></li><li class=""><a class="tile" href="/game/dress-up-games-for-girls/" aria-label="Play Princess Dress Up"><img src="/images/dress-up---games-for-girls.jpg" alt="Princess Dress Up – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Princess Dress Up</span></a></li><li class=""><a class="tile" href="/game/luxury-inc/" aria-label="Play Luxury Inc"><img src="/images/luxury-inc.jpg" alt="Luxury Inc – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Luxury Inc</span></a></li><li class=""><a class="tile" href="/game/fashion-trip-dress-up-games/" aria-label="Play Fashion Trip"><img src="/images/fashion-trip-dress-up-games.jpg" alt="Fashion Trip – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Fashion Trip</span></a></li><li class=""><a class="tile" href="/game/high-school-anime-dress-up/" aria-label="Play High School Anime Dress Up"><img src="/images/high-school-anime-dress-up.jpg" alt="High School Anime Dress Up – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">High School Anime Dress Up</span></a></li><li class=""><a class="tile" href="/game/fashionista-makeup-dress-up/" aria-label="Play Fashionista Makeup"><img src="/images/fashionista-makeup-dress-up.jpg" alt="Fashionista Makeup – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Fashionista Makeup</span></a></li><li class=""><a class="tile" href="/game/furry-dress-up-anime-creator/" aria-label="Play Furry Dress Up: Anime Creator"><img src="/images/furry-dress-up-anime-creator.jpg" alt="Furry Dress Up: Anime Creator – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Furry Dress Up: Anime Creator</span></a></li></ul>
     </section>
   </main>
   <footer class="site-footer">
@@ -146,6 +151,6 @@
       </nav>
     </div>
   </footer>
-  <script src="/assets/js/page.js?v=1" defer></script>
+  <script src="/assets/js/page.js?v=2" defer></script>
 </body>
 </html>

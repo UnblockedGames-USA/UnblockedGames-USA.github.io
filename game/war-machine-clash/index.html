@@ -24,11 +24,13 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6FNHSMWF4"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-L6FNHSMWF4');</script>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://api.fontshare.com" />
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,400..700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/base.css" />
   <link rel="stylesheet" href="/assets/style.css" />
-  <link rel="stylesheet" href="/assets/seo.css?v=1" />
+  <link rel="stylesheet" href="/assets/seo.css?v=2" />
+  <link rel="stylesheet" href="/assets/fun.css?v=2" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -45,6 +47,7 @@
       <button class="icon-btn" data-theme-toggle aria-label="Switch to light mode" type="button"></button>
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
+    <nav class="cat-bar" aria-label="Game categories"><div class="container cat-bar-inner"><a class="cat-pill" href="/"><span aria-hidden="true">🏠</span>Home</a><a class="cat-pill is-active" href="/category/action/"><span aria-hidden="true">⚡</span>Action</a><a class="cat-pill" href="/category/arcade/"><span aria-hidden="true">🕹️</span>Arcade</a><a class="cat-pill" href="/category/puzzle/"><span aria-hidden="true">🧩</span>Puzzle</a><a class="cat-pill" href="/category/simulation/"><span aria-hidden="true">🏗️</span>Simulation</a><a class="cat-pill" href="/category/clicker/"><span aria-hidden="true">👆</span>Clicker</a><a class="cat-pill" href="/category/driving/"><span aria-hidden="true">🏎️</span>Driving &amp; Racing</a><a class="cat-pill" href="/category/adventure/"><span aria-hidden="true">🗺️</span>Adventure</a><a class="cat-pill" href="/category/casual/"><span aria-hidden="true">🌈</span>Casual</a><a class="cat-pill" href="/category/shooting/"><span aria-hidden="true">🎯</span>Shooting</a><a class="cat-pill" href="/category/sports/"><span aria-hidden="true">⚽</span>Sports</a><a class="cat-pill" href="/category/beauty/"><span aria-hidden="true">💄</span>Beauty &amp; Dress Up</a><a class="cat-pill" href="/category/strategy/"><span aria-hidden="true">♟️</span>Strategy</a><a class="cat-pill" href="/category/word/"><span aria-hidden="true">🔤</span>Word</a><a class="cat-pill" href="/games/"><span aria-hidden="true">🔤</span>A–Z</a></div></nav>
   </header>
   <div class="menu-backdrop" id="menuBackdrop" hidden></div>
   <nav class="menu-panel" id="menuPanel" aria-label="Site menu" hidden>
@@ -71,70 +74,72 @@
       <li><a href="/terms.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg>Terms of use</a></li>
     </ul>
   </nav>
-  <main id="main" class="container game-page">
+  <main id="main" class="container container--wide game-page">
     <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/category/action/">Action Games</a></li><li aria-current="page">War Machine Clash</li></ol></nav>
-    <div class="game-head">
-      <h1>War Machine Clash</h1>
-      <div class="game-meta"><a class="chip" href="/category/action/">Action</a></div>
-    </div>
-
-    <section class="player" id="player" aria-label="Play War Machine Clash">
-      <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/war-machine-clash" data-title="War Machine Clash">
-        <button class="play-poster" id="playBtn" type="button" aria-label="Play War Machine Clash now">
-          <img src="/images/war-machine-clash.png" alt="Play War Machine Clash online free — action game" width="640" height="360" fetchpriority="high" decoding="async" />
-          <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
-        </button>
-        <noscript><p class="noscript-note">Please enable JavaScript to play War Machine Clash.</p></noscript>
-      </div>
-      <div class="player-bar">
-        <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
-        <div class="player-actions">
-          <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
-          <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+    <div class="play-layout">
+      <div class="play-main">
+        <div class="game-head">
+          <h1>War Machine Clash</h1>
+          <div class="game-meta"><a class="chip" href="/category/action/">Action</a></div>
         </div>
+
+        <section class="player" id="player" aria-label="Play War Machine Clash">
+          <div class="player-frame" id="playerFrame" data-embed="https://puzzio.io/source-game/war-machine-clash" data-title="War Machine Clash">
+            <button class="play-poster" id="playBtn" type="button" aria-label="Play War Machine Clash now">
+              <img src="/images/war-machine-clash.png" alt="Play War Machine Clash online free — action game" width="640" height="360" fetchpriority="high" decoding="async" />
+              <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
+            </button>
+            <noscript><p class="noscript-note">Please enable JavaScript to play War Machine Clash.</p></noscript>
+          </div>
+          <div class="player-bar">
+            <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
+            <div class="player-actions">
+              <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
+              <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+            </div>
+          </div>
+        </section>
+
+        <article class="game-content">
+          <section class="panel" aria-labelledby="about"><h2 id="about">About War Machine Clash</h2><p>War Machine Clash is an free action game you can play instantly in your browser. It works on desktop, tablet and phone, with no download and no registration, so you can jump in whenever you have a few minutes.</p>
+            <p>It is part of our collection of 168 free <a href="/category/action/">action games</a>, inside a library of 705 browser games you can play without installing anything.</p></section>
+          <section class="panel" aria-labelledby="howto"><h2 id="howto">How to Play War Machine Clash</h2>
+            <ol class="steps"><li>Press Play Now and wait a few seconds for the game to load.</li><li>Read the first tutorial prompt; most action games teach their controls in the opening level.</li><li>Stay mobile, clear the nearest threats first and pick up upgrades whenever they appear.</li></ol></section>
+          <section class="panel" aria-labelledby="controls"><h2 id="controls">Controls</h2>
+            <dl class="controls"><div><dt>Desktop</dt><dd>Move with WASD or the arrow keys. Aim and attack with the mouse, or use Space, Z, X and Shift for jump, attack and special moves where the game shows them.</dd></div><div><dt>Mobile and tablet</dt><dd>Use the on-screen stick or tap zones to move and the action buttons to attack or jump. Turn your phone sideways for more room.</dd></div></dl>
+            <p class="note">Controls can differ between games. Check the start screen or tutorial of War Machine Clash for the exact keys.</p></section>
+          <section class="panel" aria-labelledby="tips"><h2 id="tips">Tips and Tricks for War Machine Clash</h2>
+            <ul class="ticks"><li>Use corners and obstacles to split groups of enemies.</li><li>Take short breaks between runs. Your reactions improve when you are fresh.</li><li>Spend currency on survivability before pure damage.</li><li>If a level feels unfair, replay it once and watch for patterns instead of rushing.</li><li>Keep moving. Standing still is how most runs end.</li></ul></section>
+          <section class="panel" aria-labelledby="features"><h2 id="features">Features</h2>
+            <ul class="ticks"><li>Instant play in the browser, no download or install</li><li>Short sessions that work for a quick break or a longer run</li><li>Progression and upgrades that make each attempt feel stronger</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
+          <section class="panel" aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
+            <details><summary>Is War Machine Clash free to play?</summary><p>Yes. War Machine Clash is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play War Machine Clash on mobile?</summary><p>Yes. War Machine Clash runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing War Machine Clash?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>War Machine Clash will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>What is the best way to get better at action games?</summary><p>Learn the patterns first and chase score second. Most action games repeat enemy behaviour, so a few early runs spent observing will pay off. Prioritise upgrades that keep you alive.</p></details></section>
+        </article>
       </div>
-    </section>
 
-    <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
-
-    <div class="game-layout">
-      <article class="game-content">
-        <section aria-labelledby="about"><h2 id="about">About War Machine Clash</h2><p>War Machine Clash is an free action game you can play instantly in your browser. It works on desktop, tablet and phone, with no download and no registration, so you can jump in whenever you have a few minutes.</p>
-          <p>It is part of our collection of 168 free <a href="/category/action/">action games</a>, which sits inside a library of 705 browser games you can play without installing anything.</p></section>
-        <section aria-labelledby="howto"><h2 id="howto">How to Play War Machine Clash</h2>
-          <ol><li>Press Play Now and wait a few seconds for the game to load.</li><li>Read the first tutorial prompt; most action games teach their controls in the opening level.</li><li>Stay mobile, clear the nearest threats first and pick up upgrades whenever they appear.</li></ol></section>
-        <section aria-labelledby="controls"><h2 id="controls">Controls</h2>
-          <dl class="controls"><div><dt>Desktop</dt><dd>Move with WASD or the arrow keys. Aim and attack with the mouse, or use Space, Z, X and Shift for jump, attack and special moves where the game shows them.</dd></div><div><dt>Mobile and tablet</dt><dd>Use the on-screen stick or tap zones to move and the action buttons to attack or jump. Turn your phone sideways for more room.</dd></div></dl>
-          <p class="note">Controls can differ between games. Check the start screen or tutorial of War Machine Clash for the exact keys.</p></section>
-        <section aria-labelledby="tips"><h2 id="tips">Tips and Tricks for War Machine Clash</h2>
-          <ul><li>Use corners and obstacles to split groups of enemies.</li><li>Take short breaks between runs. Your reactions improve when you are fresh.</li><li>Spend currency on survivability before pure damage.</li><li>If a level feels unfair, replay it once and watch for patterns instead of rushing.</li><li>Keep moving. Standing still is how most runs end.</li></ul></section>
-        <section aria-labelledby="features"><h2 id="features">Features</h2>
-          <ul><li>Instant play in the browser, no download or install</li><li>Short sessions that work for a quick break or a longer run</li><li>Progression and upgrades that make each attempt feel stronger</li><li>Works on desktop, tablet and mobile browsers</li></ul></section>
-        <section aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
-          <details><summary>Is War Machine Clash free to play?</summary><p>Yes. War Machine Clash is free to play on Unblocked Games USA. There is no registration, no download and no payment needed to play.</p></details><details><summary>Can I play War Machine Clash on mobile?</summary><p>Yes. War Machine Clash runs in your browser, so it works on modern desktop, tablet and mobile browsers. Some controls may feel better with a keyboard and mouse, and landscape mode gives more room on a phone.</p></details><details><summary>How do I start playing War Machine Clash?</summary><p>Click the Play Now button on this page. The game loads inside the page and you can begin as soon as it finishes loading. Use the Expand button for a larger play area.</p></details><details><summary>War Machine Clash will not load. What should I do?</summary><p>Refresh the page, check your internet connection and make sure you are using an up-to-date browser. Some school or work networks block game content, and in that case the game may not load on that network.</p></details><details><summary>What is the best way to get better at action games?</summary><p>Learn the patterns first and chase score second. Most action games repeat enemy behaviour, so a few early runs spent observing will pay off. Prioritise upgrades that keep you alive.</p></details></section>
-      </article>
-      <aside class="game-aside" aria-label="Game details">
-        <h2>Game info</h2>
-        <dl class="info">
-          <div><dt>Title</dt><dd>War Machine Clash</dd></div>
-          <div><dt>Genre</dt><dd><a href="/category/action/">Action</a></dd></div>
-          <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
-          <div><dt>Technology</dt><dd>HTML5</dd></div>
-          <div><dt>Price</dt><dd>Free, no download</dd></div>
-        </dl>
-        <h3>Browse more</h3>
-        <ul class="aside-links">
-          <li><a href="/category/action/">All action games (168)</a></li>
-          <li><a href="/games/">All games A–Z</a></li>
-          <li><a href="/">Home</a></li>
-        </ul>
+      <aside class="play-side" aria-label="Game details and more games">
+        <section class="side-card">
+          <h2>Game info</h2>
+          <dl class="info">
+            <div><dt>Title</dt><dd>War Machine Clash</dd></div>
+            <div><dt>Genre</dt><dd><a href="/category/action/">Action</a></dd></div>
+            <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
+            <div><dt>Technology</dt><dd>HTML5</dd></div>
+            <div><dt>Price</dt><dd>Free, no download</dd></div>
+          </dl>
+        </section>
+        <div class="ad-unit" aria-label="Advertisement"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4672956141931257" data-ad-slot="4436716876" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
+        <section class="side-card">
+          <h2>More action games</h2>
+          <ul class="tile-grid tile-grid--side"><li class=""><a class="tile" href="/game/neon-breakout/" aria-label="Play Neon Breakout"><img src="/images/neon-breakout.svg" alt="Neon Breakout – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Neon Breakout</span></a></li><li class=""><a class="tile" href="/game/boss-stickman-fighting-stick-it/" aria-label="Play Boss Stickman - Fighting Stick It"><img src="/images/boss-stickman---fighting-stick-it.jpg" alt="Boss Stickman - Fighting Stick It – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Boss Stickman - Fighting Stick It</span></a></li><li class=""><a class="tile" href="/game/obby-phonk-escape-1-speed/" aria-label="Play Obby: Phonk Escape | +1 Speed"><img src="/images/obby-phonk-escape-1-speed.jpg" alt="Obby: Phonk Escape | +1 Speed – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby: Phonk Escape | +1 Speed</span></a></li><li class=""><a class="tile" href="/game/kill-a-brainrot-bosses-eggs-pets-oqo/" aria-label="Play Kill A Brainrot: Bosses, Eggs, Pets!"><img src="/images/kill-a-brainrot-bosses-eggs-pets-oqo.jpg" alt="Kill A Brainrot: Bosses, Eggs, Pets! – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Kill A Brainrot: Bosses, Eggs, Pets!</span></a></li><li class=""><a class="tile" href="/game/dear-travellers-airline-chaos/" aria-label="Play Dear Travellers"><img src="/images/dear-travellers---airline-chaos.jpg" alt="Dear Travellers – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Dear Travellers</span></a></li><li class=""><a class="tile" href="/game/real-survival-not-fake/" aria-label="Play Real Survival: Not Fake"><img src="/images/real-survival-not-fake.jpg" alt="Real Survival: Not Fake – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Real Survival: Not Fake</span></a></li><li class=""><a class="tile" href="/game/nerd-vs-bully-prankster-cym/" aria-label="Play Nerd vs Bully Prankster"><img src="/images/nerd-vs-bully-prankster-cym.jpg" alt="Nerd vs Bully Prankster – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Nerd vs Bully Prankster</span></a></li><li class=""><a class="tile" href="/game/sniper-for-brainrot/" aria-label="Play Sniper For Brainrot"><img src="/images/sniper-for-brainrot.jpg" alt="Sniper For Brainrot – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Sniper For Brainrot</span></a></li><li class=""><a class="tile" href="/game/armored-robot/" aria-label="Play Armored Robot"><img src="/images/armored-robot.jpg" alt="Armored Robot – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Armored Robot</span></a></li><li class=""><a class="tile" href="/game/dinosaur-park-jurassic-dino-world/" aria-label="Play Dinosaur Park Jurassic Dino World"><img src="/images/dinosaur-park-jurassic-dino-world.jpg" alt="Dinosaur Park Jurassic Dino World – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Dinosaur Park Jurassic Dino World</span></a></li></ul>
+          <p class="see-all"><a class="btn btn-primary" href="/category/action/">All 168 action games</a></p>
+        </section>
       </aside>
     </div>
 
-    <section class="related" aria-labelledby="relatedTitle">
-      <h2 id="relatedTitle">More action games you may like</h2>
-      <ul class="game-grid"><li><a class="game-card" href="/game/brainzombie-log-escape/" aria-label="Play BrainZombie Log Escape"><img class="card-thumb" src="/images/brainzombie-log-escape.png" alt="BrainZombie Log Escape — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">BrainZombie Log Escape</span><span class="card-cat">Action</span></div></a></li><li><a class="game-card" href="/game/annoying-uncle-punch-game/" aria-label="Play Annoying Uncle Punch Game"><img class="card-thumb" src="/images/annoying-uncle-punch-game.png" alt="Annoying Uncle Punch Game — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Annoying Uncle Punch Game</span><span class="card-cat">Action</span></div></a></li><li><a class="game-card" href="/game/merge-archers/" aria-label="Play Merge Archers"><img class="card-thumb" src="/images/merge-archers.jpg" alt="Merge Archers — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Merge Archers</span><span class="card-cat">Action</span></div></a></li><li><a class="game-card" href="/game/brainrot-mega-parkour/" aria-label="Play Brainrot Mega Parkour"><img class="card-thumb" src="/images/brainrot-mega-parkour.jpg" alt="Brainrot Mega Parkour — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Brainrot Mega Parkour</span><span class="card-cat">Action</span></div></a></li><li><a class="game-card" href="/game/fall-of-the-king/" aria-label="Play Fall of the King"><img class="card-thumb" src="/images/fall-of-the-king.jpg" alt="Fall of the King — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Fall of the King</span><span class="card-cat">Action</span></div></a></li><li><a class="game-card" href="/game/sea-strike-ivp/" aria-label="Play Sea Strike"><img class="card-thumb" src="/images/sea-strike-ivp.jpg" alt="Sea Strike — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Sea Strike</span><span class="card-cat">Action</span></div></a></li><li><a class="game-card" href="/game/battle-for-resources/" aria-label="Play Battle for Resources"><img class="card-thumb" src="/images/battle-for-resources.jpg" alt="Battle for Resources — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Battle for Resources</span><span class="card-cat">Action</span></div></a></li><li><a class="game-card" href="/game/web-master/" aria-label="Play Web Master"><img class="card-thumb" src="/images/web-master.jpg" alt="Web Master — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Web Master</span><span class="card-cat">Action</span></div></a></li><li><a class="game-card" href="/game/obby-crazy-cart-ride-qlw/" aria-label="Play Obby: Crazy Cart"><img class="card-thumb" src="/images/obby-crazy-cart-ride-qlw.jpg" alt="Obby: Crazy Cart — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Obby: Crazy Cart</span><span class="card-cat">Action</span></div></a></li><li><a class="game-card" href="/game/senya-and-oscar-pirate-island/" aria-label="Play Senya and Oscar: Pirate Island"><img class="card-thumb" src="/images/senya-and-oscar-pirate-island.jpg" alt="Senya and Oscar: Pirate Island — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Senya and Oscar: Pirate Island</span><span class="card-cat">Action</span></div></a></li><li><a class="game-card" href="/game/stickman-rebirth/" aria-label="Play Stickman Rebirth"><img class="card-thumb" src="/images/stickman-rebirth.jpg" alt="Stickman Rebirth — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Stickman Rebirth</span><span class="card-cat">Action</span></div></a></li><li><a class="game-card" href="/game/legion-of-zombie-terrors/" aria-label="Play Legion of Zombie Terrors"><img class="card-thumb" src="/images/legion-of-zombie-terrors.jpg" alt="Legion of Zombie Terrors — game thumbnail" loading="lazy" decoding="async" width="300" height="200" /><div class="card-body"><span class="card-title">Legion of Zombie Terrors</span><span class="card-cat">Action</span></div></a></li></ul>
-      <p class="see-all"><a class="btn btn-ghost" href="/category/action/">See all 168 action games</a></p>
+    <section class="shelf" aria-labelledby="relatedTitle">
+      <div class="shelf-head"><h2 id="relatedTitle">You may also like</h2><a class="shelf-link" href="/category/action/">See all</a></div>
+      <ul class="tile-grid"><li class=""><a class="tile" href="/game/brainzombie-log-escape/" aria-label="Play BrainZombie Log Escape"><img src="/images/brainzombie-log-escape.png" alt="BrainZombie Log Escape – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">BrainZombie Log Escape</span></a></li><li class=""><a class="tile" href="/game/annoying-uncle-punch-game/" aria-label="Play Annoying Uncle Punch Game"><img src="/images/annoying-uncle-punch-game.png" alt="Annoying Uncle Punch Game – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Annoying Uncle Punch Game</span></a></li><li class=""><a class="tile" href="/game/merge-archers/" aria-label="Play Merge Archers"><img src="/images/merge-archers.jpg" alt="Merge Archers – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Merge Archers</span></a></li><li class=""><a class="tile" href="/game/brainrot-mega-parkour/" aria-label="Play Brainrot Mega Parkour"><img src="/images/brainrot-mega-parkour.jpg" alt="Brainrot Mega Parkour – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Brainrot Mega Parkour</span></a></li><li class=""><a class="tile" href="/game/fall-of-the-king/" aria-label="Play Fall of the King"><img src="/images/fall-of-the-king.jpg" alt="Fall of the King – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Fall of the King</span></a></li><li class=""><a class="tile" href="/game/sea-strike-ivp/" aria-label="Play Sea Strike"><img src="/images/sea-strike-ivp.jpg" alt="Sea Strike – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Sea Strike</span></a></li><li class=""><a class="tile" href="/game/battle-for-resources/" aria-label="Play Battle for Resources"><img src="/images/battle-for-resources.jpg" alt="Battle for Resources – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Battle for Resources</span></a></li><li class=""><a class="tile" href="/game/web-master/" aria-label="Play Web Master"><img src="/images/web-master.jpg" alt="Web Master – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Web Master</span></a></li><li class=""><a class="tile" href="/game/obby-crazy-cart-ride-qlw/" aria-label="Play Obby: Crazy Cart"><img src="/images/obby-crazy-cart-ride-qlw.jpg" alt="Obby: Crazy Cart – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Obby: Crazy Cart</span></a></li><li class=""><a class="tile" href="/game/senya-and-oscar-pirate-island/" aria-label="Play Senya and Oscar: Pirate Island"><img src="/images/senya-and-oscar-pirate-island.jpg" alt="Senya and Oscar: Pirate Island – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Senya and Oscar: Pirate Island</span></a></li><li class=""><a class="tile" href="/game/stickman-rebirth/" aria-label="Play Stickman Rebirth"><img src="/images/stickman-rebirth.jpg" alt="Stickman Rebirth – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Stickman Rebirth</span></a></li><li class=""><a class="tile" href="/game/legion-of-zombie-terrors/" aria-label="Play Legion of Zombie Terrors"><img src="/images/legion-of-zombie-terrors.jpg" alt="Legion of Zombie Terrors – play free online" loading="lazy" decoding="async" width="480" height="270" /><span class="tile-title">Legion of Zombie Terrors</span></a></li></ul>
     </section>
   </main>
   <footer class="site-footer">
@@ -146,6 +151,6 @@
       </nav>
     </div>
   </footer>
-  <script src="/assets/js/page.js?v=1" defer></script>
+  <script src="/assets/js/page.js?v=2" defer></script>
 </body>
 </html>

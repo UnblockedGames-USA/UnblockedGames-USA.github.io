@@ -81,15 +81,22 @@ def head(title, desc, canonical, og_image=None, og_type="website", ld=(), robots
   <script async src="https://www.googletagmanager.com/gtag/js?id={GA}"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{GA}');</script>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://api.fontshare.com" />
-  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,400..700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/base.css" />
   <link rel="stylesheet" href="/assets/style.css" />
-  <link rel="stylesheet" href="/assets/seo.css?v=1" />
+  <link rel="stylesheet" href="/assets/seo.css?v=2" />
+  <link rel="stylesheet" href="/assets/fun.css?v=2" />
 </head>
 '''
 
-def header_nav():
+EMOJI = {'action':'⚡','arcade':'🕹️','puzzle':'🧩','simulation':'🏗️','clicker':'👆','driving':'🏎️','adventure':'🗺️','casual':'🌈','shooting':'🎯','sports':'⚽','beauty':'💄','strategy':'♟️','word':'🔤','skill':'🏅','board':'🎲'}
+def cat_bar(active=None):
+    pills = ''.join(f'<a class="cat-pill{" is-active" if c == active else ""}" href="/category/{c}/"><span aria-hidden="true">{EMOJI.get(c, "🎮")}</span>{esc(cat(c)["label"])}</a>' for c in cat_order if len(by_cat[c]) > 1)
+    return f'<nav class="cat-bar" aria-label="Game categories"><div class="container cat-bar-inner"><a class="cat-pill{" is-active" if active == "home" else ""}" href="/"><span aria-hidden="true">🏠</span>Home</a>{pills}<a class="cat-pill" href="/games/"><span aria-hidden="true">🔤</span>A–Z</a></div></nav>'
+
+def header_nav(active=None):
     items = [f'<li><a href="/">{svg("home")}Home</a></li>', f'<li><a href="/games/">{svg("grid")}All games A–Z</a></li>']
     items += [f'<li><a href="/category/{c}/">{svg("tag")}{esc(cat(c)["label"])}</a></li>' for c in cat_order if len(by_cat[c]) > 1]
     items += [f'<li><a href="/about%20us.html">{svg("info")}About us</a></li>', f'<li><a href="/dmca.html">{svg("info")}DMCA</a></li>',
@@ -109,6 +116,7 @@ def header_nav():
       <button class="icon-btn" data-theme-toggle aria-label="Switch to light mode" type="button"></button>
       <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" type="button"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
+    {cat_bar(active)}
   </header>
   <div class="menu-backdrop" id="menuBackdrop" hidden></div>
   <nav class="menu-panel" id="menuPanel" aria-label="Site menu" hidden>
@@ -130,7 +138,7 @@ def footer():
       </nav>
     </div>
   </footer>
-  <script src="/assets/js/page.js?v=1" defer></script>
+  <script src="/assets/js/page.js?v=2" defer></script>
 </body>
 </html>
 '''
@@ -150,7 +158,12 @@ def card(g):
             f'<img class="card-thumb" src="/{g["image"]}" alt="{esc(g["title"], quote=True)} — game thumbnail" loading="lazy" decoding="async" width="300" height="200" />'
             f'<div class="card-body"><span class="card-title">{esc(g["title"])}</span><span class="card-cat">{esc(labels)}</span></div></a></li>')
 
-def grid(items): return '<ul class="game-grid">' + "".join(card(g) for g in items) + "</ul>"
+def tile(g, big=False):
+    return (f'<li class="{"tile-big" if big else ""}"><a class="tile" href="/game/{g["slug"]}/" aria-label="Play {esc(g["title"], quote=True)}">'
+            f'<img src="/{g["image"]}" alt="{esc(g["title"], quote=True)} – play free online" loading="lazy" decoding="async" width="480" height="270" />'
+            f'<span class="tile-title">{esc(g["title"])}</span></a></li>')
+
+def grid(items, cls="tile-grid"): return f'<ul class="{cls}">' + "".join(tile(g) for g in items) + "</ul>"
 
 # ---------- game pages ----------
 def related_for(g, n=12):
@@ -204,74 +217,78 @@ def game_page(g):
     chips = "".join(f'<a class="chip" href="/category/{c}/">{esc(cat(c)["label"])}</a>' for c in g["cats"])
     rel = related_for(g)
     more = [x for x in by_cat[g["primary"]] if x["id"] != g["id"]]
-    body = f'''  <main id="main" class="container game-page">
+    side_pool = [x for x in by_cat[g["primary"]] if x["id"] != g["id"] and x not in rel]
+    side = (side_pool + rel)[:10]
+    body = f'''  <main id="main" class="container container--wide game-page">
     {crumb_html}
-    <div class="game-head">
-      <h1>{esc(t)}</h1>
-      <div class="game-meta">{chips}</div>
-    </div>
-
-    <section class="player" id="player" aria-label="Play {esc(t, quote=True)}">
-      <div class="player-frame" id="playerFrame" data-embed="{esc(embed, quote=True)}" data-title="{esc(t, quote=True)}">
-        <button class="play-poster" id="playBtn" type="button" aria-label="Play {esc(t, quote=True)} now">
-          <img src="/{g['image']}" alt="Play {esc(t, quote=True)} online free — {low} game" width="640" height="360" fetchpriority="high" decoding="async" />
-          <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
-        </button>
-        <noscript><p class="noscript-note">Please enable JavaScript to play {esc(t)}.</p></noscript>
-      </div>
-      <div class="player-bar">
-        <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
-        <div class="player-actions">
-          <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
-          <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+    <div class="play-layout">
+      <div class="play-main">
+        <div class="game-head">
+          <h1>{esc(t)}</h1>
+          <div class="game-meta">{chips}</div>
         </div>
+
+        <section class="player" id="player" aria-label="Play {esc(t, quote=True)}">
+          <div class="player-frame" id="playerFrame" data-embed="{esc(embed, quote=True)}" data-title="{esc(t, quote=True)}">
+            <button class="play-poster" id="playBtn" type="button" aria-label="Play {esc(t, quote=True)} now">
+              <img src="/{g['image']}" alt="Play {esc(t, quote=True)} online free — {low} game" width="640" height="360" fetchpriority="high" decoding="async" />
+              <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
+            </button>
+            <noscript><p class="noscript-note">Please enable JavaScript to play {esc(t)}.</p></noscript>
+          </div>
+          <div class="player-bar">
+            <p class="player-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
+            <div class="player-actions">
+              <button class="btn btn-ghost" id="reloadBtn" type="button">Restart</button>
+              <button class="btn btn-primary" id="fullscreenBtn" type="button" aria-expanded="false">Expand</button>
+            </div>
+          </div>
+        </section>
+
+        <article class="game-content">
+          <section class="panel" aria-labelledby="about"><h2 id="about">About {esc(t)}</h2><p>{esc(about)}</p>
+            <p>It is part of our collection of {len(by_cat[g["primary"]])} free <a href="/category/{g["primary"]}/">{esc(low)} games</a>, inside a library of {len(games)} browser games you can play without installing anything.</p></section>
+          <section class="panel" aria-labelledby="howto"><h2 id="howto">How to Play {esc(t)}</h2>
+            <ol class="steps">{"".join(f"<li>{esc(s)}</li>" for s in steps)}</ol></section>
+          <section class="panel" aria-labelledby="controls"><h2 id="controls">Controls</h2>
+            <dl class="controls"><div><dt>Desktop</dt><dd>{esc(controls_d)}</dd></div><div><dt>Mobile and tablet</dt><dd>{esc(controls_m)}</dd></div></dl>
+            <p class="note">Controls can differ between games. Check the start screen or tutorial of {esc(t)} for the exact keys.</p></section>
+          <section class="panel" aria-labelledby="tips"><h2 id="tips">Tips and Tricks for {esc(t)}</h2>
+            <ul class="ticks">{"".join(f"<li>{esc(s)}</li>" for s in tips)}</ul></section>
+          <section class="panel" aria-labelledby="features"><h2 id="features">Features</h2>
+            <ul class="ticks">{"".join(f"<li>{esc(s)}</li>" for s in feats)}</ul></section>
+          <section class="panel" aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
+            {"".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in faqs)}</section>
+        </article>
       </div>
-    </section>
 
-    {ad()}
-
-    <div class="game-layout">
-      <article class="game-content">
-        <section aria-labelledby="about"><h2 id="about">About {esc(t)}</h2><p>{esc(about)}</p>
-          <p>It is part of our collection of {len(by_cat[g["primary"]])} free <a href="/category/{g["primary"]}/">{esc(low)} games</a>, which sits inside a library of {len(games)} browser games you can play without installing anything.</p></section>
-        <section aria-labelledby="howto"><h2 id="howto">How to Play {esc(t)}</h2>
-          <ol>{"".join(f"<li>{esc(s)}</li>" for s in steps)}</ol></section>
-        <section aria-labelledby="controls"><h2 id="controls">Controls</h2>
-          <dl class="controls"><div><dt>Desktop</dt><dd>{esc(controls_d)}</dd></div><div><dt>Mobile and tablet</dt><dd>{esc(controls_m)}</dd></div></dl>
-          <p class="note">Controls can differ between games. Check the start screen or tutorial of {esc(t)} for the exact keys.</p></section>
-        <section aria-labelledby="tips"><h2 id="tips">Tips and Tricks for {esc(t)}</h2>
-          <ul>{"".join(f"<li>{esc(s)}</li>" for s in tips)}</ul></section>
-        <section aria-labelledby="features"><h2 id="features">Features</h2>
-          <ul>{"".join(f"<li>{esc(s)}</li>" for s in feats)}</ul></section>
-        <section aria-labelledby="faq"><h2 id="faq">Frequently Asked Questions</h2>
-          {"".join(f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in faqs)}</section>
-      </article>
-      <aside class="game-aside" aria-label="Game details">
-        <h2>Game info</h2>
-        <dl class="info">
-          <div><dt>Title</dt><dd>{esc(t)}</dd></div>
-          <div><dt>Genre</dt><dd>{" · ".join(f'<a href="/category/{c}/">{esc(cat(c)["label"])}</a>' for c in g["cats"])}</dd></div>
-          <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
-          <div><dt>Technology</dt><dd>HTML5</dd></div>
-          <div><dt>Price</dt><dd>Free, no download</dd></div>
-        </dl>
-        <h3>Browse more</h3>
-        <ul class="aside-links">
-          <li><a href="/category/{g["primary"]}/">All {esc(low)} games ({len(by_cat[g["primary"]])})</a></li>
-          <li><a href="/games/">All games A–Z</a></li>
-          <li><a href="/">Home</a></li>
-        </ul>
+      <aside class="play-side" aria-label="Game details and more games">
+        <section class="side-card">
+          <h2>Game info</h2>
+          <dl class="info">
+            <div><dt>Title</dt><dd>{esc(t)}</dd></div>
+            <div><dt>Genre</dt><dd>{" · ".join(f'<a href="/category/{c}/">{esc(cat(c)["label"])}</a>' for c in g["cats"])}</dd></div>
+            <div><dt>Platform</dt><dd>Browser (desktop, mobile, tablet)</dd></div>
+            <div><dt>Technology</dt><dd>HTML5</dd></div>
+            <div><dt>Price</dt><dd>Free, no download</dd></div>
+          </dl>
+        </section>
+        {ad()}
+        <section class="side-card">
+          <h2>More {esc(low)} games</h2>
+          {grid(side, "tile-grid tile-grid--side")}
+          <p class="see-all"><a class="btn btn-primary" href="/category/{g["primary"]}/">All {len(by_cat[g["primary"]])} {esc(low)} games</a></p>
+        </section>
       </aside>
     </div>
 
-    <section class="related" aria-labelledby="relatedTitle">
-      <h2 id="relatedTitle">More {esc(low)} games you may like</h2>
+    <section class="shelf" aria-labelledby="relatedTitle">
+      <div class="shelf-head"><h2 id="relatedTitle">You may also like</h2><a class="shelf-link" href="/category/{g["primary"]}/">See all</a></div>
       {grid(rel)}
-      <p class="see-all"><a class="btn btn-ghost" href="/category/{g["primary"]}/">See all {len(by_cat[g["primary"]])} {esc(low)} games</a></p>
     </section>
   </main>
 '''
-    return head(seo_title, desc, url, og_image=img, ld=ld) + header_nav() + body + footer()
+    return head(seo_title, desc, url, og_image=img, ld=ld) + header_nav(g['primary']) + body + footer()
 
 # ---------- category pages ----------
 def category_page(c):
@@ -285,16 +302,15 @@ def category_page(c):
           {"@context": "https://schema.org", "@type": "ItemList", "numberOfItems": len(items), "itemListElement": [
               {"@type": "ListItem", "position": i + 1, "url": f"{SITE}/game/{g['slug']}/", "name": g["title"]} for i, g in enumerate(items[:100])]}]
     others = "".join(f'<a class="chip" href="/category/{o}/">{esc(cat(o)["label"])} ({len(by_cat[o])})</a>' for o in cat_order if o != c and len(by_cat[o]) > 1)
-    body = f'''  <main id="main" class="container game-page">
+    body = f'''  <main id="main" class="container container--wide game-page">
     {crumb_html}
-    <header class="cat-head"><h1>{esc(info["h1"])}</h1><p class="lead">{esc(info["intro"])}</p>
-      <p class="lead">Browse all {len(items)} {esc(label.lower())} games below. Every game is free, runs in your browser and works on desktop, tablet and mobile.</p></header>
-    <nav class="chips cat-chips" aria-label="Other categories"><a class="chip" href="/games/">All games ({len(games)})</a>{others}</nav>
+    <header class="cat-head panel"><h1><span aria-hidden="true">{EMOJI.get(c, "🎮")}</span> {esc(info["h1"])}</h1><p class="lead">{esc(info["intro"])}</p>
+      <p class="lead">{len(items)} {esc(label.lower())} games, all free, all in your browser, on desktop, tablet and mobile.</p></header>
     {grid(items)}
     {ad()}
   </main>
 '''
-    return head(title, desc, url, og_image=abs_url(items[0]["image"]), ld=ld) + header_nav() + body + footer()
+    return head(title, desc, url, og_image=abs_url(items[0]["image"]), ld=ld) + header_nav(c) + body + footer()
 
 def index_page():
     url = f"{SITE}/games/"; crumb_html, crumb_ld = breadcrumb([("Home", "/"), ("All Games A–Z", "/games/")])
@@ -306,9 +322,9 @@ def index_page():
                    "".join(f'<li><a href="/game/{g["slug"]}/">{esc(g["title"])}</a> <span>{esc(cat(g["primary"])["label"])}</span></li>' for g in v) + "</ul></section>"
                    for k, v in sorted(letters.items(), key=lambda kv: ("~" if kv[0] == "#" else kv[0])))
     cats = "".join(f'<a class="chip" href="/category/{o}/">{esc(cat(o)["label"])} ({len(by_cat[o])})</a>' for o in cat_order if len(by_cat[o]) > 1)
-    body = f'''  <main id="main" class="container game-page">
+    body = f'''  <main id="main" class="container container--wide game-page">
     {crumb_html}
-    <header class="cat-head"><h1>All Free Browser Games A–Z</h1><p class="lead">Every one of our {len(games)} free games in alphabetical order. Pick a letter or jump to a category.</p></header>
+    <header class="cat-head panel"><h1>All Free Browser Games A–Z</h1><p class="lead">Every one of our {len(games)} free games in alphabetical order. Pick a letter or jump to a category.</p></header>
     <nav class="chips cat-chips" aria-label="Categories">{cats}</nav>
     <nav class="chips cat-chips" aria-label="Letters">{nav}</nav>
     {secs}
@@ -316,12 +332,64 @@ def index_page():
 '''
     return head(f"All Free Browser Games A–Z ({len(games)} Games) | {BRAND}", f"Browse all {len(games)} free browser games from A to Z. Action, arcade, puzzle, driving, simulation and more. No downloads, no sign-up.", url, ld=[crumb_ld]) + header_nav() + body + footer()
 
+# ---------- HOME ----------
+
+def home_page():
+    url = SITE + "/"
+    # featured mosaic: round-robin over categories, 2 big + 16 small = 24 cells
+    featured_ids = ["basketball-superstars", "crazy-drift", "snake-clash-io", "tape-escape"]
+    feat = [next(x for x in games if x["id"] == i) for i in featured_ids if any(x["id"] == i for x in games)]
+    seen = {x["id"] for x in feat}
+    for round_ in range(6):
+        for c in cat_order[:10]:
+            pool = [x for x in by_cat[c] if x["id"] not in seen]
+            if pool and len(feat) < 18:
+                feat.append(pool[round_ * 3 % len(pool)]); seen.add(feat[-1]["id"])
+    feat = feat[:18]
+    mosaic = '<ul class="tile-grid tile-grid--mosaic">' + "".join(tile(x, big=i in (0, 7)) for i, x in enumerate(feat)) + "</ul>"
+    shelves = ""
+    for c in cat_order[:8]:
+        items = [x for x in by_cat[c] if x["id"] not in seen][:12]
+        info = cat(c)
+        shelves += f'<section class="shelf" aria-labelledby="s-{c}"><div class="shelf-head"><h2 id="s-{c}"><span aria-hidden="true">{EMOJI.get(c,"🎮")}</span> {esc(info["label"])} Games</h2><a class="shelf-link" href="/category/{c}/">See all {len(by_cat[c])} ›</a></div>{grid(items, "tile-grid tile-grid--shelf")}</section>'
+        if c == cat_order[1]: shelves += ad()
+    ld = [{"@context": "https://schema.org", "@type": "WebSite", "name": BRAND, "url": SITE + "/",
+           "potentialAction": {"@type": "SearchAction", "target": SITE + "/?q={search_term_string}", "query-input": "required name=search_term_string"}},
+          {"@context": "https://schema.org", "@type": "ItemList", "name": "Featured games", "itemListElement": [
+              {"@type": "ListItem", "position": i + 1, "url": f"{SITE}/game/{x['slug']}/", "name": x["title"]} for i, x in enumerate(feat)]}]
+    cats_links = ", ".join(f'<a href="/category/{c}/">{esc(cat(c)["label"].lower())} games</a>' for c in cat_order[:6])
+    body = f"""  <main id="main" class="container container--wide home">
+    <section class="home-intro" aria-label="Welcome">
+      <h1>Play {len(games)} free online games</h1>
+      <p>No downloads, no sign-ups. Pick a game and play right here in your browser, on your computer, tablet or phone.</p>
+    </section>
+    <section id="searchResults" class="shelf" aria-labelledby="searchTitle" aria-live="polite" hidden>
+      <div class="shelf-head"><h2 id="searchTitle">Search results</h2><a class="shelf-link" href="/">Clear search</a></div>
+      <ul class="tile-grid" id="searchGrid"></ul>
+      <p class="lead" id="searchEmpty" hidden>No games match that search. Try a shorter word, or browse a category above.</p>
+    </section>
+    <div id="shelves">
+      <section class="shelf" aria-labelledby="featTitle"><div class="shelf-head"><h2 id="featTitle">⭐ Featured games</h2><a class="shelf-link" href="/games/">All games A–Z ›</a></div>{mosaic}</section>
+      {shelves}
+      <section class="panel home-about" aria-labelledby="aboutTitle">
+        <h2 id="aboutTitle">Free online games that run in your browser</h2>
+        <p>Unblocked Games USA is a library of {len(games)} free browser games. Every game has its own page with a short guide, controls, tips and answers to common questions, so you know what to expect before you press play.</p>
+        <p>Looking for something to try? Start with {cats_links}, or open the <a href="/games/">A–Z list</a> of every game. There are no downloads or installs, and games run on desktop, tablet and phone browsers, though availability can depend on your network.</p>
+      </section>
+    </div>
+  </main>
+"""
+    return head(f"{BRAND} — Play {len(games)} Free Browser Games, No Downloads",
+                f"Play {len(games)} free browser games instantly. No downloads, no sign-ups. Action, racing, puzzle, arcade, sports and more — works right in your browser.",
+                url, og_image=f"{SITE}/images/basketball-superstars.jpg", ld=ld) + header_nav("home") + body + footer()
+
 # ---------- build ----------
 for d in ("game", "category", "games"):
     shutil.rmtree(os.path.join(ROOT, d), ignore_errors=True)
 for g in games: write(f"game/{g['slug']}/index.html", game_page(g))
 for c in cat_order: write(f"category/{c}/index.html", category_page(c))
 write("games/index.html", index_page())
+write("index.html", home_page())
 
 # old ?id= links -> new URLs (GitHub Pages cannot 301)
 write("game.html", f'''<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta name="robots" content="noindex" /><title>Redirecting… | {BRAND}</title>
