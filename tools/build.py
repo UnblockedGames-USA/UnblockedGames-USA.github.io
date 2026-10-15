@@ -8,6 +8,7 @@ Reads data/games.json and writes:
   games/index.html            A-Z index of every game
   sitemap.xml, game.html (redirect for old ?id= links)
 Optional per-game fields in data/games.json (they override the generic copy):
+  frame ("tall" = portrait-friendly player for word/puzzle games), poster (square image shown before Play),
   description, howToPlay (list), controls (string), tips (list), features (list), faq ([[q,a],...])
 """
 import json, re, os, html, hashlib, datetime, shutil, sys
@@ -87,7 +88,7 @@ def head(title, desc, canonical, og_image=None, og_type="website", ld=(), robots
   <link rel="stylesheet" href="/assets/base.css" />
   <link rel="stylesheet" href="/assets/style.css" />
   <link rel="stylesheet" href="/assets/seo.css?v=2" />
-  <link rel="stylesheet" href="/assets/fun.css?v=2" />
+  <link rel="stylesheet" href="/assets/fun.css?v=3" />
 </head>
 '''
 
@@ -229,9 +230,9 @@ def game_page(g):
         </div>
 
         <section class="player" id="player" aria-label="Play {esc(t, quote=True)}">
-          <div class="player-frame" id="playerFrame" data-embed="{esc(embed, quote=True)}" data-title="{esc(t, quote=True)}">
+          <div class="player-frame{' player-frame--tall' if g.get('frame') == 'tall' else ''}" id="playerFrame" data-embed="{esc(embed, quote=True)}" data-title="{esc(t, quote=True)}">
             <button class="play-poster" id="playBtn" type="button" aria-label="Play {esc(t, quote=True)} now">
-              <img src="/{g['image']}" alt="Play {esc(t, quote=True)} online free — {low} game" width="640" height="360" fetchpriority="high" decoding="async" />
+              <img src="/{g.get('poster') or g['image']}" alt="Play {esc(t, quote=True)} online free — {low} game" width="{'640' if not g.get('poster') else '900'}" height="{'360' if not g.get('poster') else '900'}" fetchpriority="high" decoding="async" />
               <span class="play-cta"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play Now</span>
             </button>
             <noscript><p class="noscript-note">Please enable JavaScript to play {esc(t)}.</p></noscript>
@@ -337,7 +338,7 @@ def index_page():
 def home_page():
     url = SITE + "/"
     # featured mosaic: round-robin over categories, 2 big + 16 small = 24 cells
-    featured_ids = ["basketball-superstars", "crazy-drift", "snake-clash-io", "tape-escape"]
+    featured_ids = ["basketball-superstars", "crazy-drift", "snake-clash-io", "tape-escape", "word-guess"]
     feat = [next(x for x in games if x["id"] == i) for i in featured_ids if any(x["id"] == i for x in games)]
     seen = {x["id"] for x in feat}
     for round_ in range(6):

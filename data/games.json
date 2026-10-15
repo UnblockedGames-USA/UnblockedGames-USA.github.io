@@ -1,5 +1,78 @@
 [
  {
+  "id": "word-guess",
+  "title": "Word Guess",
+  "categories": [
+   "word",
+   "puzzle"
+  ],
+  "image": "images/word-guess.jpg",
+  "embedUrl": "local/word-guess/index.html",
+  "frame": "tall",
+  "metaDescription": "Play Word Guess free online: find the hidden 5-letter word in 6 tries. New daily puzzle, unlimited mode and hard mode. No download, no sign-up.",
+  "description": "Word Guess is a free word-guessing puzzle. A secret five-letter word is hidden, and you have six tries to find it. After every guess the tiles change colour to show which letters are in the right place, which are in the word but in the wrong place, and which are not in the word at all. There is a brand-new daily puzzle every day, the same for every player, plus an unlimited mode for when you want to keep playing.",
+  "howToPlay": [
+   "Press Play Now and type any real five-letter word, using your keyboard or the on-screen keys, then press Enter.",
+   "Green means the letter is correct and in the right spot. Yellow means the letter is in the word but in a different spot. Grey means the letter is not in the word.",
+   "Use the colours to narrow down the answer. Each new guess must be a valid word, and you can use what you learned to build the next one.",
+   "Find the hidden word within six guesses to keep your streak alive. Come back tomorrow for a new daily puzzle, or switch to Unlimited mode to play more right now.",
+   "Share your result as a grid of coloured squares. It shows how you solved it without giving away the word."
+  ],
+  "controls": "Type letters on your keyboard, press Enter to submit a guess and Backspace to delete a letter. You can also click the on-screen keys with your mouse.",
+  "tips": [
+   "Open with a word that has common letters and different vowels, such as CRANE, SLATE or ADIEU, to learn as much as possible from guess one.",
+   "Use your second guess to test new letters instead of repeating yellow ones in the same position.",
+   "Think about letter patterns. Many five-letter words end in -ER, -ED, -LY or -IGHT, and some letter pairs like TH, CH and ST appear often.",
+   "Remember that a word can have repeated letters. If one copy of a letter is yellow and another is grey, the word contains that letter only once.",
+   "Switch on hard mode in Settings if you want a challenge: every hint you uncover has to be used in your next guess.",
+   "Turn on colour-blind mode in Settings to swap green and yellow for orange and blue."
+  ],
+  "features": [
+   "A new daily puzzle every day, identical for every player",
+   "Unlimited mode with random words that do not affect your streak",
+   "Hard mode, dark and light themes, and a colour-blind palette",
+   "Statistics with win percentage, current streak, max streak and guess distribution",
+   "Shareable result grid that does not spoil the answer",
+   "Over 12,900 accepted words, with no account or download needed",
+   "Works on desktop, tablet and phone"
+  ],
+  "faq": [
+   [
+    "How do you play Word Guess?",
+    "You have six tries to guess a hidden five-letter word. After each guess the letters turn green if they are in the right spot, yellow if they are in the word but in the wrong spot, and grey if they are not in the word."
+   ],
+   [
+    "When does the daily word change?",
+    "A new daily puzzle starts at midnight in your own time zone. Everyone gets the same word on the same calendar day, so you can compare results with friends."
+   ],
+   [
+    "Can I play more than one puzzle a day?",
+    "Yes. Switch to Unlimited mode at the top of the game for as many random words as you like. Unlimited games do not change your daily statistics or streak."
+   ],
+   [
+    "Is Word Guess the same as Wordle?",
+    "It is an independent word puzzle in the same genre. Word Guess is not affiliated with, endorsed by or connected to The New York Times or Wordle, and it has its own design, word handling and daily schedule."
+   ],
+   [
+    "Do I need an account, and are my stats saved?",
+    "No account is needed. Your streak and statistics are saved in your own browser. They stay there until you clear your browser data for this site, so they will not follow you to another device."
+   ],
+   [
+    "What is hard mode?",
+    "Hard mode is an optional setting. Once a letter is revealed as green or yellow, your next guesses must use it: green letters stay in place and yellow letters must appear somewhere in the word."
+   ],
+   [
+    "Why is my word not accepted?",
+    "Every guess must be a valid five-letter English word from the game's word list of almost 13,000 words. Names, abbreviations and very unusual words may be rejected."
+   ],
+   [
+    "Is Word Guess free to play?",
+    "Yes. It is completely free, runs in your browser and needs no download, installation or sign-up."
+   ]
+  ],
+  "poster": "images/word-guess-poster.jpg"
+ },
+ {
   "id": "neon-breakout",
   "title": "Neon Breakout",
   "categories": [

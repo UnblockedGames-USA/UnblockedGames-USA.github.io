@@ -162,3 +162,8 @@ section[aria-labelledby^="l-"] h2 { font-family: var(--font-display); }
   .tile-grid--mosaic .tile-big .tile { height: auto; aspect-ratio: 16 / 9; }
 }
 .game-content li, .side-card li { max-width: none; }
+
+/* Portrait-friendly player for word / board games (set "frame": "tall" in data/games.json) */
+.player-frame--tall { aspect-ratio: auto; height: clamp(560px, 82vh, 780px); }
+@media (max-width: 639px) { .player-frame--tall { height: clamp(520px, 80vh, 700px); } }
+.player-frame--tall .play-poster img { object-position: 50% 30%; }
