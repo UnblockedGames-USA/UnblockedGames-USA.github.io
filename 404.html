@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>404 — Unblocked Games USA</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <title>Page Not Found | Unblocked Games USA</title>
+  <meta name="robots" content="noindex, follow" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
   <style>
     /* self-contained: works even when the missing path is nested */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,16 +49,19 @@
     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2 2 22h20L12 2z"/><path d="M12 10v4m0 4h.01"/></svg>
     <h1>Page not found</h1>
     <p>That link does not exist on this site.</p>
-    <a href="/">Back to all games</a>
+    <a href="/" id="homeLink">Back to all games</a>
   </main>
   <script>
-    /* SITE BASE — set this once for your deployment:
-       '/' for a username site (username.github.io repository)
-       '/games-portal/' for a project repository (change to your repo name) */
+    /* Instant redirect — zero delay — straight to the site root.
+       Uses replace() so the 404 URL is removed from browser history. */
     (function () {
       var SITE_BASE = '/';
-      document.querySelector('a').setAttribute('href', SITE_BASE);
+      document.getElementById('homeLink').setAttribute('href', SITE_BASE);
+      window.location.replace(SITE_BASE);
     })();
   </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=/" />
+  </noscript>
 </body>
 </html>
