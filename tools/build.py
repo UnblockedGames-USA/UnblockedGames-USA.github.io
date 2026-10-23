@@ -25,6 +25,8 @@ GA, ADS = "G-L6FNHSMWF4", "ca-pub-4672956141931257"
 TODAY = datetime.date.today().isoformat()
 esc = html.escape
 
+PATH_OVERRIDE = {"word-guess": "/wordle-unlimited/"}  # games served at a custom URL
+def gpath(slug): return PATH_OVERRIDE.get(slug, f"/game/{slug}/")
 def slugify(i): return re.sub(r"-+", "-", i).strip("-")
 def h(s): return int(hashlib.md5(s.encode()).hexdigest(), 16)
 def pick(seq, key, n):
@@ -159,12 +161,12 @@ def breadcrumb(trail):
 
 def card(g):
     labels = ", ".join(cat(c)["label"] for c in g["cats"][:2])
-    return (f'<li><a class="game-card" href="/game/{g["slug"]}/" aria-label="Play {esc(g["title"], quote=True)}">'
+    return (f'<li><a class="game-card" href="{gpath(g["slug"])}" aria-label="Play {esc(g["title"], quote=True)}">'
             f'<img class="card-thumb" src="/{g["image"]}" alt="{esc(g["title"], quote=True)} — game thumbnail" loading="lazy" decoding="async" width="300" height="200" />'
             f'<div class="card-body"><span class="card-title">{esc(g["title"])}</span><span class="card-cat">{esc(labels)}</span></div></a></li>')
 
 def tile(g, big=False):
-    return (f'<li class="{"tile-big" if big else ""}"><a class="tile" href="/game/{g["slug"]}/" aria-label="Play {esc(g["title"], quote=True)}">'
+    return (f'<li class="{"tile-big" if big else ""}"><a class="tile" href="{gpath(g["slug"])}" aria-label="Play {esc(g["title"], quote=True)}">'
             f'<img src="/{g["image"]}" alt="{esc(g["title"], quote=True)} – play free online" loading="lazy" decoding="async" width="480" height="270" />'
             f'<span class="tile-title">{esc(g["title"])}</span></a></li>')
 
@@ -181,7 +183,7 @@ def related_for(g, n=12):
     return rel[:n]
 
 def game_page(g):
-    t, slug, c0 = g["title"], g["slug"], cat(g["primary"]); url = f"{SITE}/game/{slug}/"
+    t, slug, c0 = g["title"], g["slug"], cat(g["primary"]); url = SITE + gpath(slug)
     genre = c0["label"]; low = genre.lower()
     seo_title = f"{t} – Play Free {genre} Game Online | {BRAND}"
     if len(seo_title) > 66: seo_title = f"{t} – Play Free Online | {BRAND}"
@@ -210,7 +212,7 @@ def game_page(g):
       list(c0["faq"]),
     ]
     extra_secs = "".join(f'<section class="panel" aria-labelledby="sec-{x["id"]}"><h2 id="sec-{x["id"]}">{esc(x["h2"])}</h2>{x["html"]}</section>' for x in g.get("sections", []))
-    crumb_html, crumb_ld = breadcrumb([("Home", "/"), (f"{genre} Games", f"/category/{g['primary']}/"), (t, f"/game/{slug}/")])
+    crumb_html, crumb_ld = breadcrumb([("Home", "/"), (f"{genre} Games", f"/category/{g['primary']}/"), (t, gpath(slug))])
     ld = [
       {"@context": "https://schema.org", "@type": "VideoGame", "name": t, "url": url, "image": img, "description": desc,
        "genre": [cat(c)["label"] for c in g["cats"]], "applicationCategory": "Game", "operatingSystem": "Any (web browser)",
@@ -309,7 +311,7 @@ def category_page(c):
     ld = [crumb_ld, {"@context": "https://schema.org", "@type": "CollectionPage", "name": info["h1"], "url": url, "description": desc,
           "isPartOf": {"@type": "WebSite", "name": BRAND, "url": SITE + "/"}},
           {"@context": "https://schema.org", "@type": "ItemList", "numberOfItems": len(items), "itemListElement": [
-              {"@type": "ListItem", "position": i + 1, "url": f"{SITE}/game/{g['slug']}/", "name": g["title"]} for i, g in enumerate(items[:100])]}]
+              {"@type": "ListItem", "position": i + 1, "url": SITE + gpath(g['slug']), "name": g["title"]} for i, g in enumerate(items[:100])]}]
     others = "".join(f'<a class="chip" href="/category/{o}/">{esc(cat(o)["label"])} ({len(by_cat[o])})</a>' for o in cat_order if o != c and len(by_cat[o]) > 1)
     body = f'''  <main id="main" class="container container--wide game-page">
     {crumb_html}
@@ -328,7 +330,7 @@ def index_page():
         k = g["title"][:1].upper(); k = k if k.isalpha() else "#"; letters.setdefault(k, []).append(g)
     nav = " ".join(f'<a class="chip" href="#l-{k if k != "#" else "num"}">{k}</a>' for k in sorted(letters, key=lambda k: ("~" if k == "#" else k)))
     secs = "".join(f'<section aria-labelledby="l-{k if k != "#" else "num"}"><h2 id="l-{k if k != "#" else "num"}">{k}</h2><ul class="az-list">' +
-                   "".join(f'<li><a href="/game/{g["slug"]}/">{esc(g["title"])}</a> <span>{esc(cat(g["primary"])["label"])}</span></li>' for g in v) + "</ul></section>"
+                   "".join(f'<li><a href="{gpath(g["slug"])}">{esc(g["title"])}</a> <span>{esc(cat(g["primary"])["label"])}</span></li>' for g in v) + "</ul></section>"
                    for k, v in sorted(letters.items(), key=lambda kv: ("~" if kv[0] == "#" else kv[0])))
     cats = "".join(f'<a class="chip" href="/category/{o}/">{esc(cat(o)["label"])} ({len(by_cat[o])})</a>' for o in cat_order if len(by_cat[o]) > 1)
     body = f'''  <main id="main" class="container container--wide game-page">
@@ -365,7 +367,7 @@ def home_page():
     ld = [{"@context": "https://schema.org", "@type": "WebSite", "name": BRAND, "url": SITE + "/",
            "potentialAction": {"@type": "SearchAction", "target": SITE + "/?q={search_term_string}", "query-input": "required name=search_term_string"}},
           {"@context": "https://schema.org", "@type": "ItemList", "name": "Featured games", "itemListElement": [
-              {"@type": "ListItem", "position": i + 1, "url": f"{SITE}/game/{x['slug']}/", "name": x["title"]} for i, x in enumerate(feat)]}]
+              {"@type": "ListItem", "position": i + 1, "url": SITE + gpath(x['slug']), "name": x["title"]} for i, x in enumerate(feat)]}]
     cats_links = ", ".join(f'<a href="/category/{c}/">{esc(cat(c)["label"].lower())} games</a>' for c in cat_order[:6])
     body = f"""  <main id="main" class="container container--wide home">
     <section class="home-intro" aria-label="Welcome">
@@ -383,7 +385,7 @@ def home_page():
       <section class="panel home-about" aria-labelledby="aboutTitle">
         <h2 id="aboutTitle">Free online games that run in your browser</h2>
         <p>Unblocked Games USA is a library of {len(games)} free browser games. Every game has its own page with a short guide, controls, tips and answers to common questions, so you know what to expect before you press play.</p>
-        <p>Looking for something to try? Start with {cats_links}, or open the <a href="/games/">A–Z list</a> of every game. Word puzzle fans can try <a href="/game/word-guess/">Wordle, a free unlimited Wordle game</a> or browse more <a href="/games-like-wordle/">games like Wordle</a>. There are no downloads or installs, and games run on desktop, tablet and phone browsers, though availability can depend on your network.</p>
+        <p>Looking for something to try? Start with {cats_links}, or open the <a href="/games/">A–Z list</a> of every game. Word puzzle fans can try <a href="/wordle-unlimited/">Wordle, a free unlimited Wordle game</a> or browse more <a href="/games-like-wordle/">games like Wordle</a>. There are no downloads or installs, and games run on desktop, tablet and phone browsers, though availability can depend on your network.</p>
       </section>
     </div>
   </main>
@@ -412,7 +414,7 @@ def wordle_hub_page():
       {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Games Like Wordle", "url": url, "description": desc,
        "isPartOf": {"@type": "WebSite", "name": BRAND, "url": SITE + "/"}},
       {"@context": "https://schema.org", "@type": "ItemList", "numberOfItems": len(others) + 1, "itemListElement": [
-          {"@type": "ListItem", "position": i + 1, "url": f"{SITE}/game/{x['slug']}/", "name": x["title"]} for i, x in enumerate([wg] + others)]},
+          {"@type": "ListItem", "position": i + 1, "url": SITE + gpath(x['slug']), "name": x["title"]} for i, x in enumerate([wg] + others)]},
       {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
           {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]}]
     body = f'''  <main id="main" class="container container--wide game-page">
@@ -420,12 +422,12 @@ def wordle_hub_page():
     <header class="cat-head panel"><h1>Games Like Wordle: Free Word Games to Play Online</h1>
       <p class="lead">Love guessing a hidden word in a few tries? These free browser games scratch the same itch. Start with Wordle, our free unlimited Wordle game, then try more word puzzles. Everything runs in your browser with no sign-up and no download.</p></header>
     <section class="panel hub-feature" aria-labelledby="hubFeat">
-      <a class="hub-feature-img" href="/game/word-guess/"><img src="/{wg['poster']}" alt="Wordle, a free unlimited Wordle game" width="300" height="300" loading="eager" decoding="async" /></a>
+      <a class="hub-feature-img" href="/wordle-unlimited/"><img src="/{wg['poster']}" alt="Wordle, a free unlimited Wordle game" width="300" height="300" loading="eager" decoding="async" /></a>
       <div>
         <h2 id="hubFeat">Wordle: the free unlimited Wordle game</h2>
         <p>Find the hidden five-letter word in six tries. Green, yellow and grey tiles show how close each guess is. There is a daily puzzle, an Unlimited mode for endless practice, hard mode, a colour-blind palette and shareable results, and no account is needed.</p>
         <ul class="ticks"><li>Daily puzzle plus unlimited random words</li><li>Over 12,900 accepted words</li><li>Works on desktop, tablet and phone</li></ul>
-        <p><a class="btn btn-primary" href="/game/word-guess/">Play Wordle</a></p>
+        <p><a class="btn btn-primary" href="/wordle-unlimited/">Play Wordle</a></p>
       </div>
     </section>
     <section class="shelf" aria-labelledby="hubMore"><div class="shelf-head"><h2 id="hubMore">More free word games</h2><a class="shelf-link" href="/category/word/">All word games ›</a></div>
@@ -448,7 +450,19 @@ def wordle_hub_page():
 # ---------- build ----------
 for d in ("game", "category", "games", "games-like-wordle"):
     shutil.rmtree(os.path.join(ROOT, d), ignore_errors=True)
-for g in games: write(f"game/{g['slug']}/index.html", game_page(g))
+def redirect_page(target, title):
+    return (f'<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><title>{esc(title)} | {BRAND}</title>'
+            f'<link rel="canonical" href="{SITE}{target}" /><meta name="robots" content="noindex, follow" />'
+            f'<script>location.replace("{target}"+location.search+location.hash);</script>'
+            f'<noscript><meta http-equiv="refresh" content="0; url={target}" /></noscript></head>'
+            f'<body><p>Redirecting to <a href="{target}">{esc(title)}</a>…</p></body></html>\n')
+for g in games:
+    path = gpath(g["slug"]).strip("/")
+    write(f"{path}/index.html", game_page(g))
+    if path != f"game/{g['slug']}":
+        write(f"game/{g['slug']}/index.html", redirect_page("/" + path + "/", g["title"]))
+# /wordle/ is a short alias for Wordle Unlimited
+write("wordle/index.html", redirect_page("/wordle-unlimited/", "Wordle Unlimited"))
 for c in cat_order: write(f"category/{c}/index.html", category_page(c))
 write("games/index.html", index_page())
 write("games-like-wordle/index.html", wordle_hub_page())
@@ -462,7 +476,7 @@ write("game.html", f'''<!DOCTYPE html><html lang="en"><head><meta charset="utf-8
 
 urls = [(SITE + "/", "1.0", "daily"), (SITE + "/games/", "0.8", "weekly"), (SITE + "/games-like-wordle/", "0.9", "weekly")]
 urls += [(f"{SITE}/category/{c}/", "0.8", "weekly") for c in cat_order]
-urls += [(f"{SITE}/game/{g['slug']}/", "0.7", "monthly") for g in games]
+urls += [(SITE + gpath(g['slug']), "0.7", "monthly") for g in games]
 urls += [(f"{SITE}/{p}", "0.3", "yearly") for p in ("about%20us.html", "dmca.html", "privacy-policy.html", "terms.html")]
 write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       "".join(f"<url><loc>{u}</loc><lastmod>{TODAY}</lastmod><changefreq>{f}</changefreq><priority>{p}</priority></url>\n" for u, p, f in urls) + "</urlset>\n")
