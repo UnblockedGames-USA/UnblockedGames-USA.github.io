@@ -1,0 +1,107 @@
+/* Unblocked Games USA: extras on top of site.css.
+   site.css is the shared Classroom 6X stylesheet (keep it identical in both repos).
+   Everything here is specific to this catalog: 16:9 thumbnails, long-form game content, A-Z list, Wordle hub. */
+
+/* ---------- 16:9 thumbnails (this catalog ships 480x270 art) ---------- */
+.grid--wide{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.grid--wide .tile-img,.rail--wide .tile-img,.mosaic--wide .tile-img{aspect-ratio:16/9}
+.rail--wide{grid-auto-columns:220px}
+.mosaic--wide{grid-template-columns:repeat(6,minmax(0,1fr))}
+.mosaic--wide .tile.big{display:flex;flex-direction:column}
+.mosaic--wide .tile.big .tile-img{flex:1;aspect-ratio:auto;min-height:0}
+@media (max-width:1180px){.mosaic--wide{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:720px){
+  .mosaic--wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mosaic--wide .tile:nth-child(n+10){display:none}
+  .mosaic--wide .tile.big{grid-column:span 2;grid-row:span 1}
+  .mosaic--wide .tile.big .tile-img{aspect-ratio:16/9;flex:none}
+  .grid--wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rail--wide{grid-auto-columns:168px}
+}
+
+/* ---------- home ---------- */
+.pill-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:8px 16px;border-radius:999px;background:color-mix(in oklab,var(--primary) 12%,transparent);color:var(--primary);font-weight:600;font-size:14.5px;transition:background .15s}
+.pill-link:hover{background:color-mix(in oklab,var(--primary) 22%,transparent)}
+.pill-link .ic{width:16px;height:16px}
+.search-results .grid{margin-top:4px}
+.ad-unit{margin:26px 0;min-height:0;text-align:center}
+.home-about{max-width:none}
+.home-about a,.about a:not(.btn):not(.tag){color:var(--primary);font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+
+/* ---------- game page ---------- */
+.game-main>.about{max-width:none}
+.game-main>.about+.about,.game-main>.ad-unit+.about{margin-top:16px}
+.about h2+p,.about h2+ol,.about h2+ul,.about h2+dl,.about h2+.faq{margin-top:2px}
+.about p+p{margin-top:10px}
+.about ol.steps{margin:6px 0 0;padding-left:22px;display:grid;gap:8px;color:var(--muted)}
+.about ul.ticks{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:8px;color:var(--muted)}
+.about ul.ticks li{position:relative;padding-left:26px}
+.about ul.ticks li::before{content:'';position:absolute;left:3px;top:.45em;width:12px;height:7px;border-left:2.5px solid var(--primary);border-bottom:2.5px solid var(--primary);transform:rotate(-45deg)}
+.about dl.controls{display:grid;gap:10px;margin:8px 0 0;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.about dl.controls div{padding:12px 14px;border-radius:12px;background:var(--bg);border:1px solid var(--line)}
+.about dl.controls dt{font-weight:700;margin-bottom:2px}
+.about dl.controls dd{margin:0;color:var(--muted)}
+.about .note{margin-top:10px;font-size:14px;color:var(--faint)}
+.about .faq{margin-top:4px}
+.noscript-note{padding:20px;color:#fff;text-align:center}
+.player--tall{aspect-ratio:auto;height:clamp(560px,82vh,780px);max-height:none}
+.player--tall .poster-card img.poster-wide{width:clamp(160px,28vw,240px)}
+.poster-card img.poster-wide{width:clamp(180px,30vw,320px);aspect-ratio:16/9;border-radius:18px}
+.player.is-expanded{position:fixed;inset:0;z-index:100;width:100%;height:100%;max-height:none;aspect-ratio:auto;border-radius:0}
+body.player-expanded{overflow:hidden}
+.game-side .side-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:16px}
+.game-side .side-card h2{font-family:var(--font-display);font-weight:600;font-size:18px;margin-bottom:8px}
+dl.info{margin:0}
+dl.info div{display:flex;justify-content:space-between;gap:14px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+dl.info div:last-child{border-bottom:0}
+dl.info dt{color:var(--faint);font-weight:600}
+dl.info dd{margin:0;text-align:right;font-weight:600}
+dl.info a{color:var(--primary)}
+.game-side .btn{width:100%;margin-top:12px}
+@media (max-width:1180px){.game-side .side-card{max-width:560px}}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 22px;border-radius:999px;font-weight:700;font-size:15px;transition:background .15s,transform .15s}
+.btn:active{transform:scale(.97)}
+.btn-primary,.about a.btn-primary{background:var(--primary);color:var(--on-primary);text-decoration:none}
+.btn-primary:hover{background:var(--primary-hover)}
+
+/* ---------- A-Z index ---------- */
+.letters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
+.letters a{min-width:40px;height:40px;display:inline-grid;place-items:center;padding:0 10px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-weight:700;font-size:14px}
+.letters a:hover{border-color:var(--primary);color:var(--primary)}
+.az-section{margin-bottom:26px;scroll-margin-top:calc(var(--top-h) + 12px)}
+.az-section h2{font-family:var(--font-display);font-weight:600;font-size:22px;margin-bottom:10px;color:var(--primary)}
+.az-list{list-style:none;margin:0;padding:0;columns:3 260px;column-gap:28px}
+.az-list li{break-inside:avoid;padding:5px 0;font-weight:600;font-size:15px}
+.az-list li span{color:var(--faint);font-weight:500;font-size:13px;margin-left:6px}
+.az-list a:hover{color:var(--primary)}
+.cats-block h2{font-family:var(--font-display);font-weight:600;font-size:22px;margin-bottom:14px}
+
+/* ---------- Wordle hub and Wordle game panels ---------- */
+.hub-feature{display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:center;max-width:none;margin-top:0;margin-bottom:34px}
+.hub-feature-img img{width:100%;height:auto;border-radius:var(--r);display:block}
+.hub-feature h2{margin-top:0}
+.hub-feature .ticks{margin-bottom:14px}
+@media (max-width:640px){.hub-feature{grid-template-columns:1fr}.hub-feature-img{max-width:220px}}
+.freq{list-style:none;padding:0;margin:16px 0;display:grid;gap:8px}
+.freq li{display:grid;grid-template-columns:2ch 1fr 4ch;align-items:center;gap:12px;font-weight:700}
+.freq-l{font-family:var(--font-display);letter-spacing:.04em}
+.freq-p{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.freq .bar{height:14px;border-radius:999px;background:var(--surface-2);overflow:hidden;display:block}
+.freq .bar i{display:block;height:100%;border-radius:999px;background:var(--primary)}
+.starter-list{list-style:none;padding:0;margin:16px 0;display:flex;flex-wrap:wrap;gap:8px}
+.starter-list li{font-family:var(--font-display);font-weight:700;letter-spacing:.14em;font-size:1.1rem;padding:6px 14px;border-radius:10px;background:var(--primary);color:var(--on-primary)}
+.page-head .lede{max-width:70ch}
+.page-head .lede+.lede{margin-top:8px}
+.page-head .lede a{color:var(--primary);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- legal / about pages ---------- */
+.legal-prose ul.ticks{padding-left:0}
+.legal-prose ul:not(.ticks){list-style:disc}
+
+/* ---------- small additions ---------- */
+.game-hint{margin-top:10px;font-size:13.5px;color:var(--faint)}
+.about--full{max-width:none}
+.hero-copy .lede{max-width:62ch}
+.side-card+.ad-unit{margin:16px 0}
