@@ -283,3 +283,9 @@ p{margin:0}
 .side-partner:hover{background:var(--accent);transform:translateY(-1px)}
 .side-partner span{display:grid;line-height:1.25}
 .side-partner small{font-weight:600;font-size:12px;opacity:.8}
+
+/* ---------- "New" markers (shared) ---------- */
+.tile-badge.new{background:var(--accent);color:var(--on-accent);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.new-pill{display:inline-block;font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--hot);color:#fff;vertical-align:middle;margin-left:8px;line-height:1.5}
+.side-new .new-pill{margin-left:auto}
+.row-head h2 .new-pill{font-size:11px}

@@ -47,6 +47,16 @@ for g in games:
     g["slug"] = slugify(g["id"]); g["title"] = g["title"].strip() or g["id"].replace("-", " ").title()
     g["cats"] = g.get("categories") or ["casual"]; g["primary"] = g["cats"][0]
 assert len({g["slug"] for g in games}) == len(games), "slug collision"
+# "New" games: newest additions. A game is new if it has "added": "YYYY-MM-DD" within NEW_DAYS, otherwise it is one of the
+# last NEW_COUNT entries of data/games.json (new games are appended at the end of the file).
+NEW_COUNT, NEW_DAYS = 30, 30
+def _is_new(i, g):
+    if g.get("added"):
+        try: return (datetime.date.today() - datetime.date.fromisoformat(g["added"])).days <= NEW_DAYS
+        except ValueError: return False
+    return i >= len(games) - NEW_COUNT
+for _i, _g in enumerate(games): _g["is_new"] = _is_new(_i, _g)
+new_games = [g for g in reversed(games) if g["is_new"]]  # newest first
 by_cat = {}
 for g in games:
     for c in g["cats"]: by_cat.setdefault(c, []).append(g)
@@ -105,7 +115,7 @@ def header_nav(active=None):
   {LOGO}
   <form class="search" role="search" action="/" method="get" autocomplete="off">
     {ic("search", "ic search-ic")}
-    <input id="q" name="q" type="search" placeholder="Search {len(games)} games" aria-label="Search games">
+    <input id="q" name="q" type="search" placeholder="Enter your game name" aria-label="Search games by name">
     <div class="search-pop" id="searchPop" role="listbox" hidden></div>
   </form>
   <div class="top-actions">
@@ -116,7 +126,8 @@ def header_nav(active=None):
 <div class="shell"><aside class="sidebar" id="sidebar" aria-label="Categories">
   <nav>
     {side_link("/", "Home", "home", active == "home")}{side_link("/games/", "All games A–Z", "grid", active == "az")}{side_link("/games-like-wordle/", "Games like Wordle", "word", active == "hub")}
-    <a class="side-link side-partner" href="/classroom6x/">{ic("backpack")}<span>Classroom 6X<small>2,300+ more games</small></span></a>
+    <a class="side-link side-new" href="/new/"{" aria-current=\"page\"" if active == "new" else ""}>{ic("sparkle")}<span>New games</span><em class="new-pill">New</em></a>
+    <a class="side-link side-partner" href="/classroom6x/">{ic("backpack")}<span>Classroom 6X<small>Even more free games</small></span></a>
     <div class="side-sep"></div>
     <p class="side-title">Categories</p>
     {cats}
@@ -175,7 +186,7 @@ def breadcrumb(trail):
 def tile(g, big=False, eager=False):
     t = esc(g["title"], quote=True)
     return (f'<a class="tile{" big" if big else ""}" href="{gpath(g["slug"])}" title="{t}"><span class="tile-img">'
-            f'<img src="/{g["image"]}" alt="{t} – play free online" width="480" height="270" loading="{"eager" if eager else "lazy"}" decoding="async"></span>'
+            f'<img src="/{g["image"]}" alt="{t} – play free online" width="480" height="270" loading="{"eager" if eager else "lazy"}" decoding="async">{'<span class="tile-badge new">New</span>' if g.get("is_new") else ""}</span>'
             f'<span class="tile-name">{esc(g["title"])}</span></a>')
 
 def grid(items, cls="grid grid--wide"): return f'<div class="{cls}">' + "".join(tile(g) for g in items) + "</div>"
@@ -282,7 +293,7 @@ def game_page(g):
         <p class="game-hint">Click the game once to focus it. If the keyboard stops responding, click the game area again.</p>
 
         <section class="about" aria-labelledby="about"><h2 id="about">About {esc(t)}</h2><p>{esc(about)}</p>
-          <p>It is part of our collection of {len(by_cat[g["primary"]])} free <a href="/category/{g["primary"]}/">{esc(low)} games</a>, inside a library of {len(games)} browser games you can play without installing anything.</p>
+          <p>It is part of our collection of {len(by_cat[g["primary"]])} free <a href="/category/{g["primary"]}/">{esc(low)} games</a>, inside a hand-picked library of browser games you can play without installing anything.</p>
           <div class="tags">{tags}</div></section>
         <section class="about" aria-labelledby="howto"><h2 id="howto">How to Play {esc(t)}</h2>
           <ol class="steps">{"".join(f"<li>{esc(s)}</li>" for s in steps)}</ol></section>
@@ -356,13 +367,13 @@ def index_page():
                    for k in order)
     body = f'''  <main id="main" class="main">
     {crumb_html}
-    <header class="page-head"><h1>All Free Browser Games A–Z</h1><p class="lede">Every one of our {len(games)} free games in alphabetical order. Pick a letter or jump to a category.</p></header>
+    <header class="page-head"><h1>All Free Browser Games A–Z</h1><p class="lede">Every free game on the site in alphabetical order. Pick a letter or jump to a category.</p></header>
     <section class="cats-block" aria-label="Categories"><div class="chips">{cat_chips()}</div></section>
     <nav class="letters" aria-label="Letters">{nav}</nav>
     {secs}
   </main>
 '''
-    return head(f"All Free Browser Games A–Z ({len(games)} Games) | {BRAND}", f"Browse all {len(games)} free browser games from A to Z. Action, arcade, puzzle, driving, simulation and more. No downloads, no sign-up.", url, ld=[crumb_ld]) + header_nav("az") + body + footer()
+    return head(f"All Free Browser Games A–Z | {BRAND}", f"Browse every free browser game from A to Z. Action, arcade, puzzle, driving, simulation and more. No downloads, no sign-up.", url, ld=[crumb_ld]) + header_nav("az") + body + footer()
 
 # ---------- HOME ----------
 
@@ -379,6 +390,7 @@ def home_page():
                 feat.append(pool[round_ * 3 % len(pool)]); seen.add(feat[-1]["id"])
     feat = feat[:18]
     mosaic = '<div class="mosaic mosaic--wide">' + "".join(tile(x, big=i in (0, 7), eager=i < 3) for i, x in enumerate(feat)) + "</div>"
+    new_row = row("newTitle", "sparkle", 'New Games <em class="new-pill">New</em>', "/new/", "See all new games", rail(new_games[:12]))
     shelves = ""
     for c in cat_order[:8]:
         items = [x for x in by_cat[c] if x["id"] not in seen][:12]
@@ -394,8 +406,8 @@ def home_page():
     <section class="hero" id="hero" aria-label="Welcome">
       <div class="hero-copy">
         <h1>Free period? Hit play.</h1>
-        <p class="lede">{len(games) // 100 * 100}+ free games that load in seconds. No downloads, no logins, no waiting. Works on Chromebooks, laptops and phones.</p>
-        <a class="pill-link" href="/classroom6x/">Want even more? Try Classroom 6X with 2,300+ extra games {ic("chevron")}</a>
+        <p class="lede">Hand-picked free games that load in seconds, on any device. No downloads. No sign-ups. Just play.</p>
+        <a class="pill-link" href="/classroom6x/">Want even more? Explore Classroom 6X {ic("chevron")}</a>
       </div>
       {mosaic}
     </section>
@@ -405,20 +417,40 @@ def home_page():
       <p class="lede" id="searchEmpty" hidden>No games match that search. Try a shorter word, or browse a category in the menu.</p>
     </section>
     <div id="shelves">
+      {new_row}
       {shelves}
       <section class="cats-block" aria-labelledby="browseCats"><div class="row-head"><h2 id="browseCats">Browse by category</h2><a class="row-more" href="/games/">All games A–Z{ic("chevron")}</a></div><div class="chips">{cat_chips()}</div></section>
       <section class="about home-about" aria-labelledby="aboutTitle">
         <h2 id="aboutTitle">Free online games that run in your browser</h2>
-        <p>Unblocked Games USA is a library of {len(games)} free browser games. Every game has its own page with a short guide, controls, tips and answers to common questions, so you know what to expect before you press play.</p>
+        <p>Unblocked Games USA is a hand-picked library of free browser games. Every game has its own page with a short guide, controls, tips and answers to common questions, so you know what to expect before you press play.</p>
         <p>Looking for something to try? Start with {cats_links}, or open the <a href="/games/">A–Z list</a> of every game. Word puzzle fans can try <a href="/wordle-unlimited/">Wordle, a free unlimited Wordle game</a> or browse more <a href="/games-like-wordle/">games like Wordle</a>. There are no downloads or installs, and games run on desktop, tablet and phone browsers, though availability can depend on your network.</p>
       </section>
     </div>
   </main>
 """
-    return head(f"{BRAND} — Play {len(games)} Free Browser Games, No Downloads",
-                f"Play {len(games)} free browser games instantly. No downloads, no sign-ups. Action, racing, puzzle, arcade, sports and more — works right in your browser.",
+    return head(f"{BRAND} – Free Online Games to Play at School or Home, No Downloads",
+                "Play the best free online games instantly. Hand-picked action, racing, puzzle, arcade and sports games with no downloads and no sign-ups. New games added often.",
                 url, og_image=f"{SITE}/images/basketball-superstars.jpg", ld=ld) + header_nav("home") + body + footer()
 
+
+def new_page():
+    url = f"{SITE}/new/"; crumb_html, crumb_ld = breadcrumb([("Home", "/"), ("New Games", "/new/")])
+    items = new_games
+    ld = [crumb_ld, {"@context": "https://schema.org", "@type": "CollectionPage", "name": "New Free Online Games", "url": url,
+          "isPartOf": {"@type": "WebSite", "name": BRAND, "url": SITE + "/"}},
+          {"@context": "https://schema.org", "@type": "ItemList", "numberOfItems": len(items), "itemListElement": [
+              {"@type": "ListItem", "position": i + 1, "url": SITE + gpath(g["slug"]), "name": g["title"]} for i, g in enumerate(items)]}]
+    body = f'''  <main id="main" class="main">
+    {crumb_html}
+    <header class="page-head"><h1>New Free Online Games</h1><p class="lede">Fresh arrivals, added to the library. Be the first to play the newest action, racing, puzzle and arcade games. Free, instant and no download needed.</p></header>
+    {grid(items)}
+    {ad()}
+    <section class="cats-block" aria-labelledby="moreCats"><h2 id="moreCats">Browse by category</h2><div class="chips">{cat_chips()}</div></section>
+  </main>
+'''
+    return head(f"New Free Online Games – Play the Latest Browser Games | {BRAND}",
+                "Play the newest free online games, freshly added. Action, racing, puzzle and arcade games that run instantly in your browser with no download and no sign-up.",
+                url, og_image=abs_url(items[0]["image"]), ld=ld) + header_nav("new") + body + footer()
 
 # ---------- Wordle-style hub ----------
 def wordle_hub_page():
@@ -497,7 +529,7 @@ def static_page(out_name, key):
     return head(meta["title"], meta["desc"], url, ld=[]) + header_nav() + page + footer()
 
 # ---------- build ----------
-for d in ("game", "category", "games", "games-like-wordle"):
+for d in ("game", "category", "games", "games-like-wordle", "new"):
     shutil.rmtree(os.path.join(ROOT, d), ignore_errors=True)
 def redirect_page(target, title):
     return (f'<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><title>{esc(title)} | {BRAND}</title>'
@@ -514,6 +546,7 @@ for g in games:
 write("wordle/index.html", redirect_page("/wordle-unlimited/", "Wordle Unlimited"))
 for c in cat_order: write(f"category/{c}/index.html", category_page(c))
 write("games/index.html", index_page())
+write("new/index.html", new_page())
 write("games-like-wordle/index.html", wordle_hub_page())
 write("index.html", home_page())
 for out_name, key, _ in STATIC_PAGES: write(out_name, static_page(out_name, key))
@@ -524,7 +557,7 @@ write("game.html", f'''<!DOCTYPE html><html lang="en"><head><meta charset="utf-8
 <noscript><meta http-equiv="refresh" content="0; url=/" /></noscript></head><body><p>Redirecting to <a href="/">{BRAND}</a>…</p></body></html>
 ''')
 
-urls = [(SITE + "/", "1.0", "daily"), (SITE + "/games/", "0.8", "weekly"), (SITE + "/games-like-wordle/", "0.9", "weekly")]
+urls = [(SITE + "/", "1.0", "daily"), (SITE + "/new/", "0.9", "daily"), (SITE + "/games/", "0.8", "weekly"), (SITE + "/games-like-wordle/", "0.9", "weekly")]
 urls += [(f"{SITE}/category/{c}/", "0.8", "weekly") for c in cat_order]
 urls += [(SITE + gpath(g['slug']), "0.7", "monthly") for g in games]
 urls += [(f"{SITE}/{p}", "0.3", "yearly") for p in ("about%20us.html", "dmca.html", "privacy-policy.html", "terms.html")]
