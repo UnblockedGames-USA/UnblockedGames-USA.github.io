@@ -15,8 +15,7 @@
     clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove('show'); }, 1800);
   }
 
-  /* Native PWA installation. The banner only appears when this browser can
-     open its real installation prompt; no fake/manual install instructions. */
+  /* Native PWA installation and persistent header action. */
   function setupPWAInstall() {
     if (!document.head) return;
 
@@ -53,8 +52,32 @@
       }, { once: true });
     }
 
+    var topActions = document.querySelector('.top-actions');
+    var appButton = null;
+    if (topActions && !document.getElementById('getAppBtn')) {
+      appButton = document.createElement('button');
+      appButton.className = 'btn-get-app';
+      appButton.id = 'getAppBtn';
+      appButton.type = 'button';
+      appButton.setAttribute('aria-label', 'Get the app');
+      appButton.innerHTML =
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+          '<path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5"></path>' +
+          '<path d="M4 17v2a2 2 0 0 0 2 2h12a2 0 0 0 2-2v-2"></path>' +
+        '</svg><span>Get the app</span>';
+      var themeButton = document.getElementById('themeBtn');
+      if (themeButton && themeButton.parentNode === topActions) {
+        topActions.insertBefore(appButton, themeButton);
+      } else {
+        topActions.appendChild(appButton);
+      }
+    }
+
     var standalone = window.matchMedia && window.matchMedia('(display-mode: standalone)').matches;
-    if (standalone || navigator.standalone === true) return;
+    if (standalone || navigator.standalone === true) {
+      if (appButton) appButton.hidden = true;
+      return;
+    }
 
     var dismissedUntil = 0;
     var installedBefore = false;
@@ -62,88 +85,176 @@
       dismissedUntil = Number(localStorage.getItem('ugusa-pwa-dismissed-until-v2') || 0);
       installedBefore = localStorage.getItem('ugusa-pwa-installed') === '1';
     } catch (e) {}
-    if (installedBefore || dismissedUntil > Date.now()) return;
+    if (installedBefore) {
+      if (appButton) appButton.hidden = true;
+      return;
+    }
 
+    var notificationAllowed = dismissedUntil <= Date.now();
     var deferredInstall = null;
+    var prompt = null;
+    var installButton = null;
+    var help = null;
 
-    function trackPWAEvent(eventName) {
+    function trackPWAEvent(eventName, surface) {
       if (typeof window.gtag !== 'function') return;
       window.gtag('event', eventName, {
         install_method: 'browser_prompt',
-        install_surface: 'notification'
+        install_surface: surface || 'notification'
       });
     }
 
-    var prompt = document.createElement('aside');
-    prompt.className = 'pwa-install-prompt';
-    prompt.hidden = true;
-    prompt.setAttribute('aria-label', 'Install Unblocked Games');
-    prompt.innerHTML =
-      '<div class="pwa-install-heading">' +
-        '<img class="pwa-install-icon" src="/assets/pwa-icon-192.png" width="48" height="48" alt="" />' +
-        '<div class="pwa-install-copy"><span class="pwa-install-eyebrow">UNBLOCKED GAMES · QUICK ACCESS</span>' +
-        '<h2>Play at home or at school</h2></div>' +
-        '<button class="pwa-install-close" type="button" aria-label="Dismiss install notification">&times;</button>' +
-      '</div>' +
-      '<p class="pwa-install-description">Add Unblocked Games to your device and open your favorite games with one tap.</p>' +
-      '<div class="pwa-install-actions"><button class="pwa-install-action" type="button">Install app</button>' +
-      '<button class="pwa-install-later" type="button">Not now</button></div>';
-    document.body.appendChild(prompt);
+    function closeHelp() {
+      if (!help || help.hidden) return;
+      help.classList.remove('is-visible');
+      window.setTimeout(function () { help.hidden = true; }, 180);
+    }
 
-    var installButton = prompt.querySelector('.pwa-install-action');
-    var closeButton = prompt.querySelector('.pwa-install-close');
-    var laterButton = prompt.querySelector('.pwa-install-later');
-
-    function showPrompt() {
-      if (!document.body.contains(prompt) || !deferredInstall) return;
-      prompt.hidden = false;
-      trackPWAEvent('pwa_install_prompt_shown');
-      window.requestAnimationFrame(function () { prompt.classList.add('is-visible'); });
+    function showHelp() {
+      if (!help) {
+        help = document.createElement('aside');
+        help.className = 'pwa-install-prompt pwa-install-help';
+        help.hidden = true;
+        help.setAttribute('role', 'dialog');
+        help.setAttribute('aria-label', 'How to install Unblocked Games');
+        help.innerHTML =
+          '<div class="pwa-install-heading">' +
+            '<img class="pwa-install-icon" src="/assets/pwa-icon-192.png" width="48" height="48" alt="" />' +
+            '<div class="pwa-install-copy"><span class="pwa-install-eyebrow">UNBLOCKED GAMES · QUICK ACCESS</span>' +
+            '<h2>Install on your device</h2></div>' +
+            '<button class="pwa-install-close" type="button" aria-label="Close install instructions">&times;</button>' +
+          '</div>' +
+          '<p class="pwa-install-description">Choose the install option in your browser to add the games site to your home screen or desktop.</p>' +
+          '<ol class="pwa-install-help-steps">' +
+            '<li><strong>iPhone or iPad</strong>Open this site in Safari, tap Share, then choose “Add to Home Screen”.</li>' +
+            '<li><strong>Android</strong>In Chrome, open the menu (⋮) and choose “Install app” or “Add to Home screen”.</li>' +
+            '<li><strong>Computer</strong>In Chrome or Edge, use the install icon in the address bar or choose “Install Unblocked Games” from the browser menu.</li>' +
+          '</ol>' +
+          '<div class="pwa-install-actions"><button class="pwa-install-later" type="button">Got it</button></div>';
+        document.body.appendChild(help);
+        help.querySelector('.pwa-install-close').addEventListener('click', closeHelp);
+        help.querySelector('.pwa-install-later').addEventListener('click', closeHelp);
+      }
+      if (prompt) {
+        prompt.classList.remove('is-visible');
+        prompt.hidden = true;
+      }
+      help.hidden = false;
+      window.requestAnimationFrame(function () { help.classList.add('is-visible'); });
+      help.querySelector('.pwa-install-close').focus();
+      trackPWAEvent('pwa_install_instructions_shown', 'header');
     }
 
     function closePrompt(installed) {
       try {
-        if (installed) localStorage.setItem('ugusa-pwa-installed', '1');
-        else localStorage.setItem('ugusa-pwa-dismissed-until-v2', String(Date.now() + 14 * 24 * 60 * 60 * 1000));
+        if (installed) {
+          localStorage.setItem('ugusa-pwa-installed', '1');
+        } else {
+          localStorage.setItem('ugusa-pwa-dismissed-until-v2', String(Date.now() + 14 * 24 * 60 * 60 * 1000));
+        }
       } catch (e) {}
+      if (!prompt) return;
       prompt.classList.remove('is-visible');
-      window.setTimeout(function () { prompt.remove(); }, 180);
+      window.setTimeout(function () {
+        if (prompt && prompt.parentNode) prompt.remove();
+        prompt = null;
+      }, 180);
     }
 
-    window.addEventListener('beforeinstallprompt', function (event) {
-      if (!document.body.contains(prompt) || dismissedUntil > Date.now()) return;
-      event.preventDefault();
-      deferredInstall = event;
-      showPrompt();
-    });
-
-    window.addEventListener('appinstalled', function () {
-      trackPWAEvent('pwa_installed');
-      closePrompt(true);
-    });
-
-    installButton.addEventListener('click', function () {
-      if (!deferredInstall) return;
+    function requestInstall(surface) {
+      if (!deferredInstall) {
+        showHelp();
+        return;
+      }
       var installEvent = deferredInstall;
       deferredInstall = null;
-      installButton.disabled = true;
-      installButton.textContent = 'Opening…';
-
-      installEvent.prompt();
+      if (installButton) {
+        installButton.disabled = true;
+        installButton.textContent = 'Opening…';
+      }
+      trackPWAEvent('pwa_install_started', surface || 'header');
+      try {
+        installEvent.prompt();
+      } catch (e) {
+        if (installButton) {
+          installButton.disabled = false;
+          installButton.textContent = 'Install app';
+        }
+        showHelp();
+        return;
+      }
       Promise.resolve(installEvent.userChoice).then(function (choice) {
         if (choice && choice.outcome === 'accepted') {
-          trackPWAEvent('pwa_install_prompt_accepted');
+          trackPWAEvent('pwa_install_prompt_accepted', surface || 'header');
           closePrompt(true);
+          closeHelp();
         } else {
+          trackPWAEvent('pwa_install_prompt_dismissed', surface || 'header');
           closePrompt(false);
         }
       }).catch(function () {
         closePrompt(false);
       });
+    }
+
+    if (appButton) {
+      appButton.addEventListener('click', function () {
+        trackPWAEvent('pwa_get_app_clicked', 'header');
+        requestInstall('header');
+      });
+    }
+
+    if (notificationAllowed) {
+      prompt = document.createElement('aside');
+      prompt.className = 'pwa-install-prompt';
+      prompt.hidden = true;
+      prompt.setAttribute('aria-label', 'Install Unblocked Games');
+      prompt.innerHTML =
+        '<div class="pwa-install-heading">' +
+          '<img class="pwa-install-icon" src="/assets/pwa-icon-192.png" width="48" height="48" alt="" />' +
+          '<div class="pwa-install-copy"><span class="pwa-install-eyebrow">UNBLOCKED GAMES · QUICK ACCESS</span>' +
+          '<h2>Play at home or at school</h2></div>' +
+          '<button class="pwa-install-close" type="button" aria-label="Dismiss install notification">&times;</button>' +
+        '</div>' +
+        '<p class="pwa-install-description">Add Unblocked Games to your device and open your favorite games with one tap.</p>' +
+        '<div class="pwa-install-actions"><button class="pwa-install-action" type="button">Install app</button>' +
+        '<button class="pwa-install-later" type="button">Not now</button></div>';
+      document.body.appendChild(prompt);
+
+      installButton = prompt.querySelector('.pwa-install-action');
+      var closeButton = prompt.querySelector('.pwa-install-close');
+      var laterButton = prompt.querySelector('.pwa-install-later');
+
+      function showPrompt() {
+        if (!prompt || !document.body.contains(prompt) || !deferredInstall) return;
+        prompt.hidden = false;
+        trackPWAEvent('pwa_install_prompt_shown', 'notification');
+        window.requestAnimationFrame(function () { prompt.classList.add('is-visible'); });
+      }
+
+      installButton.addEventListener('click', function () { requestInstall('notification'); });
+      closeButton.addEventListener('click', function () { closePrompt(false); });
+      laterButton.addEventListener('click', function () { closePrompt(false); });
+    } else {
+      function showPrompt() {}
+    }
+
+    window.addEventListener('beforeinstallprompt', function (event) {
+      event.preventDefault();
+      deferredInstall = event;
+      if (notificationAllowed) showPrompt();
     });
 
-    closeButton.addEventListener('click', function () { closePrompt(false); });
-    laterButton.addEventListener('click', function () { closePrompt(false); });
+    window.addEventListener('appinstalled', function () {
+      trackPWAEvent('pwa_installed', 'browser');
+      closePrompt(true);
+      closeHelp();
+      if (appButton) appButton.hidden = true;
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') closeHelp();
+    });
   }
 
   setupPWAInstall();
