@@ -174,3 +174,48 @@ dl.info a{color:var(--primary)}
 .pwa-install-help-steps li{padding-left:2px}
 .pwa-install-help-steps li+li{margin-top:9px}
 .pwa-install-help-steps strong{display:block;margin-bottom:1px;color:var(--text);font-size:13px}
+
+
+/* ---------- Header app button / secondary Random action ---------- */
+.btn-random{
+  background:var(--surface);
+  color:var(--primary);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-sm);
+}
+.btn-random:hover{
+  background:var(--surface-2);
+  border-color:var(--primary);
+  transform:translateY(-1px);
+}
+.btn-get-app{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  height:42px;
+  padding:0 16px;
+  border:1px solid transparent;
+  border-radius:999px;
+  background:var(--primary);
+  color:var(--on-primary);
+  font-size:14px;
+  font-weight:600;
+  white-space:nowrap;
+  box-shadow:none;
+  transition:background .15s,transform .15s;
+}
+.btn-get-app svg{width:17px;height:17px;flex:none}
+.btn-get-app:hover{background:var(--primary-hover);transform:translateY(-1px)}
+.btn-get-app:active,.btn-random:active{transform:scale(.97)}
+.btn-get-app:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn-get-app[hidden]{display:none}
+@media(max-width:980px){
+  .btn-random span,.btn-get-app span{display:none}
+  .btn-random,.btn-get-app{
+    width:42px;height:42px;padding:0;gap:0;justify-content:center;
+  }
+}
+@media(max-width:720px){
+  .btn-random,.btn-get-app{width:42px;height:42px}
+}
