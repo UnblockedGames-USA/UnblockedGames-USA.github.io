@@ -15,6 +15,151 @@
     clearTimeout(t._h); t._h = setTimeout(function () { t.classList.remove('show'); }, 1800);
   }
 
+  /* PWA install experience: shared by the homepage, game pages and catalog pages. */
+  function setupPWAInstall() {
+    if (!document.head) return;
+
+    if (!document.querySelector('link[rel="manifest"]')) {
+      var manifest = document.createElement('link');
+      manifest.rel = 'manifest';
+      manifest.href = '/manifest.webmanifest';
+      document.head.appendChild(manifest);
+    }
+    if (!document.querySelector('link[rel="apple-touch-icon"]')) {
+      var appleIcon = document.createElement('link');
+      appleIcon.rel = 'apple-touch-icon';
+      appleIcon.href = '/assets/pwa-icon-192.png';
+      document.head.appendChild(appleIcon);
+    }
+    if (!document.querySelector('meta[name="apple-mobile-web-app-capable"]')) {
+      var appleCapable = document.createElement('meta');
+      appleCapable.name = 'apple-mobile-web-app-capable';
+      appleCapable.content = 'yes';
+      document.head.appendChild(appleCapable);
+    }
+    if (!document.querySelector('meta[name="apple-mobile-web-app-title"]')) {
+      var appleTitle = document.createElement('meta');
+      appleTitle.name = 'apple-mobile-web-app-title';
+      appleTitle.content = 'Unblocked Games';
+      document.head.appendChild(appleTitle);
+    }
+
+    if ('serviceWorker' in navigator && location.protocol === 'https:') {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(function () {
+          /* The site remains fully usable if a browser disables service workers. */
+        });
+      }, { once: true });
+    }
+
+    var standalone = window.matchMedia && window.matchMedia('(display-mode: standalone)').matches;
+    if (standalone || navigator.standalone === true) return;
+
+    var dismissedUntil = 0;
+    var installedBefore = false;
+    try {
+      dismissedUntil = Number(localStorage.getItem('ugusa-pwa-dismissed-until') || 0);
+      installedBefore = localStorage.getItem('ugusa-pwa-installed') === '1';
+    } catch (e) {}
+    if (installedBefore || dismissedUntil > Date.now()) return;
+
+    var deferredInstall = null;
+    var prompt = document.createElement('aside');
+    prompt.className = 'pwa-install-prompt';
+    prompt.hidden = true;
+    prompt.setAttribute('aria-label', 'Install Unblocked Games');
+    prompt.innerHTML =
+      '<div class="pwa-install-heading">' +
+        '<img class="pwa-install-icon" src="/assets/pwa-icon-192.png" width="48" height="48" alt="" />' +
+        '<div class="pwa-install-copy"><span class="pwa-install-eyebrow">UNBLOCKED GAMES · QUICK ACCESS</span>' +
+        '<h2>Play anywhere, one tap away</h2></div>' +
+        '<button class="pwa-install-close" type="button" aria-label="Dismiss install suggestion">&times;</button>' +
+      '</div>' +
+      '<p class="pwa-install-description">Add Unblocked Games to your home screen and jump into your favorites at home or at school.</p>' +
+      '<div class="pwa-install-actions"><button class="pwa-install-action" type="button">How to install</button>' +
+      '<button class="pwa-install-later" type="button">Maybe later</button></div>' +
+      '<p class="pwa-install-help" hidden aria-live="polite"></p>';
+    document.body.appendChild(prompt);
+
+    var installButton = prompt.querySelector('.pwa-install-action');
+    var closeButton = prompt.querySelector('.pwa-install-close');
+    var laterButton = prompt.querySelector('.pwa-install-later');
+    var help = prompt.querySelector('.pwa-install-help');
+    var helpOpen = false;
+
+    function closePrompt(installed) {
+      try {
+        if (installed) localStorage.setItem('ugusa-pwa-installed', '1');
+        else localStorage.setItem('ugusa-pwa-dismissed-until', String(Date.now() + 14 * 24 * 60 * 60 * 1000));
+      } catch (e) {}
+      prompt.classList.remove('is-visible');
+      window.setTimeout(function () { prompt.remove(); }, 180);
+    }
+
+    function installInstructions() {
+      var ua = navigator.userAgent || '';
+      var isAppleMobile = /iPhone|iPad|iPod/i.test(ua) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      if (isAppleMobile) return 'In Safari, tap Share, then choose “Add to Home Screen”.';
+      if (/Android/i.test(ua)) return 'In Chrome, open the ⋮ menu and choose “Install app” or “Add to Home screen”.';
+      return 'In Chrome or Edge, use the install icon in the address bar, or open the browser menu and choose “Install page”.';
+    }
+
+    function showPrompt() {
+      if (!document.body.contains(prompt)) return;
+      prompt.hidden = false;
+      window.requestAnimationFrame(function () { prompt.classList.add('is-visible'); });
+    }
+
+    window.addEventListener('beforeinstallprompt', function (event) {
+      event.preventDefault();
+      deferredInstall = event;
+      if (installButton && !helpOpen) installButton.textContent = 'Install app';
+    });
+
+    window.addEventListener('appinstalled', function () {
+      closePrompt(true);
+    });
+
+    installButton.addEventListener('click', function () {
+      if (deferredInstall) {
+        var installEvent = deferredInstall;
+        deferredInstall = null;
+        installButton.disabled = true;
+        installButton.textContent = 'Opening install…';
+        installEvent.prompt();
+        Promise.resolve(installEvent.userChoice).then(function (choice) {
+          if (choice && choice.outcome === 'accepted') {
+            closePrompt(true);
+          } else {
+            installButton.disabled = false;
+            installButton.textContent = 'How to install';
+            help.textContent = installInstructions();
+            help.hidden = false;
+            helpOpen = true;
+            installButton.setAttribute('aria-expanded', 'true');
+          }
+        }).catch(function () {
+          installButton.disabled = false;
+          installButton.textContent = 'How to install';
+        });
+        return;
+      }
+      helpOpen = !helpOpen;
+      help.hidden = !helpOpen;
+      installButton.textContent = helpOpen ? 'Hide instructions' : 'How to install';
+      installButton.setAttribute('aria-expanded', String(helpOpen));
+      if (helpOpen) help.textContent = installInstructions();
+    });
+
+    closeButton.addEventListener('click', function () { closePrompt(false); });
+    laterButton.addEventListener('click', function () { closePrompt(false); });
+
+    window.setTimeout(showPrompt, 8500);
+  }
+
+  setupPWAInstall();
+
   /* theme (same storage key as Classroom 6X) */
   var themeBtn = $('#themeBtn');
   if (themeBtn) themeBtn.addEventListener('click', function () {
