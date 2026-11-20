@@ -110,3 +110,35 @@ dl.info a{color:var(--primary)}
 .logo .flag{width:30px;height:auto;aspect-ratio:38/26;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.28);flex:none;margin-right:2px;transition:transform .25s var(--ease)}
 .logo:hover .flag{transform:rotate(-6deg) scale(1.08)}
 @media (max-width:720px){.logo .flag{width:26px}}
+
+
+/* ---------- PWA install notification ---------- */
+.pwa-install-prompt{
+  position:fixed;z-index:140;right:22px;bottom:max(22px,env(safe-area-inset-bottom));
+  width:min(390px,calc(100vw - 32px));padding:18px;border:1px solid var(--line);
+  border-radius:20px;background:var(--surface);color:var(--text);box-shadow:0 24px 70px rgba(5,22,15,.24);
+  opacity:0;transform:translateY(14px) scale(.985);transition:opacity .2s ease,transform .2s ease;
+}
+.pwa-install-prompt[hidden]{display:none}
+.pwa-install-prompt.is-visible{opacity:1;transform:none}
+.pwa-install-heading{display:flex;align-items:center;gap:12px;min-width:0}
+.pwa-install-icon{width:48px;height:48px;flex:none;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.pwa-install-copy{flex:1;min-width:0}
+.pwa-install-eyebrow{display:block;color:var(--primary);font-size:10px;font-weight:800;letter-spacing:.09em;line-height:1.3}
+.pwa-install-copy h2{margin-top:4px;font-family:var(--font-display);font-size:18px;line-height:1.2;font-weight:700;letter-spacing:-.02em}
+.pwa-install-close{width:30px;height:30px;flex:none;display:grid;place-items:center;border-radius:9px;color:var(--faint);font-size:24px;line-height:1}
+.pwa-install-close:hover{background:var(--surface-2);color:var(--text)}
+.pwa-install-description{margin:12px 0 15px;color:var(--muted);font-size:14px;line-height:1.5}
+.pwa-install-actions{display:flex;align-items:center;gap:9px}
+.pwa-install-action{min-height:42px;padding:0 17px;border-radius:12px;background:var(--primary);color:var(--on-primary);font-size:14px;font-weight:700;transition:background .15s,transform .15s}
+.pwa-install-action:hover{background:var(--primary-hover)}
+.pwa-install-action:active{transform:scale(.98)}
+.pwa-install-action:disabled{opacity:.7;cursor:wait}
+.pwa-install-later{min-height:42px;padding:0 12px;border-radius:12px;color:var(--muted);font-size:13px;font-weight:600}
+.pwa-install-later:hover{background:var(--surface-2);color:var(--text)}
+.pwa-install-help{margin:13px 0 0;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);color:var(--text);font-size:13px;line-height:1.5}
+@media(max-width:600px){
+  .pwa-install-prompt{left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));width:auto;padding:16px;border-radius:18px}
+  .pwa-install-copy h2{font-size:17px}
+}
+@media(prefers-reduced-motion:reduce){.pwa-install-prompt{transition:none}}
