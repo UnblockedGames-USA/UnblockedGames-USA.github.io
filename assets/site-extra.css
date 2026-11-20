@@ -136,7 +136,6 @@ dl.info a{color:var(--primary)}
 .pwa-install-action:disabled{opacity:.7;cursor:wait}
 .pwa-install-later{min-height:42px;padding:0 12px;border-radius:12px;color:var(--muted);font-size:13px;font-weight:600}
 .pwa-install-later:hover{background:var(--surface-2);color:var(--text)}
-.pwa-install-help{margin:13px 0 0;padding:11px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);color:var(--text);font-size:13px;line-height:1.5}
 @media(max-width:600px){
   .pwa-install-prompt{left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));width:auto;padding:16px;border-radius:18px}
   .pwa-install-copy h2{font-size:17px}

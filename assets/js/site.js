@@ -47,7 +47,7 @@
     if ('serviceWorker' in navigator && location.protocol === 'https:') {
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(function () {
-          /* The site remains fully usable if a browser disables service workers. */
+          /* The site remains usable if a browser disables service workers. */
         });
       }, { once: true });
     }
@@ -71,21 +71,18 @@
     prompt.innerHTML =
       '<div class="pwa-install-heading">' +
         '<img class="pwa-install-icon" src="/assets/pwa-icon-192.png" width="48" height="48" alt="" />' +
-        '<div class="pwa-install-copy"><span class="pwa-install-eyebrow">UNBLOCKED GAMES · QUICK ACCESS</span>' +
-        '<h2>Play anywhere, one tap away</h2></div>' +
+        '<div class="pwa-install-copy"><span class="pwa-install-eyebrow">YOUR GAMES · ONE TAP AWAY</span>' +
+        '<h2>Play at home or at school</h2></div>' +
         '<button class="pwa-install-close" type="button" aria-label="Dismiss install suggestion">&times;</button>' +
       '</div>' +
-      '<p class="pwa-install-description">Add Unblocked Games to your home screen and jump into your favorites at home or at school.</p>' +
-      '<div class="pwa-install-actions"><button class="pwa-install-action" type="button">How to install</button>' +
-      '<button class="pwa-install-later" type="button">Maybe later</button></div>' +
-      '<p class="pwa-install-help" hidden aria-live="polite"></p>';
+      '<p class="pwa-install-description">Install Unblocked Games on your device for quick access to your favorite games.</p>' +
+      '<div class="pwa-install-actions"><button class="pwa-install-action" type="button">Install app</button>' +
+      '<button class="pwa-install-later" type="button">Not now</button></div>';
     document.body.appendChild(prompt);
 
     var installButton = prompt.querySelector('.pwa-install-action');
     var closeButton = prompt.querySelector('.pwa-install-close');
     var laterButton = prompt.querySelector('.pwa-install-later');
-    var help = prompt.querySelector('.pwa-install-help');
-    var helpOpen = false;
 
     function closePrompt(installed) {
       try {
@@ -94,15 +91,6 @@
       } catch (e) {}
       prompt.classList.remove('is-visible');
       window.setTimeout(function () { prompt.remove(); }, 180);
-    }
-
-    function installInstructions() {
-      var ua = navigator.userAgent || '';
-      var isAppleMobile = /iPhone|iPad|iPod/i.test(ua) ||
-        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      if (isAppleMobile) return 'In Safari, tap Share, then choose “Add to Home Screen”.';
-      if (/Android/i.test(ua)) return 'In Chrome, open the ⋮ menu and choose “Install app” or “Add to Home screen”.';
-      return 'In Chrome or Edge, use the install icon in the address bar, or open the browser menu and choose “Install page”.';
     }
 
     function showPrompt() {
@@ -114,7 +102,8 @@
     window.addEventListener('beforeinstallprompt', function (event) {
       event.preventDefault();
       deferredInstall = event;
-      if (installButton && !helpOpen) installButton.textContent = 'Install app';
+      installButton.disabled = false;
+      installButton.textContent = 'Install app';
     });
 
     window.addEventListener('appinstalled', function () {
@@ -122,34 +111,28 @@
     });
 
     installButton.addEventListener('click', function () {
-      if (deferredInstall) {
-        var installEvent = deferredInstall;
-        deferredInstall = null;
-        installButton.disabled = true;
-        installButton.textContent = 'Opening install…';
-        installEvent.prompt();
-        Promise.resolve(installEvent.userChoice).then(function (choice) {
-          if (choice && choice.outcome === 'accepted') {
-            closePrompt(true);
-          } else {
-            installButton.disabled = false;
-            installButton.textContent = 'How to install';
-            help.textContent = installInstructions();
-            help.hidden = false;
-            helpOpen = true;
-            installButton.setAttribute('aria-expanded', 'true');
-          }
-        }).catch(function () {
-          installButton.disabled = false;
-          installButton.textContent = 'How to install';
-        });
+      if (!deferredInstall) {
+        /* Browsers without a programmatic install prompt cannot install from a page button. */
+        toast('One-tap installation is not available in this browser.');
         return;
       }
-      helpOpen = !helpOpen;
-      help.hidden = !helpOpen;
-      installButton.textContent = helpOpen ? 'Hide instructions' : 'How to install';
-      installButton.setAttribute('aria-expanded', String(helpOpen));
-      if (helpOpen) help.textContent = installInstructions();
+
+      var installEvent = deferredInstall;
+      deferredInstall = null;
+      installButton.disabled = true;
+      installButton.textContent = 'Opening…';
+      installEvent.prompt();
+      Promise.resolve(installEvent.userChoice).then(function (choice) {
+        if (choice && choice.outcome === 'accepted') {
+          closePrompt(true);
+        } else {
+          installButton.disabled = false;
+          installButton.textContent = 'Install app';
+        }
+      }).catch(function () {
+        installButton.disabled = false;
+        installButton.textContent = 'Install app';
+      });
     });
 
     closeButton.addEventListener('click', function () { closePrompt(false); });
