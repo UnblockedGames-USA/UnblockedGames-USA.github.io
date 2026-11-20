@@ -65,6 +65,15 @@
     if (installedBefore || dismissedUntil > Date.now()) return;
 
     var deferredInstall = null;
+
+    function trackPWAEvent(eventName) {
+      if (typeof window.gtag !== 'function') return;
+      window.gtag('event', eventName, {
+        install_method: 'browser_prompt',
+        install_surface: 'notification'
+      });
+    }
+
     var prompt = document.createElement('aside');
     prompt.className = 'pwa-install-prompt';
     prompt.hidden = true;
@@ -88,6 +97,7 @@
     function showPrompt() {
       if (!document.body.contains(prompt) || !deferredInstall) return;
       prompt.hidden = false;
+      trackPWAEvent('pwa_install_prompt_shown');
       window.requestAnimationFrame(function () { prompt.classList.add('is-visible'); });
     }
 
@@ -108,6 +118,7 @@
     });
 
     window.addEventListener('appinstalled', function () {
+      trackPWAEvent('pwa_installed');
       closePrompt(true);
     });
 
@@ -121,6 +132,7 @@
       installEvent.prompt();
       Promise.resolve(installEvent.userChoice).then(function (choice) {
         if (choice && choice.outcome === 'accepted') {
+          trackPWAEvent('pwa_install_prompt_accepted');
           closePrompt(true);
         } else {
           closePrompt(false);
