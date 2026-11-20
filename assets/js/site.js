@@ -59,7 +59,7 @@
     var dismissedUntil = 0;
     var installedBefore = false;
     try {
-      dismissedUntil = Number(localStorage.getItem('ugusa-pwa-dismissed-until') || 0);
+      dismissedUntil = Number(localStorage.getItem('ugusa-pwa-dismissed-until-v2') || 0);
       installedBefore = localStorage.getItem('ugusa-pwa-installed') === '1';
     } catch (e) {}
     if (installedBefore || dismissedUntil > Date.now()) return;
@@ -94,7 +94,7 @@
     function closePrompt(installed) {
       try {
         if (installed) localStorage.setItem('ugusa-pwa-installed', '1');
-        else localStorage.setItem('ugusa-pwa-dismissed-until', String(Date.now() + 14 * 24 * 60 * 60 * 1000));
+        else localStorage.setItem('ugusa-pwa-dismissed-until-v2', String(Date.now() + 14 * 24 * 60 * 60 * 1000));
       } catch (e) {}
       prompt.classList.remove('is-visible');
       window.setTimeout(function () { prompt.remove(); }, 180);
