@@ -141,3 +141,36 @@ dl.info a{color:var(--primary)}
   .pwa-install-copy h2{font-size:17px}
 }
 @media(prefers-reduced-motion:reduce){.pwa-install-prompt{transition:none}}
+
+
+/* ---------- Header app install action ---------- */
+.btn-get-app{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  height:42px;padding:0 14px;border:1px solid var(--line);border-radius:999px;
+  background:var(--surface);color:var(--primary);font-size:14px;font-weight:700;
+  white-space:nowrap;box-shadow:var(--shadow-sm);
+  transition:background .15s,transform .15s,border-color .15s;
+}
+.btn-get-app svg{width:17px;height:17px;flex:none}
+.btn-get-app:hover{background:var(--surface-2);border-color:var(--primary);transform:translateY(-1px)}
+.btn-get-app:active{transform:scale(.97)}
+.btn-get-app:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.btn-get-app[hidden]{display:none}
+@media(max-width:860px){
+  .btn-get-app{width:42px;padding:0;gap:0}
+  .btn-get-app span{display:none}
+}
+@media(max-width:720px){
+  .btn-get-app{width:36px;height:36px}
+  .btn-get-app svg{width:16px;height:16px}
+}
+
+/* The manual install guide is only shown when the browser has no native prompt. */
+.pwa-install-help{max-height:min(82vh,620px);overflow-y:auto}
+.pwa-install-help-steps{
+  margin:0 0 16px;padding-left:21px;color:var(--muted);
+  font-size:13px;line-height:1.5;
+}
+.pwa-install-help-steps li{padding-left:2px}
+.pwa-install-help-steps li+li{margin-top:9px}
+.pwa-install-help-steps strong{display:block;margin-bottom:1px;color:var(--text);font-size:13px}
