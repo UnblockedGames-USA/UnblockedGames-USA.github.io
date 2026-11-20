@@ -129,7 +129,7 @@ dl.info a{color:var(--primary)}
 .pwa-install-close{width:30px;height:30px;flex:none;display:grid;place-items:center;border-radius:9px;color:var(--faint);font-size:24px;line-height:1}
 .pwa-install-close:hover{background:var(--surface-2);color:var(--text)}
 .pwa-install-description{margin:12px 0 15px;color:var(--muted);font-size:14px;line-height:1.5}
-.pwa-install-actions{display:flex;align-items:center;gap:9px}
+.pwa-install-actions{display:flex;align-items:center;justify-content:center;gap:12px}
 .pwa-install-action{min-height:42px;padding:0 17px;border-radius:12px;background:var(--primary);color:var(--on-primary);font-size:14px;font-weight:700;transition:background .15s,transform .15s}
 .pwa-install-action:hover{background:var(--primary-hover)}
 .pwa-install-action:active{transform:scale(.98)}
